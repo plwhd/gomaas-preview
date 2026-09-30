@@ -17,3 +17,7 @@ img.avatar{object-fit:cover;object-position:center 28%}.about .contact-phone{mar
 
 /* Keep the reference’s heading/body/monospace hierarchy in both languages. */
 h1,h2,h3{font-family:"Gomaas Montserrat Web","Gomaas Han Web",sans-serif}
+
+.footer-socials{display:flex;flex-wrap:wrap;align-items:center;gap:24px;margin-left:auto}.footer-socials a{display:inline-flex;align-items:center;min-height:44px;font-size:14px;text-decoration:none}.footer-socials a:hover{text-decoration:underline}@media(max-width:600px){.footer-socials{flex-basis:100%;margin-left:0}}
+
+.contact-details{margin-top:24px}.contact-details summary{width:fit-content;cursor:pointer;list-style:none}.contact-details summary::-webkit-details-marker{display:none}.contact-details summary:focus-visible,.contact-actions button:focus-visible{outline:2px solid #18181b;outline-offset:5px}.contact-panel{padding-top:22px}.about .contact-number{margin:0 0 12px;font-size:14px}.contact-number span:last-child{white-space:nowrap;user-select:text}.contact-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px}.contact-actions a,.contact-actions button{display:inline-flex;align-items:center;min-height:44px;font:inherit;font-size:13px;color:#625d64;text-decoration:underline;text-underline-offset:5px}.contact-actions button{border:0;padding:0;background:transparent;cursor:pointer}.contact-actions button[hidden],.contact-feedback [hidden]{display:none}.contact-feedback{font-size:12px;line-height:1.7;color:#625d64}.contact-feedback span{display:block;margin-top:8px}
