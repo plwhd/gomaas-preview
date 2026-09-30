@@ -17,11 +17,7 @@
   "七牛云": "Qiniu Cloud",
   "基础架构部 · UI 设计师": "UI Designer · Infrastructure Department",
   "为什么选择云服务销售": "Why cloud services sales",
-  "我对销售工作的兴趣，来自与人沟通、理解需求并帮助解决问题的过程。我乐于助人，也愿意面对挑战、探索不熟悉的领域，希望把这些倾向带入与客户建立信任、共同寻找合适方案的工作中。": "My interest in sales comes from talking with people, understanding their needs and helping solve problems. I enjoy helping others, taking on challenges and exploring unfamiliar areas. I hope to bring these qualities to building trust with customers and finding solutions together.",
-  "在七牛云的工作让我接触到云产品；开发个人产品声笺时，我进一步参与了云服务调研、选型、成本比较和上线验证。这些实践让我对云计算与云服务产生了更具体、持续的兴趣。": "Working at Qiniu introduced me to cloud products. While developing my personal project, Jotora, I explored cloud services, compared options and costs, and tested deployments. These experiences deepened my interest in cloud computing and cloud services.",
-  "我关注企业在上云、使用 AI 和控制资源成本时的实际需求，希望在这一领域长期学习，把产品理解与客户沟通结合起来。": "I am interested in what businesses need when adopting cloud services and AI while managing resource costs. I want to keep learning in this field and connect product understanding with customer communication.",
   "当前主线：学习与探索": "Current focus: learning and exploration",
-  "持续学习云计算与云服务，结合个人项目理解产品的应用场景、计费方式与选型取舍，并向云服务销售岗位发展。": "I am learning about cloud computing and cloud services through personal projects, exploring use cases, pricing and trade-offs as I work towards a role in cloud services sales.",
   "个人产品实践": "Learning by building",
   "声笺": "",
   "个人 AI 产品开发": "Personal AI product development",
@@ -35,7 +31,6 @@
   "参与七牛云控制台、AI 大模型平台及边缘计算相关产品工作，接触对象存储、AI 平台与企业客户使用场景。": "Worked on Qiniu’s cloud console, AI model platform and edge computing products, gaining exposure to object storage, AI platforms and enterprise use cases.",
   "参与智能视频云平台 SUFY、边缘计算平台 Niulink、麻雀云 PCDN 等产品项目，与产品、研发协作推进需求分析、方案讨论及产品交付。": "Contributed to projects including the SUFY intelligent video cloud platform, Niulink edge computing platform and Maqueyun PCDN. Collaborated with product and engineering teams on requirements analysis, solution discussions and delivery.",
   "我有 1 年互联网产品经验和云厂商工作背景，参与过云控制台、AI 平台与边缘计算相关产品工作。目前希望向云计算与云服务销售方向发展。": "I have one year of experience working on internet products, including at a cloud service provider. My work has covered cloud consoles, AI platforms and edge computing products. I am now looking to move into cloud computing and cloud services sales.",
-  "设计与产品协作经历让我熟悉需求澄清、方案讨论和交付跟进；个人产品实践让我开始从业务场景、成本与实际约束理解云服务。": "My design and product collaboration experience has made me familiar with clarifying requirements, discussing solutions and following up on delivery. Building my own product has helped me understand cloud services through use cases, costs and practical constraints.",
   "武汉科技大学": "Wuhan University of Science and Technology",
   "视觉传达设计 · 本科": "Bachelor’s degree · Visual Communication Design",
   "联系我": "Get in touch",
@@ -54,7 +49,13 @@
   "在新窗口查看 ↗": "Open in a new tab ↗",
   "打开原始 PDF 简历": "Open the original PDF resume",
   "李鹏飞的原始简历，共一页。可通过上方链接查看或下载 PDF。": "Pengfei Li’s original one-page resume in Chinese. Use the links above to view or download the PDF.",
-  "原始简历为中文 PDF。": "The original resume is a Chinese-language PDF."
+  "原始简历为中文 PDF。": "The original resume is a Chinese-language PDF.",
+  "从 UI 设计工作到个人产品实践，我逐渐发现：相比持续打磨视觉细节，我更愿意投入到理解需求、讨论方案和业务取舍中。我希望向销售方向发展，更直接地与客户沟通，参与从发现问题到推动合作的过程。": "Through UI design work and personal product development, I found myself more motivated by understanding needs, discussing solutions and weighing business trade-offs than by refining visual details. I want to move into sales to work more directly with customers, from identifying problems to developing business relationships.",
+  "选择云服务方向，来自具体的使用经历。在七牛云工作时，我接触过云控制台、AI 平台和边缘计算产品；开发声笺时，我又从使用者角度，根据业务场景和成本，对比、配置和验证服务器、网关、对象存储与模型服务。这让我对云服务如何解决实际问题产生了持续兴趣。": "My interest in cloud services comes from practical experience. At Qiniu, I worked on cloud consoles, AI platforms and edge computing products. While building Jotora, I compared, configured and tested servers, gateways, object storage and model services against my own use cases and costs. This developed my interest in how cloud services solve practical problems.",
+  "我目前处于转行准备阶段，还没有独立拓客与成交的经验。我正在梳理自己对销售的理解：除了沟通和产品知识，还需要持续跟进、面对拒绝，并对商业结果负责。这些也是我需要通过实际工作学习和验证的部分。": "I am preparing for a career transition and do not yet have experience independently prospecting or closing deals. I am developing my understanding of sales: beyond communication and product knowledge, it requires consistent follow-up, handling rejection and accountability for commercial results. These are areas I still need to learn and test through practical work.",
+  "现阶段，我继续通过个人项目理解云服务的场景、成本与选型，并梳理转行动机和能力差距。下一步希望在具体岗位中学习客户开发、需求判断和商机跟进，逐步建立能够独立承担销售工作的基础。": "I am continuing to learn about cloud use cases, costs and service selection through personal projects, while examining my reasons for changing careers and the skills I need to develop. My next goal is to learn prospecting, needs assessment and opportunity follow-up in a sales role, building towards independent responsibility.",
+  "我习惯把想法推进成可以查看和验证的结果：从声笺的产品实践，到这个网站的搭建、发布与持续修改。最近，我也在根据求职沟通中的反馈，重新梳理转行动机和学习方向。这些行动是我练习执行与复盘的方式，销售能力则仍需要在实际业务中积累。": "I work to turn ideas into results that can be reviewed and tested, from developing Jotora to building, publishing and refining this website. Recently, feedback from career conversations has prompted me to revisit my reasons for changing fields and my learning priorities. These actions are how I practise follow-through and reflection; sales skills still need to be developed through real business experience.",
+  "长期而言，我希望持续深耕云计算与云服务领域，积累对产品、行业场景和客户需求的理解。通过实践、复盘与分享，逐步形成自己的专业判断，成为能够为客户和同行提供价值、值得信任的人。": "Over the long term, I hope to deepen my understanding of cloud computing and cloud services, including products, industry use cases and customer needs. Through practice, reflection and sharing, I aim to develop sound professional judgment and become someone customers and peers can trust and turn to for useful insights."
 };
   const entries = [];
   const walker = document.createTreeWalker(document.documentElement, NodeFilter.SHOW_TEXT);
