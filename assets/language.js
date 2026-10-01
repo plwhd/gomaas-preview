@@ -1,7 +1,7 @@
 // Translate existing text nodes without rebuilding links or analytics handlers.
 (() => {
   const translations = {
-  "你好，我是李鹏飞。": "Hi, I'm Pengfei Li.",
+  "你好，我是李鹏飞": "Hi, I'm Pengfei Li",
   "探索云服务，理解真实需求。": "Exploring cloud. Understanding needs.",
   "跳至正文": "Skip to content",
   "主导航": "Main navigation",
