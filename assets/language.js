@@ -10,6 +10,7 @@
   "关于我": "About",
   "查看简历": "Resume",
   "首页": "Home",
+  "← 返回文章列表": "← Back to articles",
   "文章": "Articles",
   "暂无公开记录": "No public entries yet",
   "李鹏飞的文章与公开记录。": "Articles and public notes by Pengfei Li.",
@@ -65,7 +66,7 @@
   const walker = document.createTreeWalker(document.documentElement, NodeFilter.SHOW_TEXT);
   while (walker.nextNode()) {
     const node = walker.currentNode;
-    if (node.parentElement.closest('script, style, [data-language-switch]')) continue;
+    if (node.parentElement.closest('script, style, [data-language-switch], [data-article-content]')) continue;
     const key = node.textContent.trim();
     if (Object.hasOwn(translations, key)) entries.push({ node, original: node.textContent, key });
   }
