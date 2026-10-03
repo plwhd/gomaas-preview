@@ -40,15 +40,17 @@ h1,h2,h3{font-family:"Gomaas Montserrat Web","Gomaas Han Web",sans-serif}
 .articles-shell{min-height:100vh;display:flex;flex-direction:column}
 .articles-shell>header,.articles-shell>footer,.articles-page{width:100%}
 .articles-page{flex:1;padding-top:116px;padding-bottom:48px}
-.articles-page>h1{font-size:23px}
+.articles-page>h1{font-size:23px;font-weight:600;letter-spacing:0}
 .articles-empty{border-top:1px solid #e4dfe1;margin:36px 0 0;padding-top:28px;font-size:14px;line-height:1.95;color:#625d64}
 .articles-shell nav a[aria-current="page"]{color:#18181b;text-decoration:underline}
 @media(max-width:600px){.articles-page{padding-top:72px;padding-bottom:32px}.articles-page>h1{font-size:21px}}
 
 /* Article reading uses the site's fonts, palette and single-column rhythm. */
-.article-list{margin-top:36px}
+.article-list{margin-top:32px}
+.article-list .entry{padding:24px 0 28px}
+.article-list .entry p{line-height:1.8;letter-spacing:.01em;margin:10px 0 0}
 .article-list .entry-heading{align-items:flex-start;gap:24px}
-.article-list h2{font-size:23px;line-height:1.5;margin:0;font-weight:600;letter-spacing:-.025em}
+.article-list h2{font-size:21px;line-height:1.55;margin:0;font-weight:500;letter-spacing:0}
 .article-list h2 a{text-decoration:none}
 .article-list h2 a:hover,.article-list h2 a:focus-visible{text-decoration:underline}
 .article-list .date{padding-top:5px}
@@ -79,4 +81,4 @@ html[lang="en"] .article-language-note{display:block}
 .reference-number{font-family:"Gomaas Mono Web",monospace;color:#18181b}
 .reference-back{white-space:nowrap;text-decoration:none;padding:4px}
 .article-content :target{background:#f0ebed;scroll-margin-top:36px}
-@media(max-width:600px){.article-page{padding-top:40px}.article-list h2{font-size:21px}.article-list .date{padding-top:0}.article-content{font-size:15px}.article-content h2{font-size:21px}.article-content h3{font-size:18px}.article-return{margin-bottom:24px}}
+@media(max-width:600px){.article-page{padding-top:40px}.article-list h2{font-size:20px}.article-list .date{padding-top:0}.article-content{font-size:15px}.article-content h2{font-size:21px}.article-content h3{font-size:18px}.article-return{margin-bottom:24px}}
