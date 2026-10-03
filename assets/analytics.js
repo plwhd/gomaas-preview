@@ -2,8 +2,13 @@
 (() => {
   'use strict';
   const websiteId = document.currentScript?.dataset.websiteId || '';
-  const allowedPages = new Set(['/gomaas-preview/', '/gomaas-preview/index.html', '/gomaas-preview/resume.html']);
-  if (location.hostname !== 'plwhd.github.io' || !allowedPages.has(location.pathname)) return;
+  const allowedDomains = new Set(['lipengfei.top', 'www.lipengfei.top']);
+  const allowedPages = new Set([
+    '/', '/index.html', '/resume.html', '/articles.html',
+    '/edge-information-architecture.html', '/cloud-service-sales.html',
+    '/compute-industry-five-forces.html', '/slides-example.html',
+  ]);
+  if (!allowedDomains.has(location.hostname) || !allowedPages.has(location.pathname)) return;
   if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(websiteId)) return;
   if (navigator.doNotTrack === '1' || navigator.globalPrivacyControl === true) return;
   const events = new Set(['resume_open', 'resume_download_click', 'resume_pdf_open']);
@@ -13,7 +18,7 @@
     const clean = { ...payload };
     const url = new URL(clean.url || location.pathname, location.origin);
     if (!allowedPages.has(url.pathname)) return false;
-    clean.url = url.pathname === '/gomaas-preview/index.html' ? '/gomaas-preview/' : url.pathname;
+    clean.url = url.pathname === '/index.html' ? '/' : url.pathname;
     try { clean.referrer = clean.referrer ? new URL(clean.referrer).origin : ''; }
     catch { clean.referrer = ''; }
     delete clean.data;
@@ -24,7 +29,7 @@
   tracker.src = 'https://cloud.umami.is/script.js';
   tracker.async = true;
   tracker.dataset.websiteId = websiteId;
-  tracker.dataset.domains = 'plwhd.github.io';
+  tracker.dataset.domains = [...allowedDomains].join(',');
   tracker.dataset.excludeSearch = 'true';
   tracker.dataset.excludeHash = 'true';
   tracker.dataset.doNotTrack = 'true';
