@@ -1,0 +1,71 @@
+/* Measured reference: yinxulai.com/slides/theme-example, 2026-10-03.
+   Independent implementation; dimensions and typography follow the rendered reference.
+   Existing local OFL Latin fonts supply the same Inter / JetBrains Mono families. */
+@font-face{font-family:Inter;src:url("fonts/inter-latin.woff2") format("woff2");font-style:normal;font-weight:100 900;font-display:swap}
+@font-face{font-family:"JetBrains Mono";src:url("fonts/jetbrains-mono-latin.woff2") format("woff2");font-style:normal;font-weight:100 800;font-display:swap}
+html:has(.slide-page){scroll-behavior:auto}
+.slide-page{--slide-bg:#fff;--slide-fg:#18181b;--slide-muted:#71717a;--slide-border:#e4e4e7;min-height:100dvh;background:var(--slide-bg);color:var(--slide-fg);font-family:Inter,"Helvetica Neue",-apple-system,sans-serif;line-height:1.5;overflow-anchor:none}
+.slide-page[data-theme="dark"]{--slide-bg:#09090b;--slide-fg:#f4f4f5;--slide-muted:#a1a1aa;--slide-border:#27272a}
+.slide-deck{width:100%}
+.slide{height:100dvh;width:100%;margin:0;padding:0}
+.slide[hidden]{display:none}
+.slide-content{height:100%;padding:clamp(16px,4vw,80px);position:relative;overflow:hidden;font-size:clamp(17.28px,calc(.28vw + 15.68px),20.16px)}
+.slide-content h1,.slide-content h2,.slide-content h3,.slide-content p,.slide-content div{font-family:inherit;letter-spacing:normal;color:inherit}
+.slide-content h1,.slide-content .slide-title{font-size:clamp(38.4px,calc(.9vw + 32px),48px);line-height:1.12;font-weight:700;margin:0 0 16px -.05em}
+.slide-content p{font-size:1.08em;line-height:1.7;margin:16px 0}
+.slide-content h1+p,.slide-content .slide-title+p,.slide-section h2+p{font-size:1.12em;line-height:1.65;margin:-8px 0 16px}
+.slide-cover .slide-content{display:flex;flex-direction:column;justify-content:center}
+.slide-cover h1{font-size:clamp(51.2px,calc(2.5vw + 40px),80px);line-height:1.1}
+.slide-cover h1+p{margin-top:-16px;font-weight:700}
+.slide-byline{font-size:inherit;line-height:inherit}
+.slide-section .slide-content{display:flex;flex-direction:column;justify-content:center;text-align:center}
+.slide-section h2{font-size:clamp(48px,calc(2vw + 40px),72px);font-weight:500;line-height:1.12;margin:0 0 16px -.05em}
+.slide-content .slide-subtitle{font-size:24px;line-height:32px;font-weight:700;margin:0;padding:0;text-transform:none}
+.slide-grid{display:grid;grid-template-rows:auto 1fr;gap:clamp(16px,2vw,32px);align-items:stretch;overflow:auto}
+.slide-grid>.slide-title{margin-bottom:16px}
+.slide-columns{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2vw,32px);min-width:0;min-height:0}
+.slide-columns>div,.slide-steps>li{min-width:0;min-height:0;overflow:auto}
+.slide-content ul{list-style:outside disc;font-size:1.04em;margin:0 0 16px;padding:0}
+.slide-content ul li{margin:0 0 .35em 1.1em;padding-left:.2em;line-height:1.7}
+.slide-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,32px);padding:0;margin:0;list-style:none}
+.slide-steps li>span{display:block;margin:0 0 16px;font-size:inherit}
+.slide-end-link{align-self:center;font-size:inherit;border-bottom:1px dashed;text-decoration:none;margin-top:16px}
+.slide-end-link:hover{color:#10b981;border-bottom-style:solid}
+.slide-controls{position:fixed;bottom:max(24px,env(safe-area-inset-bottom));left:max(24px,env(safe-area-inset-left));z-index:50;display:flex;align-items:center;justify-content:flex-start;flex-wrap:wrap;gap:8px;max-width:calc(100vw - 32px);pointer-events:none}
+.slide-controls[hidden]{display:none}
+.slide-control,.slide-count{display:inline-flex;align-items:center;justify-content:center;height:40px;flex-shrink:0;box-sizing:border-box;border:0;border-radius:9999px;background:rgb(255 255 255 / .92);color:oklch(.442 .017 285.786);box-shadow:inset 0 0 0 1px oklch(.871 .006 286.286),0 4px 6px -1px #0000001a,0 2px 4px -2px #0000001a}
+.slide-controls .slide-control{width:40px;min-height:0;padding:0;cursor:pointer;pointer-events:auto;text-decoration:none;position:relative;transition:all .2s cubic-bezier(.4,0,.2,1)}
+.slide-control:hover{color:#18181b;box-shadow:inset 0 0 0 1px #a1a1aa,0 10px 15px -3px #0000001a,0 4px 6px -4px #0000001a}
+.slide-control:disabled{opacity:.3;cursor:not-allowed;box-shadow:inset 0 0 0 1px oklch(.871 .006 286.286),0 1px 3px #0000001a,0 1px 2px -1px #0000001a}
+.slide-control:focus-visible{outline:2px solid #10b981;outline-offset:2px}
+.slide-control svg{width:16px;height:16px;color:#000}
+.slide-control[data-theme] svg{width:20px;height:20px}
+.slide-return img{width:40px;height:40px;object-fit:cover;border-radius:50%}
+.slide-return .slide-home-icon{position:absolute;width:14px;height:14px;opacity:0;color:#fff;transition:opacity .2s cubic-bezier(.4,0,.2,1)}
+.slide-return:hover .slide-home-icon{opacity:1}
+.slide-count{padding:0 16px;font-family:"JetBrains Mono",monospace;font-size:12px;line-height:16px;font-weight:500;font-variant-numeric:tabular-nums}
+.slide-count-separator{margin:0 4px;color:#d4d4d8}
+.slide-page[data-theme="dark"] .slide-control,.slide-page[data-theme="dark"] .slide-count{background:rgb(24 24 27 / .88);color:#d4d4d8;box-shadow:inset 0 0 0 1px #3f3f46,0 4px 6px -1px #0000001a,0 2px 4px -2px #0000001a}
+.slide-page[data-theme="dark"] .slide-control:hover{color:#f4f4f5;box-shadow:inset 0 0 0 1px #52525b,0 10px 15px -3px #0000001a,0 4px 6px -4px #0000001a}
+.slide-page[data-theme="dark"] .slide-count-separator{color:#52525b}
+.slide-page[data-theme="dark"] .slide-control svg{color:#fff}
+.slide-noscript{padding:24px}
+.slide-page .skip{z-index:60}
+.slide-mobile-notice{display:none}
+.slide-mobile-notice .slide-kicker{font-size:13px}
+.slide-mobile-notice h2{font-size:30px;line-height:1.4;margin:0 0 20px;letter-spacing:-.03em}
+.slide-mobile-notice p:not(.slide-kicker){font-size:16px;line-height:1.9;color:var(--slide-muted);margin:0}
+.slide-mobile-notice a{display:inline-flex;align-items:center;min-height:44px;font-size:14px;margin-top:28px}
+@media(max-width:1023px){.slide-content{font-size:16px}}
+@media(max-width:600px),(max-width:1000px) and (pointer:coarse){.slide-deck,.slide-controls{display:none!important}.slide-mobile-notice{min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:96px 24px}.slide-mobile-notice>div{width:100%;max-width:420px}}
+
+/* Timer geometry measured from the reference's duration=1 example. */
+.slide-controls .slide-control[hidden],.slide-count [hidden],.slide-timer-progress[hidden]{display:none}
+.slide-timer-separator{margin:0 8px;color:#d4d4d8;font-family:Inter,"Helvetica Neue",-apple-system,sans-serif;font-size:16px;line-height:24px;font-weight:400}
+.slide-count [data-remaining]{font-size:12px;line-height:16px;font-weight:500}
+.slide-count [data-remaining].is-complete{color:oklch(63.7% .237 25.331)}
+.slide-timer-progress{position:fixed;bottom:0;left:0;right:0;height:4px;background:rgb(0 0 0 / .08);pointer-events:none;z-index:50}
+.slide-timer-progress>div{height:100%;width:0;background:oklch(69.6% .17 162.48);transition:width 1s linear,background-color .3s ease}
+.slide-timer-progress.is-complete>div{background:oklch(63.7% .237 25.331)}
+.slide-page[data-theme="dark"] .slide-timer-separator{color:#52525b}
+@media(max-width:600px),(max-width:1000px) and (pointer:coarse){.slide-timer-progress{display:none!important}}
