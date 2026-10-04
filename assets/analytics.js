@@ -5,7 +5,7 @@
   const allowedDomains = new Set(['lipengfei.top', 'www.lipengfei.top']);
   const allowedPages = new Set([
     '/', '/index.html', '/resume.html', '/articles.html',
-    '/edge-information-architecture.html', '/cloud-service-sales.html', '/cloud-service-choices.html',
+    '/edge-information-architecture.html', '/cloud-service-sales.html', '/cloud-service-choices.html', '/personal-review.html',
     '/compute-industry-five-forces.html', '/slides-example.html', '/life-notes.html', '/website-ui-baseline.html',
   ]);
   if (!allowedDomains.has(location.hostname) || !allowedPages.has(location.pathname)) return;

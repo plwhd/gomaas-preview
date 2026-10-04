@@ -11,6 +11,7 @@
   "查看简历": "Resume",
   "首页": "Home",
   "← 返回文章列表": "← Back to articles",
+  "← 返回生活与杂记": "← Back to life notes",
   "文章": "Articles",
   "暂无公开记录": "No public entries yet",
   "李鹏飞的文章与公开记录。": "Articles and public notes by Pengfei Li.",
