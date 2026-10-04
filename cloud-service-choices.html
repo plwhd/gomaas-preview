@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="从声笺的实际开发出发，复盘需求拆解、资源投入、网络验证与实施取舍，并联系云服务销售及商务拓展的求职方向。"><meta name="robots" content="noindex,nofollow"><title>李鹏飞</title><link rel="icon" href="favicon.ico?v=20261003-b-original" sizes="16x16 32x32 48x48"><link rel="icon" type="image/png" sizes="32x32" href="assets/pengfei-wing-32.png?v=20261003-b-original"><link rel="icon" type="image/svg+xml" sizes="any" href="assets/pengfei-wing-original.svg?v=20261003-b-original"><link rel="apple-touch-icon" sizes="180x180" href="assets/pengfei-wing-apple-180.png?v=20261003-b-original"><link rel="stylesheet" href="styles.css?v=20261004-cloud-choices"><script defer src="assets/analytics.js?v=20261004-cloud-choices" data-website-id="f18cb949-fc16-4710-8355-ca4601609d4c"></script><script defer src="assets/language.js?v=20261002-articles-restored"></script></head>
+<body class="articles-shell"><a class="skip" href="#main">跳至正文</a><header class="wrap"><nav aria-label="主导航"><a href="index.html">首页</a><a href="index.html#direction">职业方向</a><a href="index.html#experience">工作经历</a><a href="index.html#about">关于我</a><a href="articles.html" aria-current="page">XX</a><a href="resume.html" data-gomaas-event="resume_open">查看简历</a></nav></header>
+<main id="main" class="article-page wrap"><a class="text-link article-return" href="articles.html">← 返回文章列表</a><article lang="zh-CN" data-article-content><div class="article-heading"><h1>声笺开发中的云服务选型与取舍</h1><p class="article-meta"><span>发布于 <time datetime="2026-10-04">2026.10.04</time></span><span>个人实践</span><span>AI 辅助整理</span></p></div><p class="article-language-note" lang="en">This article is available in Chinese.</p><div class="article-content">
+<p>在七牛云参与云控制台、AI 平台和边缘计算相关产品工作时，我主要从产品与界面的角度接触云服务。开发个人产品声笺后，我开始面对另一类问题：一个具体需求需要哪些服务，哪些资源值得保留，一个技术方案能否在实际使用环境中成立。</p>
+<p>声笺是一款围绕想法捕捉、语音转写和内容整理展开的个人产品。项目早期调用量不大，功能也在逐步验证。这些条件使选型无法只依据产品功能清单，还需要考虑投入、网络环境和实施顺序。</p>
+<p>这篇文章记录几次实际取舍，并说明它们如何影响我对云服务销售及商务拓展方向的理解。项目经历提供的是需求与方案判断的实践基础；其商业价值仍需在真实客户和岗位中继续检验。</p>
+<h2 id="section-1">一、先拆解需求，再确定服务组合</h2>
+<p>声笺的核心流程是：记录想法，可靠保存原始内容，再获得转写和整理结果。围绕这条流程，我调研并组合使用了火山引擎 Serverless API 网关、veFaaS、TOS 对象存储、语音识别和豆包大模型服务。</p>
+<p>在本项目中，网关与函数承接服务端请求，TOS 用于转写过程中的临时音频，语音识别将音频转为文字，模型服务辅助整理内容。手机上的原始记录、本地保存与云端处理承担不同职责，不能因为接入了云服务，就把所有内容和功能一并迁到云端。</p>
+<p>这一区分也影响了需求范围。在线转写与整理已经有明确用途，但账号、多端同步和长期云端音频库需要各自的使用理由。它们涉及新的保存、访问和维护问题，不能仅因为现有平台提供相关产品，就认为项目应当同时建设。</p>
+<p>回看这一步，我认为需求理解需要具体到使用流程：哪些环节必须先解决，哪些环节可以由现有方式完成，缺少某项能力是否会阻碍日常使用。把这些关系说明白，才有依据讨论产品组合与投入。</p>
+<h2 id="section-2">二、释放没有当期用途的数据库</h2>
+<p>项目早期，我比较过持续保留资源与按调用使用服务的投入方式，采用 Serverless 组合，并释放了暂未产生实际业务价值的 RDS MySQL 实例。</p>
+<p>释放数据库的原因并非单纯认为数据库费用高。当时，原始记录保存在本地，正式云同步没有开放；这套数据库主要面向后续同步能力，当前录音、保存、转写和整理流程并不依赖它。继续保留实例，意味着为尚未进入实际使用的功能承担持续资源费用。</p>
+<p>原 MySQL 实例本身也是按量计费。这里真正需要比较的是，实例保留期间产生的费用是否对应当前用途，而不是简单把所有资源分成“固定付费”和“按量免费”两类。函数、网关、存储、语音识别和模型调用，同样需要结合各自配置与实际账单核对。</p>
+<p>在释放前后，我更关注三个问题：资源现在支撑什么功能，移除后会影响什么，未来重新投入需要什么条件。数据库被释放后，当前本地记录与核心云端处理链路仍可保留；正式同步则继续暂缓。</p>
+<p>这篇复盘没有完整的前后账单对比，因此不声称节省了某个金额或百分比。可以确认的结果是，资源组合发生了调整，没有当期用途的数据库实例被释放。这是一次有范围的投入调整，不能推导为项目已经没有持续费用。</p>
+<h2 id="section-3">三、技术验证通过，还要检验实际可用性</h2>
+<p>在探索手机与网页之间的文字同步时，我做过 Cloudflare Workers 与 Durable Objects 的技术验证。隔离环境中的合成数据流程能够运行，说明方案具备一定实现可行性；这并不等于它已经适合目标用户，更不等于正式记录已经接入同步。</p>
+<p>后续测试覆盖了当时的日常 Wi-Fi 与手机移动网络。在正常网络条件下，目标入口的可达性未满足项目要求。工程诊断中可用的访问方式，不能直接作为用户日常使用的前提。因此，国内服务方案方向调整到腾讯云轻量应用服务器，并继续保留正式同步的上线边界。</p>
+<p>这个判断针对的是本项目当时的入口、设备和网络条件，不能泛化为某个平台在所有地区都不可用。它提醒我，方案比较需要把目标环境纳入验证：测试结果是在什么条件下得到的，实际使用条件是否一致，未满足要求时能否及时调整。</p>
+<p>对于云服务销售与商务拓展，这种差别尤其值得重视。功能介绍可以帮助客户了解产品，但方案讨论还需要回答：它能否在客户的实际条件下工作，实施中有哪些依赖，哪些结论已经验证，哪些仍是候选。技术可行性与业务可用性之间，仍有需要落实的工作。</p>
+<h2 id="section-4">四、把配置、部署与维护放进选型过程</h2>
+<p>调整国内方案后，我实践了腾讯云轻量应用服务器的购买与基础安全配置，以及域名、网站部署和备案相关工作。声笺官网已上线，ICP 与公安联网备案均已获得通过确认。</p>
+<p>这些经历使我看到，选择一个产品只是实施的一部分。还需要处理配置、访问入口、部署准备、发布核验和后续维护。网站已经部署，也不能据此宣称所有计划中的功能已经上线。</p>
+<p>在这个项目里，官网、云端转写整理与正式记录同步是不同对象。前两者已有相应使用或发布记录；正式同步仍停留在隔离技术候选，尚未接入日用 App 的真实记录。对外介绍时，必须分别说明状态，否则容易把“服务器已经可用”误写成“完整业务已经交付”。</p>
+<p>我希望把这种区分延续到后续工作中：讨论方案时，除了关注产品能力，也明确实施范围、依赖条件和验收结果。对已经完成和仍待验证的部分作准确说明，比把所有计划写成成果更有助于沟通。</p>
+<h2 id="section-5">五、做过验证的能力，也可以暂缓</h2>
+<p>同步探索已经投入了调研与验证，但是否继续上线，需要回到实际使用问题。对于声笺，优先事项仍是快速记录、可靠保存、忠实转写与整理，以及方便回看。完整跨端能力会增加新的数据、安全和维护责任，需要有足够明确的使用价值作为依据。</p>
+<p>因此，正式同步暂缓，已完成的技术候选和验证记录保留。只有当跨端需求在实际使用中持续出现，并且现有方式确实造成不便时，才重新讨论最小实施范围。</p>
+<p>截至本次整理，我已把主要精力转向销售方向求职，声笺暂停主动开发。暂停开发并不代表已有云服务已全部停用，也不代表费用已经归零；服务与资源的调整，需要分别判断对现有使用的影响。</p>
+<p>这段实践让我认识到，选型不只是选择服务商，也包括决定建设顺序和停止条件。已投入的工作可以保留，但不应成为继续投入的唯一理由。对当前没有足够依据的能力，明确暂缓，同样是方案判断的一部分。</p>
+<h2 id="section-6">六、这些经历如何连接求职方向</h2>
+<p>此前的 UI 设计与产品协作经历，让我接触了云产品配置流程、需求讨论和跨团队交付。个人项目则让我从使用者的角度面对服务组合、持续投入、网络条件和实施范围。两段经历共同构成了我转向云计算、云服务销售及相关商务拓展岗位的基础。</p>
+<p>我希望进一步学习如何理解客户的业务问题，澄清使用场景、预算与实施条件，比较方案的价值与限制，并与技术同事协作推进。声笺中的这些取舍，能够说明我已经接触过相关问题，也能为求职交流提供具体案例。</p>
+<p>不过，个人产品中的方案实践，并不等同于企业客户销售经验。我目前仍处于转行准备阶段，尚无独立拓客与成交经历；客户开发、商机判断、商务沟通与持续跟进，仍需要在实际岗位中积累。</p>
+<p>对我而言，这次复盘的意义，是把接触过的云产品与具体选择联系起来：为什么采用某项服务，为什么释放一项资源，为什么调整方案，以及为什么暂缓功能。这些问题比单纯罗列产品名称，更能说明我对需求和业务取舍的理解，也更清楚地呈现了下一步需要补足的能力。</p>
+</div></article></main>
+<footer class="wrap"><div class="footer-inner"><div class="footer-meta"><span>© 2026 李鹏飞</span></div><div class="footer-actions"><div class="language-switch" data-language-switch role="group" aria-label="语言 / Language" hidden><button type="button" data-language="zh" lang="zh-CN" aria-pressed="true">中文</button><span aria-hidden="true">/</span><button type="button" data-language="en" lang="en" aria-pressed="false">English</button></div><div class="footer-socials"><a href="https://www.linkedin.com/in/pengfei-li-7ab27b378/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/plwhd" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://x.com/li191qq" target="_blank" rel="noopener noreferrer">X (Twitter)</a></div></div></div></footer></body></html>
