@@ -94,3 +94,21 @@ html[lang="en"] .article-language-note{display:block}
 .life-link-card .text-link{margin:0;min-height:44px;display:inline-flex;align-items:center}
 .life-link-placeholder{background:transparent;border-style:dashed;color:#777179}
 @media(max-width:600px){.life-links{grid-template-columns:1fr}.life-notes-page h1{font-size:25px}.life-link-card{padding:20px}.life-link-card h2{font-size:20px}}
+
+/* Site age: shared typography and baseline alongside copyright. */
+.footer-meta.site-age-meta {
+  flex-direction: row;
+  align-items: baseline;
+  line-height: 1.8;
+  gap: 6px 12px;
+}
+.footer-meta.site-age-meta > span {
+  white-space: nowrap;
+}
+.site-age {
+  font-family: inherit;
+  font-size: 11px;
+  line-height: inherit;
+  color: #777179;
+  font-variant-numeric: tabular-nums;
+}
