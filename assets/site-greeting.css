@@ -1,0 +1,91 @@
+.site-greeting {
+  position: fixed;
+  right: max(24px, env(safe-area-inset-right));
+  bottom: calc(24px + env(safe-area-inset-bottom));
+  z-index: 15;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40px;
+}
+.site-greeting-button {
+  appearance: none;
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  color: #625d64;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 160ms;
+}
+.site-greeting-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #fffafa;
+  border: 1px solid #e4dfe1;
+  border-radius: 50%;
+  box-shadow: 0 3px 12px rgb(24 24 27 / 5%);
+  transition: background 160ms, border-color 160ms;
+  pointer-events: none;
+}
+.site-greeting-button svg { position: relative; width: 20px; height: 20px; pointer-events: none; }
+.site-greeting-button:focus-visible { outline: 2px solid #18181b; outline-offset: 4px; }
+@media (hover: hover) {
+  .site-greeting-button:not(:disabled):hover { color: #18181b; }
+  .site-greeting-button:not(:disabled):hover::before { background: #f6f3f4; border-color: #bdb6bc; }
+}
+.site-greeting-button:disabled { color: #777179; cursor: default; }
+.site-greeting-button:disabled::before { background: #f6f3f4; box-shadow: none; }
+.site-greeting-button:not(:disabled):active::before { background: #eee9ec; }
+.site-greeting-burst {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  pointer-events: none;
+  color: #625d64;
+  font: 13px/1.4 'Gomaas Mono Web', monospace;
+  animation: site-greeting-rise 680ms ease-out both;
+}
+@keyframes site-greeting-rise {
+  0% { transform: translate(calc(-50% + var(--drift)), -7px); opacity: 0; }
+  18% { opacity: 1; }
+  100% { transform: translate(calc(-50% + var(--drift)), -52px); opacity: 0; }
+}
+.site-greeting-note {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 16px);
+  width: 180px;
+  padding: 8px 12px;
+  border: 1px solid #e4dfe1;
+  border-radius: 8px;
+  background: #fffafa;
+  color: #625d64;
+  font: 12px/1.6 system-ui, sans-serif;
+}
+.site-greeting-note[hidden] { display: none; }
+.site-greeting-sr {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+/* Reserve space only after the original page, so final links remain reachable. */
+body.site-greeting-page { padding-bottom: 96px; }
+body.site-greeting-page.slide-page { padding-bottom: 0; }
+@media (max-width: 600px) {
+  .site-greeting { right: max(16px, env(safe-area-inset-right)); bottom: calc(16px + env(safe-area-inset-bottom)); width: 44px; }
+  .site-greeting-button { width: 44px; height: 44px; }
+  /* 40px visible circle, with a 2px transparent touch margin on each side. */
+  .site-greeting-button::before { inset: 2px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-greeting-button, .site-greeting-button::before { transition: none; }
+  .site-greeting-burst { animation: none; transform: translate(-50%, -30px); }
+}
