@@ -132,6 +132,10 @@ body.has-floating-language .site-greeting { bottom: calc(72px + env(safe-area-in
 }
 /* Keep normal footer spacing; reserve a side gutter where controls enter the content column. */
 body.has-floating-language { padding-bottom: 0; }
+/* Copyright/age on the left, social links on the right; wrap only when they no longer fit. */
+body.has-floating-language .footer-inner { justify-content: space-between; }
+body.has-floating-language .footer-meta,
+body.has-floating-language .footer-actions { width: auto; max-width: 100%; }
 @media (max-width: 864px) {
   body.has-floating-language .footer-inner { padding-right: max(48px, calc(28px + env(safe-area-inset-right))); }
 }
