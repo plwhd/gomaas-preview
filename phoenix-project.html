@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="从《凤凰项目》的企业故事出发，分析非计划工作、关键人员依赖与交付瓶颈，讨论流动、反馈和持续学习的作用及适用边界。"><meta name="robots" content="noindex,nofollow"><title>李鹏飞</title><link rel="icon" href="favicon.ico?v=20261003-b-original" sizes="16x16 32x32 48x48"><link rel="icon" type="image/png" sizes="32x32" href="assets/pengfei-wing-32.png?v=20261003-b-original"><link rel="icon" type="image/svg+xml" sizes="any" href="assets/pengfei-wing-original.svg?v=20261003-b-original"><link rel="apple-touch-icon" sizes="180x180" href="assets/pengfei-wing-apple-180.png?v=20261003-b-original"><link rel="stylesheet" href="styles.css?v=20261006-phoenix-project"><script defer src="assets/analytics.js?v=20261006-phoenix-project" data-website-id="f18cb949-fc16-4710-8355-ca4601609d4c"></script><script defer src="assets/language.js?v=20261002-articles-restored"></script><script defer src="assets/site-age.js?v=20261004-v3"></script><link rel="stylesheet" href="assets/site-greeting.css?v=20261005-daily-v1"><script defer src="assets/site-greeting.js?v=20261005-daily-v1"></script></head>
+<body class="site-greeting-page articles-shell"><a class="skip" href="#main">跳至正文</a><header class="wrap"><nav aria-label="主导航"><a href="index.html">首页</a><a href="index.html#direction">职业方向</a><a href="index.html#experience">工作经历</a><a href="index.html#about">关于我</a><a href="articles.html" aria-current="page">文章</a><a href="resume.html" data-gomaas-event="resume_open">查看简历</a></nav></header>
+<main id="main" class="article-page wrap"><a class="text-link article-return" href="articles.html">← 返回文章列表</a><article lang="zh-CN" data-article-content><div class="article-heading"><h1>《凤凰项目》：工作为什么总是做不完</h1><p class="article-meta"><span>发布于 <time datetime="2026-10-06">2026.10.06</time></span><span>AI 辅助：<span lang="en">GPT</span></span></p><p class="article-keywords"><strong>关键词</strong>：凤凰项目　·　DevOps　·　约束理论　·　工作流　·　组织协作</p></div><p class="article-language-note" lang="en">This article is available in Chinese.</p><div class="article-content porter-article">
+<p><em>本文依据出版社公开介绍、书籍公开节选、作者对相关概念的说明及 DORA 研究资料整理，属于框架梳理与分析，未以完整研读中文版原著为前提。文中的演示案例为假设情境。</em></p>
+<p>一项工作迟迟无法完成，通常会有人问：负责人是否足够认真，团队是否需要加班，项目管理是否应该更严格。</p>
+<p>这些问题有时确实切中要害。但还有一种情况：每个人都在认真工作，会议不断，消息不断，故障也不断；忙碌持续了很久，真正交付的东西却很少。</p>
+<p>《凤凰项目》讨论的就是这样的处境。</p>
+<p>这本由 Gene Kim、Kevin Behr 和 George Spafford 合著的管理小说，以一家虚构企业 Parts Unlimited 为背景。IT 负责人 Bill 接手了严重延误的凤凰项目，同时面对日常运营压力和管理层的要求。企业把希望寄托在一个重要项目上，但承担项目的组织已经难以维持正常运转。<a target="_blank" rel="noopener noreferrer" href="https://itrevolution.com/product/the-phoenix-project/">出版社书籍介绍</a></p>
+<p>故事提供了一个观察工作的角度：沿着一项需求追踪下去，看看它如何被提出、开发、检查、上线，又如何真正被客户使用。在这条路径上，很多平时被分别讨论的问题，会显出彼此之间的关系。</p>
+<h2 id="section-1">项目延误，可能只是更大问题的表现</h2>
+<p>项目管理常常从一张计划表开始：列出任务，分配负责人，确定时间，再检查完成情况。</p>
+<p>这种方法有一个前提——参与者能够按照计划投入工作。</p>
+<p>假设某位工程师本周安排了三天开发、一天下午评审、一天处理系统维护。如果实际发生的事情是：周一处理故障，周二解释另一个项目的问题，周三临时支持上线，周四又被要求参加紧急会议，那么计划表上的五天和实际可用于项目的五天，已经是两回事。</p>
+<p>项目看起来只晚了几天，背后却可能存在一种长期状态：同一批人被多个工作入口同时占用，各个入口都能提出要求，却没有人掌握完整的承诺。</p>
+<p>《凤凰项目》用四类工作帮助读者辨认这种状况：业务项目、内部 IT 项目、变更，以及非计划工作。这个分类提醒管理者，正式项目之外，还有维护、改进、上线调整和突发处理等工作在消耗能力。<a target="_blank" rel="noopener noreferrer" href="https://itrevolution.com/articles/10-minute-summary-of-the-phoenix-project/">出版社对四类工作的说明</a></p>
+<p>分类的价值在于补全观察。它不必被理解成一套互不重叠的记账规则：一个业务项目也会带来系统变更，一个变更失败又可能引发非计划工作。</p>
+<p>如果只统计业务项目，就容易高估团队还有多少可用时间。维护和故障处理没有出现在项目清单里，并不意味着它们没有发生。</p>
+<p>进一步说，非计划工作还可能改变后续工作的条件。一次故障打断开发，开发延误又压缩测试时间；测试不足增加上线风险，风险兑现后产生新的故障。原本可以用于改进的时间，被反复用来恢复原状。</p>
+<p>这时，仅仅要求项目负责人重新排期，解决不了整个循环。</p>
+<h2 id="section-2">最能解决问题的人，为什么会成为瓶颈</h2>
+<p>书中的 Brent 是一位关键工程师。作者在补充说明中指出，工作最初受制于 Brent，因为他不断被非计划工作占用；随着改善推进，约束又转移到部署流程及外部支持环节。<a target="_blank" rel="noopener noreferrer" href="https://itrevolution.com/articles/learn-more-about-concepts-in-phoenix-project/">Gene Kim 对书中约束变化的说明</a></p>
+<p>这个安排容易使人产生误解：既然 Brent 是瓶颈，是不是说明他效率低，或者不愿意分享知识？</p>
+<p>“瓶颈”描述的是他在工作系统中的位置，不能直接用来评价他的态度。</p>
+<p>假如多数重要任务都需要一个人判断，而他每天只能完成有限数量的判断，那么其他人的工作就会在他面前排队。他可能非常能干，也可能比任何人都努力，但他的个人能力仍然有上限。</p>
+<p>这种依赖甚至可能由过去的成功逐渐形成。某次故障由他迅速解决，于是下次继续找他；他熟悉旧系统，因此新项目也请他把关；别人担心出错，遇到不确定的问题就等待他的确认。</p>
+<p>每一次选择单独看都很合理，累积起来却让团队越来越依赖同一个人。</p>
+<p>《目标》所发展的约束理论，关注的正是整体表现受什么环节限制。其基本改善顺序是：识别约束，充分利用现有约束能力，让其他安排与之协调，必要时增加约束能力，再重新识别新的约束。<a target="_blank" rel="noopener noreferrer" href="https://www.goldrattresearchlabs.com/introduction-to-toc">Goldratt Research Labs：约束理论与五个聚焦步骤</a></p>
+<p>把这个思路用于关键工程师，需要先检查他正在做什么。有些任务确实需要他的经验，有些只是因为习惯而转交给他，还有一些缺少必要信息，使他不得不先替别人补齐准备工作。</p>
+<p>改善可以从这些差异入手：让需要评审的任务带着完整材料到达，减少重复提问，安排集中处理时间，把已经明确的常规判断交给其他人。</p>
+<p>这里的“充分利用”包含保护稀缺能力。持续打断一个人，再要求他加班补回被打断的工作，很可能进一步损害判断质量。</p>
+<p>增加人手也可能必要。但如果知识、权限和决策依然集中在原来的那个人身上，新人入职后反而需要更多指导。短期内，瓶颈可能更忙。招聘能增加能力，能否缓解当前约束，则要看新人能承担哪些工作，以及多久之后可以独立承担。</p>
+<h2 id="section-3">一次上线怎样变成长期拥堵</h2>
+<p>为了说明这些关系，可以设想一家零售企业准备上线新的退货功能。</p>
+<p>产品经理已经确定需求，开发团队完成主要代码，测试人员正在检查。所有涉及退款和账务的修改，还需要一位资深工程师评审。这位工程师同时负责处理线上异常。</p>
+<p>假设各项评审的工作量相近，他一周能够完成十二项。本周来了八项计划评审，又来了六项临时问题，总需求是十四项。如果这种状态持续，而且处理能力不变，那么待办每周至少增加两项。</p>
+<p>这个例子做了简化，但足以说明一种关系：持续进入的工作超过持续完成的能力，积压就会增长。</p>
+<p>管理者可以要求开发团队更快完成代码。然而，如果开发加速后每周送来十项评审，加上原来的六项临时问题，评审队列会增长得更快。开发部门的完成数量上升了，整个功能的交付却未必提前。</p>
+<p>也可以同时启动更多功能，让大家始终有事可做。这样确实能减少某些人的空闲，但在等待评审的功能之间反复切换，需要重新熟悉上下文。功能放置得越久，相关代码和业务要求越可能发生变化，重新处理时又产生额外工作。</p>
+<p>于是，组织会出现一种很难从个人日报中看出来的低效：每个人都有任务，很多任务都已经开始，少数任务真正结束。</p>
+<p>DORA 关于在制工作限制的资料建议，把整个交付路径上的工作显现出来，并限制同时进行的数量。这样做也会暴露跨环节的等待，促使团队处理阻塞，而非继续增加新的任务。<a target="_blank" rel="noopener noreferrer" href="https://dora.dev/capabilities/wip-limits/">DORA：Work in process limits</a></p>
+<p>在这个案例里，更值得比较的选择包括：暂缓一部分低优先级功能，为退款评审准备完整材料，让其他工程师承担常规检查，以及修复反复出现的线上异常。</p>
+<p>这些选择各有代价。暂缓功能会影响部分业务计划；培养其他工程师需要时间；修复长期问题则会占用眼前的开发能力。不能只写“减少瓶颈”，还需要说明哪项代价可以接受，以及由谁决定接受。</p>
+<h2 id="section-4">流动、反馈与学习怎样连接起来</h2>
+<p>《凤凰项目》的“三步工作法”——也常被称为“三条道路”——分别关注工作流动、反馈，以及持续实验与学习。Gene Kim 的说明将它们视为 DevOps 的基本原则，强调从需求到客户的整体表现、及时纠正问题，以及为改善和练习保留空间。<a target="_blank" rel="noopener noreferrer" href="https://itrevolution.com/articles/the-three-ways-principles-underpinning-devops/">Gene Kim：The Three Ways</a></p>
+<p>这三个概念可以通过前面的退货功能连接起来理解。</p>
+<p>先看流动。如果代码已经完成，却在评审和上线环节等待三周，缩短编写代码的时间可能不会显著缩短交付周期。团队需要知道等待发生在哪里、为什么发生，再决定怎样处理。流程图画得是否整齐，并不能代替对实际等待的调查。</p>
+<p>再看反馈。假设直到上线前，财务部门才指出：部分退款必须使用另一套账务规则。团队就需要修改已经完成的代码，重新测试，再重新评审。</p>
+<p>把财务意见提前带入需求讨论，能够更早发现这种问题。不过，“提前沟通”仍然太笼统。更有效的做法可能是，让财务人员用几笔真实的退货情境检查规则，或者先演示一条完整的退款流程。反馈应当针对可以判断的东西。</p>
+<p>持续学习则涉及下一次会怎样。团队这次可以依靠资深工程师加班，把问题解决；也可以在恢复正常后，把账务规则、检查方法和异常处理整理出来，补进测试和工作流程。后者需要额外投入，却能减少后续重复劳动。</p>
+<p>三者之间存在依赖。工作量失控时，团队很难留出学习时间；反馈迟缓时，团队可能高效地完成错误的东西；经验没有进入日常工作时，同类问题仍会再次打断流动。</p>
+<p>因此，不能仅用“上线更快”判断改善是否成功。上线速度之外，还要观察错误是否减少、恢复是否容易，以及客户遇到的问题是否得到解决。</p>
+<h2 id="section-5">小批量为什么有用，又为什么不总是容易</h2>
+<p>小批量交付是这些原则的一种实践方式。它让团队较早检验假设，缩短获得反馈的时间，也使问题更容易定位。DORA 同时提醒，拆分后的工作需要能够独立验证；如果最后又合并成一个大批次才测试或发布，反馈仍然会被推迟。<a target="_blank" rel="noopener noreferrer" href="https://dora.dev/capabilities/working-in-small-batches/">DORA：Working in small batches</a></p>
+<p>对于退货功能，可以先选择规则明确、风险可控的一类商品，验证申请、审核、退款和账务记录能否完整运行，再扩展到复杂情况。</p>
+<p>但“小”本身不保证合理。一个只完成页面、尚未打通退款和账务的片段，可能方便汇报开发进度，却无法验证退货流程。如果拆得太碎，团队还需要不断协调彼此依赖，管理成本反而上升。</p>
+<p>小批量也可能被现有条件限制。例如，每次上线都需要大量人工准备，即便修改很小，发布成本也不小。团队要频繁交付，可能先得改善测试环境、发布方式和回退能力。</p>
+<p>这解释了为什么工具仍然重要。自动化测试、部署和监控，可以降低重复工作的成本，为更早反馈创造条件。工具的作用需要放进具体流程中理解：它节省了谁的时间，减少了哪类错误，又是否把等待转移到了另一个环节。</p>
+<p>采购了工具之后，原来的工作分配、审批和责任如果没有相应调整，团队仍可能被相同的依赖关系限制。</p>
+<h2 id="section-6">谁能够决定少做一些工作</h2>
+<p>限制同时进行的工作，在方法上并不复杂，在组织中却经常难以实行。</p>
+<p>产品部门有业务目标，销售部门已经向客户作出承诺，管理层希望赶上市场窗口。每个要求背后，都可能有真实理由。IT 团队不能只凭自己觉得忙，就把这些要求一律挡回去。</p>
+<p>但如果每个部门都能独立增加需求，没有人需要为被挤掉的工作负责，那么有限的能力就会被反复承诺。</p>
+<p>还以前面的案例为例。资深工程师今天处理一个紧急上线，明天处理另一个客户的问题，两次调整分别看都合理。原计划中的退货评审因此延后，却可能没有人在提出新要求时明确承认这个结果。</p>
+<p>改进需要让取舍成为可见的决定：新增工作占用多少能力，哪项既有承诺会延后，延后会产生什么影响，谁有权作出这个选择。</p>
+<p>这也使“业务与 IT 对齐”具有了具体含义。共同讨论的不只是项目名称和完成日期，还包括容量、风险以及机会成本。</p>
+<p>另一方面，透明流程本身也可能变成负担。要求所有工作经历同样繁琐的审批，会拖慢低风险修改。一个合理流程，应当能够区分常规变更、重要变更和紧急处理，并在处理之后留下足够信息供团队复查。</p>
+<p>紧急工作无法被彻底消除。真正需要警惕的是，“紧急”长期成为绕过排序的惯常方式。那往往说明组织还没有形成稳定的优先级，或者反复发生的问题一直没有得到处理。</p>
+<h2 id="section-7">学习需要实际的时间和后果</h2>
+<p>很多团队认可复盘，也认可知识分享。但遇到任务压力，这些活动往往最先被取消。</p>
+<p>这种选择可以理解：客户正在等待，故障已经发生，而文档和培训似乎可以晚一点再做。问题出在“晚一点”是否真的会到来。</p>
+<p>假设同一类退款异常每月都出现。每次处理完毕，团队都决定先赶下一项需求，几个月后仍然需要相同的人用相同方法排查。对每次事故而言，处理可能都及时；从更长时间看，组织持续支付着同一笔成本。</p>
+<p>学习是否受到重视，可以从工作安排中判断：有没有时间验证改进，其他人能否参与关键操作，新方法有没有经过演练，复盘之后的措施是否真的改变了下一次处理。</p>
+<p>DORA 将学习文化与软件交付表现联系起来，强调组织应当把学习作为投资，而不是勉强承担的负担。这提供了小说之外的研究参照，但不能据此保证任何一种培训安排都会产生相同效果。<a target="_blank" rel="noopener noreferrer" href="https://dora.dev/capabilities/learning-culture/">DORA：Learning culture</a></p>
+<p>对于团队而言，更有用的检验是：投入学习之后，哪些工作已经能够由更多人承担，哪些问题不再反复发生，哪些判断变得更容易作出。</p>
+<p>如果这些变化没有发生，复盘次数和培训时长都不能单独证明组织在进步。</p>
+<h2 id="section-8">小说给出的答案，需要怎样保留分寸</h2>
+<p>《凤凰项目》通过虚构情节，使工作之间的依赖关系集中显现出来。这种写法便于理解，也使它与现实企业存在距离。</p>
+<p>首先，故事可以安排关键人物在适当时刻提出正确问题，现实组织则需要自己收集证据。一个人很忙，并不能证明他就是主要约束。他也可能只是被迫处理另一个环节制造出来的问题。真正限制交付的，可能是决策权限、系统架构、供应商响应，或者长期无法确定的业务要求。</p>
+<p>其次，制造业的类比有帮助，也有边界。软件开发经常包含探索：需求会改变，问题无法提前完全说明，有些尝试只有做过才能知道是否可行。不能因为强调流动，就要求所有开发工作像重复生产一样精确估时。</p>
+<p>再次，提高交付能力，不等于提高业务价值。一个团队可以更快地发布大量用户不需要的功能。对工作流的改善，需要与对需求本身的判断同时进行。</p>
+<p>还有一种不能回避的情况：团队确实缺少资源。若关键环节长期承担过多必要工作，已有浪费也已经减少，那么继续强调流程优化，可能只是把人员不足解释成管理问题。此时应当讨论增加能力、缩小范围或调整承诺。</p>
+<p>这些限制使书中的方法更适合成为诊断工具。它帮助读者提出可检查的问题，至于某家组织应该采取什么行动，还需要依据那家组织的实际工作判断。</p>
+<h2 id="section-9">判断工作是否开始改善</h2>
+<p>面对长期忙乱的团队，可以先选一类经常延误、又确实重要的工作，追踪它从提出到完成的过程。</p>
+<p>记录中需要包含实际处理，也需要包含等待、返工和临时中断。否则，最消耗交付时间的部分仍然可能被遗漏。</p>
+<p>然后选一个有依据的改善：减少一个重复审批，提前确认一项容易引发返工的规则，或者把一类常规问题从关键工程师手中移交出去。</p>
+<p>判断效果时，可以同时观察完成时间、较慢任务的情况、故障和返工，以及最终使用者是否得到预期结果。只看平均完成速度，可能掩盖少数任务长期卡住；只看发布数量，则可能掩盖质量下降。</p>
+<p>改善也可能没有奏效。如果排队没有缩短，就要重新检查约束判断；如果交付提前但错误增加，就要检查是否跳过了必要环节；如果技术任务顺利完成而业务结果没有变化，就要重新检查需求假设。</p>
+<p>《凤凰项目》留给读者的一个有用习惯，是把判断沿着工作过程展开。项目延期时，先找出时间消耗在哪里；关键员工过载时，先查明哪些工作必须经过他；提出改进后，再观察它是否改变了实际交付。</p>
+<p>这样，忙碌就不再只是个人的感受，也成为可以讨论、可以调查的工作事实。</p>
+</div></article></main>
+<footer class="wrap"><div class="footer-inner"><div class="footer-meta site-age-meta"><span>© 2026 李鹏飞</span><span class="site-age" data-site-age data-established-date="2026-09-19" title="始于 2026.09.19">本站始于 2026.09.19</span></div><div class="footer-actions"><div class="language-switch" data-language-switch role="group" aria-label="语言 / Language" hidden><button type="button" data-language="zh" lang="zh-CN" aria-pressed="true">中文</button><span aria-hidden="true">/</span><button type="button" data-language="en" lang="en" aria-pressed="false">English</button></div><div class="footer-socials"><a href="https://www.linkedin.com/in/pengfei-li-7ab27b378/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/plwhd" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://x.com/li191qq" target="_blank" rel="noopener noreferrer">X (Twitter)</a></div></div></div></footer><aside class="site-greeting" data-site-greeting aria-label="网站&#x62db;呼">
+  <button class="site-greeting-button" type="button" aria-label="向网站打个&#x62db;呼">
+    <svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><circle cx="14" cy="14" r="10.25" stroke="currentColor" stroke-width="1.6"/><circle cx="10.25" cy="11.75" r="1.15" fill="currentColor"/><circle cx="17.75" cy="11.75" r="1.15" fill="currentColor"/><path d="M9.5 16.2C10.6 18.25 12.15 19.1 14 19.1S17.4 18.25 18.5 16.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+  </button>
+  <span class="site-greeting-sr" role="status" aria-live="polite" aria-atomic="true"></span>
+  <span class="site-greeting-note" data-greeting-note hidden></span>
+</aside>
+</body></html>
