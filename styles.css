@@ -29,6 +29,7 @@ h1,h2,h3{font-family:"Gomaas Montserrat Web","Gomaas Han Web",sans-serif}
 
 .footer-meta{display:flex;flex-wrap:wrap;gap:12px 24px;width:100%;align-items:center}
 .footer-actions{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 24px;width:100%}
+.footer-actions .footer-socials{margin-left:0}
 .footer-actions .language-switch{justify-content:flex-start;margin-top:0}
 .footer-actions .language-switch button:first-child{padding-left:0}
 @media(max-width:600px){.footer-actions .footer-socials{flex-basis:auto;margin-left:0}}

@@ -130,7 +130,11 @@ body.has-floating-language .site-greeting { bottom: calc(72px + env(safe-area-in
   .language-toggle:hover { color: #18181b; }
   .language-toggle:hover::before { background: #f6f3f4; border-color: #bdb6bc; }
 }
-body.has-floating-language { padding-bottom: 144px; }
+/* Keep normal footer spacing; reserve a side gutter where controls enter the content column. */
+body.has-floating-language { padding-bottom: 0; }
+@media (max-width: 864px) {
+  body.has-floating-language .footer-inner { padding-right: max(48px, calc(28px + env(safe-area-inset-right))); }
+}
 body.has-floating-language.slide-page { padding-bottom: 0; }
 @media (max-width: 600px) {
   body.has-floating-language .site-greeting { bottom: calc(68px + env(safe-area-inset-bottom)); }
@@ -141,7 +145,6 @@ body.has-floating-language.slide-page { padding-bottom: 0; }
     height: 44px;
   }
   .language-toggle::before { inset: 2px; }
-  body.has-floating-language { padding-bottom: 148px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .language-toggle::before { transition: none; }
