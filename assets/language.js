@@ -67,7 +67,7 @@
   const walker = document.createTreeWalker(document.documentElement, NodeFilter.SHOW_TEXT);
   while (walker.nextNode()) {
     const node = walker.currentNode;
-    if (node.parentElement.closest('script, style, [data-language-switch], [data-article-content]')) continue;
+    if (node.parentElement.closest('script, style, template, [data-language-switch], [data-article-content], [data-text-en]')) continue;
     const key = node.textContent.trim();
     if (Object.hasOwn(translations, key)) entries.push({ node, original: node.textContent, key });
   }
@@ -78,20 +78,80 @@
       if (Object.hasOwn(translations, original)) attributes.push({node, attr, original});
     }
   });
+  const texts = [...document.querySelectorAll('[data-text-en]')].map(node => ({node, original: node.textContent}));
+  const descriptions = [...document.querySelectorAll('[data-content-en]')].map(node => ({node, original: node.getAttribute('content')}));
+  const article = document.querySelector('[data-bilingual-article]');
+  const template = article?.querySelector('template[data-article-english]');
+  const versions = template ? {
+    zh: [...article.childNodes].filter(node => node !== template),
+    en: [...template.content.cloneNode(true).childNodes],
+  } : null;
+  let current = 'zh';
+  function readingBlocks() {
+    return [...document.querySelectorAll('[data-bilingual-article] .article-heading, [data-bilingual-article] .article-content > *, footer')];
+  }
+  function capturePosition() {
+    if (!versions || scrollY < 1) return null;
+    const blocks = readingBlocks();
+    const reference = 36;
+    // Match the paragraph at the top of the viewport, including progress through it.
+    const index = blocks.findIndex(node => node.getBoundingClientRect().bottom > reference);
+    if (index < 0) return null;
+    const box = blocks[index].getBoundingClientRect();
+    return {index, fraction: Math.max(0, Math.min(1, (reference - box.top) / box.height)), offset: box.top > reference ? box.top - reference : 0};
+  }
+  function restorePosition(position) {
+    if (!position) return;
+    const box = readingBlocks()[position.index]?.getBoundingClientRect();
+    if (!box) return;
+    const target = scrollY + box.top + position.fraction * box.height - 36 - position.offset;
+    window.scrollTo({top: target, behavior: 'instant'});
+  }
   const controls = document.querySelectorAll('[data-language]');
-  function setLanguage(language) {
+  let toggle;
+  function setLanguage(language, preservePosition = true) {
     const english = language === 'en';
+    const next = english ? 'en' : 'zh';
+    const position = next !== current && preservePosition ? capturePosition() : null;
     document.documentElement.lang = english ? 'en' : 'zh-CN';
-    for (const {node, original, key} of entries) {
-      node.textContent = english ? original.replace(key, () => translations[key]) : original;
-    }
+    for (const {node, original, key} of entries) node.textContent = english ? original.replace(key, () => translations[key]) : original;
     for (const {node, attr, original} of attributes) node.setAttribute(attr, english ? translations[original] : original);
-    controls.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.language === (english ? 'en' : 'zh'))));
-    try { sessionStorage.setItem('gomaas-language', english ? 'en' : 'zh'); } catch { /* Storage is optional. */ }
+    for (const {node, original} of texts) node.textContent = english ? node.dataset.textEn : original;
+    for (const {node, original} of descriptions) node.setAttribute('content', english ? node.dataset.contentEn : original);
+    document.querySelectorAll('[data-bilingual-entry]').forEach(node => { node.lang = english ? 'en' : 'zh-CN'; });
+    if (versions && next !== current) {
+      // Keep both DOM trees, so returning to Chinese restores the original nodes.
+      article.replaceChildren(...versions[next], template);
+      article.lang = english ? 'en' : 'zh-CN';
+    }
+    current = next;
+    controls.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.language === next)));
+    if (toggle) {
+      toggle.textContent = english ? '\u4e2d' : 'EN';
+      const label = english ? 'Switch to Chinese' : '\u5207\u6362\u4e3a\u82f1\u6587';
+      toggle.setAttribute('aria-label', label);
+      toggle.title = label;
+      toggle.lang = english ? 'zh-CN' : 'en';
+    }
+    try { sessionStorage.setItem('gomaas-language', next); } catch { /* Storage is optional. */ }
+    restorePosition(position);
   }
   controls.forEach(button => button.addEventListener('click', () => setLanguage(button.dataset.language)));
-  document.querySelectorAll('[data-language-switch]').forEach(group => { group.hidden = false; });
+  if (controls.length && document.querySelector('[data-site-greeting]')) {
+    toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.className = 'language-toggle';
+    toggle.setAttribute('data-language-toggle', '');
+    toggle.addEventListener('click', () => setLanguage(current === 'en' ? 'zh' : 'en'));
+    document.body.append(toggle);
+    document.body.classList.add('has-floating-language');
+    // The existing footer controls remain inert fallback markup, not a second UI.
+    document.querySelectorAll('[data-language-switch]').forEach(group => { group.hidden = true; });
+  } else {
+    // Legacy pages without the greeting/style keep their original language controls.
+    document.querySelectorAll('[data-language-switch]').forEach(group => { group.hidden = false; });
+  }
   let initial = 'zh';
   try { if (sessionStorage.getItem('gomaas-language') === 'en') initial = 'en'; } catch { /* Default Chinese. */ }
-  setLanguage(initial);
+  setLanguage(initial, false);
 })();

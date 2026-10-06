@@ -89,3 +89,58 @@ body.site-greeting-page.slide-page { padding-bottom: 0; }
   .site-greeting-button, .site-greeting-button::before { transition: none; }
   .site-greeting-burst { animation: none; transform: translate(-50%, -30px); }
 }
+
+/* One global toggle above the existing greeting; no article-specific toolbar. */
+.language-toggle {
+  appearance: none;
+  position: fixed;
+  right: max(24px, env(safe-area-inset-right));
+  bottom: calc(72px + env(safe-area-inset-bottom));
+  z-index: 15;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: #625d64;
+  background: transparent;
+  font: 12px/1 'Gomaas Mono Web', 'Gomaas Han Web', sans-serif;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.language-toggle::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid #e4dfe1;
+  border-radius: 50%;
+  background: #fffafa;
+  box-shadow: 0 3px 12px rgb(24 24 27 / 5%);
+  z-index: -1;
+  transition: background 160ms, border-color 160ms;
+  pointer-events: none;
+}
+.language-toggle:focus-visible { outline: 2px solid #18181b; outline-offset: 4px; }
+.language-toggle:active::before { background: #eee9ec; }
+@media (hover: hover) {
+  .language-toggle:hover { color: #18181b; }
+  .language-toggle:hover::before { background: #f6f3f4; border-color: #bdb6bc; }
+}
+body.has-floating-language { padding-bottom: 144px; }
+body.has-floating-language.slide-page { padding-bottom: 0; }
+@media (max-width: 600px) {
+  .language-toggle {
+    right: max(16px, env(safe-area-inset-right));
+    bottom: calc(68px + env(safe-area-inset-bottom));
+    width: 44px;
+    height: 44px;
+  }
+  .language-toggle::before { inset: 2px; }
+  body.has-floating-language { padding-bottom: 148px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .language-toggle::before { transition: none; }
+}
