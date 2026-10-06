@@ -90,12 +90,13 @@ body.site-greeting-page.slide-page { padding-bottom: 0; }
   .site-greeting-burst { animation: none; transform: translate(-50%, -30px); }
 }
 
-/* One global toggle above the existing greeting; no article-specific toolbar. */
+/* Greeting above language toggle; standalone greeting keeps its original position. */
+body.has-floating-language .site-greeting { bottom: calc(72px + env(safe-area-inset-bottom)); }
 .language-toggle {
   appearance: none;
   position: fixed;
   right: max(24px, env(safe-area-inset-right));
-  bottom: calc(72px + env(safe-area-inset-bottom));
+  bottom: calc(24px + env(safe-area-inset-bottom));
   z-index: 15;
   display: grid;
   place-items: center;
@@ -132,9 +133,10 @@ body.site-greeting-page.slide-page { padding-bottom: 0; }
 body.has-floating-language { padding-bottom: 144px; }
 body.has-floating-language.slide-page { padding-bottom: 0; }
 @media (max-width: 600px) {
+  body.has-floating-language .site-greeting { bottom: calc(68px + env(safe-area-inset-bottom)); }
   .language-toggle {
     right: max(16px, env(safe-area-inset-right));
-    bottom: calc(68px + env(safe-area-inset-bottom));
+    bottom: calc(16px + env(safe-area-inset-bottom));
     width: 44px;
     height: 44px;
   }
