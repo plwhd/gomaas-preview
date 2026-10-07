@@ -6,7 +6,7 @@
   const allowedPages = new Set([
     '/', '/index.html', '/resume.html', '/articles.html',
     '/edge-information-architecture.html', '/cloud-service-sales.html', '/cloud-service-choices.html', '/porter-trilogy.html', '/ai-service-business.html', '/phoenix-project.html', '/white-horse.html', '/spin-selling.html', '/personal-review.html',
-    '/compute-industry-five-forces.html', '/slides-example.html', '/life-notes.html', '/website-ui-baseline.html',
+    '/compute-industry-five-forces.html', '/slides-example.html', '/life-notes.html', '/website-ui-baseline.html', '/world-map.html',
   ]);
   if (!allowedDomains.has(location.hostname) || !allowedPages.has(location.pathname)) return;
   if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(websiteId)) return;
