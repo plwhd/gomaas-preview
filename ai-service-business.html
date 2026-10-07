@@ -1,0 +1,864 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="从一个假设的电商客户出发，梳理模型、算力、API 与 MaaS 平台的分工，分析定价、成本、采购、持续使用和商业化指标。" data-content-en="Follow a hypothetical e-commerce customer to explore the roles of models, compute, APIs, and MaaS platforms, then examine pricing, costs, purchasing, continued use, and commercialization metrics."><meta name="robots" content="noindex,nofollow"><title data-text-en="Cloud Services and AI Commercialization: Understanding the Business Chain of Model Services · Pengfei Li">云服务与 AI 商业化：理解模型服务的业务链路 · 李鹏飞</title><link rel="icon" href="favicon.ico?v=20261003-b-original" sizes="16x16 32x32 48x48"><link rel="icon" type="image/png" sizes="32x32" href="assets/pengfei-wing-32.png?v=20261003-b-original"><link rel="icon" type="image/svg+xml" sizes="any" href="assets/pengfei-wing-original.svg?v=20261003-b-original"><link rel="apple-touch-icon" sizes="180x180" href="assets/pengfei-wing-apple-180.png?v=20261003-b-original"><link rel="stylesheet" href="styles.css?v=20261007-ai-service-business"><script defer src="assets/analytics.js?v=20261007-ai-service-business" data-website-id="f18cb949-fc16-4710-8355-ca4601609d4c"></script><script defer src="assets/language.js?v=20261006-article-language-v1"></script><script defer src="assets/site-age.js?v=20261004-v3"></script><link rel="stylesheet" href="assets/site-greeting.css?v=20261006-footer-horizontal-v1"><script defer src="assets/site-greeting.js?v=20261005-daily-v1"></script></head>
+<body class="site-greeting-page articles-shell"><a class="skip" href="#main">跳至正文</a><header class="wrap"><nav aria-label="主导航"><a href="index.html">首页</a><a href="index.html#direction">职业方向</a><a href="index.html#experience">工作经历</a><a href="index.html#about">关于我</a><a href="articles.html" aria-current="page">文章</a><a href="resume.html" data-gomaas-event="resume_open">查看简历</a></nav></header>
+<main id="main" class="article-page wrap"><a class="text-link article-return" href="articles.html">← 返回文章列表</a><article lang="zh-CN" data-article-content data-bilingual-article><div class="article-heading"><h1>云服务与 AI 商业化：理解模型服务的业务链路</h1><p class="article-meta"><span>发布于 <time datetime="2026-10-07">2026.10.07</time></span><span>AI 辅助：<span lang="en">GPT</span></span></p><p class="article-keywords"><strong>关键词</strong>：云服务　·　AI 商业化　·　MaaS　·　模型 API　·　定价与成本　·　客户生命周期</p></div><div class="article-content porter-article">
+<p>一家公司为什么愿意购买大模型 API？提供 API 的平台为什么能够收费？客户完成试用以后，怎样才会进入正式采购？当客户用量越来越大，服务商是不是就一定赚得更多？</p>
+<p>这些问题，连接着模型服务的供给、产品设计、销售和客户使用。</p>
+<p>商业化产品经理重点设计一套能够持续经营的商业体系：服务卖给谁、如何定价、客户获得哪些权益、怎样从试用走向付费，以及收入能否覆盖成本。销售与商务拓展推动具体客户购买并持续使用 MaaS 平台和大模型 API，同时涉及客户维护、产品反馈和海外沟通。</p>
+<p>本文从模型服务的业务链路出发，讨论平台的交付价值、收费方式和客户采用过程。平台功能参考官方资料；下文贯穿的客户及计算数字都是假设案例，不代表任何公司的实际客户、报价或经营数据。</p>
+<p>理解这门生意，可以从四个问题展开：<strong>能力从哪里来，客户用它完成什么，服务如何交付，收入如何持续形成。</strong></p>
+<h2 id="section-1">从客户任务看供给与付款链路</h2>
+<p>先从一个客户说起。</p>
+<p>假设一家跨境电商软件公司，已经为商家提供商品管理功能，现在想增加两项能力：把中文商品信息改写成适合海外市场的介绍，以及根据商品图片制作短广告视频。</p>
+<p>它需要的不只是“一个很强的模型”。模型要接进现有软件；生成结果要能使用；大量商家同时操作时，系统不能频繁排队或报错；每次生成的费用还必须与软件的售价相匹配。</p>
+<p>这家公司可以购买模型 API，也可以租用算力、部署获得授权的模型，还可以采购包含接入和维护的完整方案。它选择哪条路径，取决于技术团队、业务规模、效果要求和预算。</p>
+<p>这正是销售与商务拓展的起点：客户有一项具体工作需要完成，而供应商提供某种完成这项工作的能力。</p>
+<blockquote>
+<p>算力与云资源 ＋ 模型与使用授权 → 部署、推理与调度 → API／MaaS 平台 → 客户的软件或业务系统 → 最终使用者。</p>
+</blockquote>
+<p>这条链路表示一种常见分工，并不是所有公司都必须经过每一层。模型运行与 API 平台可以由同一家企业提供；客户也可以直接找模型厂商，或自行部署。</p>
+<p>服务从供给侧流向使用者，付款则沿相应的采购关系发生。商家支付电商软件费用，软件公司支付模型服务费用，模型服务商承担算力或上游调用成本。每一层都需要增加价值，否则客户就会考虑绕过它。</p>
+<p><strong>销售模型服务时，既要理解自己的直接客户，也要理解客户的客户。</strong> 如果商家不愿意使用 AI 功能，电商软件公司就很难长期扩大 API 消耗。服务商的收入，最终仍然受到下游业务价值的约束。</p>
+<h2 id="section-2">模型、平台和应用各在什么位置</h2>
+<p>模型、平台与应用的名字，应该放在这条链路中理解。</p>
+<p>Seedance、火山方舟、Runway、Pika、Midjourney、OpenAI，以及阿里云百炼、百度千帆、腾讯云，并不是完全相同的产品：</p>
+<div class="article-table" role="region" aria-label="文章表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>在业务链路中的主要理解方式</th>
+<th>比较时应关注什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Seedance</td>
+<td>字节跳动的视频生成模型系列</td>
+<td>生成效果、可控性、速度、运行及调用成本</td>
+</tr>
+<tr>
+<td>火山方舟</td>
+<td>提供模型服务与相关部署能力的平台</td>
+<td>模型选择、API、计费、吞吐与资源保障</td>
+</tr>
+<tr>
+<td>阿里云百炼</td>
+<td>集成自研及第三方模型的大模型服务平台</td>
+<td>模型接入、应用构建、服务地域和计费</td>
+</tr>
+<tr>
+<td>百度千帆</td>
+<td>面向企业的大模型及应用开发平台</td>
+<td>模型服务、开发能力与企业应用方案</td>
+</tr>
+<tr>
+<td>腾讯云</td>
+<td>综合云服务商；混元是其模型家族之一</td>
+<td>要具体到所比较的模型、云资源或应用服务</td>
+</tr>
+<tr>
+<td>OpenAI</td>
+<td>模型研发及服务提供者，也提供终端产品</td>
+<td>要区分模型、API 服务与直接使用的软件</td>
+</tr>
+<tr>
+<td>Runway</td>
+<td>生成式创作产品，同时提供开发者 API</td>
+<td>创作流程与 API 集成是不同的购买场景</td>
+</tr>
+<tr>
+<td>Pika、Midjourney</td>
+<td>面向创作的产品</td>
+<td>用户如何完成创作、获得什么功能和权益</td>
+</tr>
+</tbody></table></div>
+<p>这些定位可以从相应的一手资料核对：<a target="_blank" rel="noopener noreferrer" href="https://seed.bytedance.com/en/seedance2_0">Seedance 官方介绍</a>、<a target="_blank" rel="noopener noreferrer" href="https://docs.volcengine.com/docs/ark/deployment-overview?lang=zh">火山方舟部署说明</a>、<a target="_blank" rel="noopener noreferrer" href="https://www.alibabacloud.com/help/zh/model-studio/what-is-model-studio">阿里云百炼介绍</a>、<a target="_blank" rel="noopener noreferrer" href="https://cloud.baidu.com/product-s/qianfan_home">百度千帆</a>、<a target="_blank" rel="noopener noreferrer" href="https://cloud.tencent.com/product/tclm">腾讯混元</a>、<a target="_blank" rel="noopener noreferrer" href="https://developers.openai.com/api/docs/models/all">OpenAI 模型目录</a>、<a target="_blank" rel="noopener noreferrer" href="https://docs.dev.runwayml.com/api/">Runway API 文档</a>、<a target="_blank" rel="noopener noreferrer" href="https://pika.art/">Pika</a>、<a target="_blank" rel="noopener noreferrer" href="https://docs.midjourney.com/hc/en-us/articles/33390732264589-Creating-on-Web">Midjourney 创作界面说明</a>。</p>
+<p>一家企业可以跨越几个层次。快手公开介绍过，可灵既向创作者提供会员订阅，也向企业和开发者提供 API 服务。同一种模型能力，可以形成不同的购买方式和收入来源。<a target="_blank" rel="noopener noreferrer" href="https://ir.kuaishou.com/news-releases/news-release-details/kling-ai-celebrates-first-anniversary-achieves-annualized/">快手官方说明</a></p>
+<p>对个人创作者，产品要解决“我怎样更方便地做出作品”；对软件公司，服务要解决“我怎样把这项能力稳定地提供给自己的用户”。这两类客户关心的价格、功能和支持方式，会有明显差异。</p>
+<p>会员、点数包、API、企业套餐和私有化，分别回应不同的购买条件。商业化产品经理要把能力包装成适合不同客户的产品。</p>
+<h2 id="section-3">技术概念怎样影响购买与交付</h2>
+<p>在继续讨论价格之前，需要理解几个直接影响购买的技术概念。</p>
+<div class="article-table" role="region" aria-label="文章表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>概念</th>
+<th>含义</th>
+<th>为什么销售需要理解</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AIGC</td>
+<td>使用 AI 生成文字、图片、音频、视频等内容</td>
+<td>不同内容对应不同效果标准、工作流程与计费单位</td>
+</tr>
+<tr>
+<td>多模态</td>
+<td>处理或生成多种形式的信息，如文字与图片、音频与视频</td>
+<td>要确认客户需要哪些输入、哪些输出</td>
+</tr>
+<tr>
+<td>API</td>
+<td>软件通过接口提交请求、取得结果</td>
+<td>企业可以把能力接入自己的系统，不能把网页会员与 API 权益混为一谈</td>
+</tr>
+<tr>
+<td>API Key</td>
+<td>调用服务时使用的身份凭证</td>
+<td>与客户账户、权限、用量和费用关联</td>
+</tr>
+<tr>
+<td>Token</td>
+<td>模型处理文本的单位，不等于固定数量的汉字或英文单词</td>
+<td>输入、输出和上下文长度会影响费用</td>
+</tr>
+<tr>
+<td>推理</td>
+<td>使用已经训练好的模型处理请求</td>
+<td>日常模型调用主要发生在推理环节</td>
+</tr>
+<tr>
+<td>训练／微调</td>
+<td>建立模型能力，或调整已有模型</td>
+<td>客户使用模型，并不意味着每次都要重新训练</td>
+</tr>
+<tr>
+<td>AI Infra</td>
+<td>支撑 AI 运行的算力、网络、存储、部署和调度等基础设施</td>
+<td>影响容量、速度、稳定性与成本</td>
+</tr>
+</tbody></table></div>
+<p>MaaS、SaaS 则描述服务的组织方式。MaaS 把模型能力作为服务提供出去；SaaS 提供已经能完成某类工作的软件。电商软件公司向商家提供 SaaS，同时向上游采购 MaaS，两者可以存在于同一条链路。</p>
+<p>传统云服务销售也可以这样理解：客户购买服务器、存储、数据库等资源，是为了运行某项业务；购买模型 API，是为了获得某种业务处理能力。产品虽然不同，销售仍然需要弄清楚工作负载、使用规模、交付要求和购买依据。</p>
+<p>客户为什么要通过平台购买，而不直接找模型厂商？</p>
+<p>如果平台只是转发请求、增加价格，却不能减少客户的工作，它的价值就比较有限。客户愿意选择平台，通常是因为平台提供了模型选择、统一接入、运行优化、用量管理、服务保障或企业支持。</p>
+<p>例如，客户可能需要同时比较几个模型。分别接入不同供应商，会增加账户管理、接口适配、账单核对和维护工作。平台如果能降低这些成本，就可能具有价值。Amazon Bedrock 的官方介绍体现了这种模式：通过托管服务提供多家厂商的模型，客户不必自行管理底层基础设施。<a target="_blank" rel="noopener noreferrer" href="https://aws.amazon.com/cn/documentation-overview/bedrock/">AWS 官方介绍</a></p>
+<p>另一些平台会自行部署模型，通过推理引擎和资源调度改善运行效率。它们获得收入的依据，可能包括交付能力与运行效率，而不仅是上游采购价和下游售价之间的差额。</p>
+<p>理解一家 MaaS 服务商，需要进一步核实：它提供哪些模型，哪些自行部署，哪些接入上游；它的客户为什么选择它；API 和算力服务分别占据什么位置。这些问题，比单独记住“这是一家 MaaS 公司”更接近真实业务。</p>
+<p>价格背后，还存在一个容易忽略的问题：<strong>同样能够调用模型，不代表获得了同样的服务保障。</strong></p>
+<p>客户可能一个月只调用几万次，但要求在每天某个时间集中完成；另一位客户调用更多，却允许任务隔夜处理。两者需要的资源安排不同。</p>
+<p>这里要区分：</p>
+<ul>
+<li><strong>并发数</strong>：同一时间正在处理的请求数量。</li>
+<li><strong>RPM</strong>：每分钟请求数限制。</li>
+<li><strong>TPM</strong>：每分钟 Token 数限制。</li>
+<li><strong>响应延迟</strong>：一个请求等待或处理了多久。</li>
+<li><strong>吞吐量</strong>：一段时间内能够完成多少工作。</li>
+</ul>
+<p>它们相互关联，却不能互相替代。每分钟允许提交很多请求，不代表所有请求都能立即完成；请求数量少，但每次输入输出很长，也可能消耗大量 Token 配额。</p>
+<p>任务队列是等待处理的任务集合。优先级影响任务获得处理机会的顺序。视频任务较长，用户看到的等待时间可能来自排队，也可能来自生成本身。火山方舟的官方资料就区分了不同的推理方式、限流与资源保障安排。<a target="_blank" rel="noopener noreferrer" href="https://docs.volcengine.com/docs/ark/deployment-overview?lang=zh">推理方式说明</a>、<a target="_blank" rel="noopener noreferrer" href="https://docs.volcengine.com/docs/ark/traffic-burst-handling-best-practices?lang=en">突增流量处理说明</a></p>
+<p>因此，当客户说“你们接口很慢”，商务人员需要帮助澄清：是网络问题、排队、模型生成速度、输入过长，还是超过了服务限制。准确描述问题，才能让技术团队有效处理。</p>
+<h2 id="section-4">价格、权益与经营成本</h2>
+<p>服务怎样收费，可以拆成三个问题：<strong>用多少算多少钱，购买后有哪些权益，什么时候付款。</strong></p>
+<p>例如，客户先充值，再按 Token 扣费。“预充值”是付款方式，“Token”是计费单位。客户订阅一个套餐，套餐包含生成额度、团队席位和优先处理，则同时涉及付款周期、额度和服务权益。</p>
+<p>几种常见的商业模式，可以这样理解：</p>
+<div class="article-table" role="region" aria-label="文章表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>模式</th>
+<th>客户购买什么</th>
+<th>适合怎样的需求</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>会员订阅</td>
+<td>一段时间内的功能、额度及使用权益</td>
+<td>持续创作、希望费用较可预测的用户</td>
+</tr>
+<tr>
+<td>点数／积分包</td>
+<td>可消耗的生成额度</td>
+<td>使用频率不固定，或需要补充额度</td>
+</tr>
+<tr>
+<td>API 按量计费</td>
+<td>实际发生的模型服务使用量</td>
+<td>将能力接入软件、随业务量使用</td>
+</tr>
+<tr>
+<td>企业套餐</td>
+<td>服务额度、团队管理、支持及约定权益</td>
+<td>多人协作、有采购和管理要求的企业</td>
+</tr>
+<tr>
+<td>专属资源／保障包</td>
+<td>特定资源或约定的服务容量</td>
+<td>高峰稳定性、吞吐或隔离要求较高的业务</td>
+</tr>
+<tr>
+<td>私有化部署</td>
+<td>在约定环境中部署相应系统与模型服务</td>
+<td>希望更强控制、具备部署与维护条件的客户</td>
+</tr>
+<tr>
+<td>增值服务</td>
+<td>接入、迁移、优化、培训或专项支持等</td>
+<td>自身能力不足，或希望缩短实施时间</td>
+</tr>
+</tbody></table></div>
+<p>企业套餐是商业包装，专属资源是资源安排，私有化是部署方式。三者可以组合，不能仅凭名称判断实际交付内容。</p>
+<p>计费单位也需要对应真实任务。文本可以按输入输出 Token；图片可能按张数、分辨率或模型档位；视频可能按时长、清晰度或点数；资源服务可能按使用时长或预留容量。并发保障、任务优先级也可以成为套餐权益或计费维度。Runway 的点数说明展示了不同生成任务如何消耗 credits。<a target="_blank" rel="noopener noreferrer" href="https://help.runwayml.com/hc/en-us/articles/15124877443219-How-do-credits-work">Runway 官方说明</a></p>
+<p>以一组假设价格计算：输入每百万 Token 1元，输出每百万 Token 4元。一次商品文案任务输入2,000 Token、输出500 Token，那么基础调用费用为：</p>
+<blockquote>
+<p>2,000 ÷ 1,000,000 × 1 ＋ 500 ÷ 1,000,000 × 4<br>＝ 0.004元。</p>
+</blockquote>
+<p>十万次这样的调用，基础费用为400元。实际估算还需要结合模型、上下文、重试、缓存及其他服务规则。官方价格表也通常区分模型、输入与输出等计费项。<a target="_blank" rel="noopener noreferrer" href="https://help.aliyun.com/zh/model-studio/model-pricing">阿里云模型价格说明</a></p>
+<p>但客户真正关心的，常常是“一份能用的文案多少钱”或“一条合格视频多少钱”。</p>
+<p>假设两种视频服务：一种每次生成便宜，却经常需要重做；另一种单次较贵，但可用率更高。比较时应把重试和人工修改算进去。一个简化的观察方式是：</p>
+<blockquote>
+<p><strong>单位合格成果成本＝用于这批任务的总费用 ÷ 最终可用成果数量。</strong></p>
+</blockquote>
+<p>这比孤立比较单次价格更接近客户的工作。</p>
+<p>服务商也有自己的成本账。自行部署时，需要考虑算力、资源利用率和运行维护；接入上游时，需要考虑采购费用；两种方式还可能涉及网络、存储和技术交付。</p>
+<p>假设某客户当月贡献收入10,000元，按统一口径核算的服务交付成本为6,500元，则毛利为3,500元，毛利率为35%。公司仍需承担其他经营费用，所以毛利不是净利润。</p>
+<p>商业化工作需要在用户体验、收入增长、成本控制和竞争之间权衡。降价可能带来更多使用，但如果新增收入不足以覆盖新增成本，增长本身就不能说明经营改善。</p>
+<p>定价通常需要同时看三个方面：供给成本、客户获得的价值，以及客户可选择的替代方案。客户的付费意愿也要放在预算、使用规模和采购条件中理解，不能只问一句“你愿意花多少钱”。</p>
+<p>不同客户对这些条件的理解不同。</p>
+<div class="article-table" role="region" aria-label="文章表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>客户群</th>
+<th>主要关注点</th>
+<th>商业安排上的侧重点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>新用户</td>
+<td>能否快速理解产品、完成第一次有效使用</td>
+<td>清楚的引导与适量试用</td>
+</tr>
+<tr>
+<td>轻度创作者</td>
+<td>偶尔使用、低门槛、费用可控</td>
+<td>小套餐或点数补充</td>
+</tr>
+<tr>
+<td>专业创作者／团队</td>
+<td>效果、工作流程、效率、团队协作</td>
+<td>持续额度、功能权益和容量</td>
+</tr>
+<tr>
+<td>开发者</td>
+<td>文档、接入、错误处理、模型效果、价格</td>
+<td>API、用量与调试支持</td>
+</tr>
+<tr>
+<td>中小企业</td>
+<td>能否解决实际问题、投入是否可承受</td>
+<td>容易落地的标准方案</td>
+</tr>
+<tr>
+<td>大客户</td>
+<td>规模、保障、采购、预算与责任划分</td>
+<td>企业合同、资源安排及服务支持</td>
+</tr>
+</tbody></table></div>
+<p>用户分层不是为了给不同人换一套宣传词。它决定服务怎样交付、需要投入多少支持，以及哪类客户值得优先发展。一个愿意付费但每次都要求大量定制的小客户，可能比一个稳定使用标准服务的客户更难经营。</p>
+<h2 id="section-5">从商机到测试、购买和持续使用</h2>
+<p>回到那家电商软件公司，商务人员怎样把机会推进成真实业务？</p>
+<p>最初接触时，客户可能只说：“我们想加一点 AI 功能。”这还不是足够明确的采购需求。</p>
+<p>商务人员需要逐步弄清楚：处理什么商品、使用哪些语言、每月多少任务、目前怎样完成、哪里最费时间、谁负责实施、谁批准预算，以及什么时候需要上线。</p>
+<p>这些问题同时服务于两件事：判断客户是否值得继续投入，以及帮助客户把模糊意向变成可验证的任务。</p>
+<p>客户来源可以包括行业活动、产品体验者、企业线索、合作伙伴、既有客户介绍和有明确目标的主动拓展。衡量拓展质量时，应看是否找到合适的企业与负责人，不能只看联系了多少人。</p>
+<p>确认任务后，双方可以安排 PoC，即概念验证。对这家电商公司，第一阶段可以先验证商品文案，把视频作为另一项独立测试，避免同时增加过多变量。</p>
+<p>测试应使用有代表性的商品信息，包括容易出错的情况，比较生成质量、人工修改量、响应速度、调用成功情况与成本。双方还需要提前约定测试范围、负责人、结束时间和进入下一阶段的条件。</p>
+<p>如果只展示几条精心挑选的结果，客户看到的是演示；如果能够说明它在日常任务中的效果和限制，才更接近采购依据。</p>
+<p>免费的价值也在这里。免费额度可以降低开始测试的门槛，但额度消耗本身不意味着客户认可了产品。客户可能只是随手体验，也可能尚未接入业务。</p>
+<p>“权益引导”则发生在客户已经遇到具体需求之后。例如，团队需要共同管理账单，高峰期需要更高容量，或者试用额度不足以完成约定测试。这时说明相应套餐的权益，比无条件催促充值更有依据。</p>
+<p>测试结束后，报价要把商业条件和交付内容对应起来。至少需要说明模型或服务范围、计费单位、额度及有效期、资源保障、支持内容、付款安排和超量处理方式。涉及企业合同，还要由相应人员核对服务责任、数据处理、使用权利和其他条款。</p>
+<p>这里有三种不同的“成功”：客户愿意购买，系统能够接入，业务能够持续使用。签约只解决了其中一部分。</p>
+<p>正式交付时，客户可能还需要账户与权限设置、接口接入、监控、预算限制、人员培训和故障处理流程。商务人员要推动相关负责人完成约定事项，不能把“已经给了 API Key”当作全部交付。</p>
+<p>账单和用量管理因此属于产品价值。客户需要知道费用来自哪个项目、哪个模型、哪些调用；需要及时看到余额和预算消耗；需要在续费或超额之前作出决定。自动续费也应建立在清楚的授权、展示和取消规则之上。</p>
+<p>这些能力降低了客户使用过程中的不确定性。一个模型效果不错，但账单难以解释、费用难以控制的服务，仍然可能失去企业客户。</p>
+<p>客户上线后，商务工作继续发生。</p>
+<p>如果用量下降，需要判断是业务淡季、项目暂停、效果问题、价格变化，还是接入故障。不同原因需要不同处理。流失召回不是统一发一张优惠券，而是找到客户停止使用的原因，并判断这个原因是否已经得到解决。</p>
+<p>客户持续使用之后，扩量可能来自更多商家、更多商品、更多业务场景或更高服务保障。续费、扩容和套餐升级，都与客户的实际使用变化有关。</p>
+<p>跟进客户使用、答疑、提升满意度和续费率，属于持续经营客户的工作。商务拓展与客户成功在这里存在衔接，具体分工取决于团队的组织方式。</p>
+<h2 id="section-6">行业方案与可重复销售的能力</h2>
+<p>一个项目能否做成，与它能否被重复销售，也是两个问题。</p>
+<p>电商客户可能提出自己的字段、术语和审批流程。供应商如果每次都从头开发，收入增长就会伴随大量定制工作。把个性化需求沉淀为标准套餐、行业模板和销售工具包，正是在处理这个问题。</p>
+<p>例如，几个客户都有商品信息改写需求，团队可以逐渐形成通用字段规范、提示模板、评估样本、接入说明、报价结构和常见问题。这些材料缩短下一次销售与交付的时间。</p>
+<p>但“行业方案”不能只是换一个行业名称。它需要理解行业真正评价成果的方式：</p>
+<ul>
+<li>广告、品牌内容与电商，关心素材可用性、制作效率和品牌表达；投放效果还需要另行验证。</li>
+<li>短剧与影视，关心角色、镜头和叙事的一致性，以及后续编辑成本。</li>
+<li>游戏，关心资产规格、风格统一和制作流程衔接。</li>
+<li>教育，关心内容准确性、教学适配和审核过程。</li>
+</ul>
+<p>模型能力只有进入这些工作流程，才逐渐形成行业价值。销售、解决方案和产品团队需要共同发现哪些需求可以标准化，哪些仍需单独评估。</p>
+<p>客户问题也会暴露竞争关系。</p>
+<p>有些客户比较同一模型在不同平台上的交付；有些比较不同模型；有些则比较“购买服务”与“自行部署”，甚至继续人工完成。竞争分析应从客户的任务出发，而不是把所有 AI 品牌放进同一张价格表。</p>
+<p>对那家电商公司，可以比较：商品信息保真程度、多语言表现、人工修改量、接入难度、高峰响应、总费用和服务支持。只有统一测试任务、统计方式和服务条件，比较才有意义。</p>
+<p>这也是“商业敏感度”的具体内容：发现客户为什么选择、为什么犹豫，判断价格变化会影响哪些客户，以及哪些需求值得产品投入。它需要观察和依据，不能仅靠对行业热门词的熟悉。</p>
+<h2 id="section-7">通过数据理解商业链路</h2>
+<p>商业化团队还需要通过数据判断这条链路是否健康。常见指标可以按它们回答的问题理解。</p>
+<div class="article-table" role="region" aria-label="文章表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>回答什么问题</th>
+<th>使用时需要明确什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>用户／客户增长</td>
+<td>进入服务的人或企业是否增加</td>
+<td>注册账户不等于有效客户</td>
+</tr>
+<tr>
+<td>付费转化率</td>
+<td>接触或试用后，有多少进入付费</td>
+<td>分母是注册者、试用者还是合格商机</td>
+</tr>
+<tr>
+<td>ARPU</td>
+<td>平均每用户收入多少</td>
+<td>周期与用户口径；企业业务也可能按账户统计</td>
+</tr>
+<tr>
+<td>续费率</td>
+<td>到期客户有多少继续购买</td>
+<td>应以符合续费条件的客户为基数</td>
+</tr>
+<tr>
+<td>留存率</td>
+<td>客户是否在后续时间继续使用</td>
+<td>用什么行为定义“仍在使用”</td>
+</tr>
+<tr>
+<td>套餐升级率</td>
+<td>客户是否购买更高等级的服务</td>
+<td>是真实需求增长，还是短期促销</td>
+</tr>
+<tr>
+<td>额度消耗率</td>
+<td>已分配额度被使用了多少</td>
+<td>免费、付费与套餐额度应区分</td>
+</tr>
+<tr>
+<td>API 调用增长</td>
+<td>服务使用是否增加</td>
+<td>还应结合 Token、任务、成功情况与费用</td>
+</tr>
+<tr>
+<td>套餐结构／收入贡献</td>
+<td>哪些产品和客户贡献收入</td>
+<td>不同套餐可能有不同成本与支持负担</td>
+</tr>
+<tr>
+<td>毛利率</td>
+<td>交付服务后保留多少收入</td>
+<td>必须采用一致的成本核算口径</td>
+</tr>
+<tr>
+<td>LTV</td>
+<td>客户关系存续期间预计贡献多少价值</td>
+<td>使用收入口径还是毛利口径，预测依据是什么</td>
+</tr>
+<tr>
+<td>ROI</td>
+<td>某项投入带来多少净收益</td>
+<td>计算对象、期间、收益及成本范围</td>
+</tr>
+</tbody></table></div>
+<p>LTV 是估算，不是已经收到的钱。对使用量波动较大的模型服务，不能机械地把一个月消费乘以固定月份，就当作可靠预测。留存、复购与客户群分析需要结合观察期和实际行为。<a target="_blank" rel="noopener noreferrer" href="https://stripe.com/resources/more/customer-retention-why-it-matters-and-how-to-improve-it">Stripe 客户留存分析</a></p>
+<p>ROI 也要区分是谁的投资回报。客户可能计算接入服务后减少了多少人工工作；供应商可能计算一次获客活动带来了多少业务。两种账不能混为一谈。</p>
+<p>同样，充值、用量和收入不能当作同一个数字。预充值可以先形成回款，随后发生服务消耗；收入确认还取决于实际交易与核算方式。一个客户充值之后长期不用，与一个客户持续消费并再次购买，对后续经营的含义不同。</p>
+<p>漏斗分析帮助团队找到具体损失发生在哪里。可以依次观察：</p>
+<blockquote>
+<p>有效线索 → 需求确认 → 测试启动 → 测试完成 → 首次付费 → 业务上线 → 持续使用。</p>
+</blockquote>
+<p>如果大量客户测试都没有启动，问题可能在接入门槛、线索质量或缺少负责人；如果测试完成但不付费，可能需要重新检查价值、预算、价格或采购时机；如果付费后停止使用，则要回到交付和效果。</p>
+<p>用户分群进一步回答“问题发生在哪些客户”。开发者、小企业和大型团队，可能有不同的接入方式与购买周期。把它们混在一起看平均值，会掩盖差异。</p>
+<p>A/B 实验适合检验某项产品变化的作用。例如，比较两种新用户引导是否提高有效试用完成率，同时观察支持负担和后续付费。实验需要明确假设、比较对象和评价指标；流量过少、分组不合理或同时改动很多因素，都可能使结果难以解释。微软的实验方法资料强调了这些前置条件。<a target="_blank" rel="noopener noreferrer" href="https://www.microsoft.com/en-us/research/group/experimentation-platform-exp/articles/patterns-of-trustworthy-experimentation-pre-experiment-stage">Microsoft Research 实验设计说明</a></p>
+<p>大型企业商机数量较少、采购条件差异较大，不能简单把两组客户的成交率差异归因于某个话术。此时，系统记录客户反馈、报价条件和推进过程，可能比随意做“实验”更有用。</p>
+<p>价格敏感度分析则关注价格变化怎样影响购买与使用。客户说“贵”，可能意味着超出预算，也可能意味着尚未看到价值，或与另一种服务条件不相同的报价作了比较。商务人员应先还原比较依据，再决定是否申请折扣。</p>
+<p>这些分析最终服务于具体决定：调整试用、改进文档、改变套餐、优化模型选择，还是停止投入某类低价值需求。</p>
+<h2 id="section-8">跨团队协作与海外业务</h2>
+<p>完成这条链路，需要多个团队协作。</p>
+<div class="article-table" role="region" aria-label="文章表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>团队或职能</th>
+<th>主要承担什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>算法／模型</td>
+<td>模型效果、评估、适配与优化</td>
+</tr>
+<tr>
+<td>工程</td>
+<td>API、部署、调度、监控与稳定性</td>
+</tr>
+<tr>
+<td>产品／商业化</td>
+<td>套餐、计费、权益、使用流程和商业规则</td>
+</tr>
+<tr>
+<td>运营</td>
+<td>用户引导、活动、使用与转化反馈</td>
+</tr>
+<tr>
+<td>销售／商务</td>
+<td>需求、商机、采购推进与客户关系</td>
+</tr>
+<tr>
+<td>解决方案／售前</td>
+<td>把产品能力组织成客户可实施的方案</td>
+</tr>
+<tr>
+<td>财务</td>
+<td>费用、结算、成本与经营口径</td>
+</tr>
+<tr>
+<td>法务</td>
+<td>合同、授权与责任等事项</td>
+</tr>
+<tr>
+<td>客户成功／支持</td>
+<td>上线使用、问题处理、价值实现与续用</td>
+</tr>
+</tbody></table></div>
+<p>商务人员的重要能力，是把信息变成各方可以行动的内容。</p>
+<p>客户说“生成不好”，需要进一步描述错误类型、样本、使用模型、期望结果和影响；客户说“需要更快”，需要补充高峰任务量、当前延迟和可接受等待时间。这样的信息才能帮助技术与产品判断。</p>
+<p>反过来，技术结论也需要被翻译成客户能够理解的商业安排：是否更换模型、提高资源保障、调整流程，费用和实施时间会如何变化。</p>
+<p>结构化表达与销售支持材料可以帮助完成这些工作。实用材料可以包括需求记录、测试计划与结果、竞品比较、报价说明、接入文档和项目复盘。它们的作用是减少反复沟通，让承诺、证据和下一步保持一致。</p>
+<p>理解“算力服务”和“算力出海”，还需要把服务对象再向供给侧移动一步。</p>
+<p>购买模型 API 的客户，通常希望获得可调用的能力；购买算力的客户，可能已经有模型和技术团队，需要运行资源。这时要讨论 GPU 规格与数量、使用时长、资源位置、网络、可用性、部署和维护分工。</p>
+<p>“算力出海”这个词本身，不能说明具体交付模式。它可能涉及向海外客户提供远程资源、托管或其他服务，仍需根据公司产品确认。一家企业列出的海外市场覆盖范围，可以作为市场方向信息，不足以推断各地的实际付费规模。</p>
+<p>海外商务也不只是把中文报价翻译成英文。客户所在地区会影响响应时间、服务可用性、付款安排和沟通节奏。团队需要把支持时间、负责人、币种和关键条件写清楚。</p>
+<p>跨语言沟通需要准确完成具体任务：介绍产品、澄清需求、确认测试、解释报价、跟进问题和总结会议。例如，一封测试确认邮件应能交代模型、任务量、期限、评价标准和双方负责人，让不同地区的团队对交付条件形成一致理解。</p>
+</div><template data-article-english><div class="article-heading"><h1>Cloud Services and AI Commercialization: Understanding the Business Chain of Model Services</h1><p class="article-meta"><span>Published <time datetime="2026-10-07">2026.10.07</time></span><span>AI assistance: <span lang="en">GPT</span></span></p><p class="article-keywords"><strong>Keywords</strong>: Cloud services · AI commercialization · MaaS · Model APIs · Pricing and costs · Customer lifecycle</p></div><div class="article-content porter-article">
+<p>Why would a company buy a large language model API? What allows an API platform to charge for its services? After a trial, how does a customer move into formal purchasing? When usage grows, does the service provider necessarily earn more?</p>
+<p>These questions connect the supply of model services with product design, sales, and customer use.</p>
+<p>Commercialization product managers focus on designing a business that can sustain itself: whom to serve, how to price, which benefits customers receive, how trials lead to payment, and whether revenue covers costs. Sales and business development help particular customers purchase and continue using MaaS platforms and large language model APIs. Their work also includes account management, product feedback, and overseas communication.</p>
+<p>This article follows the business chain of model services to examine the value platforms deliver, how services are charged for, and how customers adopt them. Platform features are drawn from official documentation. The customer and figures used throughout are hypothetical examples, not any company&#39;s actual customers, quotations, or operating data.</p>
+<p>Four questions provide a starting point: <strong>Where does the capability come from? What does the customer use it to accomplish? How is the service delivered? How does revenue continue to arise?</strong></p>
+<h2 id="section-1">Following the Customer&#39;s Task, Service Supply, and Payments</h2>
+<p>Start with a customer.</p>
+<p>Suppose a cross-border e-commerce software company already offers merchants product-management features. It now wants to add two capabilities: rewriting Chinese product information for overseas markets, and making short advertising videos from product images.</p>
+<p>It needs more than a powerful model. The model must integrate with existing software; its outputs must be usable; the system must avoid frequent queues or errors when many merchants use it at once; and the cost of each generation must fit the software&#39;s selling price.</p>
+<p>The company could buy model APIs, rent compute and deploy appropriately licensed models, or buy a complete solution that includes integration and maintenance. Its choice depends on its technical team, business scale, output requirements, and budget.</p>
+<p>This is where sales and business development begin: a customer has a specific job to accomplish, and a supplier offers a capability for accomplishing it.</p>
+<blockquote>
+<p>Compute and cloud resources + models and usage rights → deployment, inference, and scheduling → API / MaaS platform → the customer&#39;s software or business system → end users.</p>
+</blockquote>
+<p>This chain shows a common division of work, not a sequence every company must pass through. One company may run models and provide the API platform; customers may also purchase directly from model vendors or deploy models themselves.</p>
+<p>Services flow from suppliers toward users. Payments follow the corresponding purchasing relationships. Merchants pay for e-commerce software, the software company pays for model services, and the model service provider bears compute or upstream API costs. Each layer needs to add value, or customers will consider bypassing it.</p>
+<p><strong>Selling model services requires understanding both the direct customer and that customer&#39;s customers.</strong> If merchants do not want to use the AI features, the software company will find it difficult to expand API consumption over time. The provider&#39;s revenue ultimately remains constrained by the value created downstream.</p>
+<h2 id="section-2">Where Models, Platforms, and Applications Fit</h2>
+<p>Names of models, platforms, and applications should be understood within this chain.</p>
+<p>Seedance, Volcengine ModelArk, Runway, Pika, Midjourney, OpenAI, Alibaba Cloud Model Studio, Baidu Qianfan, and Tencent Cloud are not identical kinds of products:</p>
+<div class="article-table" role="region" aria-label="Article table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Main position in the business chain</th>
+<th>What to examine when comparing</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Seedance</td>
+<td>ByteDance&#39;s video-generation model family</td>
+<td>Output quality, control, speed, and operating and inference costs</td>
+</tr>
+<tr>
+<td>Volcengine ModelArk</td>
+<td>A platform offering model services and related deployment capabilities</td>
+<td>Model selection, APIs, billing, throughput, and resource guarantees</td>
+</tr>
+<tr>
+<td>Alibaba Cloud Model Studio</td>
+<td>A model-service platform integrating in-house and third-party models</td>
+<td>Model access, application building, service regions, and billing</td>
+</tr>
+<tr>
+<td>Baidu Qianfan</td>
+<td>A platform for enterprise models and application development</td>
+<td>Model services, development capabilities, and enterprise solutions</td>
+</tr>
+<tr>
+<td>Tencent Cloud</td>
+<td>A comprehensive cloud provider; Hunyuan is one of its model families</td>
+<td>Identify the particular model, cloud resource, or application service being compared</td>
+</tr>
+<tr>
+<td>OpenAI</td>
+<td>A developer and provider of models and services, also offering end-user products</td>
+<td>Distinguish models, API services, and directly usable software</td>
+</tr>
+<tr>
+<td>Runway</td>
+<td>A generative creative product that also offers developer APIs</td>
+<td>Creative workflows and API integration serve different purchasing situations</td>
+</tr>
+<tr>
+<td>Pika and Midjourney</td>
+<td>Creative products</td>
+<td>How users complete creative work, and which features and benefits they receive</td>
+</tr>
+</tbody></table></div>
+<p>These positions can be checked against first-party sources: <a target="_blank" rel="noopener noreferrer" href="https://seed.bytedance.com/en/seedance2_0">Seedance introduction</a>, <a target="_blank" rel="noopener noreferrer" href="https://docs.volcengine.com/docs/ark/deployment-overview?lang=zh">ModelArk deployment documentation</a>, <a target="_blank" rel="noopener noreferrer" href="https://www.alibabacloud.com/help/zh/model-studio/what-is-model-studio">Alibaba Cloud Model Studio introduction</a>, <a target="_blank" rel="noopener noreferrer" href="https://cloud.baidu.com/product-s/qianfan_home">Baidu Qianfan</a>, <a target="_blank" rel="noopener noreferrer" href="https://cloud.tencent.com/product/tclm">Tencent Hunyuan</a>, <a target="_blank" rel="noopener noreferrer" href="https://developers.openai.com/api/docs/models/all">OpenAI model directory</a>, <a target="_blank" rel="noopener noreferrer" href="https://docs.dev.runwayml.com/api/">Runway API documentation</a>, <a target="_blank" rel="noopener noreferrer" href="https://pika.art/">Pika</a>, and <a target="_blank" rel="noopener noreferrer" href="https://docs.midjourney.com/hc/en-us/articles/33390732264589-Creating-on-Web">Midjourney web creation documentation</a>.</p>
+<p>A company can operate across several layers. Kuaishou has publicly described Kling as offering both creator subscriptions and API services for enterprises and developers. The same model capability can support different purchasing arrangements and revenue sources. <a target="_blank" rel="noopener noreferrer" href="https://ir.kuaishou.com/news-releases/news-release-details/kling-ai-celebrates-first-anniversary-achieves-annualized/">Kuaishou&#39;s announcement</a></p>
+<p>For an individual creator, the product must answer, &quot;How can I make work more conveniently?&quot; For a software company, the service must answer, &quot;How can I reliably offer this capability to my own users?&quot; These customers differ substantially in the prices, features, and support they care about.</p>
+<p>Subscriptions, credit packs, APIs, enterprise packages, and private deployments respond to different purchasing conditions. Commercialization product managers package capabilities into products suitable for different customers.</p>
+<h2 id="section-3">How Technical Concepts Affect Purchasing and Delivery</h2>
+<p>Before discussing prices, several technical concepts that directly affect purchasing need to be understood.</p>
+<div class="article-table" role="region" aria-label="Article table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Meaning</th>
+<th>Why sales needs to understand it</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AIGC</td>
+<td>Using AI to generate text, images, audio, video, and other content</td>
+<td>Different outputs have different quality standards, workflows, and billing units</td>
+</tr>
+<tr>
+<td>Multimodal</td>
+<td>Processing or generating several forms of information, such as text and images or audio and video</td>
+<td>Establish which inputs and outputs the customer needs</td>
+</tr>
+<tr>
+<td>API</td>
+<td>An interface through which software submits requests and receives results</td>
+<td>Enterprises can integrate capabilities into their systems; web subscriptions and API benefits must not be confused</td>
+</tr>
+<tr>
+<td>API key</td>
+<td>A credential used to authenticate service calls</td>
+<td>Connects calls with customer accounts, permissions, usage, and charges</td>
+</tr>
+<tr>
+<td>Token</td>
+<td>A unit used by models to process text, not a fixed number of Chinese characters or English words</td>
+<td>Inputs, outputs, and context length can affect charges</td>
+</tr>
+<tr>
+<td>Inference</td>
+<td>Using an already trained model to process a request</td>
+<td>Routine model calls mainly take place at the inference stage</td>
+</tr>
+<tr>
+<td>Training / fine-tuning</td>
+<td>Building model capabilities or adapting an existing model</td>
+<td>Using a model does not mean retraining it for each request</td>
+</tr>
+<tr>
+<td>AI infrastructure</td>
+<td>Compute, networking, storage, deployment, scheduling, and other infrastructure supporting AI</td>
+<td>Affects capacity, speed, reliability, and cost</td>
+</tr>
+</tbody></table></div>
+<p>MaaS and SaaS describe how services are organized. MaaS offers model capabilities as a service; SaaS offers software that can already perform a particular kind of work. An e-commerce software company may provide SaaS to merchants while buying MaaS upstream. Both can exist in the same chain.</p>
+<p>Traditional cloud-service sales can be understood similarly. Customers buy servers, storage, databases, and other resources to run a business activity; they buy model APIs to obtain a capability for handling business tasks. Although the products differ, sales still needs to understand workloads, usage scale, delivery requirements, and purchasing grounds.</p>
+<p>Why would a customer buy through a platform rather than directly from a model vendor?</p>
+<p>If a platform merely forwards requests and adds a markup without reducing the customer&#39;s work, its value is limited. Customers usually choose platforms for model selection, unified integration, runtime optimization, usage management, service guarantees, or enterprise support.</p>
+<p>For example, a customer may need to compare several models. Integrating separate suppliers increases the work of managing accounts, adapting interfaces, reconciling bills, and maintaining connections. A platform can be valuable if it reduces these costs. Amazon Bedrock illustrates this arrangement: its managed service provides models from several vendors without requiring customers to manage the underlying infrastructure themselves. <a target="_blank" rel="noopener noreferrer" href="https://aws.amazon.com/cn/documentation-overview/bedrock/">AWS documentation overview</a></p>
+<p>Other platforms deploy models themselves and improve runtime efficiency through inference engines and resource scheduling. Their revenue may be supported by delivery capabilities and operating efficiency, rather than only the gap between upstream purchase prices and downstream selling prices.</p>
+<p>Understanding a MaaS provider requires further investigation: which models it offers, which it deploys itself, and which it accesses upstream; why customers choose it; and where API and compute services fit in its business. These questions get closer to the actual business than simply remembering that it is a MaaS company.</p>
+<p>Behind pricing lies an easily overlooked point: <strong>access to the same model does not necessarily come with the same service guarantees.</strong></p>
+<p>A customer may make only tens of thousands of calls each month but require them to finish within a concentrated daily window. Another may make more calls but allow processing overnight. Their resource requirements differ.</p>
+<p>The following distinctions matter:</p>
+<ul>
+<li><strong>Concurrency:</strong> the number of requests being processed at the same time.</li>
+<li><strong>RPM:</strong> a limit on requests per minute.</li>
+<li><strong>TPM:</strong> a limit on tokens per minute.</li>
+<li><strong>Response latency:</strong> how long a request waits or takes to process.</li>
+<li><strong>Throughput:</strong> how much work can be completed within a period.</li>
+</ul>
+<p>These measures are related but not interchangeable. Permission to submit many requests per minute does not mean all requests finish immediately. A small number of requests with long inputs and outputs can still consume a large token allowance.</p>
+<p>A task queue holds work waiting to be processed. Priority affects the order in which tasks receive processing capacity. Video tasks take longer, so the user&#39;s wait may come from queuing or generation itself. ModelArk&#39;s official documentation distinguishes inference arrangements, rate limits, and resource guarantees. <a target="_blank" rel="noopener noreferrer" href="https://docs.volcengine.com/docs/ark/deployment-overview?lang=zh">Inference arrangements</a>, <a target="_blank" rel="noopener noreferrer" href="https://docs.volcengine.com/docs/ark/traffic-burst-handling-best-practices?lang=en">Handling traffic bursts</a></p>
+<p>When a customer says that an API is slow, business staff therefore need to help clarify whether the cause is networking, queuing, model generation speed, an overly long input, or a service limit. An accurate description enables technical teams to respond effectively.</p>
+<h2 id="section-4">Pricing, Benefits, and Operating Costs</h2>
+<p>Charging for services can be separated into three questions: <strong>How is usage priced? Which benefits does a purchase include? When is payment made?</strong></p>
+<p>For example, a customer may top up an account before being charged by tokens consumed. Prepayment is the payment arrangement, while tokens are the billing unit. A subscription that includes generation allowances, team seats, and priority processing combines a payment cycle with quotas and service benefits.</p>
+<p>Several common commercial models can be understood as follows:</p>
+<div class="article-table" role="region" aria-label="Article table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Model</th>
+<th>What the customer buys</th>
+<th>Suitable needs</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Subscription</td>
+<td>Features, allowances, and usage benefits for a period</td>
+<td>Regular creation and relatively predictable spending</td>
+</tr>
+<tr>
+<td>Credit pack</td>
+<td>Consumable generation credits</td>
+<td>Irregular use or additional allowances</td>
+</tr>
+<tr>
+<td>Usage-based API billing</td>
+<td>Model services actually consumed</td>
+<td>Integration into software, with usage tied to business volume</td>
+</tr>
+<tr>
+<td>Enterprise package</td>
+<td>Service allowances, team management, support, and agreed benefits</td>
+<td>Enterprises with multiple users and purchasing or management requirements</td>
+</tr>
+<tr>
+<td>Dedicated resources / capacity guarantees</td>
+<td>Specified resources or agreed service capacity</td>
+<td>Workloads requiring peak-time reliability, throughput, or isolation</td>
+</tr>
+<tr>
+<td>Private deployment</td>
+<td>Deployment of relevant systems and model services in an agreed environment</td>
+<td>Customers seeking greater control and able to support deployment and maintenance</td>
+</tr>
+<tr>
+<td>Value-added services</td>
+<td>Integration, migration, optimization, training, or specialized support</td>
+<td>Customers lacking capabilities or seeking a shorter implementation period</td>
+</tr>
+</tbody></table></div>
+<p>An enterprise package is a commercial bundle, dedicated resources describe resource arrangements, and private deployment is a deployment approach. They can be combined; their names alone do not establish what is actually delivered.</p>
+<p>Billing units must also fit real tasks. Text can be billed by input and output tokens; images by count, resolution, or model tier; video by duration, quality, or credits; and resource services by usage time or reserved capacity. Concurrency guarantees and task priority can also be package benefits or billing dimensions. Runway&#39;s documentation shows how different generation tasks consume credits. <a target="_blank" rel="noopener noreferrer" href="https://help.runwayml.com/hc/en-us/articles/15124877443219-How-do-credits-work">Runway credit documentation</a></p>
+<p>Consider hypothetical prices of CNY 1 per million input tokens and CNY 4 per million output tokens. If a product-copy task uses 2,000 input tokens and 500 output tokens, its base call cost is:</p>
+<blockquote>
+<p>2,000 ÷ 1,000,000 × 1 + 500 ÷ 1,000,000 × 4<br>= CNY 0.004.</p>
+</blockquote>
+<p>One hundred thousand such calls would cost CNY 400 before other charges. Actual estimates must account for the model, context, retries, caching, and other service rules. Official price tables also typically distinguish models, inputs, outputs, and other billing items. <a target="_blank" rel="noopener noreferrer" href="https://help.aliyun.com/zh/model-studio/model-pricing">Alibaba Cloud model pricing</a></p>
+<p>Customers, however, often care about the cost of a usable piece of copy or an acceptable video.</p>
+<p>Suppose two video services differ: one is cheaper per generation but often requires another attempt; the other costs more per attempt but has a higher usable-output rate. Comparison should include retries and manual editing. One simplified measure is:</p>
+<blockquote>
+<p><strong>Cost per acceptable output = total spending on the batch of tasks ÷ number of usable outputs.</strong></p>
+</blockquote>
+<p>This is closer to the customer&#39;s work than comparing prices per attempt in isolation.</p>
+<p>Providers also have their own costs. Self-deployment requires accounting for compute, resource utilization, and operations; upstream access requires accounting for procurement charges. Both may involve networking, storage, and technical delivery.</p>
+<p>Suppose a customer contributes CNY 10,000 in monthly revenue and service-delivery costs of CNY 6,500 under a consistent accounting approach. Gross profit would be CNY 3,500 and gross margin 35%. Other operating expenses remain, so gross profit is not net profit.</p>
+<p>Commercialization requires balancing user experience, revenue growth, cost control, and competition. Lower prices may increase usage, but if additional revenue does not cover additional costs, growth alone does not establish better business performance.</p>
+<p>Pricing usually needs to consider supply costs, the value customers obtain, and the alternatives they can choose. Willingness to pay must also be understood in terms of budget, usage scale, and purchasing conditions, rather than a single question about how much someone would spend.</p>
+<p>Different customers understand these conditions differently.</p>
+<div class="article-table" role="region" aria-label="Article table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Customer group</th>
+<th>Main concerns</th>
+<th>Focus of commercial arrangements</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>New users</td>
+<td>Understanding the product and completing a first effective use</td>
+<td>Clear onboarding and an appropriate trial</td>
+</tr>
+<tr>
+<td>Occasional creators</td>
+<td>Infrequent use, low barriers, and spending control</td>
+<td>Small packages or additional credits</td>
+</tr>
+<tr>
+<td>Professional creators / teams</td>
+<td>Output quality, workflows, efficiency, and collaboration</td>
+<td>Ongoing allowances, feature benefits, and capacity</td>
+</tr>
+<tr>
+<td>Developers</td>
+<td>Documentation, integration, error handling, model quality, and price</td>
+<td>APIs, usage information, and debugging support</td>
+</tr>
+<tr>
+<td>Small and medium-sized enterprises</td>
+<td>Solving a real problem at an affordable cost</td>
+<td>Standard solutions that are easy to implement</td>
+</tr>
+<tr>
+<td>Large accounts</td>
+<td>Scale, guarantees, procurement, budgets, and responsibilities</td>
+<td>Enterprise contracts, resource arrangements, and support</td>
+</tr>
+</tbody></table></div>
+<p>Segmentation is not merely a way to change promotional language for different people. It determines how services are delivered, how much support they require, and which customers should be prioritized. A small paying customer demanding extensive customization may be harder to serve profitably than a customer steadily using a standard service.</p>
+<h2 id="section-5">From Opportunity to Testing, Purchasing, and Continued Use</h2>
+<p>Returning to the e-commerce software company, how does business development turn an opportunity into actual business?</p>
+<p>At first, the customer may say only, &quot;We want to add some AI features.&quot; That is not yet a sufficiently defined purchasing need.</p>
+<p>Business staff need to establish which products and languages are involved, monthly task volume, how work is currently done, where time is lost, who implements the change, who approves the budget, and when it needs to launch.</p>
+<p>These questions serve two purposes: assessing whether the opportunity deserves further investment, and helping the customer turn a vague intention into a testable task.</p>
+<p>Customer sources may include industry events, product trial users, enterprise leads, partners, referrals, and targeted outreach. Prospecting quality depends on reaching suitable companies and decision-makers, not merely the number of people contacted.</p>
+<p>Once the task is defined, both sides can arrange a proof of concept, or PoC. For this e-commerce company, the first stage could test product copy, while treating video as a separate test to avoid introducing too many variables at once.</p>
+<p>Tests should use representative product information, including difficult cases, and compare output quality, manual editing, response speed, successful calls, and costs. Both sides also need to agree on scope, responsibilities, an end date, and criteria for entering the next stage.</p>
+<p>Showing a few carefully selected outputs is a demonstration. Establishing results and limitations in everyday tasks provides a stronger basis for purchasing.</p>
+<p>Free access has a role here. Trial allowances reduce the barrier to testing, but consuming an allowance does not mean the customer values the product. A customer may simply be exploring, or may not yet have integrated it into business operations.</p>
+<p>Guidance on service benefits is more relevant once a particular need emerges. A team may need shared billing, higher peak-time capacity, or enough trial allowance to finish an agreed test. Explaining suitable package benefits then has a clearer basis than repeatedly asking the customer to top up.</p>
+<p>After testing, a quotation must connect commercial terms to what will be delivered. It should at least explain the model or service scope, billing units, allowances and validity, resource guarantees, support, payment arrangements, and overage handling. Relevant staff also need to review enterprise-contract terms concerning service responsibilities, data handling, usage rights, and other conditions.</p>
+<p>There are three different forms of success: the customer agrees to buy, the system integrates successfully, and the business continues using it. Signing a contract resolves only part of this.</p>
+<p>Delivery may also require account and permission settings, API integration, monitoring, budget limits, training, and incident-handling procedures. Business staff must coordinate the responsible parties to complete what was agreed. Providing an API key does not constitute complete delivery.</p>
+<p>Billing and usage management are therefore part of product value. Customers need to know which projects, models, and calls generated charges; see balances and budget consumption promptly; and make decisions before renewal or overages. Automatic renewal should also have clear authorization, disclosure, and cancellation rules.</p>
+<p>These capabilities reduce uncertainty during use. A service with good model quality may still lose enterprise customers if bills are difficult to explain and spending difficult to control.</p>
+<p>Business work continues after launch.</p>
+<p>If usage falls, the team needs to distinguish seasonality, project pauses, quality problems, price changes, and integration failures. Each calls for a different response. Winning back customers requires identifying why they stopped and whether that cause has been resolved, rather than sending everyone the same discount.</p>
+<p>After continued use, expansion may come from more merchants, products, scenarios, or stronger service guarantees. Renewal, capacity expansion, and package upgrades all relate to changes in actual customer use.</p>
+<p>Following usage, answering questions, improving satisfaction, and supporting renewals are part of ongoing account management. Business development and customer success meet here; their division of work depends on the team&#39;s organization.</p>
+<h2 id="section-6">Industry Solutions and Repeatable Sales</h2>
+<p>Completing one project and being able to sell it repeatedly are different issues.</p>
+<p>An e-commerce customer may require its own fields, terminology, and approval workflows. If suppliers develop everything from scratch each time, revenue growth will bring extensive custom work. Turning individual requirements into standard packages, industry templates, and sales toolkits addresses this problem.</p>
+<p>For example, when several customers need product-information rewriting, a team can gradually develop common field specifications, prompt templates, evaluation samples, integration instructions, quotation structures, and FAQs. These materials shorten subsequent sales and delivery work.</p>
+<p>An industry solution needs more than a different industry label. It must understand how that industry evaluates results:</p>
+<ul>
+<li>Advertising, brand content, and e-commerce care about usable assets, production efficiency, and brand expression; campaign performance needs separate validation.</li>
+<li>Short dramas and film production care about consistent characters, shots, and storytelling, as well as subsequent editing costs.</li>
+<li>Games care about asset specifications, consistent style, and connections with production workflows.</li>
+<li>Education cares about content accuracy, teaching suitability, and review processes.</li>
+</ul>
+<p>Model capabilities create industry value as they enter these workflows. Sales, solutions, and product teams must jointly identify which requirements can be standardized and which need individual assessment.</p>
+<p>Customer questions also reveal the relevant competition.</p>
+<p>Some customers compare delivery of the same model across platforms; others compare different models; still others compare buying a service with self-deployment, or with continuing manual work. Competitive analysis should start from the customer&#39;s task, not place every AI brand in one price table.</p>
+<p>For the e-commerce company, comparisons could cover fidelity to product information, multilingual performance, manual editing, integration difficulty, peak-time responsiveness, total cost, and support. Comparisons become meaningful only when tasks, measurement methods, and service conditions are consistent.</p>
+<p>This gives commercial judgment concrete substance: identifying why customers choose or hesitate, assessing which customers a price change affects, and deciding which needs merit product investment. It requires observation and evidence, not merely familiarity with popular industry terminology.</p>
+<h2 id="section-7">Understanding the Business Chain Through Data</h2>
+<p>Commercialization teams also need data to assess the health of the chain. Common metrics can be understood through the questions they answer.</p>
+<div class="article-table" role="region" aria-label="Article table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>What it answers</th>
+<th>What must be specified</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>User / customer growth</td>
+<td>Are more people or companies entering the service?</td>
+<td>Registered accounts are not necessarily effective customers</td>
+</tr>
+<tr>
+<td>Paid conversion rate</td>
+<td>How many contacts or trial users become paying customers?</td>
+<td>Whether the denominator is registrants, trial users, or qualified opportunities</td>
+</tr>
+<tr>
+<td>ARPU</td>
+<td>How much revenue is earned per user on average?</td>
+<td>Period and user definition; enterprise businesses may measure accounts</td>
+</tr>
+<tr>
+<td>Renewal rate</td>
+<td>How many customers buy again when renewal is due?</td>
+<td>Use customers eligible for renewal as the base</td>
+</tr>
+<tr>
+<td>Retention rate</td>
+<td>Do customers keep using the service later?</td>
+<td>Which behavior qualifies as continued use</td>
+</tr>
+<tr>
+<td>Package upgrade rate</td>
+<td>Do customers buy a higher service tier?</td>
+<td>Whether this reflects real demand growth or short-term promotions</td>
+</tr>
+<tr>
+<td>Allowance consumption rate</td>
+<td>How much of the allocated allowance is used?</td>
+<td>Distinguish free, paid, and bundled allowances</td>
+</tr>
+<tr>
+<td>API call growth</td>
+<td>Is service use increasing?</td>
+<td>Also consider tokens, tasks, successful calls, and spending</td>
+</tr>
+<tr>
+<td>Package mix / revenue contribution</td>
+<td>Which products and customers contribute revenue?</td>
+<td>Packages can differ in cost and support burden</td>
+</tr>
+<tr>
+<td>Gross margin</td>
+<td>How much revenue remains after service delivery costs?</td>
+<td>Use a consistent definition of costs</td>
+</tr>
+<tr>
+<td>LTV</td>
+<td>What value is expected over the customer relationship?</td>
+<td>Whether value means revenue or gross profit, and the forecast&#39;s basis</td>
+</tr>
+<tr>
+<td>ROI</td>
+<td>What net return does an investment produce?</td>
+<td>The object, period, benefits, and costs included</td>
+</tr>
+</tbody></table></div>
+<p>LTV is an estimate, not money already received. For model services with fluctuating usage, multiplying one month&#39;s consumption by a fixed number of months does not automatically produce a reliable forecast. Retention, repeat purchasing, and customer cohorts require observation periods and actual behavior. <a target="_blank" rel="noopener noreferrer" href="https://stripe.com/resources/more/customer-retention-why-it-matters-and-how-to-improve-it">Stripe on customer retention</a></p>
+<p>ROI also depends on whose investment is being assessed. Customers may calculate manual work saved through integration; providers may calculate business generated by an acquisition campaign. These are different calculations.</p>
+<p>Likewise, top-ups, consumption, and revenue are not the same number. Prepayments may generate cash before service consumption occurs; revenue recognition depends on the transaction and accounting arrangements. A customer who tops up but rarely uses the service has different implications from one who consumes it regularly and buys again.</p>
+<p>Funnel analysis helps locate where opportunities are lost. A team can track:</p>
+<blockquote>
+<p>Qualified lead → requirements confirmed → test started → test completed → first payment → business launch → continued use.</p>
+</blockquote>
+<p>If many customers never start testing, the problem may be integration barriers, lead quality, or a missing owner. If tests finish without payment, value, budget, price, or purchasing timing may need examination. If paying customers stop using the service, attention returns to delivery and results.</p>
+<p>Segmentation then asks which customers experience the problem. Developers, small businesses, and large teams may have different integration arrangements and purchasing cycles. Combining them in one average can hide important differences.</p>
+<p>A/B testing can examine the effects of a product change. For example, two onboarding approaches could be compared for effective trial completion, while also monitoring support workload and subsequent payment. Experiments need a clear hypothesis, comparison groups, and evaluation metrics. Too little traffic, poor grouping, or changing several factors at once can make results hard to interpret. Microsoft&#39;s experimentation guidance emphasizes these prerequisites. <a target="_blank" rel="noopener noreferrer" href="https://www.microsoft.com/en-us/research/group/experimentation-platform-exp/articles/patterns-of-trustworthy-experimentation-pre-experiment-stage">Microsoft Research on experiment design</a></p>
+<p>Large enterprise opportunities are few and differ substantially in purchasing conditions. A difference in closing rates between two groups cannot simply be attributed to a particular sales message. Systematically recording feedback, quotation conditions, and progress may be more useful than an improvised experiment.</p>
+<p>Price-sensitivity analysis examines how price changes affect purchasing and usage. &quot;Expensive&quot; can mean above budget, insufficiently demonstrated value, or a comparison with a quotation offering different service conditions. Business staff should establish the basis of comparison before requesting a discount.</p>
+<p>These analyses support concrete decisions: adjusting trials, improving documentation, changing packages, optimizing model selection, or ending investment in certain low-value requirements.</p>
+<h2 id="section-8">Cross-Team Collaboration and Overseas Business</h2>
+<p>Several teams must work together to complete the chain.</p>
+<div class="article-table" role="region" aria-label="Article table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Team or function</th>
+<th>Main responsibility</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Algorithms / models</td>
+<td>Model quality, evaluation, adaptation, and optimization</td>
+</tr>
+<tr>
+<td>Engineering</td>
+<td>APIs, deployment, scheduling, monitoring, and reliability</td>
+</tr>
+<tr>
+<td>Product / commercialization</td>
+<td>Packages, billing, benefits, workflows, and commercial rules</td>
+</tr>
+<tr>
+<td>Operations</td>
+<td>Onboarding, campaigns, usage, and conversion feedback</td>
+</tr>
+<tr>
+<td>Sales / business development</td>
+<td>Requirements, opportunities, procurement progress, and relationships</td>
+</tr>
+<tr>
+<td>Solutions / presales</td>
+<td>Organizing product capabilities into an implementable customer solution</td>
+</tr>
+<tr>
+<td>Finance</td>
+<td>Charges, settlement, costs, and business accounting definitions</td>
+</tr>
+<tr>
+<td>Legal</td>
+<td>Contracts, permissions, responsibilities, and related matters</td>
+</tr>
+<tr>
+<td>Customer success / support</td>
+<td>Launch, issue resolution, realized value, and continued use</td>
+</tr>
+</tbody></table></div>
+<p>An important business skill is turning information into something each party can act on.</p>
+<p>When customers say outputs are poor, staff need to identify error types, examples, the model used, expected results, and impact. When customers ask for faster service, staff need peak task volumes, current latency, and acceptable waits. These details help technical and product teams assess the issue.</p>
+<p>Technical conclusions must in turn be translated into commercial arrangements customers understand: whether to change models, increase resource guarantees, or adjust workflows, and how costs and implementation time would change.</p>
+<p>Structured communication and sales-support materials help accomplish this work. Useful materials include requirement records, test plans and results, competitor comparisons, quotation explanations, integration instructions, and project reviews. They reduce repeated discussion and keep commitments, evidence, and next steps aligned.</p>
+<p>Understanding compute services and the overseas provision of compute requires moving the service perspective one step toward the supply side.</p>
+<p>Model API customers usually want callable capabilities. Compute customers may already have models and technical teams but need runtime resources. Discussions then concern GPU specifications and quantities, usage duration, resource location, networking, availability, and responsibility for deployment and maintenance.</p>
+<p>The phrase &quot;overseas compute&quot; alone does not define a delivery arrangement. It may refer to remote resources, hosting, or other services for overseas customers, which must be checked against the company&#39;s products. A company&#39;s stated overseas coverage indicates market direction, but does not establish actual paying-customer scale in each region.</p>
+<p>Overseas business involves more than translating a Chinese quotation into English. Customer location affects responsiveness, availability, payments, and communication schedules. Teams must clearly document support hours, responsible parties, currencies, and key conditions.</p>
+<p>Cross-language communication must accurately complete specific tasks: introducing products, clarifying requirements, confirming tests, explaining quotations, following up on issues, and summarizing meetings. For example, a test-confirmation email should specify the model, task volume, deadline, evaluation criteria, and owners on both sides, so teams in different regions share an understanding of delivery conditions.</p>
+</div></template></article></main>
+<footer class="wrap"><div class="footer-inner"><div class="footer-meta site-age-meta"><span>© 2026 李鹏飞</span><span class="site-age" data-site-age data-established-date="2026-09-19" title="始于 2026.09.19">本站始于 2026.09.19</span></div><div class="footer-actions"><div class="language-switch" data-language-switch role="group" aria-label="语言 / Language" hidden><button type="button" data-language="zh" lang="zh-CN" aria-pressed="true">中文</button><span aria-hidden="true">/</span><button type="button" data-language="en" lang="en" aria-pressed="false">English</button></div><div class="footer-socials"><a href="https://www.linkedin.com/in/pengfei-li-7ab27b378/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/plwhd" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://x.com/li191qq" target="_blank" rel="noopener noreferrer">X (Twitter)</a></div></div></div></footer><aside class="site-greeting" data-site-greeting aria-label="网站&#x62db;呼">
+  <button class="site-greeting-button" type="button" aria-label="向网站打个&#x62db;呼">
+    <svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><circle cx="14" cy="14" r="10.25" stroke="currentColor" stroke-width="1.6"/><circle cx="10.25" cy="11.75" r="1.15" fill="currentColor"/><circle cx="17.75" cy="11.75" r="1.15" fill="currentColor"/><path d="M9.5 16.2C10.6 18.25 12.15 19.1 14 19.1S17.4 18.25 18.5 16.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+  </button>
+  <span class="site-greeting-sr" role="status" aria-live="polite" aria-atomic="true"></span>
+  <span class="site-greeting-note" data-greeting-note hidden></span>
+</aside>
+</body></html>
