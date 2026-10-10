@@ -1,0 +1,16 @@
+/* Article actions inherit the site's narrow column, type roles and quiet links. */
+.article-toolbar{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:0 24px;margin-bottom:24px}
+.article-toolbar .article-return{display:inline-flex;align-items:center;min-height:44px;margin:0;padding:0}
+.article-export{max-width:100%;margin-left:auto}
+.article-export-actions{display:flex;flex-wrap:wrap;align-items:center;gap:0 16px}
+.article-export-action{display:inline-flex;align-items:center;gap:6px;min-height:44px;margin:0;padding:0;border:0;border-radius:0;background:transparent;color:#777179;font-family:"Gomaas Mono Web","Gomaas Han Web",ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px;font-weight:400;line-height:1.5;text-decoration:none;cursor:pointer}
+.article-export-action svg{flex:none}
+.article-export-action:not(:disabled):hover{color:#18181b;text-decoration:underline;text-underline-offset:5px}
+.article-export-action:focus-visible{outline:2px solid #18181b;outline-offset:4px}
+.article-export-action:not(:disabled):active{color:#18181b;text-decoration:underline;text-underline-offset:5px}
+.article-export-action:disabled{cursor:wait}
+.article-export [data-copy-markdown]{min-width:114px}
+.article-export-status{max-width:320px;margin:4px 0 0;color:#777179;font-size:12px;line-height:1.8}
+.article-export-status.is-quiet{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.article-export [hidden]{display:none!important}
+@media(max-width:600px){.article-toolbar{margin-bottom:16px;column-gap:16px}.article-export{margin-left:0}.article-export-actions{gap:0 16px}}
