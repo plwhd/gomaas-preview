@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="从一次模型请求出发，梳理服务来源、Token 计费、提示词缓存、容量与生成参数，理解聚合平台和网关，并比较实际使用成本。" data-content-en="Follow a model request to understand service sources, token billing, prompt caching, capacity, and generation parameters, then assess aggregators, gateways, and actual usage costs."><meta name="robots" content="noindex,nofollow"><title data-text-en="Understanding Large Model APIs: Service Delivery, Billing, and Selection · Pengfei Li">理解大模型 API：服务链路、计费与选择 · 李鹏飞</title><link rel="icon" href="favicon.ico?v=20261003-b-original" sizes="16x16 32x32 48x48"><link rel="icon" type="image/png" sizes="32x32" href="assets/pengfei-wing-32.png?v=20261003-b-original"><link rel="icon" type="image/svg+xml" sizes="any" href="assets/pengfei-wing-original.svg?v=20261003-b-original"><link rel="apple-touch-icon" sizes="180x180" href="assets/pengfei-wing-apple-180.png?v=20261003-b-original"><link rel="stylesheet" href="styles.css?v=20261010-model-api-guide"><script defer src="assets/analytics.js?v=20261010-model-api-guide" data-website-id="f18cb949-fc16-4710-8355-ca4601609d4c"></script><script defer src="assets/language.js?v=20261006-article-language-v1"></script><script defer src="assets/site-age.js?v=20261004-v3"></script><link rel="stylesheet" href="assets/site-greeting.css?v=20261006-footer-horizontal-v1"><script defer src="assets/site-greeting.js?v=20261005-daily-v1"></script><link rel="stylesheet" href="assets/article-export.css?v=20261010-v2"><script defer src="assets/article-export.js?v=20261010-v2"></script>
+</head>
+<body class="site-greeting-page articles-shell"><a class="skip" href="#main">跳至正文</a><header class="wrap"><nav aria-label="主导航"><a href="index.html">首页</a><a href="index.html#direction">职业方向</a><a href="index.html#experience">工作经历</a><a href="index.html#about">关于我</a><a href="articles.html" aria-current="page">文章</a><a href="resume.html" data-gomaas-event="resume_open">查看简历</a></nav></header>
+<main id="main" class="article-page wrap"><div class="article-toolbar"><a class="text-link article-return" href="articles.html">← 返回文章列表</a><div class="article-export" role="group" aria-label="文章导出" data-article-export data-export-zh="assets/markdown/model-api-guide.zh.md" data-export-en="assets/markdown/model-api-guide.en.md">
+<div class="article-export-actions"><button class="article-export-action" type="button" data-copy-markdown hidden><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h4"/></svg><span data-copy-label>复制 Markdown</span></button><a class="article-export-action" data-download-markdown href="assets/markdown/model-api-guide.zh.md" download="理解大模型 API：服务链路、计费与选择.md" title="下载本文的 Markdown 文件（.md）"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></svg><span data-download-label>下载 Markdown</span></a></div>
+<p class="article-export-status is-quiet" data-export-status role="status" aria-live="polite" aria-atomic="true"></p>
+</div>
+</div><article lang="zh-CN" data-article-content data-bilingual-article><div class="article-heading"><h1>理解大模型 API：服务链路、计费与选择</h1><p class="article-meta"><span>发布于 <time datetime="2026-10-10">2026.10.10</time></span><span>AI 辅助：<span lang="en">GPT</span></span></p><p class="article-keywords"><strong>关键词</strong>：大模型 API　·　模型聚合　·　Token 计费　·　提示词缓存　·　服务选型</p></div><div class="article-content porter-article">
+<p>第一次打开大模型服务平台，容易被一张模型卡片上的信息弄得困惑：输入价格、输出价格、缓存、倍率、渠道、TPM、最大 Tokens。这些词都和调用模型有关，却分别描述了不同的事情。</p>
+<p>其中一些决定费用，一些控制生成过程，还有一些表示服务容量。如果把它们放在一起比较，就容易出现误判：把“最大 Tokens”理解成吞吐量，把“温度”理解成速度，或者看到“兼容 OpenAI”便认为服务来自 OpenAI。</p>
+<p>理解这些信息，可以从一次请求开始。</p>
+<p>假设有人把一份报告交给 AI，要求它提炼观点。软件把报告和要求发送出去，某个服务端运行模型，再把生成结果返回。围绕这次调用，需要回答四个问题：<strong>请求交给了谁，模型处理了多少内容，结果如何返回，以及最后怎样收费。</strong></p>
+<p>沿着这条链路，模型卡片上的术语便有了各自的位置。</p>
+<h2 id="section-1">模型名称与服务来源</h2>
+<p>一个平台列出了某个模型，首先说明它提供了相应的调用入口。模型由谁研发、实际由谁运行、用户向谁付费，则需要分别理解。</p>
+<div class="article-table" role="region" aria-label="文章表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>角色</th>
+<th>主要工作</th>
+<th>用户购买或使用的是什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>模型研发厂商，通常称为“模型原厂”</td>
+<td>研发、发布模型，并可能提供自家 API</td>
+<td>原厂提供的模型调用服务</td>
+</tr>
+<tr>
+<td>推理服务商</td>
+<td>部署模型，利用计算资源处理请求</td>
+<td>托管模型的推理服务</td>
+</tr>
+<tr>
+<td>云厂商</td>
+<td>提供基础设施、部署、模型接入及配套服务</td>
+<td>云平台提供的模型服务</td>
+</tr>
+<tr>
+<td>模型聚合平台</td>
+<td>接入多个模型或供应来源，统一接口、账单及渠道选择</td>
+<td>经平台组织和交付的调用服务</td>
+</tr>
+</tbody></table></div>
+<p>这些角色可以重叠。云厂商可以聚合多个模型，模型原厂也可以经营推理平台，聚合平台则可能自行部署部分开放权重模型。</p>
+<p>所谓<strong>推理</strong>，是已经训练好的模型根据输入生成结果的过程。训练负责形成模型能力，推理负责在使用时执行这些能力。一次日常问答，通常属于推理。</p>
+<p>对于允许部署且符合许可条件的开放权重模型，不同服务商可以使用自己的硬件运行它。对于其他模型，平台可能通过原厂或其他上游服务获得调用能力。因此，同一个模型名称背后，可能存在不同的交付链路：</p>
+<blockquote>
+<p>使用者 → 模型原厂 API<br>使用者 → 云平台 → 模型服务<br>使用者 → 聚合平台 → 上游供应商 → 模型服务</p>
+</blockquote>
+<p>某些平台把推理供应商称为“词元工厂”。这个名称可以帮助理解其经营重点：利用算力持续处理请求，以 tokens 作为计量单位。它并不是提前生产一批文字，再把这些文字卖给用户。具体分类仍要看平台自己的定义。</p>
+<p>这也解释了为什么模型名称相同，价格和服务表现仍可能不同。采购条件、运行配置、资源利用率、排队策略和中间服务环节，都可能参与其中。</p>
+<p>还有一个经常被混用的词是“官方”。<strong>平台自己的官方服务、模型原厂服务、获得原厂合作授权的服务，是不同的描述。</strong> 如果平台强调合作或授权关系，应当能提供对应的公开说明。仅有模型名称和品牌标识，还不足以建立这种关系。</p>
+<h2 id="section-2">API 是入口，Token 是计量单位</h2>
+<p>API，即 Application Programming Interface，可以理解为软件之间约定好的调用接口。</p>
+<p>人通过聊天窗口提出问题，程序则通过 API 发送请求。请求一般包括使用哪个模型、输入内容和生成参数；服务端处理后，返回结果以及相应的用量信息。</p>
+<p>接入时，经常会看到三个配置：</p>
+<div class="article-table" role="region" aria-label="文章表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>配置</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Base URL</strong></td>
+<td>告诉软件把请求发往哪个服务地址</td>
+</tr>
+<tr>
+<td><strong>API Key</strong></td>
+<td>调用凭证，用于识别账户、权限及相应额度</td>
+</tr>
+<tr>
+<td><strong>Model ID</strong></td>
+<td>指定要调用的模型；某些平台还会在其中附加渠道标记</td>
+</tr>
+</tbody></table></div>
+<p>API Key 有时也被称为“令牌”，英文同样可能写作 token。但它与计费中的 token 含义不同：前者是凭证，后者是模型处理内容的计量单位。</p>
+<p>文本进入模型之前，会经过分词处理。一个单词可能对应一个或多个 tokens，一个汉字也不能固定等同于一个 token；不同模型的分词方式可能不同。图片、音频和视频还可能采用各自的计量规则。<a target="_blank" rel="noopener noreferrer" href="https://ai.google.dev/gemini-api/docs/tokens">Google 的 Token 说明</a></p>
+<p>价格表里的单位通常是：</p>
+<ul>
+<li><strong>K：一千，即 1,000。</strong></li>
+<li><strong>M：一百万，即 1,000,000。</strong></li>
+</ul>
+<p>因此，0.02 元/K tokens，等于 20 元/M tokens。只有先统一单位，价格比较才有意义。</p>
+<p>调用中的<strong>输入 tokens</strong>，也不只是这一次手动输入的问题。请求携带的系统指令、历史对话、参考资料和工具描述，都可能占用输入。一个看似很短的追问，背后可能再次携带一份长报告。</p>
+<p><strong>输出 tokens</strong>则对应模型生成的内容。对于具有推理能力的模型，还需要核对思考或推理 tokens 的计费方式。屏幕上可见的回答长度，不一定等于全部计费生成量。</p>
+<p>聊天产品的会员订阅与 API 额度也应分别理解。前者购买的是某个产品中的使用权益，后者按照接口的规则结算；除非服务商明确说明，两者不能直接互换。</p>
+<h2 id="section-3">一张价目表，怎样变成实际账单</h2>
+<p>比较模型价格，最基本的计算是：</p>
+<blockquote>
+<p>调用费用＝各类计费用量 × 对应单价，再加上适用的其他费用。</p>
+</blockquote>
+<p>对于没有缓存和额外项目的简单文本调用，可以先写成：</p>
+<blockquote>
+<p>费用＝输入 tokens ÷ 1,000,000 × 输入单价<br>＋输出 tokens ÷ 1,000,000 × 输出单价</p>
+</blockquote>
+<p>假设两个平台提供某项服务，报价如下。这里的价格仅用于演示。</p>
+<div class="article-table" role="region" aria-label="文章表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>每百万 tokens</th>
+<th align="right">平台 A</th>
+<th align="right">平台 B</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>普通输入</td>
+<td align="right">20 元</td>
+<td align="right">12 元</td>
+</tr>
+<tr>
+<td>输出</td>
+<td align="right">100 元</td>
+<td align="right">60 元</td>
+</tr>
+</tbody></table></div>
+<p>当输入为一百万 tokens、输出为二十万 tokens 时：</p>
+<ul>
+<li>平台 A：20＋0.2×100＝<strong>40 元</strong>。</li>
+<li>平台 B：12＋0.2×60＝<strong>24 元</strong>。</li>
+</ul>
+<p>在这组相同用量下，B 的费用比 A 低 40%。</p>
+<p>这个例子还说明，输出可能占据很大一部分费用。让模型读取长资料后给出简短结论，与让它连续生成长文，成本结构会不同。比较价格时，需要带入自己的输入、输出比例。</p>
+<p>如果平台使用积分结算，还要再做一层换算。</p>
+<p>假设花 35 元购买 1,000 积分，输入价格为 420 积分/M，那么实际人民币单价为：</p>
+<blockquote>
+<p>420 × 35 ÷ 1,000＝<strong>14.70 元/M</strong></p>
+</blockquote>
+<p>不能因为“420”比另一家的“20”大，就认为前者更贵。两者的单位不同。</p>
+<p><strong>倍率</strong>也需要放回平台的结算规则中理解。它可能表示模型价格相对某个基准的系数，也可能表示输出相对输入的收费比例。若页面已经展示最终人民币价格，再把倍率乘上去，便可能重复计算。</p>
+<p>最可靠的核对方式，是选取一条调用明细，把用量、展示单价、扣除额度和充值成本对应起来。价格表负责说明规则，账单负责检验规则怎样实际执行。</p>
+<h2 id="section-4">缓存为什么能降低费用</h2>
+<p>反复分析同一份报告时，很多请求的开头是相同的：相同的指令、相同的资料，只是后面的问题发生变化。</p>
+<p><strong>提示词缓存，Prompt Caching，允许服务复用符合条件的上下文计算结果。</strong> 模型仍然需要根据新问题生成答案；缓存没有把上一次回答直接复制回来。<a target="_blank" rel="noopener noreferrer" href="https://developers.openai.com/api/docs/guides/prompt-caching">OpenAI 的缓存说明</a></p>
+<p>相关价目表通常会区分：</p>
+<ul>
+<li><strong>普通输入</strong>：没有通过缓存复用的输入部分。</li>
+<li><strong>缓存创建或写入</strong>：建立可供后续请求复用的缓存。</li>
+<li><strong>缓存读取或命中</strong>：后续请求成功复用已有缓存。</li>
+</ul>
+<p>缓存还可能有有效期，通常称为 <strong>TTL，Time to Live</strong>。某些服务提供较短和较长的保留档位，写入价格也随之变化。例如，Claude 的文档区分了五分钟与一小时缓存。这里的一小时指缓存保留期限，并非一小时无限调用。<a target="_blank" rel="noopener noreferrer" href="https://platform.claude.com/docs/en/build-with-claude/prompt-caching">Claude 的缓存规则</a></p>
+<p>“缓存便宜 90%”和“缓存命中率 90%”，则是两种完全不同的描述。</p>
+<p>沿用一个假设价格：普通输入为 20 元/M，缓存读取为 2 元/M。</p>
+<p>缓存读取单价确实比普通输入低 90%。但如果一百万输入 tokens 中只有 90% 命中缓存，读取部分的合计费用是：</p>
+<blockquote>
+<p>0.9×2＋0.1×20＝<strong>3.8 元</strong></p>
+</blockquote>
+<p>相对于全部按普通输入收费的 20 元，下降幅度为 <strong>81%</strong>。</p>
+<p>如果再生成二十万输出 tokens，输出价为 100 元/M，则本次费用为：</p>
+<blockquote>
+<p>3.8＋0.2×100＝<strong>23.8 元</strong></p>
+</blockquote>
+<p>与无缓存时的 40 元相比，整次调用下降 <strong>40.5%</strong>。这项计算尚未纳入缓存创建等费用。</p>
+<p>所以，缓存读取单价的折扣、输入命中比例、整张账单的降幅，必须分别计算。</p>
+<p>缓存效果还与使用方式有关。大量请求重复稳定资料时，复用空间较大；每次都处理全新内容，则未必有明显收益。提示词的排列、模型、有效期及服务端匹配规则，也会影响是否命中。核对账单时，应查看实际缓存用量，而非仅依靠宣传中的命中率。</p>
+<h2 id="section-5">容量、速度与生成参数</h2>
+<p>“能处理很多请求”和“一个回答生成得很快”，描述的是不同能力。</p>
+<div class="article-table" role="region" aria-label="文章表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>含义</th>
+<th>主要回答的问题</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>TPM</strong></td>
+<td>Tokens Per Minute，每分钟 token 限额或容量</td>
+<td>一分钟内能承接多少计量内容？</td>
+</tr>
+<tr>
+<td><strong>RPM</strong></td>
+<td>Requests Per Minute，每分钟请求限额</td>
+<td>一分钟内允许调用多少次？</td>
+</tr>
+<tr>
+<td><strong>并发数</strong></td>
+<td>同时进行的请求数量</td>
+<td>能同时处理多少个任务？</td>
+</tr>
+<tr>
+<td><strong>TTFT</strong></td>
+<td>Time to First Token，首个 token 返回时间</td>
+<td>提交后多久开始看到生成内容？</td>
+</tr>
+<tr>
+<td><strong>生成速度</strong></td>
+<td>通常以 tokens/s 表示</td>
+<td>开始生成后，每秒返回多少 tokens？</td>
+</tr>
+</tbody></table></div>
+<p>服务还可能分别限制输入与输出，例如 ITPM 和 OTPM。账户层级、模型以及组织范围，都可能影响实际限额。<a target="_blank" rel="noopener noreferrer" href="https://platform.claude.com/docs/en/api/rate-limits">Claude 的限流说明</a></p>
+<p>如果某项服务标注“TPM 5000W”，其中 W 按“万”理解，那么它表达的是每分钟五千万 tokens 的容量或限额声明。</p>
+<p>假设一次请求计入限额的用量为一万 tokens，单从 token 预算计算，这相当于每分钟五千次请求。但实际请求还会受到 RPM、并发和处理能力约束，而且需要确认该容量是账户独享还是平台共享。</p>
+<p>对一个偶尔分析报告的人而言，首个结果的等待时间可能更重要；对批量处理大量任务的团队而言，持续吞吐能力更重要。</p>
+<p>生成参数则属于另一组概念：</p>
+<div class="article-table" role="region" aria-label="文章表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>参数或规格</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>上下文窗口，Context Window</strong></td>
+<td>模型一次处理可容纳内容的范围，具体输入、输出约束依模型而定</td>
+</tr>
+<tr>
+<td><strong>最大输出或生成 Tokens</strong></td>
+<td>本次生成的上限或预算，部分接口包含推理 tokens</td>
+</tr>
+<tr>
+<td><strong>温度，Temperature</strong></td>
+<td>在支持该参数的模型中，调节采样随机性</td>
+</tr>
+<tr>
+<td><strong>推理强度，Reasoning Effort</strong></td>
+<td>在支持该能力的模型中，调节推理投入</td>
+</tr>
+</tbody></table></div>
+<p>例如，最大生成量设为 32,768，表示这一次请求的生成预算，不是 TPM，也不代表模型一定会生成这么多。OpenAI 的 <code>max_completion_tokens</code> 明确包含可见输出及推理 tokens。<a target="_blank" rel="noopener noreferrer" href="https://developers.openai.com/api/reference/resources/chat/subresources/completions/methods/create">OpenAI 参数文档</a></p>
+<p>温度较高通常使输出变化更大，较低则使选择更集中。它不是速度倍率，也不是正确率开关。降低温度不能保证事实正确，所有模型也并非都支持自由调整温度。</p>
+<p><strong>流式输出，Streaming</strong>，则是逐步返回生成内容。用户可以更早看到回答，但这与完整任务何时完成仍需分别观察。</p>
+<h2 id="section-6">聚合平台与网关提供了什么价值</h2>
+<p>原厂已经提供 API，为什么还会出现聚合平台？</p>
+<p>当用户同时使用多个模型时，需要管理多个账户、接口、密钥和账单。不同服务还可能有不同的请求格式及可用性。聚合平台把这些工作集中到一个入口，也可能通过采购条件或资源组织方式提供价格优势。</p>
+<p>它的商业价值由此产生：统一接入、统一结算、渠道管理、支持服务，以及采购与销售之间的差价。至于某家平台的低价具体来自哪一项，需要证据，不能仅由折扣倒推出经营方式。</p>
+<p><strong>OpenAI 兼容接口</strong>体现的是统一接入的一种方式。平台采用相近的请求格式，让已有软件更容易连接。例如，Google 提供通过 OpenAI 库调用 Gemini 的兼容入口；请求仍然由 Gemini 服务处理。<a target="_blank" rel="noopener noreferrer" href="https://ai.google.dev/gemini-api/docs/openai">Google 的兼容接口说明</a></p>
+<p>这种兼容性首先解决“怎样发送请求”，具体的图片、工具调用、结构化输出及推理参数支持，仍需逐项核对。</p>
+<p>其中，<strong>工具调用，Tool Calling</strong>，通常是模型生成调用某项工具的意图和参数，再由程序或服务执行工具。它不仅要求模型具备相应能力，也要求客户端和接口正确处理完整流程。</p>
+<p>另一个相关概念是<strong>模型网关，Model Gateway</strong>。网关负责把请求转发到配置好的服务，也可能提供协议转换、日志、预算管理和路由。LiteLLM 就提供统一调用及多部署管理能力。<a target="_blank" rel="noopener noreferrer" href="https://docs.litellm.ai/docs/proxy/quick_start">LiteLLM 网关文档</a></p>
+<p>网关可以运行在自己的电脑上。此时，“本地”描述的是网关的位置；只要它转发到外部 API，模型计算和请求内容的传输仍然发生在外部。</p>
+<p>聚合平台与网关可以同时存在：</p>
+<blockquote>
+<p>应用软件 → 本地网关 → 聚合平台或原厂 API → 模型服务</p>
+</blockquote>
+<p>还需要理解两项机制：</p>
+<p><strong>路由，Routing</strong>，是按照规则选择模型或供应渠道。规则可能侧重费用、延迟、可用容量或负载。</p>
+<p><strong>故障切换，Fallback 或 Failover</strong>，是在某个来源失败后尝试备用来源。LiteLLM 的路由文档列出了成本、延迟及限流感知等策略。<a target="_blank" rel="noopener noreferrer" href="https://docs.litellm.ai/docs/routing">LiteLLM 路由说明</a></p>
+<p>切换提高了继续完成任务的机会，同时也可能改变实际单价、等待时间和缓存命中情况。不能假设多个来源天然共用同一份缓存。重试产生的费用，也要以平台账单规则为准。</p>
+<p>因此，自动路由服务的报价，应当与实际选择的渠道一起核对。模型卡片上最便宜的渠道，不一定是每次请求最后使用的渠道。</p>
+<h2 id="section-7">怎样判断实际性价比</h2>
+<p>价格比较最终要落到一个结果：任务是否完成，结果是否达到要求。</p>
+<p>对于摘要任务，可以检查关键观点是否遗漏；对于信息抽取，可以检查字段是否完整、能否追溯原文；对于代码任务，可以检查实际运行和必要测试。不同任务需要不同标准，否则“回答看起来不错”很难形成可靠比较。</p>
+<p>下面再用一组假设结果说明：</p>
+<div class="article-table" role="region" aria-label="文章表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>同样的 100 个任务</th>
+<th align="right">服务 A</th>
+<th align="right">服务 B</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>API 总费用</td>
+<td align="right">15 元</td>
+<td align="right">10 元</td>
+</tr>
+<tr>
+<td>达到预设验收标准的结果</td>
+<td align="right">95 个</td>
+<td align="right">50 个</td>
+</tr>
+<tr>
+<td>每个合格结果的 API 成本</td>
+<td align="right">约 0.158 元</td>
+<td align="right">0.20 元</td>
+</tr>
+</tbody></table></div>
+<p>B 的账单更低，但按这批任务的合格结果计算，A 的成本更低。若再计入重试、人工修订和等待时间，差异还可能变化。</p>
+<p>反过来，如果两项服务在自己的任务中结果接近，低价服务当然可能更值得选择。关键是用同一组任务、相近配置和清楚的验收标准建立依据，而不是凭品牌或两次回答的措辞作判断。</p>
+<p>可以保留一个小规模任务集，先检查以下信息：</p>
+<div class="article-table" role="region" aria-label="文章表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>核对项目</th>
+<th>应取得的信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>服务来源</td>
+<td>实际模型版本、部署或转接方式、必要的合作说明</td>
+</tr>
+<tr>
+<td>结算规则</td>
+<td>输入、输出、缓存及其他项目的实际单价；积分与倍率如何换算</td>
+</tr>
+<tr>
+<td>功能支持</td>
+<td>自己需要的图片、工具、结构化输出及生成参数是否有效</td>
+</tr>
+<tr>
+<td>性能表现</td>
+<td>首个结果等待时间、完整耗时、失败及中断情况</td>
+</tr>
+<tr>
+<td>路由与账单</td>
+<td>实际渠道、切换条件、重试费用以及可查询的用量明细</td>
+</tr>
+<tr>
+<td>使用条款</td>
+<td>余额有效期、退款条件、数据处理范围及服务保障</td>
+</tr>
+</tbody></table></div>
+<p>对初次使用 API 的人，一条可以核对清楚的真实调用记录，往往比更多模型卡片更有帮助。它把请求、模型、渠道、tokens 和扣费连在一起，让抽象术语成为可检查的事实。</p>
+<p>当这些信息能够对应起来，“哪个平台更划算”才有了明确的比较对象：在自己的使用方式和验收要求下，哪个服务能以可接受的成本，持续交付所需结果。</p>
+</div><template data-article-english><div class="article-heading"><h1>Understanding Large Model APIs: Service Delivery, Billing, and Selection</h1><p class="article-meta"><span>Published <time datetime="2026-10-10">2026.10.10</time></span><span>AI assistance: <span lang="en">GPT</span></span></p><p class="article-keywords"><strong>Keywords</strong>: Large Model APIs · Model Aggregation · Token Billing · Prompt Caching · Service Selection</p></div><div class="article-content porter-article">
+<p>Opening a model service platform for the first time can be confusing. A single model card may list input prices, output prices, caching, multipliers, channels, TPM, and maximum tokens. All relate to calling a model, but each describes a different part of the service.</p>
+<p>Some determine fees, some control generation, and others describe service capacity. Comparing them without distinguishing their roles can lead to mistakes: treating maximum tokens as throughput, interpreting temperature as speed, or assuming that an OpenAI-compatible service is provided by OpenAI.</p>
+<p>A useful starting point is a single request.</p>
+<p>Suppose someone gives AI a report and asks it to extract the main arguments. The software sends the report and instructions to a service, which runs a model and returns the generated result. Four questions organize this process: <strong>Who receives the request, how much content does the model process, how is the result returned, and how is the call billed?</strong></p>
+<p>Following this chain gives each term on the model card a clear place.</p>
+<h2 id="section-1">Model Names and Service Sources</h2>
+<p>When a platform lists a model, it first indicates that the platform offers an endpoint for calling it. Who developed the model, who actually runs it, and whom the user pays are separate questions.</p>
+<div class="article-table" role="region" aria-label="Article table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Main responsibilities</th>
+<th>What the user buys or uses</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Model developer, often called the original model provider</td>
+<td>Develops and releases models, and may offer its own API</td>
+<td>Model access supplied by the original provider</td>
+</tr>
+<tr>
+<td>Inference provider</td>
+<td>Deploys models and uses computing resources to process requests</td>
+<td>Hosted model inference</td>
+</tr>
+<tr>
+<td>Cloud provider</td>
+<td>Supplies infrastructure, deployment, model access, and supporting services</td>
+<td>Model services delivered through a cloud platform</td>
+</tr>
+<tr>
+<td>Model aggregation platform</td>
+<td>Connects multiple models or suppliers and unifies interfaces, billing, and channel selection</td>
+<td>Model access organized and delivered by the platform</td>
+</tr>
+</tbody></table></div>
+<p>These roles can overlap. A cloud provider may aggregate models, an original model provider may operate an inference platform, and an aggregator may host some open-weight models itself.</p>
+<p><strong>Inference</strong> is the process through which a trained model generates results from an input. Training establishes its capabilities; inference puts those capabilities to use. An ordinary question-and-answer interaction usually involves inference.</p>
+<p>For open-weight models whose licenses allow deployment under the relevant conditions, different providers can run the model on their own hardware. For other models, a platform may obtain access from the original provider or another upstream service. The same model name can therefore sit behind different delivery chains:</p>
+<blockquote>
+<p>User → Original provider&#39;s API<br>User → Cloud platform → Model service<br>User → Aggregation platform → Upstream supplier → Model service</p>
+</blockquote>
+<p>Some platforms call inference suppliers “token factories.” The name can help explain their business: they use computing resources to process requests continuously, with tokens as a unit of measurement. They do not manufacture a stock of text in advance and then sell those words to users. The exact classification still depends on the platform&#39;s own definition.</p>
+<p>This also explains why services with the same model name may differ in price and performance. Purchasing arrangements, runtime configuration, resource utilization, queuing policies, and intermediary services can all contribute.</p>
+<p>“Official” is another frequently ambiguous term. <strong>A platform&#39;s own official service, a service supplied by the original model provider, and a service authorized through a partnership are different descriptions.</strong> A platform that emphasizes a partnership or authorization should be able to supply corresponding public documentation. A model name and brand logo alone do not establish that relationship.</p>
+<h2 id="section-2">APIs Provide Access; Tokens Measure Usage</h2>
+<p>API stands for Application Programming Interface. It is an agreed interface through which software systems call one another.</p>
+<p>A person submits questions through a chat window; a program sends requests through an API. A request generally specifies the model, input content, and generation parameters. The service processes it and returns both the result and the relevant usage information.</p>
+<p>Three settings commonly appear during setup:</p>
+<div class="article-table" role="region" aria-label="Article table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Base URL</strong></td>
+<td>Tells the software which service address should receive requests</td>
+</tr>
+<tr>
+<td><strong>API Key</strong></td>
+<td>A credential that identifies the account, permissions, and associated allowance</td>
+</tr>
+<tr>
+<td><strong>Model ID</strong></td>
+<td>Specifies the model to call; some platforms also append channel identifiers</td>
+</tr>
+</tbody></table></div>
+<p>An API key is sometimes called a token. This differs from the token used in billing: one is a credential, while the other measures the content processed by a model.</p>
+<p>Text is tokenized before it enters the model. A word may correspond to one or several tokens, and a Chinese character is not necessarily one token. Tokenization can differ between models. Images, audio, and video may also have their own accounting rules. <a target="_blank" rel="noopener noreferrer" href="https://ai.google.dev/gemini-api/docs/tokens">Google&#39;s explanation of tokens</a></p>
+<p>Price tables commonly use these units:</p>
+<ul>
+<li><strong>K: one thousand, or 1,000.</strong></li>
+<li><strong>M: one million, or 1,000,000.</strong></li>
+</ul>
+<p>A price of CNY 0.02 per K tokens therefore equals CNY 20 per M tokens. Prices become comparable only after their units are aligned.</p>
+<p><strong>Input tokens</strong> include more than the question typed for the current turn. System instructions, conversation history, reference material, and tool descriptions carried in the request may all consume input tokens. A seemingly short follow-up can send a long report again in the background.</p>
+<p><strong>Output tokens</strong> measure content generated by the model. For reasoning models, the billing treatment of thinking or reasoning tokens also needs checking. The length of the visible answer may not equal the full amount of billable generation.</p>
+<p>A chat product subscription and an API allowance should also be understood separately. The former purchases usage rights within a product; the latter is settled under the API&#39;s billing rules. They are not interchangeable unless the provider explicitly says so.</p>
+<h2 id="section-3">From a Price Table to an Actual Bill</h2>
+<p>The basic calculation when comparing model prices is:</p>
+<blockquote>
+<p>Call cost = each category of billable usage × its unit price, plus any applicable additional charges.</p>
+</blockquote>
+<p>For a simple text call without caching or extra charges, this can be written as:</p>
+<blockquote>
+<p>Cost = input tokens ÷ 1,000,000 × input unit price<br>+ output tokens ÷ 1,000,000 × output unit price</p>
+</blockquote>
+<p>Suppose two platforms quote the following prices for a service. These figures are illustrative.</p>
+<div class="article-table" role="region" aria-label="Article table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Per million tokens</th>
+<th align="right">Platform A</th>
+<th align="right">Platform B</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Standard input</td>
+<td align="right">CNY 20</td>
+<td align="right">CNY 12</td>
+</tr>
+<tr>
+<td>Output</td>
+<td align="right">CNY 100</td>
+<td align="right">CNY 60</td>
+</tr>
+</tbody></table></div>
+<p>For one million input tokens and two hundred thousand output tokens:</p>
+<ul>
+<li>Platform A: 20 + 0.2 × 100 = <strong>CNY 40</strong>.</li>
+<li>Platform B: 12 + 0.2 × 60 = <strong>CNY 24</strong>.</li>
+</ul>
+<p>For this same usage, B costs 40% less than A.</p>
+<p>The example also shows that output can account for a large share of the bill. Reading lengthy material and returning a short conclusion has a different cost structure from generating a long article. A price comparison should use your own ratio of input to output.</p>
+<p>If a platform bills in credits, another conversion is needed.</p>
+<p>Suppose CNY 35 buys 1,000 credits, and input costs 420 credits per M tokens. The effective price in yuan is:</p>
+<blockquote>
+<p>420 × 35 ÷ 1,000 = <strong>CNY 14.70 per M tokens</strong></p>
+</blockquote>
+<p>The number 420 being larger than another provider&#39;s 20 does not mean the first service is more expensive. Their units differ.</p>
+<p>A <strong>multiplier</strong> also needs to be interpreted within the platform&#39;s billing rules. It may express a model&#39;s price relative to a reference rate, or the output charge relative to input. If the page already shows the final price in yuan, multiplying it again may count the adjustment twice.</p>
+<p>The most reliable check is to take one call record and reconcile its usage, displayed unit prices, deducted allowance, and the cost of purchasing that allowance. The price table explains the rules; the bill shows how they are applied.</p>
+<h2 id="section-4">Why Caching Can Reduce Costs</h2>
+<p>When the same report is analyzed repeatedly, many requests start with identical instructions and reference material. Only the later question changes.</p>
+<p><strong>Prompt caching allows a service to reuse eligible context computation.</strong> The model still needs to generate an answer to the new question; caching does not simply copy the previous answer. <a target="_blank" rel="noopener noreferrer" href="https://developers.openai.com/api/docs/guides/prompt-caching">OpenAI&#39;s explanation of caching</a></p>
+<p>Relevant price tables commonly distinguish:</p>
+<ul>
+<li><strong>Standard input:</strong> the portion of input that is not reused through caching.</li>
+<li><strong>Cache creation or writing:</strong> establishing a cache that later requests can reuse.</li>
+<li><strong>Cache reads or hits:</strong> successfully reusing an existing cache in subsequent requests.</li>
+</ul>
+<p>A cache may also expire after a period known as <strong>TTL, or Time to Live</strong>. Some services offer shorter and longer retention options with different write prices. Claude&#39;s documentation, for example, distinguishes five-minute and one-hour caches. One hour describes the retention period, rather than unlimited calls for an hour. <a target="_blank" rel="noopener noreferrer" href="https://platform.claude.com/docs/en/build-with-claude/prompt-caching">Claude&#39;s caching rules</a></p>
+<p>“A 90% cache discount” and “a 90% cache hit rate” describe entirely different things.</p>
+<p>Consider another hypothetical price: standard input costs CNY 20 per M tokens, while cache reads cost CNY 2 per M tokens.</p>
+<p>The cache-read unit price is indeed 90% lower. But if only 90% of one million input tokens are cache hits, the combined input charge is:</p>
+<blockquote>
+<p>0.9 × 2 + 0.1 × 20 = <strong>CNY 3.8</strong></p>
+</blockquote>
+<p>Compared with CNY 20 for entirely uncached input, this is an <strong>81%</strong> reduction.</p>
+<p>If the call also generates two hundred thousand output tokens at CNY 100 per M tokens, its cost is:</p>
+<blockquote>
+<p>3.8 + 0.2 × 100 = <strong>CNY 23.8</strong></p>
+</blockquote>
+<p>Compared with the uncached total of CNY 40, the whole call costs <strong>40.5%</strong> less. This calculation does not yet include cache creation or similar fees.</p>
+<p>The cache-read discount, the share of input that hits the cache, and the reduction in the total bill therefore need separate calculations.</p>
+<p>Caching benefits also depend on usage. Many requests that repeat stable reference material offer more room for reuse; requests that always process new content may gain little. Prompt arrangement, the model, retention time, and server matching rules can all affect cache hits. When checking a bill, inspect actual cached usage rather than relying only on advertised hit rates.</p>
+<h2 id="section-5">Capacity, Speed, and Generation Parameters</h2>
+<p>“Handling many requests” and “generating one answer quickly” describe different capabilities.</p>
+<div class="article-table" role="region" aria-label="Article table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Meaning</th>
+<th>Main question it answers</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>TPM</strong></td>
+<td>Tokens Per Minute: a token limit or capacity per minute</td>
+<td>How much measured content can the service handle in a minute?</td>
+</tr>
+<tr>
+<td><strong>RPM</strong></td>
+<td>Requests Per Minute: a request limit per minute</td>
+<td>How many calls are allowed in a minute?</td>
+</tr>
+<tr>
+<td><strong>Concurrency</strong></td>
+<td>The number of requests running simultaneously</td>
+<td>How many tasks can be processed at once?</td>
+</tr>
+<tr>
+<td><strong>TTFT</strong></td>
+<td>Time to First Token</td>
+<td>How long after submission does generated content begin to arrive?</td>
+</tr>
+<tr>
+<td><strong>Generation speed</strong></td>
+<td>Usually measured in tokens/s</td>
+<td>Once generation starts, how many tokens arrive each second?</td>
+</tr>
+</tbody></table></div>
+<p>Services may limit input and output separately, for example through ITPM and OTPM. Account tiers, models, and organization scopes may also affect the limits. <a target="_blank" rel="noopener noreferrer" href="https://platform.claude.com/docs/en/api/rate-limits">Claude&#39;s rate-limit documentation</a></p>
+<p>If a service lists “TPM 5000W,” and W means ten thousand in that listing, the statement describes a capacity or limit of fifty million tokens per minute.</p>
+<p>Assuming each request consumes ten thousand tokens against that limit, the token budget alone would allow five thousand requests per minute. Actual requests are also constrained by RPM, concurrency, and processing capacity. It is also necessary to establish whether the stated capacity is exclusive to the account or shared across the platform.</p>
+<p>For someone who occasionally analyzes reports, the wait for the first result may matter more. For a team processing large batches, sustained throughput may be more important.</p>
+<p>Generation parameters form a separate group of concepts:</p>
+<div class="article-table" role="region" aria-label="Article table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Parameter or specification</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Context window</strong></td>
+<td>The amount of content a model can accommodate in one operation; specific input and output constraints depend on the model</td>
+</tr>
+<tr>
+<td><strong>Maximum output or generation tokens</strong></td>
+<td>The limit or budget for generation in the current request; some interfaces include reasoning tokens</td>
+</tr>
+<tr>
+<td><strong>Temperature</strong></td>
+<td>Adjusts sampling randomness in models that support the parameter</td>
+</tr>
+<tr>
+<td><strong>Reasoning effort</strong></td>
+<td>Adjusts reasoning investment in models that support it</td>
+</tr>
+</tbody></table></div>
+<p>For example, setting the maximum generation amount to 32,768 defines the generation budget for that request. It is not TPM, nor does it mean the model will necessarily generate that much. OpenAI explicitly defines <code>max_completion_tokens</code> as including visible output and reasoning tokens. <a target="_blank" rel="noopener noreferrer" href="https://developers.openai.com/api/reference/resources/chat/subresources/completions/methods/create">OpenAI&#39;s parameter documentation</a></p>
+<p>Higher temperature generally leads to greater variation, while lower temperature concentrates choices. It is neither a speed multiplier nor an accuracy switch. Lowering temperature does not guarantee factual correctness, and not every model allows unrestricted temperature adjustment.</p>
+<p><strong>Streaming</strong> returns generated content progressively. Users can see the answer earlier, but the time required to finish the whole task remains a separate measurement.</p>
+<h2 id="section-6">The Value of Aggregators and Gateways</h2>
+<p>If original providers already offer APIs, why do aggregation platforms exist?</p>
+<p>Using several models can require managing multiple accounts, interfaces, keys, and bills. Services may also differ in request format and availability. Aggregators bring this work into one access point and may offer price advantages through purchasing arrangements or resource organization.</p>
+<p>Their commercial value follows from this: unified access, consolidated billing, channel management, support, and the margin between purchase and sale prices. Explaining a particular platform&#39;s low prices requires evidence; its business practices cannot be inferred from a discount alone.</p>
+<p><strong>OpenAI-compatible interfaces</strong> are one way of unifying access. A platform adopts similar request formats so existing software can connect more easily. Google, for example, offers an endpoint for calling Gemini through OpenAI libraries; the requests are still processed by Gemini services. <a target="_blank" rel="noopener noreferrer" href="https://ai.google.dev/gemini-api/docs/openai">Google&#39;s compatibility documentation</a></p>
+<p>Compatibility first addresses how to send a request. Support for images, tool calling, structured outputs, and reasoning parameters still needs checking individually.</p>
+<p><strong>Tool calling</strong> typically means that the model generates an intention to call a tool, together with its arguments, and a program or service then executes that tool. This requires both model capability and correct handling of the full workflow by the client and API.</p>
+<p>A related concept is the <strong>model gateway</strong>. A gateway forwards requests to configured services and may offer protocol conversion, logging, budget management, and routing. LiteLLM provides unified access and management of multiple deployments. <a target="_blank" rel="noopener noreferrer" href="https://docs.litellm.ai/docs/proxy/quick_start">LiteLLM&#39;s gateway documentation</a></p>
+<p>A gateway can run on your own computer. In that case, “local” describes the gateway&#39;s location. If it forwards requests to an external API, model computation and transmission of request content still take place externally.</p>
+<p>An aggregator and a gateway can appear in the same chain:</p>
+<blockquote>
+<p>Application → Local gateway → Aggregator or original provider&#39;s API → Model service</p>
+</blockquote>
+<p>Two further mechanisms matter:</p>
+<p><strong>Routing</strong> selects a model or supplier channel according to rules. These may prioritize cost, latency, available capacity, or load.</p>
+<p><strong>Fallback or failover</strong> tries a backup source after another source fails. LiteLLM&#39;s routing documentation lists strategies that account for cost, latency, and rate limits. <a target="_blank" rel="noopener noreferrer" href="https://docs.litellm.ai/docs/routing">LiteLLM&#39;s routing documentation</a></p>
+<p>Switching improves the chance of completing a task, but may also change the actual unit price, waiting time, and cache-hit behavior. Different sources should not be assumed to share a cache automatically. Charges for retries also depend on the platform&#39;s billing rules.</p>
+<p>Prices for automatically routed services should therefore be checked alongside the channels actually used. The cheapest channel on a model card is not necessarily the one selected for every request.</p>
+<h2 id="section-7">Assessing Value in Actual Use</h2>
+<p>A price comparison ultimately needs to answer whether the task was completed and whether the result met the requirements.</p>
+<p>For summarization, check whether key arguments were omitted. For information extraction, check field completeness and whether results can be traced back to the source. For coding, check actual execution and necessary tests. Different tasks require different standards; “the answer looks good” is difficult to use as a reliable comparison.</p>
+<p>Consider another set of hypothetical results:</p>
+<div class="article-table" role="region" aria-label="Article table" tabindex="0"><table>
+<thead>
+<tr>
+<th>The same 100 tasks</th>
+<th align="right">Service A</th>
+<th align="right">Service B</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Total API cost</td>
+<td align="right">CNY 15</td>
+<td align="right">CNY 10</td>
+</tr>
+<tr>
+<td>Results meeting predefined acceptance criteria</td>
+<td align="right">95</td>
+<td align="right">50</td>
+</tr>
+<tr>
+<td>API cost per acceptable result</td>
+<td align="right">About CNY 0.158</td>
+<td align="right">CNY 0.20</td>
+</tr>
+</tbody></table></div>
+<p>B has the lower bill, but A has the lower cost per acceptable result for this task set. Including retries, manual revision, and waiting time may change the comparison further.</p>
+<p>Conversely, if two services deliver similar results for your tasks, the cheaper one may well be the better choice. The basis should be the same task set, comparable settings, and clear acceptance criteria, rather than brand names or the wording of two answers.</p>
+<p>Keep a small task set and start by checking the following:</p>
+<div class="article-table" role="region" aria-label="Article table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Item to check</th>
+<th>Information to obtain</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Service source</td>
+<td>Actual model version, deployment or forwarding arrangement, and any necessary partnership documentation</td>
+</tr>
+<tr>
+<td>Billing rules</td>
+<td>Actual input, output, cache, and other unit prices; conversion rules for credits and multipliers</td>
+</tr>
+<tr>
+<td>Feature support</td>
+<td>Whether required image inputs, tools, structured outputs, and generation parameters work</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>Wait for the first result, total time, failures, and interruptions</td>
+</tr>
+<tr>
+<td>Routing and billing</td>
+<td>Actual channels, switching conditions, retry charges, and accessible usage records</td>
+</tr>
+<tr>
+<td>Terms of use</td>
+<td>Balance expiry, refund conditions, data processing scope, and service assurances</td>
+</tr>
+</tbody></table></div>
+<p>For someone new to APIs, one real call record that can be reconciled clearly is often more useful than more model cards. It connects the request, model, channel, tokens, and charge, turning abstract terms into facts that can be checked.</p>
+<p>Once those pieces align, “which platform offers better value?” has a definite basis for comparison: which service, under your own usage pattern and acceptance criteria, consistently delivers the required results at an acceptable cost.</p>
+</div></template></article></main>
+<footer class="wrap"><div class="footer-inner"><div class="footer-meta site-age-meta"><span>© 2026 李鹏飞</span><span class="site-age" data-site-age data-established-date="2026-09-19" title="始于 2026.09.19">本站始于 2026.09.19</span></div><div class="footer-actions"><div class="language-switch" data-language-switch role="group" aria-label="语言 / Language" hidden><button type="button" data-language="zh" lang="zh-CN" aria-pressed="true">中文</button><span aria-hidden="true">/</span><button type="button" data-language="en" lang="en" aria-pressed="false">English</button></div><div class="footer-socials"><a href="https://www.linkedin.com/in/pengfei-li-7ab27b378/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/plwhd" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://x.com/li191qq" target="_blank" rel="noopener noreferrer">X (Twitter)</a></div></div></div></footer><aside class="site-greeting" data-site-greeting aria-label="网站&#x62db;呼">
+  <button class="site-greeting-button" type="button" aria-label="向网站打个&#x62db;呼">
+    <svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><circle cx="14" cy="14" r="10.25" stroke="currentColor" stroke-width="1.6"/><circle cx="10.25" cy="11.75" r="1.15" fill="currentColor"/><circle cx="17.75" cy="11.75" r="1.15" fill="currentColor"/><path d="M9.5 16.2C10.6 18.25 12.15 19.1 14 19.1S17.4 18.25 18.5 16.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+  </button>
+  <span class="site-greeting-sr" role="status" aria-live="polite" aria-atomic="true"></span>
+  <span class="site-greeting-note" data-greeting-note hidden></span>
+</aside>
+</body></html>
