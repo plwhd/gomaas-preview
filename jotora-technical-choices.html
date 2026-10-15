@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="说明声笺的本地保存、两条云端处理路径、转写与整理模型、参考费用，以及腾讯云、七牛云等方案的选择依据。"><meta name="robots" content="noindex,nofollow"><title>李鹏飞</title><link rel="icon" href="favicon.ico?v=20261003-b-original" sizes="16x16 32x32 48x48"><link rel="icon" type="image/png" sizes="32x32" href="assets/pengfei-wing-32.png?v=20261003-b-original"><link rel="icon" type="image/svg+xml" sizes="any" href="assets/pengfei-wing-original.svg?v=20261003-b-original"><link rel="apple-touch-icon" sizes="180x180" href="assets/pengfei-wing-apple-180.png?v=20261003-b-original"><link rel="stylesheet" href="styles.css?v=20261015-jotora-technical-choices"><script defer src="assets/analytics.js?v=20261015-jotora-technical-choices" data-website-id="f18cb949-fc16-4710-8355-ca4601609d4c"></script><script defer src="assets/language.js?v=20261006-article-language-v1"></script><script defer src="assets/site-age.js?v=20261004-v3"></script><link rel="stylesheet" href="assets/site-greeting.css?v=20261006-footer-horizontal-v1"><script defer src="assets/site-greeting.js?v=20261005-daily-v1"></script><link rel="stylesheet" href="assets/article-export.css?v=20261010-v2"><script defer src="assets/article-export.js?v=20261010-v2"></script>
+</head>
+<body class="site-greeting-page articles-shell"><a class="skip" href="#main">跳至正文</a><header class="wrap"><nav aria-label="主导航"><a href="index.html">首页</a><a href="index.html#direction">职业方向</a><a href="index.html#experience">工作经历</a><a href="index.html#about">关于我</a><a href="articles.html" aria-current="page">文章</a><a href="resume.html" data-gomaas-event="resume_open">查看简历</a></nav></header>
+<main id="main" class="article-page wrap"><div class="article-toolbar"><a class="text-link article-return" href="articles.html">← 返回文章列表</a><div class="article-export" role="group" aria-label="文章导出" data-article-export data-export-zh="assets/markdown/jotora-technical-choices.zh.md">
+<div class="article-export-actions"><button class="article-export-action" type="button" data-copy-markdown hidden><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h4"/></svg><span data-copy-label>复制 Markdown</span></button><a class="article-export-action" data-download-markdown href="assets/markdown/jotora-technical-choices.zh.md" download="声笺的技术选型：本地存储、云端处理与成本控制.md" title="下载本文的 Markdown 文件（.md）"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></svg><span data-download-label>下载 Markdown</span></a></div>
+<p class="article-export-status is-quiet" data-export-status role="status" aria-live="polite" aria-atomic="true"></p>
+</div>
+</div><article lang="zh-CN" data-article-content><div class="article-heading"><h1>声笺的技术选型：本地存储、云端处理与成本控制</h1><p class="article-meta"><span>发布于 <time datetime="2026-10-15">2026.10.15</time></span><span data-article-version>版本：<span lang="en">V1</span></span><span>AI 辅助：<span lang="en">GPT</span></span></p><p class="article-keywords"><strong>关键词</strong>：声笺　·　语音转写　·　豆包　·　轻量服务器　·　技术选型　·　产品成本</p></div><p class="article-language-note" lang="en">This article is available in Chinese.</p><div class="article-content porter-article">
+<p>声笺 Jotora 是一款以语音记录为主要输入方式的个人工具。它的处理流程是：先保存录音，再进行转写，随后根据原文整理内容。</p>
+<p>这决定了技术上的先后顺序：<strong>记录必须先可靠保留，AI 处理可以随后完成。</strong></p>
+<p>目前，声笺使用 React Native、Expo 和 TypeScript 开发 Android 应用，本地保存记录，云端调用语音识别和文本整理服务。项目没有自行训练模型，也没有在服务器上部署大模型推理。</p>
+<h2 id="section-1">原始内容怎样保存</h2>
+<p>手机端使用 SQLite 保存记录信息、原始文本、整理结果和音频地址；原始音频文件保存在应用的私有文件目录中。</p>
+<p>两者承担不同任务：</p>
+<div class="article-table" role="region" aria-label="文章表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>内容</th>
+<th>保存位置</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>记录信息和文本</td>
+<td>本地 SQLite</td>
+<td>查询、编辑和组织记录</td>
+</tr>
+<tr>
+<td>原始音频</td>
+<td>应用私有文件目录</td>
+<td>保留录音，支持回放和重新处理</td>
+</tr>
+<tr>
+<td>AI 整理结果</td>
+<td>与原文分开保存</td>
+<td>方便阅读，同时保留核对依据</td>
+</tr>
+</tbody></table></div>
+<p>原文和整理结果分开，是为了避免模型修改内容后失去事实依据。整理结果有误时，仍然能够查看原始转写或回听录音。</p>
+<p>本地保存也有边界：它不能自动等同于异地备份。设备损坏、应用数据被清除等情况，需要单独的备份与恢复安排。</p>
+<h2 id="section-2">云端有两条处理路径</h2>
+<p>项目中的日用版本和有限邀请版本，使用的入口不同：</p>
+<div class="article-table" role="region" aria-label="文章表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>场景</th>
+<th>处理路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>日用版本</td>
+<td>手机 → 火山引擎 API 网关 → veFaaS 函数 → 语音识别与文本模型</td>
+</tr>
+<tr>
+<td>有限邀请版本</td>
+<td>手机 → 腾讯云轻量服务器 → 后台服务 → 语音识别与文本模型</td>
+</tr>
+</tbody></table></div>
+<p>API 网关负责接收请求并转交；函数负责执行调用逻辑。邀请版本中的服务器则运行后台程序，处理邀请授权、用量限制、重复请求识别等事务。</p>
+<p>两条路径最终都调用外部模型服务。它们不意味着项目已经具备正式云同步能力：真实记录的正式同步仍未上线，相关方案停留在使用合成数据的技术验证阶段。</p>
+<h2 id="section-3">为什么使用腾讯云轻量服务器</h2>
+<p>项目于 2026 年 8 月购买了一台腾讯云轻量应用服务器：</p>
+<ul>
+<li>地域：上海；</li>
+<li>系统：Ubuntu 24.04；</li>
+<li>配置：2 核 CPU、2 GB 内存、40 GB SSD；</li>
+<li>带宽：2 Mbps；</li>
+<li>月流量包：100 GB；</li>
+<li>当时实付：<strong>105 元，三个月</strong>。</li>
+</ul>
+<p>这台主机最初服务于国内部署与同步方案验证，后续复用于官网和有限邀请服务。</p>
+<p>它的主要工作是运行网页和后台接口、转发模型请求，以及保存少量服务状态。模型计算由云端供应商完成，因此没有为它配置 GPU。</p>
+<p>服务器使用 Caddy 处理 HTTPS 和反向代理，再把请求交给 Node.js 后台。后台使用 SQLite 保存邀请和调用管理所需的状态；部分处理结果还会短期缓存，不能将其描述为“云端完全不保留内容”。</p>
+<p>这套配置适合当前的小规模用途，但没有证明能够支持大量并发。尤其是 2 Mbps 带宽，在音频上传场景中可能形成限制。是否升级，应当由实际上传耗时和服务负载决定。</p>
+<h2 id="section-4">语音转写与文本整理分别用什么模型</h2>
+<h3 id="section-5">语音转写</h3>
+<p>项目使用火山引擎的<strong>录音文件识别 2.0</strong>。</p>
+<p>录音完成后，音频上传至临时对象存储，再提交识别任务并获取结果。这是一种录完后处理的方式，与声笺当前的使用流程相符。</p>
+<p>临时音频有处理后的删除逻辑，以及一天过期的生命周期规则。生命周期清理是异步过程，因此不能把它写成“所有文件一定在精确的 24 小时内删除”。</p>
+<h3 id="section-6">文本整理</h3>
+<p>文本整理默认使用 <strong>Doubao-Seed-2.0-lite</strong>，项目记录中的具体模型版本为 <code>doubao-seed-2-0-lite-260428</code>。</p>
+<p>整理任务主要是修正转写中的明显问题、调整段落，并从原文中识别事实和待办。这类任务对忠实性、响应时间和费用的要求，比复杂推理能力更直接。</p>
+<p>项目要求模型根据原文返回结构化内容，再由程序组织展示。这样可以减少不同位置分别生成、相互矛盾的情况。</p>
+<p>选择这个模型，依据的是任务范围、可用价格和国内调用条件。项目没有完成覆盖所有候选模型的统一评测，因此不能据此宣称它在准确率或综合能力上优于其他模型。</p>
+<p>Gemini 曾作为可选方案保留，但项目记录中出现过目标网络下调用不稳定的情况，因此没有作为当前国内使用的默认方案。</p>
+<h2 id="section-7">一次处理大概多少钱</h2>
+<p>费用需要分成语音和文本两部分。</p>
+<p>项目当时记录的参考价格为：</p>
+<div class="article-table" role="region" aria-label="文章表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>服务</th>
+<th>参考价格</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>录音文件识别 2.0</td>
+<td>约 0.8 元／小时</td>
+</tr>
+<tr>
+<td>Doubao-Seed-2.0-lite 文本输入，输入长度不超过 32K 的档位</td>
+<td>0.6 元／百万 tokens</td>
+</tr>
+<tr>
+<td>同档位文本输出</td>
+<td>3.6 元／百万 tokens</td>
+</tr>
+</tbody></table></div>
+<p>以上是项目选型期间记录的价格，实际计费应以对应模型、服务档位和账单为准。<a target="_blank" rel="noopener noreferrer" href="https://docs.volcengine.com/docs/DoubaoVoice/Billinginstructions-21?lang=zh">火山引擎语音计费说明</a>、<a target="_blank" rel="noopener noreferrer" href="https://docs.volcengine.com/docs/ark/model-service-pricing?lang=zh">方舟模型服务计费说明</a></p>
+<p>举一个明确的假设：</p>
+<ul>
+<li>音频长度为一分钟；</li>
+<li>整理请求消耗 2,000 个输入 tokens，包含系统指令和转写文本；</li>
+<li>返回 500 个输出 tokens。</li>
+</ul>
+<p>那么：</p>
+<p><strong>语音转写：</strong></p>
+<blockquote>
+<p>0.8 ÷ 60 ≈ 0.0133 元</p>
+</blockquote>
+<p><strong>文本整理：</strong></p>
+<blockquote>
+<p>2,000 ÷ 1,000,000 × 0.6<br>＋ 500 ÷ 1,000,000 × 3.6<br>＝ 0.003 元</p>
+</blockquote>
+<p>两项合计约 <strong>0.0163 元，即 1.6 分钱</strong>。</p>
+<p>这只是说明计算方式，不是实测平均成本。它没有包含网关、函数、对象存储、流量、重试和可能的最低计费单位，也没有扣除赠送额度。</p>
+<p>固定支出则另算。目前明确的两笔购买记录是：</p>
+<ul>
+<li>轻量服务器：105 元／三个月；</li>
+<li>jotora.cn 域名：33 元／一年，注册期限为 2026 年 8 月 25 日至 2027 年 8 月 25 日。</li>
+</ul>
+<p>两笔合计 <strong>138 元</strong>，但这不是项目全部累计成本。模型、其他云资源和工具费用，仍需要完整账单才能汇总。</p>
+<h2 id="section-8">为什么没有采用七牛云</h2>
+<p>当时主要比较了七牛云的计算和存储产品，需要分别看待。</p>
+<p><strong>QVM 是云主机，可以运行后台程序。</strong> 从技术能力上，它能够承载 Node.js 和 SQLite，并不存在“声笺不能使用七牛云”的结论。</p>
+<p>但比较价格时，需要把主机、磁盘、公网 IP、带宽和备份等组成放在一起核算。项目当时已经取得腾讯云轻量服务器的完整套餐报价，没有取得能够证明同等条件下更合适的七牛云完整报价，因此选择了当时更明确的方案。<a target="_blank" rel="noopener noreferrer" href="https://developer.qiniu.com/qvm/4238/qvm-billing-contrast">七牛云 QVM 计费说明</a></p>
+<p>这不足以推导出“七牛云一定更贵”。</p>
+<p><strong>Kodo 是对象存储，主要保存和分发文件。</strong> 它可以用于音频文件或备份，但不能直接代替数据库处理会话、重复请求和事务状态。对象存储与数据库处于不同层次，不能仅凭存储单价相互替换。</p>
+<p>Kodo 被保留为潜在的加密备份方案，后续可以与腾讯云 COS 比较容量、请求、取回和传输费用。目前没有把这一候选方案写成已经部署或通过恢复验证的备份能力。</p>
+<p>后续邀请服务出现时，腾讯云服务器已经购买并可复用。此时继续使用现有资源，能够避免再增加一套主机和维护工作。这是后续复用的理由，与最初购买时的比较依据有所不同。</p>
+<h2 id="section-9">其他方案为什么暂时没有推进</h2>
+<div class="article-table" role="region" aria-label="文章表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>方案</th>
+<th>已有依据与当前处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Cloudflare Workers、Durable Objects</td>
+<td>合成数据验证曾通过，但目标手机在当时国内网络下访问测试入口失败，没有作为正式国内入口</td>
+</tr>
+<tr>
+<td>MySQL</td>
+<td>原开发实例已释放；正式同步需求尚未成立，避免持续保留空闲实例</td>
+</tr>
+<tr>
+<td>更高配置服务器</td>
+<td>当前缺少实际负载证据，暂不升级</td>
+</tr>
+<tr>
+<td>正式账号和云同步</td>
+<td>尚未进入日用版本，不作为已经完成的能力</td>
+</tr>
+</tbody></table></div>
+<p>这些选择都受到当前规模和使用证据的约束。声笺现阶段更需要确认的是：录音能否可靠留下，转写是否稳定，整理是否忠于原文。新增基础设施，应当解决已经出现的问题。</p>
+</div></article></main>
+<footer class="wrap"><div class="footer-inner"><div class="footer-meta site-age-meta"><span>© 2026 李鹏飞</span><span class="site-age" data-site-age data-established-date="2026-09-19" title="始于 2026.09.19">本站始于 2026.09.19</span></div><div class="footer-actions"><div class="language-switch" data-language-switch role="group" aria-label="语言 / Language" hidden><button type="button" data-language="zh" lang="zh-CN" aria-pressed="true">中文</button><span aria-hidden="true">/</span><button type="button" data-language="en" lang="en" aria-pressed="false">English</button></div><div class="footer-socials"><a href="https://www.linkedin.com/in/pengfei-li-7ab27b378/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/plwhd" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://x.com/li191qq" target="_blank" rel="noopener noreferrer">X (Twitter)</a></div></div></div></footer><aside class="site-greeting" data-site-greeting aria-label="网站&#x62db;呼">
+  <button class="site-greeting-button" type="button" aria-label="向网站打个&#x62db;呼">
+    <svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><circle cx="14" cy="14" r="10.25" stroke="currentColor" stroke-width="1.6"/><circle cx="10.25" cy="11.75" r="1.15" fill="currentColor"/><circle cx="17.75" cy="11.75" r="1.15" fill="currentColor"/><path d="M9.5 16.2C10.6 18.25 12.15 19.1 14 19.1S17.4 18.25 18.5 16.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+  </button>
+  <span class="site-greeting-sr" role="status" aria-live="polite" aria-atomic="true"></span>
+  <span class="site-greeting-note" data-greeting-note hidden></span>
+</aside>
+</body></html>
