@@ -5,7 +5,7 @@
   const allowedDomains = new Set(['lipengfei.top', 'www.lipengfei.top']);
   const allowedPages = new Set([
     '/', '/index.html', '/resume.html', '/articles.html',
-    '/edge-information-architecture.html', '/cloud-service-sales.html', '/cloud-service-choices.html', '/porter-trilogy.html', '/drunkards-walk.html', '/article-writing-workflow.html', '/jotora-technical-choices.html', '/personal-website-build.html', '/job-search-review.html', '/ai-cloud-api-basics.html', '/model-api-guide.html', '/ai-service-business.html', '/phoenix-project.html', '/white-horse.html', '/spin-selling.html', '/personal-review.html',
+    '/edge-information-architecture.html', '/cloud-service-sales.html', '/cloud-service-choices.html', '/porter-trilogy.html', '/negative-emotions.html', '/drunkards-walk.html', '/article-writing-workflow.html', '/jotora-technical-choices.html', '/personal-website-build.html', '/job-search-review.html', '/ai-cloud-api-basics.html', '/model-api-guide.html', '/ai-service-business.html', '/phoenix-project.html', '/white-horse.html', '/spin-selling.html', '/personal-review.html',
     '/compute-industry-five-forces.html', '/slides-example.html', '/life-notes.html', '/website-ui-baseline.html', '/world-map.html',
   ]);
   if (!allowedDomains.has(location.hostname) || !allowedPages.has(location.pathname)) return;
