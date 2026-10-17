@@ -1,0 +1,5 @@
+.article-share-action{justify-content:center;min-width:44px;min-height:44px}
+.article-share-fallback{max-width:100%;margin-top:4px;color:#777179;font-size:12px;line-height:1.8}
+.article-share-fallback label{display:block}
+.article-share-fallback input{box-sizing:border-box;width:100%;max-width:320px;min-height:44px;padding:6px 8px;border:1px solid #e4dfe1;border-radius:0;background:#fffafa;color:#18181b;font:inherit}
+.article-share-fallback input:focus-visible{outline:2px solid #18181b;outline-offset:2px}
