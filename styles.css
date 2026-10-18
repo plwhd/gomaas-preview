@@ -1,32 +1,56 @@
-/* Locally hosted OFL fonts; sources and subset workflow: docs/FONTS.md. */
+/* 主样式维护约定
+ * 视觉：暖白背景、黑灰文字、居中窄栏、细线分隔，以文字阅读为主。
+ * 编辑 src/static/styles.css，dist/styles.css 由构建生成；完整视觉规范见 docs/UI-VISUAL-GUIDE.md。
+ * 保留紧凑写法；维护时按选择器查找。不要随意移动规则或删除 !important，以免改变层叠关系。
+ * 页面可能再加载独立模块样式；同一元素的最终外观需结合所有匹配规则判断。
+ */
+
+/* 01 本地字体：英文正文 Inter、英文标题 Montserrat、辅助信息 JetBrains Mono，中文由思源黑体补齐。
+ * 字体来源、OFL 授权及中文子集维护见 docs/FONTS.md；font-display:swap 允许先显示后备字体。
+ */
 @font-face{font-family:"Gomaas Inter Web";src:url("assets/fonts/inter-latin.woff2") format("woff2");font-style:normal;font-weight:100 900;font-display:swap;}
 @font-face{font-family:"Gomaas Montserrat Web";src:url("assets/fonts/montserrat-latin.woff2") format("woff2");font-style:normal;font-weight:100 900;font-display:swap;}
 @font-face{font-family:"Gomaas Mono Web";src:url("assets/fonts/jetbrains-mono-latin.woff2") format("woff2");font-style:normal;font-weight:100 800;font-display:swap;}
 @font-face{font-family:"Gomaas Han Web";src:url("assets/fonts/han-sc.woff2?v=94ce390868e1") format("woff2");font-style:normal;font-weight:250 900;font-display:swap;}
+/* 02 全站基础与首页：以下规则保留原顺序，可按选择器名称搜索。
+ * body：背景 #fffafa、默认文字 #18181b 与字体；a：悬浮及键盘焦点反馈。
+ * .wrap：最大宽 768px，含左右各 24px 内距，最大内容宽约 720px；nav：居中、可换行导航。
+ * .hero / .avatar：首页介绍区和头像；h1/h2/h3：基础标题；.label / .date：辅助信息。
+ * .entry / .about / .education：经历、介绍与教育；.button：强调操作；footer：页脚基础间距。
+ * .skip：键盘跳至正文；段末 @media(max-width:600px)：手机适配；prefers-reduced-motion：减少滚动动画。
+ */
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:36px}body{margin:0;background:#fffafa;color:#18181b;font-family:"Gomaas Inter Web","Gomaas Han Web",-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-underline-offset:5px}a:focus-visible{outline:2px solid #18181b;outline-offset:6px}a:hover{color:#000}.wrap{max-width:768px;padding:0 24px;margin:0 auto}header{padding-top:24px!important}nav{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 32px}nav a{display:inline-flex;align-items:center;white-space:nowrap;min-height:44px;font-size:13px;color:#626269;text-decoration:none}nav a:hover,.handle:hover{text-decoration:underline}.hero{padding-top:116px;padding-bottom:48px}.avatar{width:80px;height:80px;border-radius:50%;display:grid;place-items:center;background:#eae4e2;font-size:30px;font-weight:500;margin-bottom:32px}h1{font-size:clamp(32px,4.8vw,54px);line-height:1.25;letter-spacing:-.055em;margin:0 0 16px;font-weight:700}.handle{font-size:18px;color:#6c6668;text-decoration:none}.motto{font-family:"Gomaas Mono Web","Gomaas Han Web",ui-monospace,SFMono-Regular,Consolas,monospace;font-size:22px;letter-spacing:-.5px;margin:28px 0 14px}.intro{color:#696368;font-size:15px;letter-spacing:.035em;margin:0}.section{padding-top:58px;padding-bottom:12px}h2{font-size:23px;line-height:1.4;margin:0 0 36px;font-weight:600;letter-spacing:-.04em}.label{display:block;font-family:"Gomaas Mono Web","Gomaas Han Web",ui-monospace,SFMono-Regular,Consolas,monospace;font-size:11px;letter-spacing:.03em;color:#777179;font-weight:400;margin-top:9px}.entry{border-top:1px solid #e4dfe1;padding:28px 0 32px}.entry-heading{display:flex;gap:12px;justify-content:space-between;align-items:baseline}h3{font-size:19px;line-height:1.5;font-weight:500;margin:0;letter-spacing:-.025em}h3 span{margin-left:5px}.date{font-family:"Gomaas Mono Web","Gomaas Han Web",ui-monospace,SFMono-Regular,Consolas,monospace;color:#777179;font-size:11px;white-space:nowrap}.entry p,.about p{color:#625d64;font-size:14px;line-height:1.95;letter-spacing:.025em;margin:14px 0}.entry .role{font-size:12px;color:#817780;margin-top:5px;margin-bottom:20px}.text-link{display:inline-block;font-family:"Gomaas Mono Web","Gomaas Han Web",ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px;margin-top:8px;padding:8px 0}.about{margin-top:42px;background:#f6f3f4;padding:64px 0}.about p{font-size:15px;line-height:2;margin:0 0 20px}.education{margin:34px 0}.education p{font-size:13px;margin:0}.education .school{color:#222;font-weight:500}.button{display:inline-flex;align-items:center;gap:28px;background:#202023;color:#fff!important;text-decoration:none;border-radius:5px;padding:14px 20px;font-size:13px}.button:hover{background:#414145}footer{padding-top:48px!important;padding-bottom:36px!important}.footer-inner{border-top:1px solid #e4dfe1;padding-top:26px;display:flex;flex-wrap:wrap;align-items:center;gap:24px;font-size:11px;color:#756d74}.domain{font-family:"Gomaas Mono Web","Gomaas Han Web",ui-monospace,SFMono-Regular,Consolas,monospace}.skip{position:fixed;left:16px;top:-80px;padding:12px;background:#fff;z-index:2}.skip:focus{top:12px}@media(max-width:600px){nav{gap:4px 22px}nav a{font-size:12px}.hero{padding-top:72px;padding-bottom:32px}.avatar{width:64px;height:64px;font-size:25px;margin-bottom:28px}.section{padding-top:42px}.entry-heading{display:block}.entry-heading .date{display:block;margin-top:7px}h3{font-size:18px}.about{padding:48px 0}.footer-inner{gap:14px}.wrap{padding-left:24px;padding-right:24px}h2{font-size:21px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
+/* 03 照片头像：保持填充裁切，object-position 控制裁切位置；随后为联系电话间距。 */
 img.avatar{object-fit:cover;object-position:center 28%}.about .contact-phone{margin:20px 0 0;font-size:14px}
 
+/* 04 首页背景信息：雇主、职业方向说明及学习条目的局部排版。 */
 .background{padding-top:24px;padding-bottom:8px}.background-title{font-size:14px;letter-spacing:0;color:#625d64;margin:0 0 22px}.background-title .label{margin-top:5px}.employer{display:inline-flex;align-items:center;gap:20px;text-decoration:none}.employer img{width:64px;height:64px;object-fit:contain}.employer strong{font-size:17px;font-weight:500}.employer-role{display:block;margin-top:7px;font-size:12px;color:#777179}.direction-copy{border-top:1px solid #e4dfe1;padding-top:14px}.direction-copy p{font-size:14px;line-height:1.95;color:#625d64;letter-spacing:.025em;margin:14px 0}.learning{margin-top:28px;padding-left:18px;border-left:2px solid #d7d0d4}.learning h3{font-size:15px}.learning p{margin:8px 0 0}.motto{line-height:1.5}
 
+/* 05 简历页：操作区可换行，预览图保持原比例；手机端间距单独调整。 */
 .resume-page{padding-top:32px;padding-bottom:48px}.resume-page h1{font-size:32px;margin:28px 0 12px;letter-spacing:0}.resume-caption{font-size:14px;color:#625d64}.resume-actions{display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin:24px 0}.resume-preview{display:block;width:100%;height:auto;border:1px solid #e4dfe1;background:#fff}.resume-preview p{padding:24px;line-height:1.8}@media(max-width:480px){.footer-inner{flex-wrap:wrap;row-gap:18px}.resume-actions{gap:12px}}
 
+/* 电话与地点优先整段显示；英文地点的换行例外在下方定义。 */
 .contact-phone a,.footer-inner .location{white-space:nowrap}
 
+/* 06 语言切换：下划线表示当前语言，保留键盘焦点；英文长标题允许换行。 */
 .language-switch{display:flex;justify-content:flex-end;align-items:center;gap:8px;margin-top:12px;color:#777179;font-size:12px}.language-switch[hidden]{display:none}.language-switch button{border:0;background:transparent;font:inherit;color:inherit;min-height:44px;padding:8px;cursor:pointer}.language-switch button[aria-pressed="true"]{color:#18181b;text-decoration:underline;text-underline-offset:5px}.language-switch button:focus-visible{outline:2px solid #18181b;outline-offset:2px}html[lang="en"] .label{display:none}html[lang="en"] .footer-inner .location{white-space:normal}html[lang="en"] .entry-heading h3{overflow-wrap:anywhere}.resume-language-note{font-size:12px;line-height:1.7;color:#777179}
 
-/* Keep the reference’s heading/body/monospace hierarchy in both languages. */
+/* 标题字体分工：中文仍由思源黑体绘制，保持标题、正文与等宽辅助字的层级。 */
 h1,h2,h3{font-family:"Gomaas Montserrat Web","Gomaas Han Web",sans-serif}
 
+/* 07 页脚社交链接：有空间时靠右，手机端允许另起一行。 */
 .footer-socials{display:flex;flex-wrap:wrap;align-items:center;gap:24px;margin-left:auto}.footer-socials a{display:inline-flex;align-items:center;min-height:44px;font-size:14px;text-decoration:none}.footer-socials a:hover{text-decoration:underline}@media(max-width:600px){.footer-socials{flex-basis:100%;margin-left:0}}
 
+/* 08 联系面板：summary 保留原生展开与键盘操作，复制结果通过相邻提示反馈。 */
 .contact-details{margin-top:24px}.contact-details summary{width:fit-content;cursor:pointer;list-style:none}.contact-details summary::-webkit-details-marker{display:none}.contact-details summary:focus-visible,.contact-actions button:focus-visible{outline:2px solid #18181b;outline-offset:5px}.contact-panel{padding-top:22px}.about .contact-number{margin:0 0 12px;font-size:14px}.contact-number span:last-child{white-space:nowrap;user-select:text}.contact-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px}.contact-actions a,.contact-actions button{display:inline-flex;align-items:center;min-height:44px;font:inherit;font-size:13px;color:#625d64;text-decoration:underline;text-underline-offset:5px}.contact-actions button{border:0;padding:0;background:transparent;cursor:pointer}.contact-actions button[hidden],.contact-feedback [hidden]{display:none}.contact-feedback{font-size:12px;line-height:1.7;color:#625d64}.contact-feedback span{display:block;margin-top:8px}
 
-/* Match the reference's compact, gently waving desktop greeting. */
+/* 09 桌面挥手装饰：小于等于 767px 时隐藏。右侧悬浮笑脸另见 assets/site-greeting.css/js。 */
 .greeting-wave{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;margin-left:8px;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;font-size:32px;line-height:1;letter-spacing:0;vertical-align:middle;animation:greeting-wave 2s linear infinite}
 @keyframes greeting-wave{0%,100%{transform:rotate(0deg)}20%,60%{transform:rotate(-10deg)}40%,80%{transform:rotate(10deg)}}
 @media(max-width:767px){.greeting-wave{display:none}}
 
+/* 10 页脚组合：版权和操作区分组；后文补充建站天数的局部对齐。 */
 .footer-meta{display:flex;flex-wrap:wrap;gap:12px 24px;width:100%;align-items:center}
 .footer-actions{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 24px;width:100%}
 .footer-actions .footer-socials{margin-left:0}
@@ -35,9 +59,10 @@ h1,h2,h3{font-family:"Gomaas Montserrat Web","Gomaas Han Web",sans-serif}
 @media(max-width:600px){.footer-actions .footer-socials{flex-basis:auto;margin-left:0}}
 .footer-inner{row-gap:6px}
 
+/* 雇主名称保留链接反馈，不将整块信息都设成链接。 */
 .employer-name{text-decoration:none}.employer-name:hover,.employer-name:focus-visible{text-decoration:underline;text-underline-offset:5px}
 
-/* The articles page shares the existing typography and compact footer. */
+/* 11 文章列表页框架：沿用全站字体和页脚；aria-current 标识当前导航。 */
 .articles-shell{min-height:100vh;display:flex;flex-direction:column}
 .articles-shell>header,.articles-shell>footer,.articles-page{width:100%}
 .articles-page{flex:1;padding-top:116px;padding-bottom:48px}
@@ -46,7 +71,7 @@ h1,h2,h3{font-family:"Gomaas Montserrat Web","Gomaas Han Web",sans-serif}
 .articles-shell nav a[aria-current="page"]{color:#18181b;text-decoration:underline}
 @media(max-width:600px){.articles-page{padding-top:72px;padding-bottom:32px}.articles-page>h1{font-size:21px}}
 
-/* Article reading uses the site's fonts, palette and single-column rhythm. */
+/* 12 文章列表条目：标题、摘要与日期按内容角色排版，局部覆盖首页条目的基础值。 */
 .article-list{margin-top:32px}
 .article-list .entry{padding:24px 0 28px}
 .article-list .entry p{line-height:1.8;letter-spacing:.01em;margin:10px 0 0}
@@ -55,6 +80,7 @@ h1,h2,h3{font-family:"Gomaas Montserrat Web","Gomaas Han Web",sans-serif}
 .article-list h2 a{text-decoration:none}
 .article-list h2 a:hover,.article-list h2 a:focus-visible{text-decoration:underline}
 .article-list .date{padding-top:5px}
+/* 13 文章详情：返回入口、标题、日期等元信息、关键词和英文可用性提示。 */
 .article-page{width:100%;padding-top:64px;padding-bottom:24px}
 .article-return{margin:0 0 32px}
 .article-heading h1{text-wrap:balance;font-size:clamp(28px,3.2vw,38px);line-height:1.45;letter-spacing:-.035em;margin-bottom:24px}
@@ -62,11 +88,13 @@ h1,h2,h3{font-family:"Gomaas Montserrat Web","Gomaas Han Web",sans-serif}
 .article-keywords{font-size:12px;line-height:1.9;color:#777179;margin:0 0 36px}
 .article-language-note{display:none;font-size:13px;color:#777179}
 html[lang="en"] .article-language-note{display:block}
+/* 14 正文阅读：16px 字号、1.95 倍行高，段落与章节各有间距；手机值见后文。 */
 .article-content{font-size:16px;line-height:1.95;color:#625d64;overflow-wrap:anywhere}
 .article-content p{margin:0 0 22px}
 .article-content strong{font-weight:600;color:#18181b}
 .article-content h2{font-size:23px;line-height:1.55;color:#18181b;margin:48px 0 24px;letter-spacing:-.025em}
 .article-content h3{font-size:19px;line-height:1.6;color:#18181b;margin:32px 0 18px;font-weight:600}
+/* 四级标题与引用块沿用 porter-article 容器；下方依次定义列表、分隔线和脚注。 */
 .porter-article h4{font-size:16px;line-height:1.6;color:#18181b;margin:24px 0 14px;font-weight:600}
 .porter-article blockquote{margin:0 0 22px;padding-left:16px;border-left:2px solid #e4dfe1}
 .article-content ul,.article-content ol{padding-left:24px;margin:0 0 24px}
@@ -75,18 +103,21 @@ html[lang="en"] .article-language-note{display:block}
 .article-content sup{font-size:10px;line-height:0;vertical-align:super}
 .article-content sup a{text-decoration:none;padding:0 2px;color:#625d64}
 .article-content sup a:hover{text-decoration:underline}
+/* 15 表格：窄屏只让表格容器横向滚动，避免整页被表格撑宽。 */
 .article-table{max-width:100%;overflow-x:auto;margin:28px 0;outline-offset:4px}
 .article-table table{border-collapse:collapse;width:100%;min-width:620px;font-size:13px;line-height:1.8;text-align:left}
 .article-table th,.article-table td{padding:14px 16px;border-bottom:1px solid #e4dfe1;vertical-align:top}
 .article-table th{white-space:nowrap;font-weight:600;color:#18181b;background:#f6f3f4;border-top:1px solid #e4dfe1}
 .article-table th:first-child,.article-table td:first-child{padding-left:12px}
+/* 16 参考资料与锚点：小号来源说明、脚注返回链接，以及跳转目标的浅底反馈。 */
 .article-content .reference-item{font-size:12px;line-height:1.9;margin-bottom:18px}
 .reference-number{font-family:"Gomaas Mono Web",monospace;color:#18181b}
 .reference-back{white-space:nowrap;text-decoration:none;padding:4px}
 .article-content :target{background:#f0ebed;scroll-margin-top:36px}
+/* 17 文章手机适配：宽度不超过 600px 时缩小字号和间距，桌面参数保持。 */
 @media(max-width:600px){.article-page{padding-top:40px}.article-list h2{font-size:20px}.article-list .date{padding-top:0}.article-content{font-size:15px}.article-content h2{font-size:21px}.article-content h3{font-size:18px}.article-return{margin-bottom:24px}}
 
-/* Life notes: link cards scoped to the article shell. */
+/* 18 生活与杂记：仅作用于对应页面，桌面两列、手机单列。 */
 .life-notes-page{flex:1}
 .life-notes-page h1{font-size:28px;font-weight:600;line-height:1.45;letter-spacing:0;margin:0 0 12px}
 .life-intro{font-size:14px;line-height:1.8;color:#625d64;margin:0}
@@ -98,7 +129,7 @@ html[lang="en"] .article-language-note{display:block}
 .life-link-placeholder{background:transparent;border-style:dashed;color:#777179}
 @media(max-width:600px){.life-links{grid-template-columns:1fr}.life-notes-page h1{font-size:25px}.life-link-card{padding:20px}.life-link-card h2{font-size:20px}}
 
-/* Site age: shared typography and baseline alongside copyright. */
+/* 19 建站天数：与版权按文字基线对齐，数字等宽；日期计算另见 assets/site-age.js。 */
 .footer-meta.site-age-meta {
   flex-direction: row;
   align-items: baseline;
@@ -116,6 +147,6 @@ html[lang="en"] .article-language-note{display:block}
   font-variant-numeric: tabular-nums;
 }
 
-/* Pinned articles keep the ordinary row style; only the title badge differs. */
+/* 20 置顶标记：普通文章条目布局保持，仅标题前的黑底标签采用专门样式。 */
 .is-pinned .entry-title{display:flex;align-items:baseline;gap:9px;min-width:0}
 .article-pin{display:inline-block;flex:none;padding:3px 6px;border-radius:2px;background:#18181b;color:#fff;font-size:11px;font-weight:500;line-height:1.3;letter-spacing:.04em;vertical-align:2px;white-space:nowrap}
