@@ -2,6 +2,9 @@
 .article-categories{display:flex;flex-wrap:wrap;gap:0 24px;margin-top:16px}
 .article-categories[hidden],.article-list-item[hidden]{display:none}
 .article-category{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:44px;min-height:44px;max-width:100%;border:0;border-radius:0;padding:0;background:transparent;color:#625d64;font:inherit;font-size:13px;line-height:1.5;cursor:pointer}
+/* 设计为阶段性重点；强调与筛选选中状态分别呈现。 */
+.article-category[data-category="design"]{color:#18181b}
+.article-category[data-category="design"]>span:first-child{font-weight:600}
 .article-category-count{font-family:"Gomaas Mono Web","Gomaas Han Web",monospace;font-size:11px;color:#777179}
 .article-category:hover,.article-category[aria-pressed="true"]{color:#18181b}
 .article-category:hover>span:first-child,.article-category[aria-pressed="true"]>span:first-child{text-decoration:underline;text-underline-offset:5px}
