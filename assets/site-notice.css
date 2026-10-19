@@ -1,0 +1,22 @@
+/* 顶部状态说明：普通文案，不浮动、不自动播报；随页面滚动。 */
+.site-notice {
+  margin: 0;
+  padding: 12px 24px;
+  background: #202023;
+  color: #fffafa;
+  text-align: center;
+}
+.site-notice p {
+  max-width: 960px;
+  margin: 0 auto;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: .01em;
+}
+@media (max-width: 600px) {
+  .site-notice {
+    padding: 10px 16px;
+  }
+  .site-notice p { font-size: 12px; }
+}
