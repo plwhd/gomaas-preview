@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="结合首页、录音、列表与详情界面，说明声笺 App 的视觉语言、排版、色彩及状态反馈设计。"><meta name="robots" content="noindex,nofollow"><title>李鹏飞</title><link rel="icon" href="favicon.ico?v=20261003-b-original" sizes="16x16 32x32 48x48"><link rel="icon" type="image/png" sizes="32x32" href="assets/pengfei-wing-32.png?v=20261003-b-original"><link rel="icon" type="image/svg+xml" sizes="any" href="assets/pengfei-wing-original.svg?v=20261003-b-original"><link rel="apple-touch-icon" sizes="180x180" href="assets/pengfei-wing-apple-180.png?v=20261003-b-original"><link rel="stylesheet" href="styles.css?v=20261020-jotora-app-ui-visual-spec"><script defer src="assets/analytics.js?v=20261020-jotora-app-ui-visual-spec" data-website-id="f18cb949-fc16-4710-8355-ca4601609d4c"></script><script defer src="assets/language.js?v=20261006-article-language-v1"></script><script defer src="assets/site-age.js?v=20261004-v3"></script><link rel="stylesheet" href="assets/site-greeting.css?v=20261006-footer-horizontal-v1"><script defer src="assets/site-greeting.js?v=20261005-daily-v1"></script><link rel="stylesheet" href="assets/article-export.css?v=20261010-v2"><script defer src="assets/article-export.js?v=20261010-v2"></script>
+<link rel="preconnect" href="https://disqus.com">
+<link rel="preconnect" href="https://c.disquscdn.com">
+<link rel="preload" href="https://lipengfei.disqus.com/embed.js" as="script" fetchpriority="low">
+<link rel="stylesheet" href="assets/article-comments.css?v=20261017-v2"><script defer src="assets/article-comments.js?v=20261017-v2"></script>
+<link rel="stylesheet" href="assets/site-notice.css?v=20261019-status-v1"></head>
+<body class="site-greeting-page articles-shell"><a class="skip" href="#main">跳至正文</a><div class="site-notice"><p data-text-en="This website is being updated. Some pages and features are still being refined.">网站正在持续更新，部分页面与功能仍在调整。</p></div>
+<header class="wrap"><nav aria-label="主导航"><a href="index.html">首页</a><a href="index.html#direction">职业方向</a><a href="index.html#experience">工作经历</a><a href="index.html#about">关于我</a><a href="articles.html" aria-current="page">文章</a><a href="resume.html" data-gomaas-event="resume_open">查看简历</a></nav></header>
+<main id="main" class="article-page wrap"><div class="article-toolbar"><a class="text-link article-return" href="articles.html">← 返回文章列表</a><div class="article-export" role="group" aria-label="文章导出" data-article-export data-export-zh="assets/markdown/jotora-app-ui-visual-spec.zh.md">
+<div class="article-export-actions"><button class="article-export-action" type="button" data-copy-markdown hidden><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h4"/></svg><span data-copy-label>复制 Markdown</span></button><a class="article-export-action" data-download-markdown href="assets/markdown/jotora-app-ui-visual-spec.zh.md" download="声笺 App UI 视觉规范.md" title="下载本文的 Markdown 文件（.md）"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></svg><span data-download-label>下载 Markdown</span></a></div>
+<p class="article-export-status is-quiet" data-export-status role="status" aria-live="polite" aria-atomic="true"></p>
+</div>
+</div><article lang="zh-CN" data-article-content><div class="article-heading"><h1>声笺 App UI 视觉规范</h1><p class="article-meta"><span>发布于 <time datetime="2026-10-20">2026.10.20</time></span><span data-article-version>版本：<span lang="en">V1</span></span><span>AI 辅助：<span lang="en">Codex</span></span></p><p class="article-keywords"><strong>关键词</strong>：UI 视觉规范　·　声笺 App　·　界面设计　·　交互反馈　·　中文阅读</p></div><p class="article-language-note" lang="en">This article is available in Chinese.</p><div class="article-content porter-article">
+<p><strong>安静、直接、以内容为中心。让想法先被可靠留下，再被清楚地阅读与整理。</strong></p>
+<h2 id="section-1">核心界面</h2>
+<div style="display:flex;flex-wrap:wrap;gap:24px;margin:28px 0">
+<figure style="flex:1 1 240px;min-width:0;margin:0"><figcaption style="margin-bottom:12px;font-weight:600">首页</figcaption><img src="assets/article-media/jotora-app-ui-visual-spec/home.png" alt="声笺首页界面" width="1080" height="2340" style="display:block;width:100%;height:auto" loading="lazy"></figure>
+<figure style="flex:1 1 240px;min-width:0;margin:0"><figcaption style="margin-bottom:12px;font-weight:600">录音</figcaption><img src="assets/article-media/jotora-app-ui-visual-spec/recording.png" alt="声笺录音界面" width="1080" height="2340" style="display:block;width:100%;height:auto" loading="lazy"></figure>
+</div>
+
+<ul>
+<li><strong>首页</strong>：语音记录作为主动作，文字记录保留为次入口。底部按钮通过面积与色彩形成主次，空状态说明如何开始。</li>
+<li><strong>录音</strong>：状态、计时与波形居中排列；暂停使用描边按钮，结束并保存使用实色按钮，区分暂时中断与完成记录。</li>
+</ul>
+<div style="display:flex;flex-wrap:wrap;gap:24px;margin:28px 0">
+<figure style="flex:1 1 240px;min-width:0;margin:0"><figcaption style="margin-bottom:12px;font-weight:600">全部记录</figcaption><img src="assets/article-media/jotora-app-ui-visual-spec/list.png" alt="声笺全部记录界面" width="390" height="844" style="display:block;width:100%;height:auto" loading="lazy"></figure>
+<figure style="flex:1 1 240px;min-width:0;margin:0"><figcaption style="margin-bottom:12px;font-weight:600">详情</figcaption><img src="assets/article-media/jotora-app-ui-visual-spec/detail.png" alt="声笺详情界面" width="390" height="844" style="display:block;width:100%;height:auto" loading="lazy"></figure>
+</div>
+
+<ul>
+<li><strong>列表</strong>：标题、摘要与日期形成稳定层级，支持按内容辨认；细线分隔条目，维持连续浏览。</li>
+<li><strong>详情</strong>：“原文 / 整理稿”分开展示，明确来源与 AI 结果的区别；操作集中于顶部，正文保留完整阅读空间。</li>
+</ul>
+<h2 id="section-2">视觉语言</h2>
+<ul>
+<li><strong>气质</strong>：安静、克制、亲和。暖白背景、深色文字与少量强调色，将注意力留给记录内容。</li>
+<li><strong>表达</strong>：平面展开，以文字、留白和细分隔组织页面，减少装饰与容器嵌套。</li>
+</ul>
+<h2 id="section-3">字体与层级</h2>
+<ul>
+<li><strong>字体</strong>：系统无衬线字体。沿用设备熟悉的中文显示方式，服务记录与阅读。</li>
+<li><strong>层级</strong>：标题以尺寸和字重建立重点；正文使用常规字重与宽松行距，适合口述转写和长段中文。</li>
+</ul>
+<h2 id="section-4">版式与节奏</h2>
+<ul>
+<li><strong>首页</strong>：场景提示、最近记录与捕捉入口纵向展开；留白集中在内容之间，主操作固定在底部。</li>
+<li><strong>任务页面</strong>：录音页集中，列表页紧凑，详情页舒展；随任务改变信息密度，保持一致的对齐与间距秩序。</li>
+</ul>
+<h2 id="section-5">色彩</h2>
+<ul>
+<li><p>暖白背景：<code>#FCFBF8</code></p>
+</li>
+<li><p>深色正文：<code>#242722</code></p>
+</li>
+<li><p>辅助灰：<code>#72756D</code></p>
+</li>
+<li><p>主动作砖红：<code>#B64C3D</code></p>
+</li>
+<li><p>品牌灰绿：<code>#446B51</code></p>
+</li>
+<li><p><strong>砖红</strong>：强调语音记录、结束并保存等关键动作。</p>
+</li>
+<li><p><strong>灰绿</strong>：用于品牌标识与辅助操作，与主动作区分；状态同时保留文字说明。</p>
+</li>
+</ul>
+<h2 id="section-6">图像与形状</h2>
+<ul>
+<li><strong>标识</strong>：圆润的引语记号，关联口述与记录，以简洁轮廓保持小尺寸识别。</li>
+<li><strong>形状</strong>：正文与列表保持平面；圆角集中于按钮、输入框与临时菜单，区分内容和可操作区域。</li>
+</ul>
+<h2 id="section-7">动效与反馈</h2>
+<ul>
+<li><strong>录音反馈</strong>：波形、计时与状态文字共同表达记录或暂停，避免仅靠动画判断状态。</li>
+<li><strong>操作反馈</strong>：按压与切换保持短促；保存过程明确呈现，录音留存与后续转写、整理分别反馈。</li>
+</ul>
+<h2 id="section-8">设计参考</h2>
+<ul>
+<li><a target="_blank" rel="noopener noreferrer" href="https://cleftnotes.com/product">Cleft</a>：参考专注录音、内容列表及对外分享与内部操作的分工，保留“先捕捉、后处理”的任务顺序。</li>
+<li><a target="_blank" rel="noopener noreferrer" href="https://www.iflyrec.com/helpCenter_features_xftj/helpCenter_features_xftj.html">讯飞听见</a>：参考原始转写、整理结果与原音核对关系，保留来源与结果分层。</li>
+</ul>
+<h2 id="section-9">配图说明</h2>
+<p>首页与录音图来自原生 Android 模拟器，列表与详情图来自历史 React Native Web 渲染，均使用合成数据，并非正式版最新真机截图。详情图存在重复测试文字，用于本次布局展示。</p>
+</div></article><section class="article-comments" id="comments" aria-labelledby="comments-title">
+  <div class="article-comments-heading"><h2 id="comments-title" data-text-en="Comments">留言</h2>
+  <p data-text-en="Powered by Disqus.">由 Disqus 提供。</p></div>
+  <button type="button" data-comments-retry hidden>重试加载</button>
+  <p role="status" data-comments-status aria-live="polite"></p>
+  <div id="disqus_thread" data-disqus-shortname="lipengfei"
+    data-page-url="https://lipengfei.top/jotora-app-ui-visual-spec.html?discussion=public"
+    data-page-identifier="article:/jotora-app-ui-visual-spec.html"
+    data-page-title="声笺 App UI 视觉规范"></div>
+  <noscript><p>请启用 JavaScript 查看评论。</p></noscript>
+</section>
+</main>
+<footer class="wrap"><div class="footer-inner"><div class="footer-meta site-age-meta"><span>© 2026 李鹏飞</span><span class="site-age" data-site-age data-established-date="2026-09-19" title="始于 2026.09.19">本站始于 2026.09.19</span></div><div class="footer-actions"><div class="language-switch" data-language-switch role="group" aria-label="语言 / Language" hidden><button type="button" data-language="zh" lang="zh-CN" aria-pressed="true">中文</button><span aria-hidden="true">/</span><button type="button" data-language="en" lang="en" aria-pressed="false">English</button></div><div class="footer-socials"><a href="https://www.linkedin.com/in/pengfei-li-7ab27b378/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/plwhd" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://x.com/li191qq" target="_blank" rel="noopener noreferrer">X (Twitter)</a></div></div></div></footer><aside class="site-greeting" data-site-greeting aria-label="网站&#x62db;呼">
+  <button class="site-greeting-button" type="button" aria-label="向网站打个&#x62db;呼">
+    <svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><circle cx="14" cy="14" r="10.25" stroke="currentColor" stroke-width="1.6"/><circle cx="10.25" cy="11.75" r="1.15" fill="currentColor"/><circle cx="17.75" cy="11.75" r="1.15" fill="currentColor"/><path d="M9.5 16.2C10.6 18.25 12.15 19.1 14 19.1S17.4 18.25 18.5 16.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+  </button>
+  <span class="site-greeting-sr" role="status" aria-live="polite" aria-atomic="true"></span>
+  <span class="site-greeting-note" data-greeting-note hidden></span>
+</aside>
+</body></html>
