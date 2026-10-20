@@ -11,7 +11,7 @@
 @font-face{font-family:"Gomaas Inter Web";src:url("assets/fonts/inter-latin.woff2") format("woff2");font-style:normal;font-weight:100 900;font-display:swap;}
 @font-face{font-family:"Gomaas Montserrat Web";src:url("assets/fonts/montserrat-latin.woff2") format("woff2");font-style:normal;font-weight:100 900;font-display:swap;}
 @font-face{font-family:"Gomaas Mono Web";src:url("assets/fonts/jetbrains-mono-latin.woff2") format("woff2");font-style:normal;font-weight:100 800;font-display:swap;}
-@font-face{font-family:"Gomaas Han Web";src:url("assets/fonts/han-sc.woff2?v=5380c1bc5a16") format("woff2");font-style:normal;font-weight:250 900;font-display:swap;}
+@font-face{font-family:"Gomaas Han Web";src:url("assets/fonts/han-sc.woff2?v=3be86628eebe") format("woff2");font-style:normal;font-weight:250 900;font-display:swap;}
 /* 02 全站基础与首页：以下规则保留原顺序，可按选择器名称搜索。
  * body：背景 #fffafa、默认文字 #18181b 与字体；a：悬浮及键盘焦点反馈。
  * .wrap：最大宽 768px，含左右各 24px 内距，最大内容宽约 720px；nav：居中、可换行导航。
@@ -25,6 +25,8 @@
 img.avatar{object-fit:cover;object-position:center 28%}.about .contact-phone{margin:20px 0 0;font-size:14px}
 
 /* 04 首页背景信息：雇主、职业方向说明及学习条目的局部排版。 */
+.hero-availability{font-size:13px;line-height:1.8;color:#777179;margin:12px 0 0}
+.entry a.product-link{color:inherit;text-decoration:none}.entry a.product-link:hover,.entry a.product-link:focus-visible{color:#0969da;text-decoration:none}
 .background{padding-top:24px;padding-bottom:8px}.background-title{font-size:14px;letter-spacing:0;color:#625d64;margin:0 0 22px}.background-title .label{margin-top:5px}.employer{display:inline-flex;align-items:center;gap:20px;text-decoration:none}.employer img{width:64px;height:64px;object-fit:contain}.employer strong{font-size:17px;font-weight:500}.employer-role{display:block;margin-top:7px;font-size:12px;color:#777179}.direction-copy{border-top:1px solid #e4dfe1;padding-top:14px}.direction-copy p{font-size:14px;line-height:1.95;color:#625d64;letter-spacing:.025em;margin:14px 0}.learning{margin-top:28px;padding-left:18px;border-left:2px solid #d7d0d4}.learning h3{font-size:15px}.learning p{margin:8px 0 0}.motto{line-height:1.5}
 
 /* 05 简历页：操作区可换行，预览图保持原比例；手机端间距单独调整。 */

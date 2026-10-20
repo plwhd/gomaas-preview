@@ -6,8 +6,9 @@
   const items = [...document.querySelectorAll('[data-article-category]')];
   const status = document.querySelector('[data-category-status]');
   const valid = new Set(buttons.map(button => button.dataset.category));
-  let current = 'all';
-  const normalize = value => valid.has(value) ? value : 'all';
+  const defaultCategory = valid.has('design') ? 'design' : 'all';
+  let current = defaultCategory;
+  const normalize = value => valid.has(value) ? value : defaultCategory;
   function announce() {
     const english = document.documentElement.lang === 'en';
     group.setAttribute('aria-label', english ? 'Article categories' : '文章分类');
@@ -25,8 +26,8 @@
     if (!button || !group.contains(button)) return;
     const next = button.dataset.category === current ? 'all' : button.dataset.category;
     const url = new URL(location.href);
-    if (next === 'all') url.searchParams.delete('category');
-    else url.searchParams.set('category', next);
+    // Keep All explicit so a reload does not revert to the default Design filter.
+    url.searchParams.set('category', next);
     // Filtering remains usable if this browser restricts history updates.
     try { if (url.href !== location.href) history.pushState(null, '', url); } catch { /* Optional URL state. */ }
     apply(next);
