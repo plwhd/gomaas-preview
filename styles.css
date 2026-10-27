@@ -11,7 +11,7 @@
 @font-face{font-family:"Gomaas Inter Web";src:url("assets/fonts/inter-latin.woff2") format("woff2");font-style:normal;font-weight:100 900;font-display:swap;}
 @font-face{font-family:"Gomaas Montserrat Web";src:url("assets/fonts/montserrat-latin.woff2") format("woff2");font-style:normal;font-weight:100 900;font-display:swap;}
 @font-face{font-family:"Gomaas Mono Web";src:url("assets/fonts/jetbrains-mono-latin.woff2") format("woff2");font-style:normal;font-weight:100 800;font-display:swap;}
-@font-face{font-family:"Gomaas Han Web";src:url("assets/fonts/han-sc.woff2?v=4de85dbc8373") format("woff2");font-style:normal;font-weight:250 900;font-display:swap;}
+@font-face{font-family:"Gomaas Han Web";src:url("assets/fonts/han-sc.woff2?v=8a4e29e39450") format("woff2");font-style:normal;font-weight:250 900;font-display:swap;}
 /* 02 全站基础与首页：以下规则保留原顺序，可按选择器名称搜索。
  * body：背景 #fffafa、默认文字 #18181b 与字体；a：悬浮及键盘焦点反馈。
  * .wrap：最大宽 768px，含左右各 24px 内距，最大内容宽约 720px；nav：居中、可换行导航。
