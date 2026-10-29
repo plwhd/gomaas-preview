@@ -107,6 +107,14 @@ AI 辅助：GPT
 
 ZARA 的公开商品资料提供了一个适合比较的例子：款号2907/409/808采用银色椭圆金属框；款号2727/206/400同样称为椭圆太阳镜，但采用蓝色醋酸纤维镜架。[ZARA：银色椭圆款](https://www.zara.com/uk/en/limited-edition-oval-sunglasses-p02907409.html)；[ZARA：蓝色椭圆款](https://www.zara.com/us/en/oval-sunglasses-p02727206.html)
 
+<p><img src="assets/article-media/eyewear-style/zara-silver-oval.jpg" alt="ZARA 银色椭圆金属框眼镜，模特搭配蓝灰色连帽上衣" width="375" height="563" style="display:block;width:100%;max-width:375px;height:auto;margin-left:auto;margin-right:auto" loading="lazy" decoding="async"></p>
+
+*ZARA 银色椭圆款，款号2907/409/808。细金属边框在脸上留下轻细的轮廓。图片来源：[ZARA 官方商品页](https://www.zara.com/uk/en/limited-edition-oval-sunglasses-p02907409.html)。*
+
+<p><img src="assets/article-media/eyewear-style/zara-blue-oval.jpg" alt="ZARA 蓝色椭圆太阳镜，厚边框与深色镜片形成清楚的面部重点" width="563" height="845" style="display:block;width:100%;max-width:563px;height:auto;margin-left:auto;margin-right:auto" loading="lazy" decoding="async"></p>
+
+*ZARA 蓝色椭圆款，款号2727/206/400。厚边框、蓝色与深色镜片共同增加眼镜的存在感。图片来源：[ZARA 官方商品页](https://www.zara.com/us/en/oval-sunglasses-p02727206.html)。*
+
 这两项商品说明让“椭圆形”之外的差别变得清楚：一款以银色金属参与造型，一款把蓝色带入镜架。选择时，除了问“椭圆适不适合我”，还可以继续问：希望脸部多一点金属光泽，还是多一点颜色？衣服和其他配饰中，哪一种关系更合适？
 
 例如，把银色椭圆镜框与灰色衬衫、少量银色饰物放在一起，可以尝试偏冷、较集中的细节关系；把蓝色镜架放进白T恤与牛仔的组合，则可以尝试用蓝色联系上下两处。这是根据商品特征提出的搭配推演，不是对官网模特造型的复述。
