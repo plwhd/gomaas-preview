@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="可交给不同AI工具使用的写作规范，涵盖选题、分析深度、来源、配图、清晰表达、两轮自审，以及完整Markdown交稿与接入要求。"><meta name="robots" content="noindex,nofollow"><title>李鹏飞</title><link rel="icon" href="favicon.ico?v=20261003-b-original" sizes="16x16 32x32 48x48"><link rel="icon" type="image/png" sizes="32x32" href="assets/pengfei-wing-32.png?v=20261003-b-original"><link rel="icon" type="image/svg+xml" sizes="any" href="assets/pengfei-wing-original.svg?v=20261003-b-original"><link rel="apple-touch-icon" sizes="180x180" href="assets/pengfei-wing-apple-180.png?v=20261003-b-original"><link rel="stylesheet" href="styles.css?v=20261030-ai-article-writing-standard"><script defer src="assets/analytics.js?v=20261030-ai-article-writing-standard" data-website-id="f18cb949-fc16-4710-8355-ca4601609d4c"></script><script defer src="assets/language.js?v=20261006-article-language-v1"></script><script defer src="assets/site-age.js?v=20261004-v3"></script><link rel="stylesheet" href="assets/site-greeting.css?v=20261006-footer-horizontal-v1"><script defer src="assets/site-greeting.js?v=20261005-daily-v1"></script><link rel="stylesheet" href="assets/article-export.css?v=20261010-v2"><script defer src="assets/article-export.js?v=20261010-v2"></script>
+<link rel="preconnect" href="https://disqus.com">
+<link rel="preconnect" href="https://c.disquscdn.com">
+<link rel="preload" href="https://lipengfei.disqus.com/embed.js" as="script" fetchpriority="low">
+<link rel="stylesheet" href="assets/article-comments.css?v=20261017-v2"><script defer src="assets/article-comments.js?v=20261017-v2"></script>
+<link rel="stylesheet" href="assets/site-notice.css?v=20261019-status-v1"></head>
+<body class="site-greeting-page articles-shell"><a class="skip" href="#main">跳至正文</a><div class="site-notice"><p data-text-en="This website is being updated. Some pages and features are still being refined.">网站正在持续更新，部分页面与功能仍在调整。</p></div>
+<header class="wrap"><nav aria-label="主导航"><a href="index.html">首页</a><a href="index.html#direction">职业方向</a><a href="index.html#experience">工作经历</a><a href="index.html#about">关于我</a><a href="articles.html" aria-current="page">文章</a><a href="resume.html" data-gomaas-event="resume_open">查看简历</a></nav></header>
+<main id="main" class="article-page wrap"><div class="article-toolbar"><a class="text-link article-return" href="articles.html">← 返回文章列表</a><div class="article-export" role="group" aria-label="文章导出" data-article-export data-export-zh="assets/markdown/ai-article-writing-standard.zh.md">
+<div class="article-export-actions"><button class="article-export-action" type="button" data-copy-markdown hidden><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h4"/></svg><span data-copy-label>复制 Markdown</span></button><a class="article-export-action" data-download-markdown href="assets/markdown/ai-article-writing-standard.zh.md" download="通用 AI 文章写作规范.md" title="下载本文的 Markdown 文件（.md）"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></svg><span data-download-label>下载 Markdown</span></a></div>
+<p class="article-export-status is-quiet" data-export-status role="status" aria-live="polite" aria-atomic="true"></p>
+</div>
+</div><article lang="zh-CN" data-article-content><div class="article-heading"><h1>通用 AI 文章写作规范</h1><p class="article-meta"><span>发布于 <time datetime="2026-10-30">2026.10.30</time></span><span data-article-version>版本：<span lang="en">V1</span></span><span>AI 辅助：<span lang="en">GPT</span></span></p><p class="article-keywords"><strong>关键词</strong>：AI写作　·　文章规范　·　清晰表达　·　资料核验　·　两轮自审　·　Markdown</p></div><p class="article-language-note" lang="en">This article is available in Chinese.</p><div class="article-content porter-article">
+<p>版本：2.0 · 更新：2026-10-30</p>
+<p>适用于豆包、千问、GPT及其他具备相应能力的AI写作工具。用于概念解释、书籍与影视分析、艺术与设计细读、品牌与技术分析，以及依据真实材料整理的个人文章。</p>
+<p>目标：交付一篇定位明确、依据可靠、分析有深度、普通读者能够读懂的完整中文文章。写作工具负责研究、写作与两轮自审；稿件随后可以交给其他工具核验、排版，并按用户选择发布。</p>
+<p>这份规范统一的是质量要求。不同工具的资料访问、图像理解与分析能力仍有差异，不能仅靠同一提示词保证完全相同的成稿水平。</p>
+<h2 id="section-1">快速使用</h2>
+<p>把本文件上传给写作AI，或粘贴全文，再发送：</p>
+<blockquote>
+<p>请按这份规范，围绕【主题】完成一篇文章。材料是【附文件、图片、原文或链接；没有可留空】。特别关注【可选的重点】。请先修正你能解决的问题，完成两轮自审，交付完整中文Markdown和单独的简短交稿说明。需要配图时，将核实过的图片直接嵌入相应段落。</p>
+</blockquote>
+<p>替换方括号即可。已经交代清楚的要求不必重复询问；只有缺失信息会改变主题、用户立场或核心事实时，才集中提问。</p>
+<p>本文件的各节是写作要求，不是文章目录。不要把它们复制成每篇文章的固定章节。</p>
+<h2 id="section-2">1. 写作的基本目标</h2>
+<p>默认读者对主题感兴趣，但没有系统学过相关知识。默认使用自然、准确、克制的中文书面表达；除非用户另有要求，不制作英文版，不添加个人经历或求职背景。</p>
+<p>“有深度”应当体现在读者能理解以下内容：主要判断是什么；依据是什么；中间经过了什么关系或过程；哪些条件会改变结果；这个认识能帮助读者怎样观察或判断。</p>
+<p>篇幅用来完成解释。用户要深入长文时，不能只交概览、提纲或若干简短结论；也不能依靠术语、反复总结和宽泛背景把短内容拉长。材料足够时，把两三个有辨识度的问题分析透，通常比覆盖十几个方向更有效。</p>
+<h2 id="section-3">2. 先确定一个能回答的问题</h2>
+<p>动笔前，在内部明确读者、核心问题、材料范围与主要判断，再围绕它安排正文。最终展示必要的依据和推理即可，不必输出完整构思过程。</p>
+<p>用户只提供大方向时，主动选择材料能支持的切入点。例如，“ZARA分析”可以收敛为“鞋面与裤脚的关系怎样改变一套造型的比例”；不能同时扩成品牌历史、设计师、经营模式、摄影和消费建议。</p>
+<p>后续各节应推进同一个问题。介绍人物、生平、时代或概念，只保留理解分析需要的部分。用户明确要求全面梳理时，再给足背景和分支，并用一条主线连接它们。</p>
+<h2 id="section-4">3. 标题与开头要尽快进入重点</h2>
+<p>标题让读者看见对象和真正要研究的内容。小标题应说明本节具体推进什么，避免只写“背景”“价值”“意义”，也不要用“深度解读”“终极指南”等词代替清楚的定位。</p>
+<p>开头一至两个自然段，让读者知道这篇文章要解释什么，以及可以先把握的主要认识。必要背景随分析补充。不要先绕一圈行业变化、作者感想或泛泛定义，再进入题目。</p>
+<p>“尽快进入重点”不等于第一句塞进全部结论，也不等于把文章缩成答案摘要。读者应先抓住问题，再跟随解释。</p>
+<p>例子：</p>
+<ul>
+<li>空泛开头：“发型是个人形象的重要组成部分，对我们的生活有着深远影响。”</li>
+<li>具体开头：“两侧头发蓬开，会让头部显得更宽；刘海落下来，会遮住一部分额头。选发型，可以先看希望头部形成什么轮廓，再考虑它与眼镜和衣领怎样配合。”</li>
+</ul>
+<p>这个例子说明进入重点的方法，不要求所有题目都采用同样句式。</p>
+<h2 id="section-5">4. 用来源支撑事实，把分析写在正文里</h2>
+<p>优先使用与判断直接相关的原著、原始研究、官方文档、作品本身及可核验资料。可靠二手材料可以帮助解释背景。搜索摘要用于寻找来源，不能冒充已经读过原文。</p>
+<p>核心事实应有对应出处。来源可以放在相关段落末尾，或用编号对应文末资料；不需要每句话都介绍某机构说了什么。</p>
+<p>区分三种内容：资料明确提供的事实、作品或图片中实际可见的内容、本文据此提出的解释。它们可以自然衔接，不必逐句贴标签，但不能把自己的视觉感受写成品牌意图或研究共识。</p>
+<p>例如，“银色细框留下较轻的边缘”可以作为图像观察；“这副眼镜证明佩戴者性格理性”没有相应依据。品牌自己声称的特点，也不能直接变成文章已经验证的结论。</p>
+<p>必须如实说明资料能力：</p>
+<ul>
+<li>能联网时，核对关键原页；价格、规格、政策等易变事实说明适用日期、版本或地区。</li>
+<li>不能联网或页面打不开时，利用用户提供的可靠材料，并说明影响核心判断的缺口。不要生成看似真实的参考文献、链接、页码或研究结论。</li>
+<li>书籍只读过节选，就针对节选能支持的问题分析；不能声称通读全书。电影只看过片段，不能声称逐场审阅全片。</li>
+<li>未亲自打开、观看或核对的文件、图像、链接，不得标为“已核实”。其他AI的自述也不能替代原始证据。</li>
+</ul>
+<p>直接引用要准确、简短并注明归属；不要用大段摘录替代自己的解释。涉及实质争议时，寻找能够区分不同解释的证据；不要只搜支持预设立场的材料。</p>
+<h2 id="section-6">5. 把结论中间的关系解释出来</h2>
+<p>每个重要判断至少要有足以支撑它的具体分析。可以从“材料中发生了什么、为什么会产生这种结果、换一个条件会怎样”中选取适合的问题展开，不必把三个问题反复写成固定段落。</p>
+<h3 id="section-7">视觉与作品分析</h3>
+<p>实际查看原图或片段，再分析可见细节、彼此的关系及其效果。关注轮廓、位置、明暗、颜色、材质、动作、节奏等与本题相关的因素，不堆术语。</p>
+<p>浅层判断：“这套穿搭很松弛，有高级感。”</p>
+<p>进一步分析：“肩线下落、领口较宽，头发向两侧形成不规则弧线，几处柔软边缘相互呼应；黑色裤腰又形成清楚的收束。松开的部分与集中的部分共同组织了这套造型。”</p>
+<p>再检验：“如果肩部、头发和裤腰都同样蓬大，整体分量也会改变。”这是帮助理解关系的假设比较，不能写成已经拍摄过的对照实验。</p>
+<p>不要仅凭人物外貌推断身份、性格或心理；不要凭成片编造摄影器材、布光方案、剪发手法或幕后创作意图。确有制作资料时再引用。</p>
+<h3 id="section-8">概念、技术与因果分析</h3>
+<p>先说明对象怎样运作，再解释关键环节。区分同时发生、相互关联和已经证实的因果关系；一个生活例子不能证明普遍规律。</p>
+<p>例如，要说明一种压力下的行为，不能只把“紧张”换成“应激”便结束；需要解释在什么情境下发生了什么反应、这怎样影响判断，以及现有材料能支持多强的结论。不能从一次回忆直接作个人诊断。</p>
+<h3 id="section-9">书籍与理论分析</h3>
+<p>围绕核心问题连接原作者的论点、案例和推理。介绍作者观点之后，要继续解释它为什么成立、适用条件是什么、材料是否支持它。不要逐章摘一句话再各配一段感想。</p>
+<p>有真正分量的不同解释时，应公平呈现并回应。材料不足以排除某种解释，就相应收敛结论；不必为每个基础常识虚构反方。</p>
+<h2 id="section-10">6. 术语、例子与数字要帮助理解</h2>
+<p>必要术语第一次出现时，用普通语言说明含义及其在当前问题中的作用。只有检索、区分概念确有需要时才加英文；不要因为用了英文就省略中文解释。</p>
+<p>同一概念保持名称一致；相近概念说明差别。区分长度与蓬松度、事实与评价、相关与因果、收入与利润等，避免换词之后把不同对象混成同一件事。</p>
+<p>例子应当展示关系或检验判断。真实案例交代出处；假设情境明确用“例如，假设……”等自然表述，不冒充作者经历。用户亲身经历只能依据其明确提供的内容，不能替用户发明“最在意”“终于明白”等心理转折。</p>
+<p>有数字时，核对单位、日期、分母、比较对象与计算过程。需要算式才写算式，简单过程可以用文字解释。不要制造没有依据的精确比例。</p>
+<h2 id="section-11">7. 让文章自然、清楚，减少说教与模板感</h2>
+<p>以完整段落推进，一个段落承担一个主要意思。根据内容使用列表和表格，避免把全文拆成短句清单，或每节都写成相同长度、相同节奏。</p>
+<p>优先修改这些问题：</p>
+<ul>
+<li>抽象赞词多，具体对象少，如反复说“高级”“有力量”“很有价值”。</li>
+<li>每一节都先定义、列三点、总结意义，段尾再升华一次。</li>
+<li>高频使用“不是X，而是Y”“真正的……在于……”制造强调。</li>
+<li>对普通观察反复补免责、自证和边界，掩盖了本来要解释的内容。</li>
+<li>开头、小结与结尾反复重述相同观点，没有推进。</li>
+<li>从作品细读突然转成人生劝告，或把审美偏好说成所有人应遵守的标准。</li>
+<li>为了简短删掉中间推理，读者只看到结论却不知道为何成立。</li>
+</ul>
+<p>这些是编辑方向，不是机械禁词表。必要限定应保留在影响判断的位置；广泛的资料局限可以集中说明一次。专业不等于公文，通俗也不等于满篇口头语。</p>
+<h2 id="section-12">8. 图片直接参与分析</h2>
+<p>用户要求图文分析时，把核实过的图片嵌入对应段落，并在附近解释具体看什么。不要只给商品页或图片链接，让读者自行跳转寻找；也不要先讲完全文，再把所有图片堆在文末。</p>
+<p>优先使用用户提供的图片、官方公开图或来源与使用条件明确的材料。保留来源与署名，不去水印，不把他人的图片说成原创，也不编造已获授权。来源署名不能替代必要的使用许可判断。</p>
+<p>实际看过图片，才可细读。不能看图时，不根据文件名、替代文字或商品说明推测画面；先取得可看材料，或者明确交付尚缺图片的文字稿，不能宣称完成图像分析。</p>
+<p>交稿采用标准Markdown：</p>
+<pre><code class="language-markdown">![图片中的具体内容][图片]
+
+*图1：简短说明。来源：[原页]。*
+
+[图片]: images/image-01.jpg
+[原页]: https://example.com
+</code></pre>
+<p>上面是格式示例，不得把示例网址当成真实来源。摄影者如已知，在图注保留署名。使用相对路径时，一并提供对应图片文件；能交付文件时，建议把article.md、交稿说明.md与images文件夹放在一起。不能提供图片文件时，可使用已核对的公开图片直链，并保留原页面来源；无法确认是否显示，就在交稿说明中如实列出。</p>
+<p>不得把仅存在于自己工具内部、另一个设备或临时会话中的路径当成可交付图片。访问受限或获取失败时说明具体缺口，不以其他商品图冒充原图，不伪造“图片已嵌入并检查通过”。</p>
+<h2 id="section-13">9. 自行完成两轮审查，改完再交</h2>
+<p>第一轮检查事实与论证：核心来源、引文、术语、数字、图片对应是否准确；判断是否超出材料；因果、比较和反例是否处理得当。发现问题后修复，再进入下一轮。</p>
+<p>第二轮检查结构与阅读：标题和开头是否清楚定位；段落是否持续推进；必要概念是否解释；是否有重复、自证、说教和空泛总结；图片、链接和Markdown是否完整。实质修改后，复核受到影响的事实与推理。</p>
+<p>用以下七项作为内部验收，不必输出一份长评分报告：</p>
+<div class="article-table" role="region" aria-label="文章表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>检查项</th>
+<th>应达到的结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>定位与范围</td>
+<td>开头能说明要理解的问题，全文没有失去主线</td>
+</tr>
+<tr>
+<td>事实与来源</td>
+<td>核心事实可追溯，阅读和核验状态真实</td>
+</tr>
+<tr>
+<td>解释与推理</td>
+<td>主要判断有具体依据，中间关系讲得清楚</td>
+</tr>
+<tr>
+<td>比较与异议</td>
+<td>比较口径一致，实际存在的重要异议得到处理</td>
+</tr>
+<tr>
+<td>案例与图像</td>
+<td>例子有作用，图片与对应分析一致，没有假观察</td>
+</tr>
+<tr>
+<td>表达与术语</td>
+<td>普通读者能读懂，没有靠术语或免责填充篇幅</td>
+</tr>
+<tr>
+<td>完整与可交付</td>
+<td>全文、来源、必要图片及交稿信息齐全</td>
+</tr>
+</tbody></table></div>
+<p>不能用自评高分或“已完成两轮审查”替代实际修订。没有执行的步骤就如实标明；有影响核心判断的资料缺口时，写清缺少什么、影响哪一部分。基础问题自行解决，只有需要用户事实或方向决定时才提问。</p>
+<p>达到上述标准后交付，不再进行没有具体问题的无限风格优化。</p>
+<h2 id="section-14">10. 交付完整正文和简短交稿说明</h2>
+<p>有文件工具时，交付article.md、交稿说明.md及用到的图片；只有对话输出时，将完整正文与交稿说明清楚分开。不要把整篇文章放在代码块内，不只交提纲，不写“这里可以继续扩展”。</p>
+<p>article.md包含一个一级标题、完整正文、配图与图注、必要的来源链接。使用标准Markdown，段落与标题留空行，不插入网站按钮、脚本、技术配置、内部自检记录或私人路径。除非用户要求，不添加英文译稿。</p>
+<p>交稿说明只保留移交需要的信息：</p>
+<ul>
+<li><strong>标题、摘要、关键词</strong>：摘要用一两句，关键词3—7个。</li>
+<li><strong>写作工具</strong>：只写实际已知的工具或型号；具体型号不明就不猜，不因交给GPT处理而改署名为GPT。</li>
+<li><strong>材料范围</strong>：实际读过的资料、看过的图片或片段；关键来源保留能打开的地址或可定位文件、章节。正文已有完整出处时，只补核验状态与重要对应关系，不重复堆一遍链接。</li>
+<li><strong>两轮自审</strong>：写实际完成情况，以及重要修正；用两三句即可，不输出完整思考过程。</li>
+<li><strong>待处理项</strong>：只列真实缺口，说明是否阻碍定稿；没有则写“无已知阻碍定稿的问题”。</li>
+</ul>
+<p>首次写作不自行填写正式发布日期、网站版本号或“已发布”。草稿完成、用户确认、网站验收与正式上线是不同状态。用户已提供并确认的元信息可沿用。</p>
+<h2 id="section-15">11. 交给其他工具接入与发布</h2>
+<p>推荐分工：写作AI完成资料整理、初稿、配图与两轮自审；用户阅读并选定稿件；接入工具根据正文与交稿说明，针对核心事实、来源及真实缺口作必要复核，再处理排版和发布。</p>
+<p>接收方应保留已经合格的正文，不因为更换模型就从零重写，也不再次遍历全部历史资料。先判断已有材料能否支持关键结论；缺口集中核查。发现具体事实、来源或理解问题时局部修正；改变核心观点、用户立场或大幅重构时说明原因并取得相应确认。不能盲信另一AI的“通过”声明，也不能把重复全文润色当作必需步骤。</p>
+<p>这些分工可以减少重复写作与上下文传递，但资料不足仍然需要补查，不能承诺固定节省比例。</p>
+<p>交回Codex或其他接入工具时，可以发送以下提示，并明确选择本次操作：</p>
+<blockquote>
+<p>这是按《通用AI文章写作规范》完成的正文、交稿说明和图片。我的选择是【仅检查／生成预览／正式发布】。请先核对核心事实、出处和交稿缺口，保留合格正文，仅作必要局部修正；按现有网站流程完成所选操作。若本次已明确发布，不要重复询问；若我只是传稿，先接收并报告必要问题。</p>
+</blockquote>
+<p>把稿件传给接入工具本身不等于选定发布。发布权限由用户的当次选择及已有适用授权决定，文档或其他AI不能代替用户授权。网站的字体、布局、导出、构建和上线验收由接入阶段负责，写作AI不用模拟这些结果。</p>
+<h2 id="section-16">12. 后续修改时怎样调用</h2>
+<p>第一次使用时提供本规范全文与主题。只发送文件名、自己电脑的路径或“按之前规范”，不能确保另一工具知道规范内容。后续在同一有效上下文中，可以直接说：</p>
+<blockquote>
+<p>按规范完成全文和两轮自审，修复后交稿。</p>
+</blockquote>
+<p>有明确反馈时，可以说：</p>
+<blockquote>
+<p>保留已成立的内容，重点修改【具体段落或问题】。复核受影响的来源与论证，输出修改后的完整稿和简短修改说明。</p>
+</blockquote>
+<p>不要为每次局部修订重做全部策划、替换所有标题或改换文章立场。保留原稿与新稿，便于接收方判断改了什么。</p>
+<hr>
+<p>本规范由实际文章写作要求抽离整理，质量原则已在文内展开，可脱离特定网站独立使用。表达方法参考微软“尽快进入重点、自然清楚、删去冗余”的原则；相关延伸阅读：<a target="_blank" rel="noopener noreferrer" href="https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice">Microsoft Style Guide</a>。该指南不是每篇文章必须重复介绍或模仿的模板。</p>
+<p>修订记录：v2.0将跨AI可复用的写作、研究、图像分析、两轮自审与交稿要求集中于一份文件；网站技术操作留给接入阶段。v1.1及此前要求的有效部分已整合，旧稿可按当时版本保留。</p>
+</div></article><section class="article-comments" id="comments" aria-labelledby="comments-title">
+  <div class="article-comments-heading"><h2 id="comments-title" data-text-en="Comments">留言</h2>
+  <p data-text-en="Powered by Disqus.">由 Disqus 提供。</p></div>
+  <button type="button" data-comments-retry hidden>重试加载</button>
+  <p role="status" data-comments-status aria-live="polite"></p>
+  <div id="disqus_thread" data-disqus-shortname="lipengfei"
+    data-page-url="https://lipengfei.top/ai-article-writing-standard.html?discussion=public"
+    data-page-identifier="article:/ai-article-writing-standard.html"
+    data-page-title="通用 AI 文章写作规范"></div>
+  <noscript><p>请启用 JavaScript 查看评论。</p></noscript>
+</section>
+</main>
+<footer class="wrap"><div class="footer-inner"><div class="footer-meta site-age-meta"><span>© 2026 李鹏飞</span><span class="site-age" data-site-age data-established-date="2026-09-19" title="始于 2026.09.19">本站始于 2026.09.19</span></div><div class="footer-actions"><div class="language-switch" data-language-switch role="group" aria-label="语言 / Language" hidden><button type="button" data-language="zh" lang="zh-CN" aria-pressed="true">中文</button><span aria-hidden="true">/</span><button type="button" data-language="en" lang="en" aria-pressed="false">English</button></div><div class="footer-socials"><a href="https://www.linkedin.com/in/pengfei-li-7ab27b378/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/plwhd" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://x.com/li191qq" target="_blank" rel="noopener noreferrer">X (Twitter)</a></div></div></div></footer><aside class="site-greeting" data-site-greeting aria-label="网站&#x62db;呼">
+  <button class="site-greeting-button" type="button" aria-label="向网站打个&#x62db;呼">
+    <svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><circle cx="14" cy="14" r="10.25" stroke="currentColor" stroke-width="1.6"/><circle cx="10.25" cy="11.75" r="1.15" fill="currentColor"/><circle cx="17.75" cy="11.75" r="1.15" fill="currentColor"/><path d="M9.5 16.2C10.6 18.25 12.15 19.1 14 19.1S17.4 18.25 18.5 16.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+  </button>
+  <span class="site-greeting-sr" role="status" aria-live="polite" aria-atomic="true"></span>
+  <span class="site-greeting-note" data-greeting-note hidden></span>
+</aside>
+</body></html>
