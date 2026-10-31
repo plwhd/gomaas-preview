@@ -9,6 +9,16 @@
   const defaultCategory = valid.has('design') ? 'design' : 'all';
   let current = defaultCategory;
   const normalize = value => valid.has(value) ? value : defaultCategory;
+  function categoryFromURL() {
+    const url = new URL(location.href);
+    // Old Life links led to a broad mixed archive; keep them open as All.
+    if (url.searchParams.get('category') === 'life') {
+      url.searchParams.set('category', 'all');
+      try { history.replaceState(null, '', url); } catch { /* Optional URL state. */ }
+      return 'all';
+    }
+    return url.searchParams.get('category');
+  }
   function announce() {
     const english = document.documentElement.lang === 'en';
     group.setAttribute('aria-label', english ? 'Article categories' : '文章分类');
@@ -32,8 +42,8 @@
     try { if (url.href !== location.href) history.pushState(null, '', url); } catch { /* Optional URL state. */ }
     apply(next);
   });
-  window.addEventListener('popstate', () => apply(new URL(location.href).searchParams.get('category')));
+  window.addEventListener('popstate', () => apply(categoryFromURL()));
   new MutationObserver(announce).observe(document.documentElement, {attributes:true, attributeFilter:['lang']});
-  apply(new URL(location.href).searchParams.get('category'));
+  apply(categoryFromURL());
   group.hidden = false;
 })();
