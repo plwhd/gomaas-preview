@@ -11,6 +11,10 @@ AI 辅助：千问 / Codex
 
 以 ZARA 的商品造型和广告画面为例，可以把这种差别拆开来看。这里讨论的是可以观察、比较的视觉关系；“热烈”“沉稳”“轻快”等词用于描述造型感受，不代表穿着者的性格，也不意味着一种颜色能让所有人产生同样的情绪。
 
+<p><img src="assets/article-media/red-clothing-expression/burgundy-bucket.jpg" alt="酒红色水桶包位于黑色宽松外套侧面，深红包身、细肩带和金色扣件清楚可见" width="850" height="1275" style="display:block;width:100%;max-width:563px;height:auto;margin-left:auto;margin-right:auto" loading="lazy" decoding="async"></p>
+
+图 1：ZARA 酒红色水桶包造型。包身与黑色外套形成颜色区别，同时保留深色的整体基调。图片来源：ZARA 官方商品页。²
+
 ## 先看三个具体的对比
 
 先看一只酒红色水桶包。它与黑色外套同处深色范围，颜色不同，却没有跳出整套衣服的明暗基调。再看深色牛仔外套里露出的红色内搭：红色只在领口和下摆出现，面积有限，位置却把上身的几个部分联系起来。最后是一件红色装饰外套：红色覆盖肩部和手臂，花朵、绳结与流苏让它向身体之外展开，视觉分量明显增加。
@@ -35,6 +39,10 @@ AI 辅助：千问 / Codex
 
 正红也不专属于正式或性感的造型。棉质 T 恤、运动外套、蓬松针织和缎面长裙，即使用接近的红色，仍会保留各自的品类联想。若忽略服装种类，只把它们都归为“强势”，反而看不出衣服之间真正的区别。
 
+<p><img src="assets/article-media/red-clothing-expression/red-shirt.jpg" alt="红色宽松衬衫搭配深色及膝中裤，领口敞开，衬衫下摆收进裤腰" width="375" height="563" style="display:block;width:100%;max-width:375px;height:auto;margin-left:auto;margin-right:auto" loading="lazy" decoding="async"></p>
+
+图 2：ZARA 红色宽松衬衫。敞开的领口、较宽的袖子与深色中裤共同形成造型；红色鲜明，但效果不能只归结为“强势”。图片来源：ZARA 官方商品页。⁵
+
 ### 樱桃红：先确认它究竟偏深还是偏紫
 
 樱桃红常用来形容较浓郁、略偏冷的红色，但实际商品有的明亮，有的已经接近酒红。因此，与其说它必然处在“热烈与克制之间”，不如先观察它和正红相比究竟改变了什么。
@@ -54,10 +62,6 @@ AI 辅助：千问 / Codex
 ### 酒红：与深色相接，不等于没有存在感
 
 酒红是范围较宽的深红名称，可能偏紫，也可能偏棕。它在黑色、深灰和深棕之间，往往能够保留红色区别，同时维持较连续的暗部。这是它容易进入深色穿搭的原因之一。
-
-<p><img src="assets/article-media/red-clothing-expression/burgundy-bucket.jpg" alt="酒红色水桶包位于黑色宽松外套侧面，深红包身、细肩带和金色扣件清楚可见" width="850" height="1275" style="display:block;max-width:100%;height:auto" loading="lazy" decoding="async"></p>
-
-图 1：ZARA 酒红色水桶包造型。包身与黑色外套形成颜色区别，同时保留深色的整体基调。图片来源：ZARA 官方商品页。²
 
 图中的包不是一个几乎看不见的细节。它的体积足够明确，圆弧底部与外套宽大的袖子也形成了形状上的配合。但包身较暗，贴近黑色衣服时，没有出现亮红配浅色衣服那样清楚的跳跃。细肩带又把包身与肩部连接起来，颜色和位置共同组织了这件配饰。
 
@@ -105,13 +109,17 @@ AI 辅助：千问 / Codex
 
 如果希望大面积红色相对安静，可以减少其他抢眼元素，让配饰、领口和鞋更简洁。如果希望它成为舞台或摄影中的主角，则可以反过来保留更强的轮廓与材质变化。这里改变的是表现方向，不是在判定哪一种更“有气场”。
 
+<p><img src="assets/article-media/red-clothing-expression/red-long-dress.jpg" alt="人物在灰色石壁前穿鲜红色抹胸长裙，侧腰有褶皱与系结，裙摆向下展开" width="750" height="1125" style="display:block;width:100%;max-width:563px;height:auto;margin-left:auto;margin-right:auto" loading="lazy" decoding="async"></p>
+
+图 3：ZARA 鲜红色垂褶长裙。红色沿身体纵向延伸，侧腰的褶皱和系结改变局部轮廓；灰色石壁又使裙子的色彩更容易被辨认。图片来源：ZARA 官方商品页。⁶
+
 ### 连续与分散：不是简单的强弱关系
 
 一块连续的红色容易被看作一件完整单品；几处间隔的红色则可能形成呼应。前者偏向集中，后者偏向联系，但不能断言连续色块在所有情况下都更醒目。
 
-<p><img src="assets/article-media/red-clothing-expression/red-layer.jpg" alt="深色牛仔外套内的红色上衣在领口和下摆露出，黑色斜挎包位于胸前" width="563" height="845" style="display:block;max-width:100%;height:auto" loading="lazy" decoding="async"></p>
+<p><img src="assets/article-media/red-clothing-expression/red-layer.jpg" alt="深色牛仔外套内的红色上衣在领口和下摆露出，黑色斜挎包位于胸前" width="563" height="845" style="display:block;width:100%;max-width:563px;height:auto;margin-left:auto;margin-right:auto" loading="lazy" decoding="async"></p>
 
-图 2：ZARA 黑色斜挎包的商品造型。红色在领口和下摆分开出现，深色外套与包保留了画面的主要面积。图片来源：ZARA 官方商品页。³
+图 4：ZARA 黑色斜挎包的商品造型。红色在领口和下摆分开出现，深色外套与包保留了画面的主要面积。图片来源：ZARA 官方商品页。³
 
 领口的红色靠近面部，下摆的红色接近外套与裤装的分界。两处颜色相接近，使内搭即使大部分被遮住，仍能被理解为同一件衣服；深色外套则维持了上身的连续性。红色在这里既是点缀，也是层次的提示。
 
@@ -131,6 +139,10 @@ AI 辅助：千问 / Codex
 
 例如，一件肩部明确、扣合整齐的宽松红外套，可以比一件柔软的贴身针织更严整。判断服装的语气，应看哪些边缘被收紧，哪些部分被放开，而不是先给版型贴性格标签。
 
+<p><img src="assets/article-media/red-clothing-expression/red-short-dress.jpg" alt="人物穿深红色圆领短袖短裙，肩部轮廓明确，裙身侧面有聚拢的斜向褶皱" width="750" height="1125" style="display:block;width:100%;max-width:563px;height:auto;margin-left:auto;margin-right:auto" loading="lazy" decoding="async"></p>
+
+图 5：ZARA 垫肩垂褶短裙。肩部与上身轮廓较明确，腰胯位置的斜褶则贴近身体；一件衣服可以同时保留结构感与贴身部分。图片来源：ZARA 官方商品页。⁷
+
 ### 硬挺与柔软：轮廓、垂坠与表面分别观察
 
 面料影响形状，但材料名称不能直接替代观察。同样叫皮革，厚度、处理方式和结构不同，成衣可能挺括，也可能柔软；针织有的松软，有的紧密有支撑；聚酯纤维既可以形成哑光表面，也可以形成明显光泽。
@@ -143,7 +155,7 @@ AI 辅助：千问 / Codex
 
 <p><img src="assets/article-media/red-clothing-expression/red-fringe.jpg" alt="人物坐在白色椅子上，红色花朵与流苏装饰外套覆盖肩臂并向下垂落，深色宽裤伸向画面右侧" width="2048" height="1344" style="display:block;max-width:100%;height:auto" loading="lazy" decoding="async"></p>
 
-图 3：ZARA STUDIO 2026 秋冬女装广告画面，摄影 Steven Meisel。图片来源：ZARA 官方画面；系列与署名可见 ITX 日本发布资料。⁴
+图 6：ZARA STUDIO 2026 秋冬女装广告画面，摄影 Steven Meisel。图片来源：ZARA 官方画面；系列与署名可见 ITX 日本发布资料。⁴
 
 红色集中在人物上身，裤装、植物和周围环境大多较暗，墙面则偏冷灰。红色因而不只是与裤子区别，也与整张照片的背景形成了色彩关系。
 
@@ -161,7 +173,7 @@ AI 辅助：千问 / Codex
 
 - **鲜明红色、完整色块、清楚轮廓**：表现可能集中在颜色和外形上，其他细节越少，重点越容易集中。
 - **深红色、与深色相邻、体积明确**：色彩区别可以较小，但体积和轮廓仍然可以很强，图 1 就保留了可辨认的包身。
-- **小块红色、不同位置重复出现**：可以联系领口、腰线或身体末端，图 2 的内搭通过两处露出建立了层次。
+- **小块红色、不同位置重复出现**：可以联系领口、腰线或身体末端，图 4 的内搭通过两处露出建立了层次。
 - **红色、复杂装饰、向外展开的边缘**：容易使局部更繁复，是否显得有条理，要继续看周围有没有较连续、较简洁的区域。
 
 这些是观察方法，不是穿搭效果的保证。同一组合在不同身材、光线和背景下，仍然需要重新看实际关系。
@@ -194,9 +206,9 @@ AI 辅助：千问 / Codex
 
 ZARA 的案例值得看，在于红色进入了不同品类和呈现方式：包袋可以靠近身体侧面，内搭可以只在边缘露出，装饰外套则可以放大轮廓。同一个颜色范围，能够提供不同的使用路径。
 
-图 1 更接近日常商品造型，通过深红与黑色的接近保留整体；图 2 用少量红色说明层次；图 3 则把颜色、装饰、身体姿态和摄影环境一起推向更鲜明的时装表达。它们并不矛盾，因为商品使用与广告形象承担的任务并不相同。
+图 1 更接近日常商品造型，通过深红与黑色的接近保留整体；图 4 用少量红色说明层次；图 6 则把颜色、装饰、身体姿态和摄影环境一起推向更鲜明的时装表达。它们并不矛盾，因为商品使用与广告形象承担的任务并不相同。
 
-官方的 2026 秋冬 STUDIO 资料也提到，将蕾丝、亮片、刺绣与流苏等装饰同针织、衬衫和长裤结合，探索日常服装与晚装的关系。⁴ 这能够支持我们理解图 3 中“繁复装饰与常见衣物并置”的做法；至于这套做法是否提高销量、是否更受某一地区欢迎，不能由这几张图回答。
+官方的 2026 秋冬 STUDIO 资料也提到，将蕾丝、亮片、刺绣与流苏等装饰同针织、衬衫和长裤结合，探索日常服装与晚装的关系。⁴ 这能够支持我们理解图 6 中“繁复装饰与常见衣物并置”的做法；至于这套做法是否提高销量、是否更受某一地区欢迎，不能由这几张图回答。
 
 同样，没有系统比较不同地区、不同季节的完整商品目录，就不能断言品牌为了某种肤色而在亚洲多卖番茄红、在欧洲多卖正红，也不能从几件商品推导出红色将流行到哪一年。对穿搭而言，先把眼前的衣服读清楚，比为整个品牌补出一套市场策略更有帮助。
 
@@ -228,7 +240,11 @@ ZARA 的案例值得看，在于红色进入了不同品类和呈现方式：包
 
 1. Jonauskaite, D. & Mohr, C.（2025）. [Do we feel colours? A systematic review of 128 years of psychological research linking colours and emotions](https://link.springer.com/article/10.3758/s13423-024-02615-z). *Psychonomic Bulletin & Review*, 32, 1457–1486。用于色彩与情绪联想的研究背景及其适用边界，不用于证明具体穿搭的心理效果。
 2. ZARA 英国官网：[Bucket bag with buckle detail](https://www.zara.com/uk/en/bucket-bag-with-buckle-detail-p16452810.html)，颜色 Burgundy Red，货号 6452/810/624；图 1 来源。
-3. ZARA 英国官网：[Vertical textured crossbody bag](https://www.zara.com/uk/en/vertical-textured-crossbody-bag-p13517820.html)，货号 3517/820；图 2 来源。
-4. ITX 日本（2026-10-23）：[ZARA STUDIO 秋冬系列发布资料](https://prtimes.jp/main/html/rd/p/000000142.000058949.html)，用于系列方向与图 3 摄影署名。图 3 为本站已留存并核对的同系列官方画面。
+3. ZARA 英国官网：[Vertical textured crossbody bag](https://www.zara.com/uk/en/vertical-textured-crossbody-bag-p13517820.html)，货号 3517/820；图 4 来源。
+4. ITX 日本（2026-10-23）：[ZARA STUDIO 秋冬系列发布资料](https://prtimes.jp/main/html/rd/p/000000142.000058949.html)，用于系列方向与图 6 摄影署名。图 6 为本站已留存并核对的同系列官方画面。
+
+5. ZARA 英国官网：[Oversize poplin shirt](https://www.zara.com/uk/en/oversize-poplin-shirt-p02620695.html)，颜色 Red，货号 2620/695/600；图 2 来源。
+6. ZARA 爱尔兰官网：[Long draped dress](https://www.zara.com/ie/en/long-draped-dress-p01165458.html)，颜色 Bright red，货号 1165/458/632；图 3 来源。
+7. ZARA 英国官网：[Draped dress with shoulder pads](https://www.zara.com/uk/en/draped-dress-with-shoulder-pads-p05039308.html)，颜色 Red，货号 5039/308/600；图 5 来源。
 
 资料核对：2026 年 10 月 31 日。图片版权归原权利人；原比例展示，用于对应案例的视觉分析。
