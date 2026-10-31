@@ -11,6 +11,10 @@ AI 辅助：GPT
 
 “拿破仑外套”更适合作为辨认款式的通俗称呼，不能直接当作准确的服装史名称。本文以 ZARA 官网的深海军蓝绳结饰短外套为主要例子，款号 **1255/706/422**，分析这种款式的历史线索、比例、装饰与搭配。官网将它称为绳结扣短外套，列出的主要结构是短衣身、高领、长袖、对比色绳结装饰和隐藏式前纽扣。¹
 
+<p><img src="assets/article-media/zara-military-jacket/front.jpg" alt="ZARA深海军蓝短外套正面，立领、两列金色绳结装饰与袖口绳饰" width="563" height="845" style="display:block;max-width:100%;height:auto" loading="lazy" decoding="async"></p>
+
+*图1：深海军蓝绳结饰短外套正面，款号1255/706/422。两列金色绳饰集中在前部，袖口保留相同装饰。来源：[ZARA官方商品页](https://www.zara.com/fr/fr/veste-courte-a-alamares-p01255706.html)。*
+
 ## 它与“拿破仑”有什么关系
 
 多排横向绳饰确实属于欧洲历史军服中常见的一类装饰，但不能据此认定它复刻了拿破仑本人的某件衣服。
@@ -32,6 +36,10 @@ AI 辅助：GPT
 短衣身则把这些变化集中在较小范围内。同样数量的绳饰，放在长大衣上，与集中在腰部附近的短外套上，密度和重心会不同。前者可能沿全身延伸，后者更容易把注意力留在胸口、肩部与腰部之间。
 
 这些特征足以建立制服联想，却不必然使每个人都显得威严、强势或自信。衣服提供的是观看线索，人的表情、体态、其他衣物与出现的场景，仍会改变最终感受。
+
+<p><img src="assets/article-media/zara-military-jacket/back.jpg" alt="同款ZARA短外套背面，背部为连续深色衣面，两侧袖口有金色绳饰" width="563" height="845" style="display:block;max-width:100%;height:auto" loading="lazy" decoding="async"></p>
+
+*图2：同款背面。背部没有重复前胸的大面积绳饰，装饰主要延续到袖口。此图为商品静物，不代表实际上身状态。来源：[ZARA官方商品页](https://www.zara.com/fr/fr/veste-courte-a-alamares-p01255706.html)。*
 
 ## 横向绳饰与短衣身，如何改变比例
 
@@ -102,4 +110,4 @@ AI 辅助：GPT
 3. [枫丹白露宫：Le palais de Napoléon Ier](https://www.chateaudefontainebleau.fr/espace-groupe/visites-scolaires-chateau-de-fontainebleau/les-dossiers-pedagogiques/le-palais-de-napoleon-ier/)。其中服饰部分介绍其日常制服。
 4. [英国国家陆军博物馆：John Wilkie 军官短外套，约1854年，藏品1980-03-1-1](https://collection.nam.ac.uk/detail.php?acc=1980-03-1-1)。用于说明轻骑兵服饰中的编带、绳饰及功能与装饰纽扣的区别。
 
-查阅日期：2026年10月31日。本文依据官方商品说明与馆藏资料进行款式分析；未完成该商品图片的可靠读取或实物试穿，不声称观察到具体上身效果。文中的搭配组合为条件性示例，不能据此确认每位穿着者的实际效果。
+查阅日期：2026年10月31日。本文依据官方商品说明、正反面商品图与馆藏资料进行款式分析；配图为商品静物，未进行实物试穿，不据此推定具体上身效果。文中的搭配组合为条件性示例，不能据此确认每位穿着者的实际效果。
