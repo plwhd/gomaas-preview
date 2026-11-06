@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="说明返回（Back）与关闭（Close）的导航去向、退出范围，以及浏览状态和未保存内容的处理。"><meta name="robots" content="noindex,nofollow"><title>李鹏飞</title><link rel="icon" href="favicon.ico?v=20261003-b-original" sizes="16x16 32x32 48x48"><link rel="icon" type="image/png" sizes="32x32" href="assets/pengfei-wing-32.png?v=20261003-b-original"><link rel="icon" type="image/svg+xml" sizes="any" href="assets/pengfei-wing-original.svg?v=20261003-b-original"><link rel="apple-touch-icon" sizes="180x180" href="assets/pengfei-wing-apple-180.png?v=20261003-b-original"><link rel="stylesheet" href="styles.css?v=20261106-back-and-close"><script defer src="assets/analytics.js?v=20261106-back-and-close" data-website-id="f18cb949-fc16-4710-8355-ca4601609d4c"></script><script defer src="assets/language.js?v=20261006-article-language-v1"></script><script defer src="assets/site-age.js?v=20261004-v3"></script><link rel="stylesheet" href="assets/site-greeting.css?v=20261006-footer-horizontal-v1"><script defer src="assets/site-greeting.js?v=20261005-daily-v1"></script><link rel="stylesheet" href="assets/article-export.css?v=20261010-v2"><script defer src="assets/article-export.js?v=20261010-v2"></script>
+<link rel="preconnect" href="https://disqus.com">
+<link rel="preconnect" href="https://c.disquscdn.com">
+<link rel="preload" href="https://lipengfei.disqus.com/embed.js" as="script" fetchpriority="low">
+<link rel="stylesheet" href="assets/article-comments.css?v=20261017-v2"><script defer src="assets/article-comments.js?v=20261017-v2"></script>
+<link rel="stylesheet" href="assets/site-notice.css?v=20261019-status-v1"></head>
+<body class="site-greeting-page articles-shell"><a class="skip" href="#main">跳至正文</a><div class="site-notice"><p data-text-en="This website is being updated. Some pages and features are still being refined.">网站正在持续更新，部分页面与功能仍在调整。</p></div>
+<header class="wrap"><nav aria-label="主导航"><a href="index.html">首页</a><a href="index.html#direction">职业方向</a><a href="index.html#experience">工作经历</a><a href="index.html#about">关于我</a><a href="articles.html" aria-current="page">文章</a><a href="resume.html" data-gomaas-event="resume_open">查看简历</a></nav></header>
+<main id="main" class="article-page wrap"><div class="article-toolbar"><a class="text-link article-return" href="articles.html">← 返回文章列表</a><div class="article-export" role="group" aria-label="文章导出" data-article-export data-export-zh="assets/markdown/back-and-close.zh.md">
+<div class="article-export-actions"><button class="article-export-action" type="button" data-copy-markdown hidden><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h4"/></svg><span data-copy-label>复制 Markdown</span></button><a class="article-export-action" data-download-markdown href="assets/markdown/back-and-close.zh.md" download="交互设计中的“返回”与“关闭”.md" title="下载本文的 Markdown 文件（.md）"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></svg><span data-download-label>下载 Markdown</span></a></div>
+<p class="article-export-status is-quiet" data-export-status role="status" aria-live="polite" aria-atomic="true"></p>
+</div>
+</div><article lang="zh-CN" data-article-content><div class="article-heading"><h1>交互设计中的“返回”与“关闭”</h1><p class="article-meta"><span>发布于 <time datetime="2026-11-06">2026.11.06</time></span><span>AI 辅助：<span lang="en">GPT</span></span></p><p class="article-keywords"><strong>关键词</strong>：交互设计　·　返回　·　关闭　·　导航　·　状态保留</p></div><p class="article-language-note" lang="en">This article is available in Chinese.</p><div class="article-content porter-article">
+<p><strong>返回（Back）用于回到之前的页面或步骤；关闭（Close）用于退出当前打开的弹窗、抽屉、预览或操作流程。</strong> 两者的区别主要在于导航去向与退出范围。设计时还需要说明，退出后哪些内容和状态会保留。</p>
+<h2 id="section-1">返回（Back）：回到之前的页面或步骤</h2>
+<p>返回通常使用左箭头，也可以搭配“返回图库”“上一步”等文字，明确操作去向。</p>
+<p>Ant Design 4.x 的页头组件（PageHeader）支持页面间导航，提供返回箭头和 <code>onBack</code> 回调。回调是点击按钮后执行的动作，具体目的地由产品实现决定。<a target="_blank" rel="noopener noreferrer" href="https://4x.ant.design/components/page-header/">Ant Design：PageHeader</a></p>
+<p>返回有两种容易混淆的去向：</p>
+<ul>
+<li><strong>之前访问的页面。</strong> 从搜索结果进入详情，返回后继续查看搜索结果。</li>
+<li><strong>指定的上级页面。</strong> 无论从哪里进入详情，“返回图库”都指向图库。</li>
+</ul>
+<p>两者应在设计中明确区分。从分享链接直接打开详情时，用户可能没有站内浏览记录，此时可以提供“前往图库”等固定入口。</p>
+<p>返回还包括浏览状态的恢复。例如，从筛选后的列表进入详情，再回到列表，应保留适合继续浏览的筛选条件与滚动位置，减少重复操作。</p>
+<h2 id="section-2">关闭（Close）：退出当前打开的界面</h2>
+<p>关闭通常使用“×”图标。关闭图片预览或弹窗后，用户继续操作原有页面。全屏预览也可以使用关闭，屏幕尺寸并不决定操作含义。</p>
+<p>PatternFly 的模态框（Modal）指南将关闭图标定义为关闭并取消模态框，不提交更改。模态框是覆盖在页面上的窗口，用户需要先处理或退出它，才能继续操作底下的页面。这项说明针对该组件的交互约定。<a target="_blank" rel="noopener noreferrer" href="https://www.patternfly.org/components/modal/design-guidelines/">PatternFly：Modal</a></p>
+<p>关闭应有明确的作用范围。例如，在资料编辑弹窗中打开头像预览，预览上的“×”应关闭头像预览，回到编辑弹窗；整个编辑任务仍然保留。</p>
+<h2 id="section-3">返回与关闭可以同时存在</h2>
+<p>在多步骤流程中，返回用于回退一步，关闭用于退出整个流程。PatternFly 的向导（Wizard）指南明确区分了这两种操作：Back 在步骤之间回退，Cancel 或 Close 用于离开向导。向导是将一个任务拆成连续步骤的界面。<a target="_blank" rel="noopener noreferrer" href="https://www.patternfly.org/components/wizard/design-guidelines/">PatternFly：Wizard</a></p>
+<p>以“填写相册名称 → 选择照片 → 确认信息”为例：</p>
+<div class="article-table" role="region" aria-label="文章表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>作用范围</th>
+<th>处理结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>上一步（Back）</td>
+<td>当前流程内部</td>
+<td>回到照片选择，保留已填写内容</td>
+</tr>
+<tr>
+<td>关闭（Close）／取消创建（Cancel）</td>
+<td>整个创建流程</td>
+<td>退出创建，按约定处理未保存内容</td>
+</tr>
+<tr>
+<td>创建相册（Create）</td>
+<td>提交任务</td>
+<td>保存并创建相册，显示结果</td>
+</tr>
+</tbody></table></div>
+<h2 id="section-4">退出后的内容处理</h2>
+<p>返回和关闭说明如何离开界面；内容是否保存，需要结合保存方式单独规定。</p>
+<p><strong>手动保存。</strong> 表单存在未保存的修改，退出将丢失内容时，应提示具体后果。例如：“姓名修改尚未保存，关闭后将丢失。”按钮可以使用“继续编辑”和“放弃修改”，让选择对应明确的动作。PatternFly 的向导指南也要求在关闭会丢失未保存编辑时进行确认。</p>
+<p><strong>自动保存。</strong> 界面需要显示“正在保存”“已保存”或“保存失败”等实际状态。关闭后，已经保存的修改继续保留；保存未完成或失败时，应提供等待、重试或保留草稿等相应处理。</p>
+<p><strong>只读浏览。</strong> 图片预览没有待保存的修改，关闭时可以直接回到原页面，无需额外确认。</p>
+<h2 id="section-5">设计说明需要写清什么</h2>
+<p>交付设计时，至少说明以下内容：</p>
+<ul>
+<li><strong>去向与范围。</strong> 返回哪个页面或步骤，关闭哪个窗口或流程。</li>
+<li><strong>状态保留。</strong> 筛选条件、滚动位置、已选项目和输入内容如何处理。</li>
+<li><strong>退出提示。</strong> 哪些情况下需要确认，提示和按钮分别写什么。</li>
+<li><strong>键盘与可访问性。</strong> 图标提供“关闭图片预览”等明确名称；关闭后，将键盘焦点恢复到合理位置。焦点是当前接收键盘操作的位置。<a target="_blank" rel="noopener noreferrer" href="https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/">W3C WAI：模态对话框交互模式</a></li>
+</ul>
+<p>例如，图片预览的关闭行为可以写为：</p>
+<blockquote>
+<p>点击“关闭图片预览”后收起预览层，保留图库筛选和滚动位置，将焦点还给打开预览的图片入口。预览仅展示内容，关闭时无需确认。</p>
+</blockquote>
+<hr>
+<p>资料核对于 2026 年 11 月 6 日。本文中的图库与相册为说明交互行为而设置的示例。</p>
+</div></article><section class="article-comments" id="comments" aria-labelledby="comments-title">
+  <div class="article-comments-heading"><h2 id="comments-title" data-text-en="Comments">留言</h2>
+  <p data-text-en="Powered by Disqus.">由 Disqus 提供。</p></div>
+  <button type="button" data-comments-retry hidden>重试加载</button>
+  <p role="status" data-comments-status aria-live="polite"></p>
+  <div id="disqus_thread" data-disqus-shortname="lipengfei"
+    data-page-url="https://lipengfei.top/back-and-close.html?discussion=public"
+    data-page-identifier="article:/back-and-close.html"
+    data-page-title="交互设计中的“返回”与“关闭”"></div>
+  <noscript><p>请启用 JavaScript 查看评论。</p></noscript>
+</section>
+</main>
+<footer class="wrap"><div class="footer-inner"><div class="footer-meta site-age-meta"><span>© 2026 李鹏飞</span><span class="site-age" data-site-age data-established-date="2026-09-19" title="始于 2026.09.19">本站始于 2026.09.19</span></div><div class="footer-actions"><div class="language-switch" data-language-switch role="group" aria-label="语言 / Language" hidden><button type="button" data-language="zh" lang="zh-CN" aria-pressed="true">中文</button><span aria-hidden="true">/</span><button type="button" data-language="en" lang="en" aria-pressed="false">English</button></div><div class="footer-socials"><a href="https://www.linkedin.com/in/pengfei-li-7ab27b378/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/plwhd" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://x.com/li191qq" target="_blank" rel="noopener noreferrer">X (Twitter)</a></div></div></div></footer><aside class="site-greeting" data-site-greeting aria-label="网站&#x62db;呼">
+  <button class="site-greeting-button" type="button" aria-label="向网站打个&#x62db;呼">
+    <svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><circle cx="14" cy="14" r="10.25" stroke="currentColor" stroke-width="1.6"/><circle cx="10.25" cy="11.75" r="1.15" fill="currentColor"/><circle cx="17.75" cy="11.75" r="1.15" fill="currentColor"/><path d="M9.5 16.2C10.6 18.25 12.15 19.1 14 19.1S17.4 18.25 18.5 16.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+  </button>
+  <span class="site-greeting-sr" role="status" aria-live="polite" aria-atomic="true"></span>
+  <span class="site-greeting-note" data-greeting-note hidden></span>
+</aside>
+</body></html>
