@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="整理图片组件的添加与上传、移除与删除、选择状态、主图标签和快捷操作，并补充键盘、触屏与可访问性要求。"><meta name="robots" content="noindex,nofollow"><title>李鹏飞</title><link rel="icon" href="favicon.ico?v=20261003-b-original" sizes="16x16 32x32 48x48"><link rel="icon" type="image/png" sizes="32x32" href="assets/pengfei-wing-32.png?v=20261003-b-original"><link rel="icon" type="image/svg+xml" sizes="any" href="assets/pengfei-wing-original.svg?v=20261003-b-original"><link rel="apple-touch-icon" sizes="180x180" href="assets/pengfei-wing-apple-180.png?v=20261003-b-original"><link rel="stylesheet" href="styles.css?v=20261110-image-component-interactions"><script defer src="assets/analytics.js?v=20261110-image-component-interactions" data-website-id="f18cb949-fc16-4710-8355-ca4601609d4c"></script><script defer src="assets/language.js?v=20261006-article-language-v1"></script><script defer src="assets/site-age.js?v=20261004-v3"></script><link rel="stylesheet" href="assets/site-greeting.css?v=20261006-footer-horizontal-v1"><script defer src="assets/site-greeting.js?v=20261005-daily-v1"></script><link rel="stylesheet" href="assets/article-export.css?v=20261010-v2"><script defer src="assets/article-export.js?v=20261010-v2"></script>
+<link rel="preconnect" href="https://disqus.com">
+<link rel="preconnect" href="https://c.disquscdn.com">
+<link rel="preload" href="https://lipengfei.disqus.com/embed.js" as="script" fetchpriority="low">
+<link rel="stylesheet" href="assets/article-comments.css?v=20261017-v2"><script defer src="assets/article-comments.js?v=20261017-v2"></script>
+<link rel="stylesheet" href="assets/site-notice.css?v=20261019-status-v1"></head>
+<body class="site-greeting-page articles-shell"><a class="skip" href="#main">跳至正文</a><div class="site-notice"><p data-text-en="This website is being updated. Some pages and features are still being refined.">网站正在持续更新，部分页面与功能仍在调整。</p></div>
+<header class="wrap"><nav aria-label="主导航"><a href="index.html">首页</a><a href="index.html#direction">职业方向</a><a href="index.html#experience">工作经历</a><a href="index.html#about">关于我</a><a href="articles.html" aria-current="page">文章</a><a href="resume.html" data-gomaas-event="resume_open">查看简历</a></nav></header>
+<main id="main" class="article-page wrap"><div class="article-toolbar"><a class="text-link article-return" href="articles.html">← 返回文章列表</a><div class="article-export" role="group" aria-label="文章导出" data-article-export data-export-zh="assets/markdown/image-component-interactions.zh.md">
+<div class="article-export-actions"><button class="article-export-action" type="button" data-copy-markdown hidden><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h4"/></svg><span data-copy-label>复制 Markdown</span></button><a class="article-export-action" data-download-markdown href="assets/markdown/image-component-interactions.zh.md" download="图片组件的交互约定：添加、选择、移除与上传.md" title="下载本文的 Markdown 文件（.md）"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></svg><span data-download-label>下载 Markdown</span></a></div>
+<p class="article-export-status is-quiet" data-export-status role="status" aria-live="polite" aria-atomic="true"></p>
+</div>
+</div><article lang="zh-CN" data-article-content><div class="article-heading"><h1>图片组件的交互约定：添加、选择、移除与上传</h1><p class="article-meta"><span>发布于 <time datetime="2026-11-10">2026.11.10</time></span><span>AI 辅助：<span lang="en">GPT</span></span></p><p class="article-keywords"><strong>关键词</strong>：交互设计　·　图片组件　·　上传　·　图标语义　·　可访问性</p></div><p class="article-language-note" lang="en">This article is available in Chinese.</p><div class="article-content porter-article">
+<p>图片组件需要区分几类操作：把图片加入当前内容、选择图片、移除引用、删除资产，以及上传新文件。图标、文字和操作后的结果应保持一致，同时说明选中状态、主图状态与上传状态。</p>
+<p>以下根据图片列表、参考图输入和素材库等场景整理。涉及圆角、边框、操作数量和布局的内容作为项目设计约定，实施时沿用所在产品的设计系统。</p>
+<h2 id="section-1">添加（Add）与上传（Upload）</h2>
+<ul>
+<li><strong>添加</strong>表示把内容加入当前列表或任务。图片场景中，可以进一步写明“从素材库添加”“添加参考图”或“从收藏中选择”。</li>
+<li><strong>上传</strong>表示将设备中的文件传输到服务器。仅选择本地文件、生成本地预览，与完成上传是不同的状态。<a target="_blank" rel="noopener noreferrer" href="https://ant.design/components/upload/">Ant Design：Upload</a></li>
+<li>同一个入口同时支持已有素材和本地文件时，可以使用“添加图片”，在展开后分别提供“从素材库选择”和“上传图片”。</li>
+<li>通过链接或第三方服务获取内容，可以使用“从链接导入”等具体名称，根据实际过程说明是否还会上传文件。</li>
+</ul>
+<p>添加一般使用加号（Plus），上传一般使用上传图标。保持相同操作在产品内的命名与图标语义一致，入口尺寸或位置的变化通过布局和尺寸适配。</p>
+<h2 id="section-2">移除（Remove）与删除（Delete）</h2>
+<div class="article-table" role="region" aria-label="文章表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>对象与结果</th>
+<th>图片场景示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>移除</td>
+<td>解除当前引用或成员关系，原始资产保留</td>
+<td>移除参考图、从相册移除、取消已选素材</td>
+</tr>
+<tr>
+<td>删除</td>
+<td>删除资产本身，或将其放入回收站</td>
+<td>从素材库删除图片</td>
+</tr>
+</tbody></table></div>
+<p>“临时内容用移除、持久内容用删除”过于简单。长期保存的相册也可以只移除图片引用，素材库中的删除也可能支持恢复。<strong>应按操作影响的对象与实际后果命名。</strong></p>
+<ul>
+<li>参考图、输入附件和已选素材中的移除，可以采用“×”或移除图标，按钮名称明确写为“移除参考图”等。</li>
+<li>删除图片资产通常使用垃圾桶图标，文字写为“删除图片”；涉及其他使用位置时，说明影响范围。</li>
+<li>“×”也常用于关闭窗口，放在图片上的“×”需要通过位置、提示和名称说明其移除含义。</li>
+<li>提供确认或撤销方式时，根据误操作后果、可恢复性及操作频率安排，避免所有移除都弹出确认。</li>
+</ul>
+<p><strong>批量操作也按结果命名。</strong> 清空当前参考图使用“清空参考图”或“移除全部”，删除已选资产使用“删除所选图片”。垃圾桶图标适合表达删除资产，不能仅因为是批量操作就统一采用。</p>
+<h2 id="section-3">图标按钮（Icon-only Button）</h2>
+<p>仅显示图标的按钮需要有明确的可访问名称，例如“下载图片”“移除参考图”。网页中可通过 <code>aria-label</code> 或关联文本提供，让读屏工具能够识别按钮用途。<a target="_blank" rel="noopener noreferrer" href="https://www.w3.org/WAI/ARIA/apg/patterns/button/">W3C APG：Button</a></p>
+<ul>
+<li>含义需要解释时，提供文字提示（Tooltip），在悬停（Hover）和键盘聚焦（Focus）时显示。</li>
+<li>Tooltip 是补充提示，不能替代按钮本身的可访问名称。</li>
+<li>自定义 Tooltip 要考虑能否关闭、指针移入后是否仍可阅读，以及信息是否保持足够长的显示时间。<a target="_blank" rel="noopener noreferrer" href="https://www.w3.org/WAI/WCAG22/Understanding/content-on-hover-or-focus.html">WCAG 2.2：悬停或聚焦时的内容</a></li>
+<li>触屏缺少鼠标悬停，可以采用常驻文字、可见按钮或操作菜单，让用户直接找到功能。</li>
+</ul>
+<h2 id="section-4">单选、多选与选中状态</h2>
+<ul>
+<li>多选通常使用复选框（Checkbox），每张图片可独立选中或取消。</li>
+<li>一组互斥选项通常使用单选按钮（Radio），同组最多选择一项。例如从几张图片中指定一张封面。<a target="_blank" rel="noopener noreferrer" href="https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/">W3C APG：Checkbox</a> · <a target="_blank" rel="noopener noreferrer" href="https://www.w3.org/WAI/ARIA/apg/patterns/radio/">Radio Group</a></li>
+<li>复选框常见为方形或圆角方形，单选按钮常见为圆形；具体圆角沿产品规范，形状之外还要实现相应的键盘行为和状态语义。</li>
+<li>已选中（Selected）状态持续显示选择标记，可以结合勾选、边框或背景表达，并向辅助技术传达状态。</li>
+<li>悬停可以帮助发现选择入口，选中反馈应在鼠标离开后继续保留。</li>
+</ul>
+<p>图片点击用于预览、控件点击用于选择时，应让两个入口清楚分开，避免点击选择框同时打开预览。</p>
+<h2 id="section-5">悬停快捷操作（Quick Actions）</h2>
+<p>图片默认优先展示内容，以及必要的状态和选择反馈。预览、编辑、收藏、下载、移除等操作，可以根据使用频率安排在卡片内。</p>
+<ul>
+<li>桌面端可以在悬停时显示次要操作，键盘聚焦到卡片内控件时也应能访问这些操作。</li>
+<li>触屏端提供可见入口或“更多”菜单，避免依赖悬停才能操作。</li>
+<li>可优先展示 1–2 个高频操作，其余进入更多操作菜单（Overflow Menu）；数量按可用宽度和任务需要确定。</li>
+<li>操作区避开关键图片内容、状态标签和选择控件，并留出足够的点击区域。</li>
+</ul>
+<p>移除按钮也沿这一规则处理。桌面端可以在悬停或聚焦时显示，触屏端保留可发现的入口。</p>
+<h2 id="section-6">主图状态与“设为主图”</h2>
+<ul>
+<li><strong>主图是状态（Status）</strong>，在当前主图上持续显示“主图”标签。</li>
+<li><strong>设为主图是操作（Action）</strong>，在其他图片上提供按钮或菜单入口。</li>
+<li>状态标签与操作按钮使用不同的视觉表达，避免把“主图”和“设为主图”做成难以分辨的同类标签。</li>
+<li>操作完成后同步更新新旧主图的标记，并给出必要反馈。</li>
+</ul>
+<p>鼠标移开后，主图标签继续显示。“设为主图”可以按前述快捷操作规则收纳。</p>
+<h2 id="section-7">上传区域与空状态</h2>
+<p>强调拖放上传的场景，可以采用拖放区域（Drop Zone），提供点击选择文件的替代方式。虚线边框是常见表达，具体视觉沿产品规范。<a target="_blank" rel="noopener noreferrer" href="https://ant.design/components/upload/">Ant Design：Upload</a></p>
+<ul>
+<li>区域内写明“点击或拖放上传”等操作说明，并列出实际支持的格式、大小和数量限制。</li>
+<li>已有图片时，上传入口可以作为列表中的一张卡片，尺寸与图片卡片协调。</li>
+<li>没有图片时，可以切换为空状态（Empty State），扩大点击和拖放区域。</li>
+<li>切换布局后，上传含义、支持格式和限制保持一致。</li>
+<li>上传过程中显示进度或处理状态；失败时说明原因并提供重试，达到数量上限时说明限制。</li>
+</ul>
+<h2 id="section-8">组件一致性</h2>
+<p>添加和上传入口可以复用统一的按钮、图标、图片卡片和上传区域，通过变体（Variant）、尺寸（Size）和布局（Layout）适配业务。</p>
+<p>统一维护边框（Border）、圆角（Radius）、文字样式（Typography），以及悬停、按下（Active）、聚焦、禁用（Disabled）、拖入（Drag-over）、上传中和失败等状态。添加按钮与上传区域可以共用基础样式，同时保留各自的行为和状态要求。</p>
+<hr>
+<p>整理自用户提供的三张设计笔记，核对日期为 2026 年 11 月 10 日。本文为图片组件的交互整理与项目约定参考，所引官方文档支撑对应的组件行为和可访问性要求。</p>
+</div></article><section class="article-comments" id="comments" aria-labelledby="comments-title">
+  <div class="article-comments-heading"><h2 id="comments-title" data-text-en="Comments">留言</h2>
+  <p data-text-en="Powered by Disqus.">由 Disqus 提供。</p></div>
+  <button type="button" data-comments-retry hidden>重试加载</button>
+  <p role="status" data-comments-status aria-live="polite"></p>
+  <div id="disqus_thread" data-disqus-shortname="lipengfei"
+    data-page-url="https://lipengfei.top/image-component-interactions.html?discussion=public"
+    data-page-identifier="article:/image-component-interactions.html"
+    data-page-title="图片组件的交互约定：添加、选择、移除与上传"></div>
+  <noscript><p>请启用 JavaScript 查看评论。</p></noscript>
+</section>
+</main>
+<footer class="wrap"><div class="footer-inner"><div class="footer-meta site-age-meta"><span>© 2026 李鹏飞</span><span class="site-age" data-site-age data-established-date="2026-09-19" title="始于 2026.09.19">本站始于 2026.09.19</span></div><div class="footer-actions"><div class="language-switch" data-language-switch role="group" aria-label="语言 / Language" hidden><button type="button" data-language="zh" lang="zh-CN" aria-pressed="true">中文</button><span aria-hidden="true">/</span><button type="button" data-language="en" lang="en" aria-pressed="false">English</button></div><div class="footer-socials"><a href="https://www.linkedin.com/in/pengfei-li-7ab27b378/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/plwhd" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://x.com/li191qq" target="_blank" rel="noopener noreferrer">X (Twitter)</a></div></div></div></footer><aside class="site-greeting" data-site-greeting aria-label="网站&#x62db;呼">
+  <button class="site-greeting-button" type="button" aria-label="向网站打个&#x62db;呼">
+    <svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><circle cx="14" cy="14" r="10.25" stroke="currentColor" stroke-width="1.6"/><circle cx="10.25" cy="11.75" r="1.15" fill="currentColor"/><circle cx="17.75" cy="11.75" r="1.15" fill="currentColor"/><path d="M9.5 16.2C10.6 18.25 12.15 19.1 14 19.1S17.4 18.25 18.5 16.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+  </button>
+  <span class="site-greeting-sr" role="status" aria-live="polite" aria-atomic="true"></span>
+  <span class="site-greeting-note" data-greeting-note hidden></span>
+</aside>
+</body></html>
