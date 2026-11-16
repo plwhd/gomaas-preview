@@ -6,7 +6,7 @@
   const items = [...document.querySelectorAll('[data-article-category]')];
   const status = document.querySelector('[data-category-status]');
   const valid = new Set(buttons.map(button => button.dataset.category));
-  const defaultCategory = valid.has('design') ? 'design' : 'all';
+  const defaultCategory = 'all';
   let current = defaultCategory;
   const normalize = value => valid.has(value) ? value : defaultCategory;
   function categoryFromURL() {
@@ -36,7 +36,7 @@
     if (!button || !group.contains(button)) return;
     const next = button.dataset.category === current ? 'all' : button.dataset.category;
     const url = new URL(location.href);
-    // Keep All explicit so a reload does not revert to the default Design filter.
+    // Keep the selected category explicit across reload and history navigation.
     url.searchParams.set('category', next);
     // Filtering remains usable if this browser restricts history updates.
     try { if (url.href !== location.href) history.pushState(null, '', url); } catch { /* Optional URL state. */ }
