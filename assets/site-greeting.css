@@ -107,7 +107,7 @@ body.has-floating-language .site-greeting { bottom: calc(72px + env(safe-area-in
   border-radius: 50%;
   color: #625d64;
   background: transparent;
-  font: 12px/1 'Gomaas Mono Web', 'Gomaas Han Web', sans-serif;
+  font: 12px/1 'Gomaas Mono Web', var(--system-chinese), sans-serif;
   cursor: pointer;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;

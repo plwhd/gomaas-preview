@@ -3,7 +3,7 @@
 .article-toolbar .article-return{display:inline-flex;align-items:center;min-height:44px;margin:0;padding:0}
 .article-export{max-width:100%;margin-left:auto}
 .article-export-actions{display:flex;flex-wrap:wrap;align-items:center;gap:0 16px}
-.article-export-action{display:inline-flex;align-items:center;gap:6px;min-height:44px;margin:0;padding:0;border:0;border-radius:0;background:transparent;color:#777179;font-family:"Gomaas Mono Web","Gomaas Han Web",ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px;font-weight:400;line-height:1.5;text-decoration:none;cursor:pointer}
+.article-export-action{display:inline-flex;align-items:center;gap:6px;min-height:44px;margin:0;padding:0;border:0;border-radius:0;background:transparent;color:#777179;font-family:"Gomaas Mono Web",var(--system-chinese),ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px;font-weight:400;line-height:1.5;text-decoration:none;cursor:pointer}
 .article-export-action svg{flex:none}
 .article-export-action:not(:disabled):hover{color:#18181b;text-decoration:underline;text-underline-offset:5px}
 .article-export-action:focus-visible{outline:2px solid #18181b;outline-offset:4px}
