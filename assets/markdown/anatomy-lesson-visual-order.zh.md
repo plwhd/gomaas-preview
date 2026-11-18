@@ -11,7 +11,7 @@ AI 辅助：千问（原稿）／GPT（修订）
 
 这幅群像值得研究的地方，是几种重要性并没有完全重合：尸体占据最大的连续亮区，杜尔具有明确的主讲人地位，而具体发生的动作集中在很小的手与前臂之间。观看者需要在它们之间建立联系，才能从“这里有一群人”进入“这些人正在共同参与什么”。
 
-<p><img src="assets/article-media/anatomy-lesson-visual-order/full.jpg" alt="全图：七名医生聚集在左侧，杜尔博士坐在右侧，解剖台上的尸体横贯下方" width="3000" height="2260" style="display:block;max-width:100%;height:auto" decoding="async"></p>
+<p><a href="assets/article-media/anatomy-lesson-visual-order/full.jpg" target="_blank" rel="noopener noreferrer" aria-label="查看高清原图"><img src="assets/article-media/anatomy-lesson-visual-order/full-web-800.webp" srcset="assets/article-media/anatomy-lesson-visual-order/full-web-800.webp 800w, assets/article-media/anatomy-lesson-visual-order/full-web-1600.webp 1600w" sizes="(max-width: 767px) calc(100vw - 48px), 720px" alt="全图：七名医生聚集在左侧，杜尔博士坐在右侧，解剖台上的尸体横贯下方" width="3000" height="2260" style="display:block;max-width:100%;height:auto" decoding="async" loading="eager" fetchpriority="high"></a></p>
 
 *图1：伦勃朗，《杜尔博士的解剖学课》，1632年，布面油画，169.5 × 216.5厘米。Mauritshuis, The Hague。图像经 Wikimedia Commons 提供。*
 
@@ -49,7 +49,7 @@ AI 辅助：千问（原稿）／GPT（修订）
 
 ## 三、两只手把结构与运动联系起来
 
-<p><img src="assets/article-media/anatomy-lesson-visual-order/hands.jpg" alt="杜尔双手局部：右手持钳提起前臂组织，左手手指微曲，下面可见延伸至指部的筋腱" width="1900" height="1500" style="display:block;max-width:100%;height:auto" loading="lazy" decoding="async"></p>
+<p><a href="assets/article-media/anatomy-lesson-visual-order/hands.jpg" target="_blank" rel="noopener noreferrer" aria-label="查看高清原图"><img src="assets/article-media/anatomy-lesson-visual-order/hands-web-800.webp" srcset="assets/article-media/anatomy-lesson-visual-order/hands-web-800.webp 800w, assets/article-media/anatomy-lesson-visual-order/hands-web-1600.webp 1600w" sizes="(max-width: 767px) calc(100vw - 48px), 720px" alt="杜尔双手局部：右手持钳提起前臂组织，左手手指微曲，下面可见延伸至指部的筋腱" width="1900" height="1500" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
 
 *图2：双手与被解剖的前臂。由图1同源高清图裁切，保留工具、手指与解剖部位之间的联系。*
 
@@ -73,7 +73,7 @@ AI 辅助：千问（原稿）／GPT（修订）
 
 ## 四、人群由疏密与朝向组织
 
-<p><img src="assets/article-media/anatomy-lesson-visual-order/faces.jpg" alt="七名医生的面孔与衣领：中央人物向前探身，后排面孔高度错落，左前人物转头朝向右侧" width="2400" height="1758" style="display:block;max-width:100%;height:auto" loading="lazy" decoding="async"></p>
+<p><a href="assets/article-media/anatomy-lesson-visual-order/faces.jpg" target="_blank" rel="noopener noreferrer" aria-label="查看高清原图"><img src="assets/article-media/anatomy-lesson-visual-order/faces-web-800.webp" srcset="assets/article-media/anatomy-lesson-visual-order/faces-web-800.webp 800w, assets/article-media/anatomy-lesson-visual-order/faces-web-1600.webp 1600w" sizes="(max-width: 767px) calc(100vw - 48px), 720px" alt="七名医生的面孔与衣领：中央人物向前探身，后排面孔高度错落，左前人物转头朝向右侧" width="2400" height="1758" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
 
 *图3：七名同事组成的人群。面孔、衣领、肩部的重叠，比逐一绘制视线箭头更能说明他们怎样聚集。*
 
@@ -99,7 +99,7 @@ AI 辅助：千问（原稿）／GPT（修订）
 
 ## 五、前景人物和台面建立观看位置
 
-<p><img src="assets/article-media/anatomy-lesson-visual-order/space.jpg" alt="下半部空间局部：左前医生的黑色肩背遮住台边，尸体横卧台上，右侧脚底与斜向书页朝向观者" width="2800" height="1081" style="display:block;max-width:100%;height:auto" loading="lazy" decoding="async"></p>
+<p><a href="assets/article-media/anatomy-lesson-visual-order/space.jpg" target="_blank" rel="noopener noreferrer" aria-label="查看高清原图"><img src="assets/article-media/anatomy-lesson-visual-order/space-web-800.webp" srcset="assets/article-media/anatomy-lesson-visual-order/space-web-800.webp 800w, assets/article-media/anatomy-lesson-visual-order/space-web-1600.webp 1600w" sizes="(max-width: 767px) calc(100vw - 48px), 720px" alt="下半部空间局部：左前医生的黑色肩背遮住台边，尸体横卧台上，右侧脚底与斜向书页朝向观者" width="2800" height="1081" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
 
 *图4：左前方肩背、解剖台与身体的关系。前景遮挡和可见台边，使下方的亮色身体获得位置与厚度。*
 
@@ -121,7 +121,7 @@ AI 辅助：千问（原稿）／GPT（修订）
 
 ## 六、暗色保留整体，边缘分配清晰度
 
-<p><img src="assets/article-media/anatomy-lesson-visual-order/doctor-book.jpg" alt="右侧局部：杜尔的黑帽、白领与抬起的手，下方是脚底和画面边缘斜放的厚书" width="1707" height="2200" style="display:block;max-width:100%;height:auto" loading="lazy" decoding="async"></p>
+<p><a href="assets/article-media/anatomy-lesson-visual-order/doctor-book.jpg" target="_blank" rel="noopener noreferrer" aria-label="查看高清原图"><img src="assets/article-media/anatomy-lesson-visual-order/doctor-book-web-800.webp" srcset="assets/article-media/anatomy-lesson-visual-order/doctor-book-web-800.webp 800w, assets/article-media/anatomy-lesson-visual-order/doctor-book-web-1600.webp 1600w" sizes="(max-width: 767px) calc(100vw - 48px), 720px" alt="右侧局部：杜尔的黑帽、白领与抬起的手，下方是脚底和画面边缘斜放的厚书" width="1707" height="2200" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
 
 *图5：杜尔与画面右侧。帽檐、白领和手指保持可辨轮廓，衣服的部分边缘则融入暗处；右下方书页形成另一种尺度的浅色细节。*
 

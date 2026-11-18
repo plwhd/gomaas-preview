@@ -10,7 +10,7 @@ AI 辅助：AI（原稿）／GPT（修订）
 
 这幅画的秩序有几个彼此配合的层次。房间的透视与中央开口确立中心，人物的聚集形成四个小组，手势与朝向又把小组接回同一场面。值得细看的，是这些安排怎样容纳差异：中心能够保持稳定，周围仍可以骚动；人物能够组成小群，关系仍可以跨过小群的边界。
 
-<img src="assets/article-media/last-supper-visual-order/last-supper-full.jpg" alt="达·芬奇《最后的晚餐》现存壁画全貌，长桌后的人群与向中央收束的房间" style="display:block;width:100%;height:auto;margin:1.5rem 0 0.5rem">
+<a href="assets/article-media/last-supper-visual-order/last-supper-full.jpg" target="_blank" rel="noopener noreferrer" aria-label="查看高清原图"><img src="assets/article-media/last-supper-visual-order/last-supper-full-web-800.webp" srcset="assets/article-media/last-supper-visual-order/last-supper-full-web-800.webp 800w, assets/article-media/last-supper-visual-order/last-supper-full-web-1600.webp 1600w" sizes="(max-width: 767px) calc(100vw - 48px), 720px" alt="达·芬奇《最后的晚餐》现存壁画全貌，长桌后的人群与向中央收束的房间" style="display:block;width:100%;height:auto;margin:1.5rem 0 0.5rem" loading="eager" fetchpriority="high" decoding="async"></a>
 
 *图1：达·芬奇，《最后的晚餐》，约1494—1498年，米兰恩宠圣母堂修道院餐厅北墙。摄影：Paris Orlando，2019年；[图像与使用条件：Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Last_Supper_by_Leonardo_da_Vinci.jpg)。全文配图均取自这张现存壁画照片；局部仅改变显示范围，未补绘或改色。下方中央的门洞是后期开凿造成的缺失。*
 
@@ -34,8 +34,8 @@ AI 辅助：AI（原稿）／GPT（修订）
 
 但这些线索并没有把人物变成一个几何图案。基督背后的中央开口又承担了另一件事：较明亮的天空紧邻头部，使头发和面部外缘从背景中分开。两侧人物背后有深色墙面、织物和相邻的身体，轮廓更容易发生重叠。中央形象附近相对清楚的背景，让他的头部拥有一段较少干扰的边界。
 
-<div role="img" aria-label="基督与中央开口的局部：头部、倾斜的双臂和左右人物之间的间隙" style="position:relative;overflow:hidden;aspect-ratio:1050/850;margin:1.5rem 0 0.5rem">
-<img src="assets/article-media/last-supper-visual-order/last-supper-full.jpg" alt="" loading="lazy" style="position:absolute;width:365.714286%;max-width:none;height:auto;left:-133.333333%;top:-100%;margin:0;border-radius:0">
+<div role="group" aria-label="基督与中央开口的局部：头部、倾斜的双臂和左右人物之间的间隙" style="position:relative;overflow:hidden;aspect-ratio:1050/850;margin:1.5rem 0 0.5rem">
+<a href="assets/article-media/last-supper-visual-order/last-supper-full.jpg" target="_blank" rel="noopener noreferrer" aria-label="查看高清原图"><img src="assets/article-media/last-supper-visual-order/center-detail-web-800.webp" srcset="assets/article-media/last-supper-visual-order/center-detail-web-800.webp 800w, assets/article-media/last-supper-visual-order/center-detail-web-1050.webp 1050w" sizes="(max-width: 767px) calc(100vw - 48px), 720px" alt="" style="display:block;width:100%;height:auto;margin:0;border-radius:0" loading="lazy" decoding="async" width="1050" height="850"></a>
 </div>
 
 *图2：中央局部。先看头部与天空的边界，再看两臂向桌面展开的方向。基督一侧的手掌向上，另一侧的手向桌上伸出，并非双手以相同姿势摊开。摄影及来源同图1。*
@@ -52,8 +52,8 @@ AI 辅助：AI（原稿）／GPT（修订）
 
 基督两侧的十二位门徒，可以读成四组三人。这个分组有可见的依据：相邻的头部靠近，躯干和手臂相互重叠，几个人的朝向形成局部交流。看全图时，先出现的是几个聚集的人群，再从人群里辨认个体。
 
-<div role="img" aria-label="四组三人与中央基督的位置示意，标记只用于定位，组与组的动作可以跨界" style="position:relative;line-height:0;margin:1.5rem 0 0.5rem">
-<img src="assets/article-media/last-supper-visual-order/last-supper-full.jpg" alt="" loading="lazy" style="display:block;width:100%;height:auto;margin:0">
+<div role="group" aria-label="四组三人与中央基督的位置示意，标记只用于定位，组与组的动作可以跨界" style="position:relative;line-height:0;margin:1.5rem 0 0.5rem">
+<a href="assets/article-media/last-supper-visual-order/last-supper-full.jpg" target="_blank" rel="noopener noreferrer" aria-label="查看高清原图"><img src="assets/article-media/last-supper-visual-order/last-supper-full-web-800.webp" srcset="assets/article-media/last-supper-visual-order/last-supper-full-web-800.webp 800w, assets/article-media/last-supper-visual-order/last-supper-full-web-1600.webp 1600w" sizes="(max-width: 767px) calc(100vw - 48px), 720px" alt="" style="display:block;width:100%;height:auto;margin:0" loading="lazy" decoding="async"></a>
 <span aria-hidden="true" style="position:absolute;left:6%;top:44%;width:19%;height:29%;border:1px solid #fff;box-sizing:border-box"><span style="position:absolute;left:4px;top:-24px;background:#222;color:#fff;font:14px/20px sans-serif;padding:0 5px">1</span></span>
 <span aria-hidden="true" style="position:absolute;left:25%;top:46%;width:19%;height:27%;border:1px solid #fff;box-sizing:border-box"><span style="position:absolute;left:4px;top:-24px;background:#222;color:#fff;font:14px/20px sans-serif;padding:0 5px">2</span></span>
 <span aria-hidden="true" style="position:absolute;left:55.5%;top:44%;width:17.5%;height:29%;border:1px solid #fff;box-sizing:border-box"><span style="position:absolute;left:4px;top:-24px;background:#222;color:#fff;font:14px/20px sans-serif;padding:0 5px">3</span></span>
@@ -76,8 +76,8 @@ AI 辅助：AI（原稿）／GPT（修订）
 
 观者最右侧的一组，提供了清楚的例子。蓝衣人物马太把双臂伸向画面中央，头却转向右边的同伴。手指向事情发生的位置，脸朝向正在交流的人，两种方向在同一个身体上分开。[人物辨识参照博物馆图解](https://cenacolovinciano.org/en/story/a-powerful-theatrical-machine/)。
 
-<div role="img" aria-label="最右侧三人局部，蓝衣人物的双臂伸向左方，脸却朝右方同伴" style="position:relative;overflow:hidden;aspect-ratio:1440/700;margin:1.5rem 0 0.5rem">
-<img src="assets/article-media/last-supper-visual-order/last-supper-full.jpg" alt="" loading="lazy" style="position:absolute;width:266.666667%;max-width:none;height:auto;left:-166.666667%;top:-135.714286%;margin:0;border-radius:0">
+<div role="group" aria-label="最右侧三人局部，蓝衣人物的双臂伸向左方，脸却朝右方同伴" style="position:relative;overflow:hidden;aspect-ratio:1440/700;margin:1.5rem 0 0.5rem">
+<a href="assets/article-media/last-supper-visual-order/last-supper-full.jpg" target="_blank" rel="noopener noreferrer" aria-label="查看高清原图"><img src="assets/article-media/last-supper-visual-order/right-group-detail-web-800.webp" srcset="assets/article-media/last-supper-visual-order/right-group-detail-web-800.webp 800w, assets/article-media/last-supper-visual-order/right-group-detail-web-1440.webp 1440w" sizes="(max-width: 767px) calc(100vw - 48px), 720px" alt="" style="display:block;width:100%;height:auto;margin:0;border-radius:0" loading="lazy" decoding="async" width="1440" height="700"></a>
 </div>
 
 *图4：最右侧三人。比较蓝衣人物的脸与双臂：身体同时维持了“谈论中央事件”和“与身边人交流”两种联系。摄影及来源同图1。*
@@ -94,8 +94,8 @@ AI 辅助：AI（原稿）／GPT（修订）
 
 犹大位于观者左侧靠近中心的小组前方。他的头比彼得略低，脸部较暗，上身有向后缩的倾向，一只手收在身前，握着钱袋。周围的蓝色、浅色衣服和受光面，使他的脸与身体轮廓能够被寻找出来。
 
-<div role="img" aria-label="彼得、犹大与约翰的局部：彼得在后方向约翰俯身，犹大在桌沿前方，三人相互遮挡" style="position:relative;overflow:hidden;aspect-ratio:950/700;margin:1.5rem 0 0.5rem">
-<img src="assets/article-media/last-supper-visual-order/last-supper-full.jpg" alt="" loading="lazy" style="position:absolute;width:404.210526%;max-width:none;height:auto;left:-84.210526%;top:-128.571429%;margin:0;border-radius:0">
+<div role="group" aria-label="彼得、犹大与约翰的局部：彼得在后方向约翰俯身，犹大在桌沿前方，三人相互遮挡" style="position:relative;overflow:hidden;aspect-ratio:950/700;margin:1.5rem 0 0.5rem">
+<a href="assets/article-media/last-supper-visual-order/last-supper-full.jpg" target="_blank" rel="noopener noreferrer" aria-label="查看高清原图"><img src="assets/article-media/last-supper-visual-order/left-group-detail-web-800.webp" srcset="assets/article-media/last-supper-visual-order/left-group-detail-web-800.webp 800w, assets/article-media/last-supper-visual-order/left-group-detail-web-950.webp 950w" sizes="(max-width: 767px) calc(100vw - 48px), 720px" alt="" style="display:block;width:100%;height:auto;margin:0;border-radius:0" loading="lazy" decoding="async" width="950" height="700"></a>
 </div>
 
 *图5：彼得、犹大与约翰。观察彼得与约翰彼此靠近的头部，再看前方犹大较低、较暗的脸，以及身体之间的遮挡。摄影及来源同图1。*

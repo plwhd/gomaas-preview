@@ -10,7 +10,7 @@ AI 辅助：GPT
 
 这幅画的难点，是把几种不同要求组织在一起。每张脸都要能够辨认，众人又需要构成一个整体；画面要有庄重的稳定感，又不能像六张肖像拼接；房间没有深远的景观，桌面、座椅和几处遮挡仍要让人感到前后。它的办法集中在三个关系上：横向骨架容纳高低变化，连续暗部托出分散的亮区，面向观者的目光与尚未结束的动作共同形成一次停顿。
 
-<p><img src="assets/article-media/staalmeesters-visual-order/full.jpg" alt="布商行会理事全图：六人围坐红色桌毯之后，黑衣、白领与暖褐色室内形成整体" width="3200" height="2168" style="display:block;max-width:100%;height:auto" decoding="async"></p>
+<p><a href="assets/article-media/staalmeesters-visual-order/full.jpg" target="_blank" rel="noopener noreferrer" aria-label="查看高清原图"><img src="assets/article-media/staalmeesters-visual-order/full-web-800.webp" srcset="assets/article-media/staalmeesters-visual-order/full-web-800.webp 800w, assets/article-media/staalmeesters-visual-order/full-web-1600.webp 1600w" sizes="(max-width: 767px) calc(100vw - 48px), 720px" alt="布商行会理事全图：六人围坐红色桌毯之后，黑衣、白领与暖褐色室内形成整体" width="3200" height="2168" style="display:block;max-width:100%;height:auto" decoding="async" loading="eager" fetchpriority="high"></a></p>
 
 *图1　伦勃朗，《布商行会理事》，1662年，布面油画，191.5×279厘米，荷兰国立博物馆藏，阿姆斯特丹市借展。图片来自馆方公开高清图，公有领域；下文局部均由同一图像裁取。*
 
@@ -32,7 +32,7 @@ AI 辅助：GPT
 
 这些横向关系并不是几条严格平行的直线。上方线脚在右侧转折，帽子有高有低，桌前缘也向两侧产生斜度。它们更像几条宽窄不同的带状区域：墙面和线脚在上，人群居中，桌毯铺在下。整体方向一致，局部的角度仍然活跃。
 
-<p><img src="assets/article-media/staalmeesters-visual-order/heads.jpg" alt="头部与背景局部：左侧第二人较高，侍从位于后排，其余头部并非严格共线" width="2400" height="880" style="display:block;max-width:100%;height:auto" loading="lazy" decoding="async"></p>
+<p><a href="assets/article-media/staalmeesters-visual-order/heads.jpg" target="_blank" rel="noopener noreferrer" aria-label="查看高清原图"><img src="assets/article-media/staalmeesters-visual-order/heads-web-800.webp" srcset="assets/article-media/staalmeesters-visual-order/heads-web-800.webp 800w, assets/article-media/staalmeesters-visual-order/heads-web-1600.webp 1600w" sizes="(max-width: 767px) calc(100vw - 48px), 720px" alt="头部与背景局部：左侧第二人较高，侍从位于后排，其余头部并非严格共线" width="2400" height="880" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
 
 *图2　横向排列中的高低变化。请同时看帽檐、脸和肩膀：它们的节奏并不完全重合，人物因此没有排成一条机械的直线。*
 
@@ -44,7 +44,7 @@ AI 辅助：GPT
 
 如果把六人的脸排在完全相同的高度，再给他们相等间距，群体身份仍然清楚，但身体的不同状态会被削弱。反过来，若每人朝向、站位和亮度都大幅变化，辨认他们属于一次共同活动就需要更多线索。这幅画处于两者之间：保留足够的共同形式，使小幅差异能够承担表达。
 
-<p><img src="assets/article-media/staalmeesters-visual-order/structure.png" alt="结构标注图：墙面线脚的转折、六张脸的高低位置与桌面前缘的斜向" width="1600" height="1210" style="display:block;max-width:100%;height:auto" loading="lazy" decoding="async"></p>
+<p><a href="assets/article-media/staalmeesters-visual-order/structure.png" target="_blank" rel="noopener noreferrer" aria-label="查看高清原图"><img src="assets/article-media/staalmeesters-visual-order/structure-web-800.webp" srcset="assets/article-media/staalmeesters-visual-order/structure-web-800.webp 800w, assets/article-media/staalmeesters-visual-order/structure-web-1600.webp 1600w" sizes="(max-width: 767px) calc(100vw - 48px), 720px" alt="结构标注图：墙面线脚的转折、六张脸的高低位置与桌面前缘的斜向" width="1600" height="1210" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
 
 *图3　结构辅助标注。线条仅提示文中讨论的位置关系；连接面孔的虚线不是视线轨迹。原图：荷兰国立博物馆；标注：本文制作。*
 
@@ -70,7 +70,7 @@ AI 辅助：GPT
 
 但面积大、颜色鲜明，并没有使它完全压过人脸。桌毯分布在画面下方，人物的脸则在上方形成若干较小却对比清楚的亮区。色彩重心和肖像重心分处不同位置：前景的红把整幅画压稳，脸部和白领使我们辨认正在面对谁。两种注意力互相牵引，画面不必把所有醒目的手段都集中在同一个地方。
 
-<p><img src="assets/article-media/staalmeesters-visual-order/carpet-space.jpg" alt="前景桌毯与手部局部：红色织物在桌沿翻折，浅色书页与手位于它和黑衣之间" width="2400" height="995" style="display:block;max-width:100%;height:auto" loading="lazy" decoding="async"></p>
+<p><a href="assets/article-media/staalmeesters-visual-order/carpet-space.jpg" target="_blank" rel="noopener noreferrer" aria-label="查看高清原图"><img src="assets/article-media/staalmeesters-visual-order/carpet-space-web-800.webp" srcset="assets/article-media/staalmeesters-visual-order/carpet-space-web-800.webp 800w, assets/article-media/staalmeesters-visual-order/carpet-space-web-1600.webp 1600w" sizes="(max-width: 767px) calc(100vw - 48px), 720px" alt="前景桌毯与手部局部：红色织物在桌沿翻折，浅色书页与手位于它和黑衣之间" width="2400" height="995" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
 
 *图4　桌毯同时提供色彩面积、共同前景和表面转折。上沿附近的书页与手，使桌子成为人物正在使用的物件。*
 
@@ -100,7 +100,7 @@ AI 辅助：GPT
 
 左侧第二人的姿态，是整幅画最容易引起动作联想的地方。他的头部高出坐者，躯干向前倾，肩线倾斜，一只手靠着椅背。与身旁老人安稳地陷在椅中的姿势相比，他似乎还没有到达一个可以长久保持的状态。
 
-<p><img src="assets/article-media/staalmeesters-visual-order/rising.jpg" alt="左侧两人局部：老人坐在扶手椅中，旁人身体前倾、头部较高，手靠着椅背" width="2094" height="2400" style="display:block;max-width:100%;height:auto" loading="lazy" decoding="async"></p>
+<p><a href="assets/article-media/staalmeesters-visual-order/rising.jpg" target="_blank" rel="noopener noreferrer" aria-label="查看高清原图"><img src="assets/article-media/staalmeesters-visual-order/rising-web-800.webp" srcset="assets/article-media/staalmeesters-visual-order/rising-web-800.webp 800w, assets/article-media/staalmeesters-visual-order/rising-web-1600.webp 1600w" sizes="(max-width: 767px) calc(100vw - 48px), 720px" alt="左侧两人局部：老人坐在扶手椅中，旁人身体前倾、头部较高，手靠着椅背" width="2094" height="2400" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
 
 *图5　坐定与起坐之间的对照。动作感来自头、肩、躯干与椅背之间的关系，不只来自头部高低。*
 
@@ -124,7 +124,7 @@ AI 辅助：GPT
 
 但目光只完成了一半组织。若所有人的手都规整地收好、书也合上，场面更容易成为一次准备完毕的正式合影。现在，书仍打开，中央的掌心向上，另一只手仍停在书页上，最右侧人物还拿着手套。身体有些部分已转向画外，另一些部分仍留在桌边的事情之中。
 
-<p><img src="assets/article-media/staalmeesters-visual-order/hands-book.jpg" alt="手与书册局部：向上的掌心、摊开的书页、搭在书上的手和右侧手套并列出现" width="2400" height="610" style="display:block;max-width:100%;height:auto" loading="lazy" decoding="async"></p>
+<p><a href="assets/article-media/staalmeesters-visual-order/hands-book.jpg" target="_blank" rel="noopener noreferrer" aria-label="查看高清原图"><img src="assets/article-media/staalmeesters-visual-order/hands-book-web-800.webp" srcset="assets/article-media/staalmeesters-visual-order/hands-book-web-800.webp 800w, assets/article-media/staalmeesters-visual-order/hands-book-web-1600.webp 1600w" sizes="(max-width: 767px) calc(100vw - 48px), 720px" alt="手与书册局部：向上的掌心、摊开的书页、搭在书上的手和右侧手套并列出现" width="2400" height="610" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
 
 *图6　面孔朝向画外时，手仍与桌边物件发生联系。这个局部使“正在办事”与“暂时回应”能够同时成立。*
 
@@ -140,7 +140,7 @@ AI 辅助：GPT
 
 后方侍从没有戴前排人物那样的宽檐帽，脸露在几位理事之间。前排的黑帽、肩膀遮挡了他的大部分身体，白领只露出较小的形状。这使他在群体中清楚可见，同时又处于另一层空间。
 
-<p><img src="assets/article-media/staalmeesters-visual-order/rear-figure.jpg" alt="后排侍从和右侧背景局部：前排帽子形成遮挡，木墙板转角和壁上小画提供室内线索" width="2400" height="1576" style="display:block;max-width:100%;height:auto" loading="lazy" decoding="async"></p>
+<p><a href="assets/article-media/staalmeesters-visual-order/rear-figure.jpg" target="_blank" rel="noopener noreferrer" aria-label="查看高清原图"><img src="assets/article-media/staalmeesters-visual-order/rear-figure-web-800.webp" srcset="assets/article-media/staalmeesters-visual-order/rear-figure-web-800.webp 800w, assets/article-media/staalmeesters-visual-order/rear-figure-web-1600.webp 1600w" sizes="(max-width: 767px) calc(100vw - 48px), 720px" alt="后排侍从和右侧背景局部：前排帽子形成遮挡，木墙板转角和壁上小画提供室内线索" width="2400" height="1576" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
 
 *图7　从后排面孔到前排帽檐，再到背景建筑，可以辨认几层不同距离。中央上部的位置并没有消除前后区别。*
 

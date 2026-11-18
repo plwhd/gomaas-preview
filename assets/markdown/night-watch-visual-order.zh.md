@@ -13,7 +13,7 @@ AI 辅助：GPT
 
 本文从全图进入，再放大主要人物、手势和人群局部，观察这套秩序怎样形成。最后集中讨论：这些观察如何帮助 UI 与网页设计中的主次安排、信息分组和视觉强调。
 
-<p><img src="assets/article-media/night-watch-visual-order/night-watch-full.jpg" alt="伦勃朗《夜巡》现存画面全图：暗色建筑前聚集的民兵，黑衣队长与浅黄衣副官位于前景，亮衣女孩在左侧人群中" width="2400" height="1992" style="display:block;max-width:100%;height:auto" loading="lazy" decoding="async"></p>
+<p><a href="assets/article-media/night-watch-visual-order/night-watch-full.jpg" target="_blank" rel="noopener noreferrer" aria-label="查看高清原图"><img src="assets/article-media/night-watch-visual-order/night-watch-full-web-800.webp" srcset="assets/article-media/night-watch-visual-order/night-watch-full-web-800.webp 800w, assets/article-media/night-watch-visual-order/night-watch-full-web-1600.webp 1600w" sizes="(max-width: 767px) calc(100vw - 48px), 720px" alt="伦勃朗《夜巡》现存画面全图：暗色建筑前聚集的民兵，黑衣队长与浅黄衣副官位于前景，亮衣女孩在左侧人群中" width="2400" height="1992" style="display:block;max-width:100%;height:auto" decoding="async" loading="eager" fetchpriority="high"></a></p>
 
 *图1：伦勃朗，《夜巡》，1642年，布面油画，阿姆斯特丹国立博物馆藏。现存作品约379.5×453.5厘米。图像：Rijksmuseum, Amsterdam，馆方标记为公有领域。本文全图与局部均取自同一份[馆方数字图像](https://www.rijksmuseum.nl/en/collection/SK-C-5)，保留其色彩。*
 
@@ -55,7 +55,7 @@ AI 辅助：GPT
 
 队长则显示出另一种方式。他的大部分衣服是黑色，人物仍然很突出：脸部和白领位于暗帽与暗衣之间，红色绶带横过躯干，伸出的手又离开身体暗面。观者可以借少量清楚的部位，识别一个较大的身体。
 
-<p><img src="assets/article-media/night-watch-visual-order/focus-map.png" alt="《夜巡》亮区分析标注：前景双人组合、左侧亮衣女孩与右侧鼓手分别用圈线标出" width="2000" height="2000" style="display:block;max-width:100%;height:auto" loading="lazy" decoding="async"></p>
+<p><a href="assets/article-media/night-watch-visual-order/focus-map.png" target="_blank" rel="noopener noreferrer" aria-label="查看高清原图"><img src="assets/article-media/night-watch-visual-order/focus-map-web-800.webp" srcset="assets/article-media/night-watch-visual-order/focus-map-web-800.webp 800w, assets/article-media/night-watch-visual-order/focus-map-web-1600.webp 1600w" sizes="(max-width: 767px) calc(100vw - 48px), 720px" alt="《夜巡》亮区分析标注：前景双人组合、左侧亮衣女孩与右侧鼓手分别用圈线标出" width="2000" height="2000" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
 
 *图2：本文选取的三处比较区域。圈线表达视觉分析，不是观众眼动记录，也不规定唯一观看路线。原图：Rijksmuseum, Amsterdam；结构标注：本文。*
 
@@ -87,7 +87,7 @@ AI 辅助：GPT
 
 这些差别让人物容易分开，同时也使他们互相衬托。队长的黑衣在副官的浅色旁边具有清楚的边缘，副官的亮衣在队长和后方暗色人群之间显得更集中。主体的可见性来自相邻关系，不能只单看一个人的颜色。
 
-<p><img src="assets/article-media/night-watch-visual-order/officers-detail.jpg" alt="队长与副官局部：黑衣、白领、红色绶带与浅黄色衣服相邻，后方人物部分被遮挡" width="1800" height="2196" style="display:block;max-width:100%;height:auto" loading="lazy" decoding="async"></p>
+<p><a href="assets/article-media/night-watch-visual-order/officers-detail.jpg" target="_blank" rel="noopener noreferrer" aria-label="查看高清原图"><img src="assets/article-media/night-watch-visual-order/officers-detail-web-800.webp" srcset="assets/article-media/night-watch-visual-order/officers-detail-web-800.webp 800w, assets/article-media/night-watch-visual-order/officers-detail-web-1600.webp 1600w" sizes="(max-width: 767px) calc(100vw - 48px), 720px" alt="队长与副官局部：黑衣、白领、红色绶带与浅黄色衣服相邻，后方人物部分被遮挡" width="1800" height="2196" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
 
 *图3：队长与副官的局部。观察黑衣与浅衣的分界，以及两张主要面孔与后排面孔在位置、完整程度上的不同。局部来自同一馆方图像。*
 
@@ -107,7 +107,7 @@ AI 辅助：GPT
 
 这只手的作用可以分为两层。动作上，它把“正在说话或发出指示”的关系具体化；空间上，它似乎越过躯干朝向观看者，使前景身体拥有向外伸展的厚度。一个局部同时参与叙事与立体感。
 
-<p><img src="assets/article-media/night-watch-visual-order/hand-shadow-detail.jpg" alt="放大的队长手掌、袖口与副官上身，可见手势的前后缩短及衣服上的明暗变化" width="1800" height="1457" style="display:block;max-width:100%;height:auto" loading="lazy" decoding="async"></p>
+<p><a href="assets/article-media/night-watch-visual-order/hand-shadow-detail.jpg" target="_blank" rel="noopener noreferrer" aria-label="查看高清原图"><img src="assets/article-media/night-watch-visual-order/hand-shadow-detail-web-800.webp" srcset="assets/article-media/night-watch-visual-order/hand-shadow-detail-web-800.webp 800w, assets/article-media/night-watch-visual-order/hand-shadow-detail-web-1600.webp 1600w" sizes="(max-width: 767px) calc(100vw - 48px), 720px" alt="放大的队长手掌、袖口与副官上身，可见手势的前后缩短及衣服上的明暗变化" width="1800" height="1457" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
 
 *图4：手势与邻近衣服的局部。对照伸出的手、袖口和副官的浅色衣服；手的投影位于副官衣服较下方，需结合全图观察。局部来自同一馆方图像。*
 
@@ -129,7 +129,7 @@ AI 辅助：GPT
 
 亮衣女孩位于前景双人组合的左后方。浅色衣裙、头发与面部连在一起，周围是红衣、暗衣和被遮挡的身体。她没有像前景人物那样完整地占据地面前部，却获得了明显的可见性。
 
-<p><img src="assets/article-media/night-watch-visual-order/girl-and-overlap-detail.jpg" alt="女孩、人群与遮挡局部：女孩腰间悬挂禽鸟，前方持枪人物和黑衣手臂切过浅色衣裙，后方还能看见另一张脸" width="1800" height="2350" style="display:block;max-width:100%;height:auto" loading="lazy" decoding="async"></p>
+<p><a href="assets/article-media/night-watch-visual-order/girl-and-overlap-detail.jpg" target="_blank" rel="noopener noreferrer" aria-label="查看高清原图"><img src="assets/article-media/night-watch-visual-order/girl-and-overlap-detail-web-800.webp" srcset="assets/article-media/night-watch-visual-order/girl-and-overlap-detail-web-800.webp 800w, assets/article-media/night-watch-visual-order/girl-and-overlap-detail-web-1600.webp 1600w" sizes="(max-width: 767px) calc(100vw - 48px), 720px" alt="女孩、人群与遮挡局部：女孩腰间悬挂禽鸟，前方持枪人物和黑衣手臂切过浅色衣裙，后方还能看见另一张脸" width="1800" height="2350" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
 
 *图5：亮衣女孩与周围遮挡关系。浅色不是一整块没有变化的白：衣服、禽鸟、饰物和前方身体共同分割了它。局部来自同一馆方图像。*
 
@@ -155,7 +155,7 @@ AI 辅助：GPT
 
 退回全图，人物并不是沿一条直线排列。前景两人的脚落在画面下方可见的地面上，女孩与其他人的身体则有不同程度的遮挡。再向后，许多身体只剩下头部、帽子或肩膀。画面没有为每个人画出一块独立的地面，仍然能让人感到他们占据着不同的前后位置。
 
-<p><img src="assets/article-media/night-watch-visual-order/depth-map.png" alt="空间分析图：线条标示前景人物、中段面孔与后方门洞的位置" width="2000" height="2060" style="display:block;max-width:100%;height:auto" loading="lazy" decoding="async"></p>
+<p><a href="assets/article-media/night-watch-visual-order/depth-map.png" target="_blank" rel="noopener noreferrer" aria-label="查看高清原图"><img src="assets/article-media/night-watch-visual-order/depth-map-web-800.webp" srcset="assets/article-media/night-watch-visual-order/depth-map-web-800.webp 800w, assets/article-media/night-watch-visual-order/depth-map-web-1600.webp 1600w" sizes="(max-width: 767px) calc(100vw - 48px), 720px" alt="空间分析图：线条标示前景人物、中段面孔与后方门洞的位置" width="2000" height="2060" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
 
 *图6：以前景人物、中段人群与后方建筑观察空间关系。线条是分析示意，不是透视测量。原图：Rijksmuseum, Amsterdam；标注：本文。*
 
@@ -189,7 +189,7 @@ AI 辅助：GPT
 
 再看画面右上方，一支长柄武器从人群附近斜伸向右上角，穿过较暗的建筑背景。它的细长轮廓延伸了活动范围，又与人物、面孔组成的较密集区域形成疏密差。假设这些长线都被裁掉，人群仍然可以被认出，但向上展开的尺度和不同区域之间的方向联系会减少。这是对画面结构的假设比较，不是对作者创作过程的推断。
 
-<p><img src="assets/article-media/night-watch-visual-order/drummer-detail.jpg" alt="画面右侧鼓手与大鼓局部，人物和鼓从暗色人群中显现" style="display:block;max-width:100%;height:auto" loading="lazy" decoding="async"></p>
+<p><a href="assets/article-media/night-watch-visual-order/drummer-detail.jpg" target="_blank" rel="noopener noreferrer" aria-label="查看高清原图"><img src="assets/article-media/night-watch-visual-order/drummer-detail-web-800.webp" srcset="assets/article-media/night-watch-visual-order/drummer-detail-web-800.webp 800w, assets/article-media/night-watch-visual-order/drummer-detail-web-1600.webp 1600w" sizes="(max-width: 767px) calc(100vw - 48px), 720px" alt="画面右侧鼓手与大鼓局部，人物和鼓从暗色人群中显现" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
 
 *图7：右侧鼓手与鼓的局部。鼓面和边缘的浅色使画面边侧保留可辨认的形体。局部来自馆方图像。*
 
