@@ -8,15 +8,25 @@ AI 辅助：GPT
 
 一片散布在地面上的石块，有几块明显过大。直接看三维画面，很容易发现问题，却很难凭画面判断原因。可能是原始石块就太大，可能是几个位置给了偏大的缩放，也可能只是两块石头叠在一起。从结果倒着查这件小事，恰好能看出 Houdini 的工作区为什么需要同时容纳视口、节点图、参数面板和几何表格。
 
+<p><a href="assets/article-media/houdini-inspectable-workflow/workspace-overview.webp" target="_blank" rel="noopener noreferrer" aria-label="查看大图"><img src="assets/article-media/houdini-inspectable-workflow/workspace-overview.webp" alt="Houdini 官方工作区总览：3 是左侧视口，7 是右上参数编辑器，8 是右下节点编辑器，几何表格位于视口上方的标签栏" width="1403" height="1172" style="display:block;max-width:100%;height:auto" decoding="async" loading="eager"></a></p>
+
+*图1｜先在原界面认位置：左侧 **3** 看几何结果，右下 **8** 看节点与连线，右上 **7** 改所选节点的参数。左上「Geometry Spreadsheet」标签用于查看逐点数据，图中尚未打开。编号来自 [SideFX 工作区总览](https://www.sidefx.com/docs/houdini/basics/ui.html#overview)。可点开大图。*
+
 [《工作区里的操作范围》](https://lipengfei.top/workbench-operation-scope.html)讨论的是，按下一个键以后，系统会改到哪个对象。Houdini 把问题向后推了一步：**改动的对象已经知道了，怎样看出它的影响经过了哪些步骤，又在哪里变成最终结果？** 这篇以专业创作工具的交互设计为主，分析一个静态的几何工作流。石块和数值是为了说明判断方法而构造的案例；产品界面取自 SideFX 官方资料，石块图为示意。无需先懂模拟、渲染或编程。
 
 ## 一、把一片石头拆成三个可以独立修改的决定
 
 在这个案例里，用户需要决定三件事：石块长什么样，石块放在哪里，每处放多大。手工摆放时，三个决定可以在同一个对象上完成：复制一块，拖到合适位置，再缩放。只有五六块时，这种直接操作很有效。数量增多、地面范围变化，或者角色需要经过的区域重新划定后，同样的做法就会产生许多重复工作。此时，将石块形状、布点方式与大小变化分别保存为可编辑步骤，有实际意义。修改一项规则，可以让它重新作用到一组位置。
 
-<p><a href="assets/article-media/houdini-inspectable-workflow/node-network.webp" target="_blank" rel="noopener noreferrer" aria-label="查看大图"><img src="assets/article-media/houdini-inspectable-workflow/node-network.webp" alt="从地面散点到复制石块的两路节点关系" width="1520" height="900" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
+<p><a href="assets/article-media/houdini-inspectable-workflow/copy-inputs-v2.webp" target="_blank" rel="noopener noreferrer" aria-label="查看大图"><img src="assets/article-media/houdini-inspectable-workflow/copy-inputs-v2.webp" alt="Houdini 真实节点局部：左边 sphere1 连到 Copy to Points 的第一个输入；右边从 scatter1 经属性节点连到第二个输入" width="310" height="210" style="display:block;width:310px;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
 
-*图1｜静态石块案例的节点关系。地面产生目标点，点带有缩放属性，另一路提供石块模型。两路汇入 Copy to Points。图为结构示意。*
+*图2｜先看真实接线：左边的 `sphere1` 提供彩球形状，右边从 `scatter1` 往下走，经颜色和尺寸属性把带数据的点送入 `copytopoints1`。图源：[SideFX《Houdini 22 Foundations》第 9 页，第 04 步](https://media.sidefx.com/files/tutorials/h22-foundations-welcome/h22_foundations_welcome_v2.pdf#page=9)，裁出节点区。*
+
+把这张局部换成石块来读，只需要看底部两个口：**左边是要复制的东西，右边是要摆放的位置。** 右边多出的几步没有在制造石头；它们先在地面选出点，再给每个点附上一个大小。两路汇合之后，画面才从点变成一块块石头。
+
+<p><a href="assets/article-media/houdini-inspectable-workflow/node-network-v2.webp" target="_blank" rel="noopener noreferrer" aria-label="查看大图"><img src="assets/article-media/houdini-inspectable-workflow/node-network-v2.webp" alt="和真实界面采用相同端口顺序的石块工作流：左侧原型输入一，右侧布点和缩放输入二，两路合成石群" width="1520" height="880" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
+
+*图3｜和上方真实节点保持同一左右顺序。官方例子复制球，本文复制石头；把右路颜色步骤略去，只保留影响大小的那一步。*
 
 Houdini 的几何节点网络可以表达这三类决定。平面接到 Scatter，得到一组空间位置；这些位置在界面里表现为点，还没有石块的体积。下一步用 Attribute Randomize 为点生成 `pscale`，这个案例把它设成每点一个缩放数值。另一路是一块原始石头，可以用足够简单的多面体代替。最后的 Copy to Points 把第一个输入的几何复制到第二个输入的点上，并按相应的点属性变换副本。这里的 `pscale` 是乘在复制几何上的缩放因子，数值 1 表示这一项不改变原尺寸，数值 2 则使线性尺度乘以 2；实际结果还可能受其他相关变换属性影响。案例只保留这一项，方便归因。 [Scatter](https://www.sidefx.com/docs/houdini/nodes/sop/scatter.html) · [Copy to Points](https://www.sidefx.com/docs/houdini/nodes/sop/copytopoints-.html) · [点属性说明](https://www.sidefx.com/docs/houdini/copy/instanceattrs)
 
@@ -28,17 +38,13 @@ Houdini 的几何节点网络可以表达这三类决定。平面接到 Scatter�
 
 ## 二、编辑一步、查看另一步：同一个工作区里的两种指针
 
-<p><a href="assets/article-media/houdini-inspectable-workflow/official-workspace.webp" target="_blank" rel="noopener noreferrer" aria-label="查看大图"><img src="assets/article-media/houdini-inspectable-workflow/official-workspace.webp" alt="SideFX 官方彩球示例界面，左侧视口显示副本，右上为属性随机化参数，右下为节点网络" width="1005" height="566" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
-
-*图2｜SideFX《Houdini Foundations》第 9 页第 04 步界面。左侧看到复制后的彩球；右上正在设置 Attribute Randomize，右下的显示标记仍在下游 Copy to Points。图源为官方教程，不是本文石块示意。可点开查看原尺寸。*
-
-先看官方截图的三个位置。右上参数面板正在处理 Attribute Randomize，界面里能看到名为 `pscale` 的属性；右下节点图显示它位于 Copy to Points 上游；左边三维视口看到的是具有体积的彩球，而不是裸露的点。这三件事同时成立：**编辑的是规律，查看的是这条规律经过下游后的结果。** 对艺术家来说，可以继续留在调大小这一步，却不必放弃对最终大小关系的判断。照片软件调整曝光时也会保留成图供人看，区别在于这个几何网络容许用户另外指定从哪一步取结果。
+回看图2的两个标记：黄色轮廓围着上游的属性节点，蓝色圆环在下游的 `copytopoints1`。在官方练习中，编辑的是前者的尺寸规则，视口看的是后者生成的彩球。对艺术家来说，可以继续留在调大小这一步，却不必放弃对最终大小关系的判断。照片软件调整曝光时也会保留成图供人看，区别在于这个几何网络容许用户另外指定从哪一步取结果。
 
 在 Houdini 的几何网络中，选中节点与设置 Display Flag 是两种操作。选中上游节点，可以调其参数；显示标记指定从哪个节点取几何供视口显示。选中和显示可以重合，也可以分开。SideFX 文档还指出，在这个网络类型中，改动显示标记通常也会带动渲染标记，但两者可以分开设置。本文讨论视口检查；如果项目另有渲染输出需求，就要核对两个标记各在哪，而不是把“我只是切换预览”当成对所有场景都无影响。 [SideFX：几何节点标记](https://www.sidefx.com/docs/houdini/network/flags.html#sop-flags)
 
 <p><a href="assets/article-media/houdini-inspectable-workflow/two-views.webp" target="_blank" rel="noopener noreferrer" aria-label="查看大图"><img src="assets/article-media/houdini-inspectable-workflow/two-views.webp" alt="同一个上游节点的编辑状态，对比显示最终石块与只显示散点" width="1520" height="852" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
 
-*图3｜同一网络的两种观察方式示意。左边保留最终输出以比较整体；右边把观察位置移到散点阶段，只看数量与分布。节点和数值不必因此改变。*
+*图4｜同一网络的两种观察方式示意。左边保留最终输出以比较整体；右边把观察位置移到散点阶段，只看数量与分布。节点和数值不必因此改变。*
 
 如果选择节点就强制改变显示，调大小会变得怎样？用户先点上游改最大值，画面瞬间从石群退回散点；要看变化，必须再点回下游。看到某处仍然太大，再点回上游。点击不多，代价却在于每次都中断同一幅结果的前后对照。保持下游视口时，人可以在几乎相同的构图位置判断一次修改扩大或压缩了多少块石头。这里的 UX 改善来自保留参照，而非少开一个面板。
 
@@ -52,15 +58,15 @@ Houdini 的几何节点网络可以表达这三类决定。平面接到 Scatter�
 
 小范围内的石块举例设为：参考尺寸不变，目标点位置不变，四个点的缩放分别为 0.72、0.94、2.40、0.82。图示中编号 2 的位置出现一块过大的石头。画面支持“这一带有一块较大”的观察，却还不能单凭形状断言“就是 `pscale`”。应先用一个可检查的假设去读网络，然后再决定改哪一处。
 
-<p><a href="assets/article-media/houdini-inspectable-workflow/inspect-scale.webp" target="_blank" rel="noopener noreferrer" aria-label="查看大图"><img src="assets/article-media/houdini-inspectable-workflow/inspect-scale.webp" alt="示意：最终视口中的大石块、散点检查和点属性表的异常行" width="1520" height="856" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
+<p><a href="assets/article-media/houdini-inspectable-workflow/inspect-scale-v2.webp" target="_blank" rel="noopener noreferrer" aria-label="查看大图"><img src="assets/article-media/houdini-inspectable-workflow/inspect-scale-v2.webp" alt="几何表格的来源与数据层级，以及与大石块对应的异常行示意" width="1520" height="880" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
 
-*图4｜石块排查示意。视口提出“哪里不对”，中间结果用来查点位，表格显示每个点的尺寸因子。编号和数值为教学数据，图中编号用于解释对应关系。*
+*图5｜石块排查示意。读数前先核对表格顶部：来源是加尺寸属性后的节点，数据层级是 Points。再找编号 2 的 `pscale`。编号和数值为教学数据。*
 
 先看现象属于位置问题、尺寸问题，还是画面本身不易判断。若一块石头其实由两个接近的副本叠成，调低所有尺寸可能只是把重叠变得不明显。临时看散点分布，可以判断这一带是不是确有两个靠得很近的目标点。若点位合理，再看给点加属性的节点输出。这样做的好处，是一步只改变观察的位置，不先改变规则；每次检查都能排除一类候选原因，而不是同时动多个参数，最后得到一个好看的结果却说不出发生了什么。
 
 Geometry Spreadsheet，也就是几何表格，适合检查画面不能直接给出的证据。它可以显示所选几何的点、顶点、图元和整体属性等数据；在这个案例里，要看的是**进入复制节点的那一支点数据**，不是在最终石块网格里随便选一个顶点。先进入能输出带属性的目标点的节点，再在点的数据层级确认 `pscale` 是否有这一列、数值是否异常。如果读错了层级，看到“没有这一列”也不等于属性没创建。 [SideFX：几何表格](https://www.sidefx.com/docs/houdini/ref/panes/geosheet.html) · [几何属性](https://www.sidefx.com/docs/houdini/model/attributes.html)
 
-这里的细节对初学者尤其重要。最终画面里一个石块通常有许多几何点，目标分支里一个位置却可对应一份副本；这两种点不在同一层。即使表格都用编号表示，也不能把成品网格的第 2 个顶点当成目标分支的第 2 个点。图4把编号画在对应位置上，是为了让示例关系好懂；实际定位需要核对正确的节点和数据层级，并结合点位或可用的标识。若修改了随机种子、点数或上游拓扑，原来的编号也未必还能指向同一位置。工具交付时，能把“这张表属于谁”读清，比让人记住某个行号更有用。
+这里的细节对初学者尤其重要。最终画面里一个石块通常有许多几何点，目标分支里一个位置却可对应一份副本；这两种点不在同一层。即使表格都用编号表示，也不能把成品网格的第 2 个顶点当成目标分支的第 2 个点。图5把编号画在对应位置上，是为了让示例关系好懂；实际定位需要核对正确的节点和数据层级，并结合点位或可用的标识。若修改了随机种子、点数或上游拓扑，原来的编号也未必还能指向同一位置。工具交付时，能把“这张表属于谁”读清，比让人记住某个行号更有用。
 
 找到 2.40 以后，还要验证“这个数引起了这块石头的问题”。一种做法是在保持源模型、布点方式和观察角度不变的前提下，缩小尺寸因子的上限，再看范围内的石块是否回到合适大小；若要精确比较单点，则保留数据对应关系，避免同时改变位置。最终结果变化说明尺寸分支确实产生影响，但不自动说明应把上限设到哪。被这块大石头破坏的是通道宽度、群落比例，还是单纯不符合预期风格？合理数值由制作目标决定。流程能验证因果，无法替艺术家作取舍。
 
@@ -68,9 +74,9 @@ Geometry Spreadsheet，也就是几何表格，适合检查画面不能直接给
 
 如果表格里的 `pscale` 看起来都正常，则回头检查源石块本身的尺度，或本例尚未引入的其他变换。这里最有用的不是掌握某条固定排查口诀，而是懂得把问题放到一个候选原因的出处去检查。若所有副本都以同样比例偏大，源模型往往是一个优先检查的位置；若少数副本特别大，点上的差异更值得先看；若变大只发生在某个观看方向，也要考虑透视、遮挡与重叠。三类现象可以导向不同的检查入口。
 
-<p><a href="assets/article-media/houdini-inspectable-workflow/official-node-info.webp" target="_blank" rel="noopener noreferrer" aria-label="查看大图"><img src="assets/article-media/houdini-inspectable-workflow/official-node-info.webp" alt="SideFX 官方的节点信息窗口，显示节点路径、几何数量和点属性列表" width="357" height="189" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
+<p><a href="assets/article-media/houdini-inspectable-workflow/node-info-v2.webp" target="_blank" rel="noopener noreferrer" aria-label="查看大图"><img src="assets/article-media/houdini-inspectable-workflow/node-info-v2.webp" alt="SideFX 官方节点信息窗口，显示 attribrandomize_size 的路径、几何数量和点属性名称" width="451" height="280" style="display:block;width:451px;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
 
-*图5｜SideFX《Houdini Foundations》第 9 页的节点信息窗口，能快速确认路径、数量和属性项。这张图用于说明信息窗口能回答的问题；逐点查值用的是几何表格。*
+*图6｜SideFX《Houdini 22 Foundations》第 9 页的节点信息窗口局部。顶部是路径和节点名，底部列出点属性，包括 `pscale`。这里确认属性是否存在；逐点查值要用几何表格。*
 
 这也解释了为什么产品可以同时保留节点信息窗口和几何表格。前者回答“当前输出有多少点、有什么属性”，适合先确认结构；后者回答“每个点具体是多少”，适合验证局部异常。假如每次扫一眼属性是否存在都必须展开满屏表格，检查会打断制作；反过来，仅读一个“包含 `pscale`”的概要，不足以解释哪个位置过大。界面设计的重点是把这两种检视放在各自合适的深度，并且让它们识别同一个来源。
 
@@ -100,7 +106,7 @@ Geometry Spreadsheet，也就是几何表格，适合检查画面不能直接给
 
 <p><a href="assets/article-media/houdini-inspectable-workflow/change-impact.webp" target="_blank" rel="noopener noreferrer" aria-label="查看大图"><img src="assets/article-media/houdini-inspectable-workflow/change-impact.webp" alt="上游点位同时流向生成石块和检查分支" width="1520" height="760" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
 
-*图6｜共享依赖示意。同一组点同时用于生成石块和检查分布，改一处上游规则，可能让两个下游结果都变化。*
+*图7｜共享依赖示意。同一组点同时用于生成石块和检查分布，改一处上游规则，可能让两个下游结果都变化。*
 
 当网络更大，连线也无法独自说明影响。两条线足以表示一层关系；经过几十步或存在跨网络引用时，顺着线找可能比搜索还慢。重要的输出应有能识别的名称，中间数据应能找到被哪些步骤使用，更新后的结果要能辨认来源。把全图缩到一屏提供的是结构印象；判断某次改动会影响什么，通常需要从局部开始，逐步展开有关关系。
 
@@ -128,4 +134,4 @@ Geometry Spreadsheet，也就是几何表格，适合检查画面不能直接给
 
 再回到过大的石头。视口让问题可见，节点网络让原因有可查的出处，表格帮助验证数值，一次受控修改再把判断带回结果。Houdini 值得学习的地方，在于它让人沿着这条路径检查自己的工作。把结果拆成可理解、可调整、也能重新验证的部分，比把复杂工具的界面做得看上去简洁，更接近这个案例真正的 UX 目标。
 
-图2与图5取自 SideFX [《Houdini Foundations》](https://media.sidefx.com/files/tutorials/h21-foundations-welcome/h21_foundations_welcome.pdf#page=9)第 9 页；其余为本文示意图。
+图1取自 [SideFX 工作区总览](https://www.sidefx.com/docs/houdini/basics/ui.html#overview)，图2与图6取自 SideFX [《Houdini 22 Foundations》](https://media.sidefx.com/files/tutorials/h22-foundations-welcome/h22_foundations_welcome_v2.pdf#page=9)第 9 页；其余为本文示意图。
