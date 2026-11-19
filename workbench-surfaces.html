@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="用同一个订单筛选故障对照 VS Code 与 Codex：灰白色面、留白和边界如何区分区域，文件位置、运行记录与差异范围又如何支持跨区操作。"><meta name="robots" content="noindex,nofollow"><title>李鹏飞</title><link rel="icon" href="favicon.ico?v=20261003-b-original" sizes="16x16 32x32 48x48"><link rel="icon" type="image/png" sizes="32x32" href="assets/pengfei-wing-32.png?v=20261003-b-original"><link rel="icon" type="image/svg+xml" sizes="any" href="assets/pengfei-wing-original.svg?v=20261003-b-original"><link rel="apple-touch-icon" sizes="180x180" href="assets/pengfei-wing-apple-180.png?v=20261003-b-original"><link rel="stylesheet" href="styles.css?v=20261119-workbench-surfaces"><script defer src="assets/analytics.js?v=20261119-workbench-surfaces" data-website-id="f18cb949-fc16-4710-8355-ca4601609d4c"></script><script defer src="assets/language.js?v=20261006-article-language-v1"></script><script defer src="assets/site-age.js?v=20261004-v3"></script><link rel="stylesheet" href="assets/site-greeting.css?v=20261006-footer-horizontal-v1"><script defer src="assets/site-greeting.js?v=20261005-daily-v1"></script><link rel="stylesheet" href="assets/article-export.css?v=20261010-v2"><script defer src="assets/article-export.js?v=20261010-v2"></script>
+
+<link rel="stylesheet" href="assets/site-notice.css?v=20261019-status-v1"></head>
+<body class="site-greeting-page articles-shell"><a class="skip" href="#main">跳至正文</a><div class="site-notice"><p data-text-en="This website is being updated. Some pages and features are still being refined.">网站正在持续更新，部分页面与功能仍在调整。</p></div>
+<header class="wrap"><nav aria-label="主导航"><a href="index.html">首页</a><a href="index.html#direction">职业方向</a><a href="index.html#experience">工作经历</a><a href="index.html#about">关于我</a><a href="articles.html" aria-current="page">文章</a><a href="resume.html" data-gomaas-event="resume_open">查看简历</a></nav></header>
+<main id="main" class="article-page wrap"><div class="article-toolbar"><a class="text-link article-return" href="articles.html">← 返回文章列表</a><div class="article-export" role="group" aria-label="文章导出" data-article-export data-export-zh="assets/markdown/workbench-surfaces.zh.md">
+<div class="article-export-actions"><button class="article-export-action" type="button" data-copy-markdown hidden><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h4"/></svg><span data-copy-label>复制 Markdown</span></button><a class="article-export-action" data-download-markdown href="assets/markdown/workbench-surfaces.zh.md" download="灰色工作底层与白色内容面板：VS Code 和 Codex 的工作区设计.md" title="下载本文的 Markdown 文件（.md）"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></svg><span data-download-label>下载 Markdown</span></a></div>
+<p class="article-export-status is-quiet" data-export-status role="status" aria-live="polite" aria-atomic="true"></p>
+</div>
+</div><article lang="zh-CN" data-article-content><div class="article-heading"><h1>灰色工作底层与白色内容面板：VS Code 和 Codex 的工作区设计</h1><p class="article-meta"><span>发布于 <time datetime="2026-11-19">2026.11.19</time></span><span>AI 辅助：<span lang="en">GPT</span></span></p><p class="article-keywords"><strong>关键词</strong>：UI视觉　·　交互设计　·　工作区　·　VS Code　·　Codex　·　跨区操作</p></div><p class="article-language-note" lang="en">This article is available in Chinese.</p><div class="article-content porter-article">
+<p>一块浅灰色的底，一块比它亮的白色内容区，边上再嵌一列导航或工具。这个组合在桌面软件和网页应用里反复出现。它看上去很容易学：外面刷灰，里面刷白，留一点间距，给面板一道边。但把样式照搬到一个产品里，使用者仍然可能打开错文件、跑错验证、关闭面板后找不到原来的位置。表面的区别解决了“这几块分别在哪里”，真正的工作区还要解决“我怎样带着同一个问题从这块走到那块”。</p>
+<p>《界面的空间分层》讨论过工作区、临时浮层和模态操作的范围。这篇只看其中一个更具体的题目：<strong>当一项工作需要在多个区域之间反复往返，界面怎样给每个区域一个清楚的位置，又怎样把这些位置接起来？</strong> VS Code 以文件编辑为中心，Codex 桌面端以任务对话与变更审阅为中心。两者的表面可以看起来相近，但有不同的主要对象、操作权和回程。这些差别比哪一块更白，更能解释为什么要分区。</p>
+<p>下文用同一个虚构故障贯穿两例：订单页的“待处理”筛选误带出已取消订单。判断这项改动是否完成，至少要能解释筛选规则、读到具体修改，并确认针对该故障的验证结果。产品截图用于辨认布局；故障、文件名和步骤中的记录为教学示例。</p>
+<h2 id="section-1">一、UI：底层说“你在哪里”，内容表面说“你正在看什么”</h2>
+<p>“灰底白面板”可以描述为<strong>工作区底层与内容表面</strong>。底层是一个持续可见的环境，可能包含顶栏、项目导航、工具入口和容器之间的间隙；面板承载其中一项工作，例如读文件、写对话或查看差异。灰和白是浅色主题里容易实现的一种相对明度关系。颜色的顺序可以反过来，设计也可以只用相邻色面与分隔线；主题一换，仍能从位置、文字与控制方式认出哪里属于环境，哪里承载当前内容。</p>
+<p>这套做法容易在不同产品间反复出现，因为不少工具都要同时留出长期可用的导航和短期变化的内容。办公里换文档、聊天里换会话、编辑器里换文件，都可以保持外层位置稳定，再把变化限制在内容区。浅灰和白是表达这种分工的一种低成本方式：不需要给每个区域安一个品牌色，遇到图片、代码或文档自身已经很花时，外壳仍可以退后。它解决的是共同的视觉问题；不同产品怎样定义当前文档、会话或文件，则需要各自的交互规则。外观相近不足以判断它们采用了同一套设计系统。</p>
+<p>这里真正有用的是<strong>背景变化发生在范围变化的地方</strong>。例如切换侧栏中的项目时，工作区可能换一套文件或会话；在同一个编辑组内切换文件，容器还留在原处，只有标签和正文改变。稳定的区域让这些变化容易区分。如果切换文件时顶栏、侧栏和主内容一起大幅移动，使用者得重新判断自己换了文本、换了工具，还是换了项目。反过来，切换工作区时如果一切看起来都不变，只在深处换了目录，出错时也很难回想是哪一次动作改变了环境。</p>
+<p><a href="assets/article-media/workbench-surfaces/surface-anatomy.webp" target="_blank" rel="noopener noreferrer" aria-label="查看大图"><img src="assets/article-media/workbench-surfaces/surface-anatomy.webp" alt="灰底、白色主表面、停靠分隔与焦点的分层示意" width="1520" height="956" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
+
+<p><em>图1｜底层与内容表面的示意。左侧导航和右侧审阅形成不同区域；白色主表面可以与它们共存。蓝色焦点只表示当前接收操作的位置。图中的配色是教学示例。</em></p>
+<p>需要分清三种容易混在一起的边界。第一种是<strong>间距</strong>：环绕内容区的一圈灰表示这里结束、下一块还没开始。它适合把不同模块分开，但在几分钟内反复往返的两个区域之间，大缝隙会牺牲并排空间。第二种是<strong>停靠分隔线</strong>：两块仍属于同一个窗口，只在接缝处划界，接缝也可能接受拖动。第三种是<strong>覆盖边缘</strong>：一个临时工具遮盖了另一块内容，必要时才用阴影表示前后。三种边界能画得很像，手却会有不同的预期：能拖动吗？点外面会收起吗？后面的一块还可以操作吗？因此不要用同样强的圆角与阴影，把所有区域都暗示为漂在背景上。</p>
+<p>在较窄的窗口里，往往首先该让出的是装饰间距。一个近两行长的表达式，如果因为四周装饰空隙从两行变成四行，使用者对照时就要反复找断行；如果那条间距恰好让人手感明确地找到拖动边缘，它便有实际用途。评估留白不能只看整页是否舒展，要到最吃宽度的代表内容里试。设计规范可以分别记下外壳间距、容器内边距和拖动命中区：细线可以只画一像素，实际可拖动范围应更容易命中，拖动控制也应考虑键盘操作。它们是不同的设计决定。</p>
+<p>还有三个状态不能全交给表面颜色。<strong>区域的角色</strong>通常稳定：这格是编辑器，那格是终端。<strong>被选中的对象</strong>可以跨区保留：文件树选中的文件对应着打开的标签。<strong>输入焦点</strong>只说明键盘现在作用在哪里：编辑器的文件仍打开，插入点却可能已经在下方终端。把三者都表示成同一种蓝色底，就容易以为“文件还亮着，所以我可以直接输入代码”。较好的做法是在标题、标签和表面层级上交代区域；用选中行、文件名交代对象；用光标和可见焦点提示交代键盘去向。把截图转成灰度可以粗查分区，真正要验证焦点仍需用键盘走完操作。</p>
+<p>灯光反射、低亮度或高对比度主题会削弱很浅的灰白差。对此最直接的办法通常不是把所有框画黑：先看区域有没有能读懂的标题、选中对象有没有清楚的位置、控件和焦点是否仍然可辨。属于操作所必需的视觉线索，按<a target="_blank" rel="noopener noreferrer" href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html">非文本对比</a>等要求逐项检查；装饰性表面不必和所有相邻底色都追求同一个对比度。灰色表示“环境”也不等于灰色表示“禁用”。用户每天要从侧栏选文件，如果把整个导航画成不可操作的灰，主内容再亮也没有解决入口。</p>
+<h2 id="section-2">二、VS Code：从文件定位到运行结果，再回到具体一行</h2>
+<p><a href="assets/article-media/workbench-surfaces/vscode.webp" target="_blank" rel="noopener noreferrer" aria-label="查看大图"><img src="assets/article-media/workbench-surfaces/vscode.webp" alt="VS Code 官方截图：活动栏、文件树、并排编辑组、底部终端与状态栏" width="1200" height="796" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
+
+<p><em>图2｜VS Code 官方工作区示例。左侧显示文件树，中间是两个编辑器组，下方为终端。图中采用深色主题，但导航、编辑与执行的边界仍然可辨。来源：<a target="_blank" rel="noopener noreferrer" href="https://code.visualstudio.com/docs/editing/getting-started/userinterface#basic-layout">VS Code：用户界面</a>。</em></p>
+<p>读这张图时，可以先忽略主题，只辨认区域边界。编辑器组有自己的标签和阅读空间，侧栏列的是整个目录中的对象。同一个文件可以在两处被表示：文件树里的条目承载其在目录中的位置，编辑区里的标签承载其在当前工作中的位置。前者回答“它和哪些文件属于同一项目”，后者回答“我打开了哪些文件供这次修改使用”。文件条目与编辑标签重复出现，因此不是浪费。它让一个对象同时有地址和工作现场。用户看完配置，再回到筛选规则时，不必在整棵树里再找一次。</p>
+<p>用订单故障走一遍。先找到筛选函数和定义可选状态的配置。假设两个文件分别叫 <code>filter.ts</code> 与 <code>status.ts</code>。用户要比较的是筛选条件引用的状态与配置定义，可能每读一行左侧代码，就要看一次右侧字段。VS Code 的编辑组可以把两份文件并排。这里真正节省的是<strong>重复建立参照</strong>的动作：不用往返切标签后重新寻找第一屏里看的位置，也不必记住整串枚举值再去对照。省下几次点击固然有用，但减少中途把“待处理”和“未完成”混为一谈，更有价值。</p>
+<p>并排并非永远合适。在窄屏上，若两份代码都产生横向滚动，使用者为了看到同一段条件会同时调整两个视口，参考关系反而被切碎。若配置只需查一次，先打开确认，再回到主文件，让代码占满宽度就够了。能否并排由两种信息需要同时看的频率决定，布局也应允许用户调整。固定三栏会一直支付空间成本，按需并排则增加一次打开动作；对经常交替查看文件、配置和运行结果的人，两种成本的分布完全不同。<a target="_blank" rel="noopener noreferrer" href="https://code.visualstudio.com/docs/configure/custom-layout">VS Code：自定义布局</a></p>
+<p><a href="assets/article-media/workbench-surfaces/vscode-loop.webp" target="_blank" rel="noopener noreferrer" aria-label="查看大图"><img src="assets/article-media/workbench-surfaces/vscode-loop.webp" alt="VS Code 任务中的文件定位、并排编辑、运行结果与回跳" width="1520" height="936" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
+
+<p><em>图3｜订单案例示意。文件树打开文件，编辑器保留规则和配置的参照关系；终端结果可在路径可识别时回到编辑位置。它们是跨区连接，不是必须依次经过的四个页面。</em></p>
+<p>改完以后，在工作区的终端运行项目已有的测试。此时从编辑器交过去的不是一张卡片，而是一组前提：要测哪个项目目录、哪些文件已保存、命令查的是那个故障还是广泛的默认用例。代码编辑器可以保留尚未写回磁盘的内容；普通测试命令通常读取磁盘上的文件。于是可能出现一个看着很合理的画面：上面展示修改后的条件，下面显示“通过”，命令却跑的是保存前的版本。灰白边界能够让编辑与执行看起来是两件事，文件保存状态、目录和运行证据才让人确认二者是否真的对应。</p>
+<p>失败结果怎样回到编辑器，是另一个分界点。假设某个断言输出了 <code>filter.test.ts:18</code>，并附上“返回了已取消订单”。在 VS Code 可识别并解析为现有本地文件的情况下，终端的文件链接可带着行列位置打开编辑器。用户因此可以从正在解释的失败直接跳到断言，再返回筛选函数；不必读完日志后重新抄路径。如果输出只有“失败”，或只给堆栈中一个编译产物的地址，最多只能把结果摆在眼前，剩下的定位仍然靠人跨区翻译。对于同一个画面，这两种体验的差别不在终端有没有投影，而在文本能否指向下一步可处理的对象。<a target="_blank" rel="noopener noreferrer" href="https://code.visualstudio.com/docs/terminal/basics#links">VS Code：终端链接</a></p>
+<p>回跳也有可能落到次要位置。测试文件的失败行通常是“发现问题的地方”，并不一定是“应当修改的地方”。好的工作空间让两者并存：保留失败的断言作为事实，把规则文件作为修改地点，必要时并排，再回到原来的命令复跑。底部面板的价值，由此不是不断把眼睛吸向最新的输出，而是把它留作可以核对的证据。输出滚动后，使用者仍需要知道哪一段属于刚才那次尝试。一个常见失败是查看上一轮通过记录，再把它当成这轮修改的结果；区分运行批次、保留关键断言比把整个终端刷成警示色更实用。</p>
+<p>最后是键盘。使用者从编辑器切到终端运行测试，查看结果后点回文件。活跃标签还在、代码滚动还在，与光标是否重新获得输入焦点是三件事。界面可以保留原编辑位置，也应让输入去向可确认。相同一个设置项里，若“关闭面板”“隐藏面板”和“结束终端”给人类似的外观，意义却完全不同：为了获得屏幕空间而收起终端，一般不意味着要停止正在执行的进程。工作区的细部设计在这里承担了明确的后果，不是收纳习惯而已。</p>
+<h2 id="section-3">三、Codex：从任务范围到变更证据，再回到委派</h2>
+<p>把同一项故障放入 Codex，会发现主区发生了变化。使用者主要先写目标与范围，例如“修复订单页中待处理和已取消混在一起的问题；只动筛选规则与相关检查”。在支持的桌面开发环境中，可在任务对话记录进展，在差异面板阅读 Git 变更，并对具体的差异行提出反馈。这个例子的主对象由“当前已打开的文件”变成了“当前要完成的任务”，一项任务可以涉及几个文件、一轮或多轮运行。对话的稳定位置保留的是为什么做这件事、现在做到哪一步。 <a target="_blank" rel="noopener noreferrer" href="https://openai.com/index/introducing-the-codex-app/">OpenAI：Codex 桌面端</a> · <a target="_blank" rel="noopener noreferrer" href="https://learn.chatgpt.com/docs/code-review#review-local-changes">本地变更审阅</a></p>
+<p><a href="assets/article-media/workbench-surfaces/codex-review.webp" target="_blank" rel="noopener noreferrer" aria-label="查看大图"><img src="assets/article-media/workbench-surfaces/codex-review.webp" alt="Codex 任务对话、工作区与差异审阅之间的关系示意" width="1520" height="966" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
+
+<p><em>图4｜根据 Codex 桌面端公开文档重绘的任务审阅示意。左侧为任务索引，中间承载任务过程，右侧展示用于核对的差异。布局为示意，订单与文件名为虚构数据。</em></p>
+<p>从此前讨论的浅色 Codex 界面看，左侧导航的灰较稳定，中央是明亮的长内容区，工作区摘要可以在右侧以小而独立的表面出现。左边适合快速寻找一个话题，中间适合顺序阅读，右边则把当前任务之外还要核对的材料从长对话中抽出来。注意区分右侧的两种用途：显示“有多少变更”的摘要只是入口；打开具体差异后，才有文件、增删内容与评论位置。把摘要当成审阅器，相当于知道有几页变更便以为看过每一页。若想借鉴这种布局，应省的是查找证据的时间，不能把证据省掉。</p>
+<p>对话面板里的“已完成”是一段给人读的陈述；差异面板是对具体代码改变的观察；运行输出指向一次特定执行。三者互相补充，不能任选一个代替其他两个。仍以订单为例：对话可以说“修复了待处理条件”，差异可能多改了一处颜色或列表排序，测试则只证明某个断言通过。审阅时先看目标，再找承载规则的那几行，最后到验证记录判断“已取消状态不再出现在待处理”有没有真的被覆盖。把三种材料全部塞进一条对话固然可行，但重访时要重新辨认哪份差异是最新的、哪次日志属于这轮修改。独立的审阅面板给了信息一个稳定入口。</p>
+<p>独立入口也带来了新问题：<strong>会话与工作目录的范围不总相同</strong>。本地会话可能直接在已有改动的目录里工作；独立工作树可以将任务放到另一份检出的目录。审阅面板的 Git 范围也可能是当前未暂存改动、相对分支的差异或最近一轮。看见多个文件有变化，不能仅凭窗格挨着当前对话就认定全由本轮产生。在共享本地目录时，可能包含使用者此前改过的内容；切到另一工作树时，即使文件名完全相同，也不代表指向同一份文件。这是代理工作区与一般聊天界面最重要的一条边界：<strong>消息把人带到某个任务，工作区身份和比较范围才把人带到正确的证据。</strong> <a target="_blank" rel="noopener noreferrer" href="https://learn.chatgpt.com/docs/environments/modes">OpenAI：环境模式</a> · <a target="_blank" rel="noopener noreferrer" href="https://learn.chatgpt.com/docs/code-review#what-changes-it-shows">审阅范围</a></p>
+<p>用这条判断可以解释为什么不应把“项目名”孤零零放在页面左上角。若用户同时开着“修筛选”和“改页面颜色”两件事，真正危险的不是看漏两个对话标题，而是在执行审阅、运行和接手修改时拿错目录或基线。缩小窗口仍应能查到当前任务所对应的目录，差异区域要能说明比较范围；验证记录应能找到自己属于的工作版本。可以省略冗长路径的前缀，却要保留区分身份的后缀。路径信息不是给所有人长期读的正文，但在有歧义时必须找得到。否则两块面板之间的传递只能靠人相信“看起来在同一页”。</p>
+<p>Codex 的另一条连接发生在审阅返回对话时。使用者发现筛选修了，却没有覆盖“取消后再刷新”的处理，直接在差异行附近提出反馈，随后从对话发出清楚的后续要求。行内意见提供位置，文本意图说明要怎么改或验证。相比只回复“筛选还是不对”，被精确指向的文件和行降低了来回说明成本。它也不是无损的：下一轮改动后行号可能移位，反馈可能变得过时。重新审阅应该看新的差异以及相关测试，而不是看到旧意见仍停在相近位置，就默认问题仍在或已经解决。<a target="_blank" rel="noopener noreferrer" href="https://learn.chatgpt.com/docs/code-review#inline-comments-for-feedback">OpenAI：行内反馈</a></p>
+<p>代理代为运行的命令，与使用者在集成终端手动运行的命令，也值得区分。前者是任务历史的一部分，后者是一个可以主动验证的工具。即使两者都展示等宽文本，谁发起、进入哪个目录、什么时候结束，才决定能用它回答什么。为了验收筛选故障，打开终端亲自复跑是有价值的备用路径，但不应把“手动跑通”变成所有任务的固定门槛。设计上的目标，是让人能检查已有证据，在证据缺失或风险较高时再接管验证。 <a target="_blank" rel="noopener noreferrer" href="https://learn.chatgpt.com/docs/integrated-terminal">OpenAI：集成终端</a></p>
+<h2 id="section-4">四、把两个产品放在一起：信息流动的是对象、位置和证据</h2>
+<p>先画两个看起来很像的三栏界面。VS Code 左侧列文件，中间写文件，右边可以再开一个编辑组；Codex 左侧列任务，中间读任务经过，右边可以审阅改动。套用同一个组件库，两者几乎可以共享外框、圆角和分隔线。到了实现行为的那一天，差别就出现了：在文件树选中一个文件，新内容应由哪个编辑组接收？从任务索引选中另一个任务，临近的差异面板应该保持钉住旧证据，还是跟着换到新的工作区？表面规律能共享，状态的归属规则必须分别设计。</p>
+<div class="article-table" role="region" aria-label="文章表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>设计问题</th>
+<th>VS Code 的编辑工作流</th>
+<th>Codex 的任务审阅工作流</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>用户正在处理什么</td>
+<td>项目中的文件与代码位置</td>
+<td>一个任务及其作用的工作环境</td>
+</tr>
+<tr>
+<td>需要并排核对什么</td>
+<td>规则、配置与运行输出</td>
+<td>任务要求、所比较的变更与验证证据</td>
+</tr>
+<tr>
+<td>跨区动作要带走什么</td>
+<td>文件身份、可用的行列坐标、目标编辑组</td>
+<td>工作区、差异范围、文件和差异行</td>
+</tr>
+<tr>
+<td>最容易出现的误判</td>
+<td>跑了旧文件或错目录，还以为验证了屏幕上的代码</td>
+<td>看了其他改动或上一轮结果，还以为验收了当前任务</td>
+</tr>
+<tr>
+<td>回到主区后继续什么</td>
+<td>编辑、保存、再运行</td>
+<td>提出带位置的反馈，再审阅新一轮</td>
+</tr>
+</tbody></table></div>
+<p>最小的连接是<strong>显示来源</strong>。例如终端保留命令与目录，差异显示文件及基线，聊天提及某次检查时指向其记录。再往前一步是<strong>带着来源定位</strong>：点击终端文件路径，在编辑器打开相应位置；选择一个改动，在相应文件的差异里展开。最强的连接是<strong>把定位带入后续动作</strong>：审阅者在某行留意见，再把它带入下一轮任务。这三步所需的信息不同。一个界面可以先做好来源标记，避免靠多做快捷入口掩盖因果不清。</p>
+<p><a href="assets/article-media/workbench-surfaces/transition.webp" target="_blank" rel="noopener noreferrer" aria-label="查看大图"><img src="assets/article-media/workbench-surfaces/transition.webp" alt="并排、带上下文跳转以及隐藏后恢复的三种跨区策略" width="1520" height="906" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
+
+<p><em>图5｜三种跨区策略。并排保留参照；跳转带走目标地址；折叠保留用户稍后要继续的现场。使用哪一种取决于操作之间的关系。</em></p>
+<p>同理，“联动”也不是越多越好。让文件树指示当前编辑文件，适合回答“它在项目哪里”；但用户正在树中寻找另一个对象时，如果每次编辑焦点变化都把树滚回旧文件，会打断查找。在任务审阅中，默认切换时跟随任务可以节省确认，但审阅者钉住了一个比较对象时，悄悄换掉它就破坏了比较。这里要区分<strong>随主对象变化的视图</strong>和<strong>用户主动固定的参照</strong>。前者随项目、任务或选择更新；后者有清楚的名称、范围和被固定的提示，在失效时解释原因。界面知道如何自动更新，并不意味着此刻应该更新。</p>
+<p>从画面组织上说，浅灰外壳也能让许多反复操作不必每次都去视觉中心。比如查文件的入口彼此靠近、日志与审阅各有稳定地址，用户几次使用后可以用位置预测下一步。这里的好处来自稳定和可预测，不能从截图单独推断用户更快。若侧栏内容自行重排，入口随状态跳来跳去，浅灰仍然是浅灰，熟悉的手路却断了。做设计评审时，可以把静态截图与切换前三秒、后三秒的录屏对照：哪一块移动了，为什么移动，原来的选中状态或阅读现场还能不能找到？</p>
+<p>横向空间不够时，按关系重排比等比例缩小各栏更有用。正在查文件时可以先打开导航，找到后收起；正在对照时给两份内容足够宽度；需要查一次失败记录时，可以用全宽打开证据，再带着位置回到工作区。此时要保住的是项目身份、目标地址和回程，三栏布局本身可以消失。如果把右侧审阅移到新页面，却没有返回任务的入口，缩窄后仍然“功能齐全”，实际工作已经多了一次导航。</p>
+<h2 id="section-5">五、落到自己的工作台：先画回路，再分配面积</h2>
+<p>假设要设计一个类似 XBuilder 的创作工作台，用户可以编辑精灵的代码、造型和动画，也可以在舞台预览，再从快捷 API 找指令。常见方案是把名词列出来，给每一项配一个面板。这样容易形成看似完整的四栏：对象、API、编辑器、舞台，再把造型和动画塞进标签。问题是，哪几个区域需要一起出现，要从一个任务的实际过程判断。</p>
+<p>拿“让精灵碰到舞台边缘时切换造型”来走。首先选择精灵；然后查找碰撞条件要用的 API；接着写代码并运行；看见它切换到了错误的造型；最后跳到造型确认名称，再回到代码修正。沿路有两种容易混淆的东西：<strong>正在编辑的精灵</strong>，以及<strong>当前在舞台上观察到的对象</strong>。前者是一项选择，后者可能因运行显示出多个角色甚至临时生成的实例。舞台中点一下对象，究竟只是观察、是在预览中选中，还是会把代码编辑器切到另一精灵？这件事先明确。若运行预览不负责编辑，分区和标识就要告诉用户，此处看到结果不等于已更换编辑对象。</p>
+<p>把这些关系转成布局，可以做三项选择。其一，让对象列表和当前编辑标题重复显示精灵身份：从列表选“精灵 A”，主区标题显示“精灵 A／代码”；切到造型，标题保留“精灵 A”。其二，在调试时保存舞台与代码的并排关系，把 API 查阅做成可临时唤出的工具；如果实际使用者反复查参数，再允许把它固定在手边。其三，运行面板显示本轮就绪、运行中、失败或完成，能够在可定位时跳到对应对象或位置。没有可定位信息时，在错误信息处说明下一步可查什么，避免给一个点了也不知道去哪里的问题图标。</p>
+<p>现在才决定灰底白面板如何使用。用较安静的底色归拢项目导航、对象列表与查阅工具；对代码和舞台保持可读的连续表面。编辑模式入口靠近编辑区，而不是与整个项目导航同列；预览若能拖宽，分隔处给足触发范围；错误状态落在运行结果或代码位置，不把常驻导航整块染红。这里不需要给所有区域都加一圈灰色空隙。代码与舞台本来要频繁对照，停靠式分隔通常更合适。API 临时展开时用独立边缘表达覆盖；若需要一边看一边编辑，把它停靠，不用一次次遮住编辑位置。</p>
+<p>最容易被忽略的是复位条件。切到动画再返回，是否保留代码滚动和插入点？从精灵 A 切到 B 再切回来，是否给 A 恢复自己的阅读现场？收起舞台时，运行是否继续？切换项目后，哪些旧的运行记录应保留为历史，哪些不该再跟随当前精灵显示？把这些写成独立行为，每条用“从什么状态起、做什么、保留什么、清掉什么”来表达。比如：“在 A 的代码第 24 行打开 API 查找，取消后，选中仍是 A，代码滚动不变，焦点回到原插入点。”这比写“操作流畅、有空间层次”更能指导开发。不同场景也可以做不同选择：运行仍属于原项目时，标记来源继续显示；无法维持对应关系时，就不要用旧的绿勾装饰新任务。</p>
+<h2 id="section-6">六、两轮走查：先验证看得懂，再验证做得完</h2>
+<p>第一轮只检验 UI。选同一份低保真原型做三张：灰底白面板；同一底色加细边界；紧凑模式减少缝隙。三张保持文案、位置和控件一致。让参与者指出当前项目、当前对象、主要编辑区、运行输出，说明哪条边可拖、哪里能关闭，最后只用键盘把焦点从列表移到编辑器。再用窄窗口和较低亮度复看。记录错把哪个区域当成什么，以及在哪个位置读不懂焦点或分隔。比起问“哪张看起来有质感”，这种比较能指出明度、间距、标题和边界各自做了多少工作。要测配色就尽量固定其他变量；如果同时调整了栏位和字号，无法把差异归给灰白关系。</p>
+<p>第二轮检验 UX。选一项有失败分支的短任务，例如切换一次对象、修改后运行失败，再回去修复。准备两个流程原型，外观一致：甲仅分区，参照和回跳主要靠人；乙在跨区时携带文件、对象或范围，也允许用户恢复原来的编辑状态。测试时记录四件事：有没有改错对象；是否把旧日志当成新的结果；有没有丢失应修改的位置；关闭或切换后能否继续，不用重走一遍入口。点击数只能作为辅证。直接跳到错误行少了几个动作，如果跳到了副本或错版本，收益等于零；一次明确的范围选择虽然多一次动作，却可能挽救后面的判断。</p>
+<p>给代理界面再加一个更能暴露范围问题的例子。准备两个任务，两个工作区各有同名文件，再事先加入一处与修复无关的本地改动。让参与者在任务对话里找到“验证通过”的记录，再检查哪几行与故障有关，指出什么应作本轮审阅，什么属于其他工作。不要求他们背 Git 术语，观察界面能不能回答“这个结果属于谁、从哪里来”。若使用者在每次切换任务后都先读一遍标题说明，可能是身份标记太隐蔽；若能正确辨认工作区，却仍然接受了旧的断言，问题就转到运行证据的来源。两者都称为“上下文丢失”没有错，但修复办法完全不同。</p>
+<p>验收的落点很具体：底色与边界帮助辨认容器，标题与选中状态帮助辨认对象，位置、范围和运行记录帮助核对前后。VS Code 用文件和编辑位置串起操作；Codex 用任务、工作区与变更证据串起审阅。照着原型走到中途，关掉一个面板，再回来继续做：能否知道自己在处理哪个对象、上一条结果从哪来，以及下一步应去哪里？这些问题答得清楚，灰底与白面板才是工作结构的一部分。</p>
+</div></article>
+</main>
+<footer class="wrap"><div class="footer-inner"><div class="footer-meta site-age-meta"><span>© 2026 李鹏飞</span><span class="site-age" data-site-age data-established-date="2026-09-19" title="始于 2026.09.19">本站始于 2026.09.19</span></div><div class="footer-actions"><div class="language-switch" data-language-switch role="group" aria-label="语言 / Language" hidden><button type="button" data-language="zh" lang="zh-CN" aria-pressed="true">中文</button><span aria-hidden="true">/</span><button type="button" data-language="en" lang="en" aria-pressed="false">English</button></div><div class="footer-socials"><a href="https://www.linkedin.com/in/pengfei-li-7ab27b378/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/plwhd" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://x.com/li191qq" target="_blank" rel="noopener noreferrer">X (Twitter)</a></div></div></div></footer><aside class="site-greeting" data-site-greeting aria-label="网站&#x62db;呼">
+  <button class="site-greeting-button" type="button" aria-label="向网站打个&#x62db;呼">
+    <svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><circle cx="14" cy="14" r="10.25" stroke="currentColor" stroke-width="1.6"/><circle cx="10.25" cy="11.75" r="1.15" fill="currentColor"/><circle cx="17.75" cy="11.75" r="1.15" fill="currentColor"/><path d="M9.5 16.2C10.6 18.25 12.15 19.1 14 19.1S17.4 18.25 18.5 16.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+  </button>
+  <span class="site-greeting-sr" role="status" aria-live="polite" aria-atomic="true"></span>
+  <span class="site-greeting-note" data-greeting-note hidden></span>
+</aside>
+</body></html>
