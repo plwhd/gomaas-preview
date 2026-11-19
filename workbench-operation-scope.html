@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="从 Figma 的文字选区与 VS Code 的键盘焦点出发，分析命令怎样确定作用对象，为什么确认后应固定范围，以及撤销时如何分别恢复数据、选择与视口。"><meta name="robots" content="noindex,nofollow"><title>李鹏飞</title><link rel="icon" href="favicon.ico?v=20261003-b-original" sizes="16x16 32x32 48x48"><link rel="icon" type="image/png" sizes="32x32" href="assets/pengfei-wing-32.png?v=20261003-b-original"><link rel="icon" type="image/svg+xml" sizes="any" href="assets/pengfei-wing-original.svg?v=20261003-b-original"><link rel="apple-touch-icon" sizes="180x180" href="assets/pengfei-wing-apple-180.png?v=20261003-b-original"><link rel="stylesheet" href="styles.css?v=20261119-workbench-operation-scope"><script defer src="assets/analytics.js?v=20261119-workbench-operation-scope" data-website-id="f18cb949-fc16-4710-8355-ca4601609d4c"></script><script defer src="assets/language.js?v=20261006-article-language-v1"></script><script defer src="assets/site-age.js?v=20261004-v3"></script><link rel="stylesheet" href="assets/site-greeting.css?v=20261006-footer-horizontal-v1"><script defer src="assets/site-greeting.js?v=20261005-daily-v1"></script><link rel="stylesheet" href="assets/article-export.css?v=20261010-v2"><script defer src="assets/article-export.js?v=20261010-v2"></script>
+
+<link rel="stylesheet" href="assets/site-notice.css?v=20261019-status-v1"></head>
+<body class="site-greeting-page articles-shell"><a class="skip" href="#main">跳至正文</a><div class="site-notice"><p data-text-en="This website is being updated. Some pages and features are still being refined.">网站正在持续更新，部分页面与功能仍在调整。</p></div>
+<header class="wrap"><nav aria-label="主导航"><a href="index.html">首页</a><a href="index.html#direction">职业方向</a><a href="index.html#experience">工作经历</a><a href="index.html#about">关于我</a><a href="articles.html" aria-current="page">文章</a><a href="resume.html" data-gomaas-event="resume_open">查看简历</a></nav></header>
+<main id="main" class="article-page wrap"><div class="article-toolbar"><a class="text-link article-return" href="articles.html">← 返回文章列表</a><div class="article-export" role="group" aria-label="文章导出" data-article-export data-export-zh="assets/markdown/workbench-operation-scope.zh.md">
+<div class="article-export-actions"><button class="article-export-action" type="button" data-copy-markdown hidden><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h4"/></svg><span data-copy-label>复制 Markdown</span></button><a class="article-export-action" data-download-markdown href="assets/markdown/workbench-operation-scope.zh.md" download="工作区里的操作范围：选中对象、输入焦点与命令结果.md" title="下载本文的 Markdown 文件（.md）"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></svg><span data-download-label>下载 Markdown</span></a></div>
+<p class="article-export-status is-quiet" data-export-status role="status" aria-live="polite" aria-atomic="true"></p>
+</div>
+</div><article lang="zh-CN" data-article-content><div class="article-heading"><h1>工作区里的操作范围：选中对象、输入焦点与命令结果</h1><p class="article-meta"><span>发布于 <time datetime="2026-11-19">2026.11.19</time></span><span>AI 辅助：<span lang="en">GPT</span></span></p><p class="article-keywords"><strong>关键词</strong>：交互设计　·　UI视觉　·　工作区　·　焦点　·　命令范围　·　撤销</p></div><p class="article-language-note" lang="en">This article is available in Chinese.</p><div class="article-content porter-article">
+<p>在 Figma 里，画布上同样显示着“提交订单”四个字。你可以选中承载它的文字图层，也可以把插入点放进文字内部。前一种状态下，你正在处理一个图层；后一种状态下，你编辑的是这个图层中的文字。手指按下删除键时，两个状态可能产生截然不同的后果：少一个字，或者少一个图层。画布并没有从一个页面跳到另一个页面，工作的范围却已经变了。</p>
+<p>VS Code 也有类似的瞬间。中间的编辑器仍显示原来的文件，底部终端已接收键盘输入。你看得见正在修改的代码，并不表示此时按下的按键会作用于代码。换个方向，如果该做的是终止一次终端运行，但按键被编辑器接收，结果也可能与你想的完全不同。工作区把多个区域放在眼前，带来了对照的便利，也把一个问题摆得更明显：<strong>下一步到底会作用于哪里？</strong></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://lipengfei.top/interface-spatial-layers.html">《界面的空间分层》</a>讨论区域如何组织，<a target="_blank" rel="noopener noreferrer" href="https://lipengfei.top/workbench-surfaces.html">《灰色工作底层与白色内容面板》</a>进一步讨论操作如何跨区继续。这篇只追踪一次命令，从用户产生意图，到系统确定对象，再到执行、反馈和恢复。文中借 Figma 和 VS Code 说明可核对的产品行为；涉及异步确认、批量操作与恢复策略的例子，是用来开展设计推演的场景。</p>
+<h2 id="section-1">一、同一幅画面里可以同时有四个范围</h2>
+<p>先区分<strong>正在查看、已经选中、接收输入、实际受影响</strong>。这四件事经常一致，经验丰富的用户便容易把它们合成一个“当前”。一旦产品增加侧栏、搜索、预览、局部编辑或多选，“当前”就不够精确了。</p>
+<p>正在查看是视口里的内容。你把画布拖到另一个画框，原来选中的图层可能还在，只是移出了屏幕。已经选中是当前准备处理的对象，可以是一个图层，也可以是一组。接收输入是键盘焦点的位置：图层保持选中，插入点可能在右侧宽度字段里。实际受影响的范围由命令定义：删除一个外层画框，也会带走它里面的内容；改一个文字字段，只需要把新的值写回当前属性。前三项是命令的输入线索，第四项是它会造成的结果。知道自己选了谁，还不足以知道自己将改掉什么。</p>
+<p><a href="assets/article-media/workbench-operation-scope/scope-map.webp" target="_blank" rel="noopener noreferrer" aria-label="查看大图"><img src="assets/article-media/workbench-operation-scope/scope-map.webp" alt="同一工作区里的可见范围、选中范围、键盘焦点与命令影响范围" width="1520" height="832" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
+
+<p><em>图1｜四种范围可以重叠，也可以分开。图层 A 被选中，游标在属性字段里；此时输入作用于字段，属性提交后才写回 A。</em></p>
+<p>拿一个缩小的例子看。画布上同时有“订单标题”和“订单按钮”。你选中按钮，右侧打开宽度字段，把原来的数字选中准备替换。此刻，画布上的轮廓表示“这个属性属于谁”，数字的选区表示“这几个字符即将被替换”。它们同时存在是合理的。如果一进入属性字段，画布上的对象标记就消失，用户难以确认正在给谁改尺寸；如果只保留画布高亮而看不见字段焦点，删除键又让人不敢按。设计要同时表达对象关系和输入位置，不能用一个通用的“蓝色选中态”承担两层意义。</p>
+<p>反过来，焦点所在区域也不决定所有命令的目标。有些操作就是要跨过焦点，例如保存项目或打开全局搜索；有些操作从当前对象向下查找适用范围，例如仅对有效选区执行格式操作；还有些应直接跟随触发入口，例如行尾的“移除”明确指向本行。把“焦点优先”写成统一规则，会让行菜单误伤画布；把“选择优先”写成统一规则，又会让文字字段里的删除变成对整个对象的删除。真正需要安排的是：每个命令信任什么线索，缺少必要线索时怎么办。</p>
+<p>这也让“所见即所得”有了更具体的判定。它不是所有操作都得有视觉预演；它至少要求能从现场判断命令会改的是字、图层、一个文件还是一批数据。范围的线索如果只存在于帮助文档或一串快捷键背后，界面就把重要判断推给了记忆。对键盘使用者，焦点也必须可辨识；其样式可以是边框、插入点或适合控件的其他标记。这里可以参考 W3C 的<a target="_blank" rel="noopener noreferrer" href="https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html">可见焦点说明</a>。</p>
+<h2 id="section-2">二、Figma：进入文字内部，实体没有换，编辑尺度变了</h2>
+<p>在一个订单确认画框中，有按钮外框、背景和“提交订单”文字层。在画布上它们看起来是一个按钮，在图层树中却有明确的父子关系。用户的真实意图是删去“提交”二字，保留“订单”。完成这件事之前，他需要先认出自己看到的东西，再认出自己选到的是按钮整体、文字图层，还是文字中的一个区间。</p>
+<p>Figma 的<a target="_blank" rel="noopener noreferrer" href="https://help.figma.com/hc/en-us/articles/360040449873-Select-layers-and-objects">图层选择文档</a>说明，可在画布和图层面板中选取对象；嵌套内容也可借深层选择或图层菜单定位。面板中的行有名字和层级，画布则保留对象的空间位置与轮廓。两者在回答不同问题。看着画布，很容易判断“这是不是我说的那个按钮”；看着树，很容易判断“我选到的是按钮框架还是它的文字子层”。当一张画布上有十几个同样外观的按钮时，只靠空间位置有可能认错；如果这些图层都叫“按钮”，也不能只靠名字。在可见轮廓旁保留有区分力的父级信息，帮助使用者把“这一处”和“那一个对象”对上。</p>
+<p>进入文字编辑则是下一步。Figma 官方<a target="_blank" rel="noopener noreferrer" href="https://help.figma.com/hc/en-us/articles/360039956434-Guide-to-text-in-Figma-Design#edit-text-content">文字编辑指南</a>列出了双击文字层、或选中文字层后按 Enter 的进入方式。关键不是双击和单击哪一种更快，而是进入以后，使用者有新的可见线索：出现插入点，可以选一段文字，输入的对象由一整个图层变成内部文字。外面的文字层仍提供归属关系，里面的插入点则告诉你下一次输入发生在哪里。</p>
+<p><a href="assets/article-media/workbench-operation-scope/figma-scope.webp" target="_blank" rel="noopener noreferrer" aria-label="查看大图"><img src="assets/article-media/workbench-operation-scope/figma-scope.webp" alt="图层层级、文字层被选中、进入文字编辑后的范围变化" width="1520" height="900" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
+
+<p><em>图2｜Figma 场景的原理图。上方比较画框、文字图层和局部文字，下面画出进入文字编辑后的输入范围。图为教学重绘，交互依据 Figma 官方指南。</em></p>
+<p><a href="assets/article-media/workbench-operation-scope/figma-official.webp" target="_blank" rel="noopener noreferrer" aria-label="查看大图"><img src="assets/article-media/workbench-operation-scope/figma-official.webp" alt="Figma 官方示例：一个文字图层被蓝色边框和四角手柄围住" width="960" height="931" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
+
+<p><em>图3｜Figma 官方文字编辑演示中的图层选中状态。蓝色外框围住整个文字对象，四角手柄与尺寸标记说明当前选中的是一个图层。对照图2中局部文字的选区，可以看出两个尺度的区别。<a target="_blank" rel="noopener noreferrer" href="https://help.figma.com/hc/en-us/articles/360039956434-Guide-to-text-in-Figma-Design#edit-text-content">图源：Figma 文字编辑指南</a>。</em></p>
+<p>可以把这个过程看成先确定容器，再确定容器内部的位置。若用户直接在文字层选中态尝试删除，系统要处理的是图层命令；而在文字编辑态，删除字符是输入控件的本地操作。对产品设计而言，转入本地编辑时有一项很重要的交接：<strong>父级命令要把普通输入让给内部控件</strong>。否则用户为了改一个数字所做的按键，可能在画布上变成删除、移动或切换工具。这类问题用鼠标点一遍往往查不出来，因为鼠标能看到并点中具体的按钮；只有按键让接收范围成为关键。</p>
+<p>这项规则的另一端同样重要：退出编辑后，下一次按键该落在哪里？若从数值字段返回，通常应能继续对照所选图层；若从文字内容回到图层级，至少应能看出文本游标已不再生效。退出动作可以是提交、取消或返回上一层；界面要让人知道这次发生的是哪一种。特别是中文输入法正在选词时，Enter 可能用于确认候选内容；若外层直接把这个按键解释为提交属性或退出模式，范围会在输入尚未结束时被夺走。</p>
+<p>Figma 的多图层文字编辑又给出一个反例：有插入点，也不保证只改一个图层。文档说明，用户可选中多个文字图层，进入多文字编辑，修改会应用到所选图层。此时焦点其实仍在一个编辑入口，影响范围却是一个对象集合。普通文字编辑可以用“文字游标在这里”说明；批量文字编辑还需要让“这些层会一起改”可见。产品不必给每次输入都弹确认，但应在开始输入前标清正在批量处理，必要时给数量和对象集合的入口。</p>
+<p>多选的入口也会改变集合的含义。Figma 文档中，画布上按住 Shift 点击用于把对象加进选区或移出；在图层列表中用 Shift 从一行点到另一行，可选中两行之间的层。它们看起来都在“扩大选择”，实际一个按对象逐个处理，一个借列表顺序取区间。批量改名时，如果用户误以为自己只选了首尾两个图层，影响会立刻从两个增长到整个区间。<strong>集合如何形成，是范围设计的一部分。</strong> 在执行前把选中数量和必要的高亮对上，比提交后再用一句“修改成功”更能防止误解。</p>
+<h2 id="section-3">三、VS Code：同一个按键，由谁接手</h2>
+<p><a href="assets/article-media/workbench-operation-scope/vscode.webp" target="_blank" rel="noopener noreferrer" aria-label="查看大图"><img src="assets/article-media/workbench-operation-scope/vscode.webp" alt="VS Code 官方工作区示例：文件树、编辑器和终端同时可见" width="1200" height="796" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
+
+<p><em>图4｜VS Code 官方工作区示例。文件树、两个编辑器组和终端并排或上下停靠。静态图可以看到区域，但不足以说明按键此时会交给谁。<a target="_blank" rel="noopener noreferrer" href="https://code.visualstudio.com/docs/editing/getting-started/userinterface#basic-layout">图源：VS Code 用户界面文档</a>。</em></p>
+<p>设想屏幕上同时打开 <code>order.ts</code> 和相关测试。文件树指向某个文件，编辑器显示代码，底部终端留着上一条命令。用户可以点击编辑器并选择几个字符，也可以点击终端，编辑下一条命令行。在通常由 shell 接收普通字符编辑键的终端里，退格处理的是命令行内容；文本编辑器拥有焦点时，同样的输入由编辑器处理。具体按键映射取决于平台、shell 和快捷键设置，例子的重点是有明确的接收者，不能据哪个区域最亮来判断。</p>
+<p>VS Code 的<a target="_blank" rel="noopener noreferrer" href="https://code.visualstudio.com/api/references/when-clause-contexts">上下文条件</a>提供了一个能看见实现逻辑的例子。文档区分 <code>editorFocus</code>、<code>editorTextFocus</code> 和 <code>filesExplorerFocus</code>。前两者尤其值得比较：编辑器所在区域拥有焦点，可能是文字，也可能是区域中的小工具；只有更窄的文字焦点才能准确表达“现在可以改代码内容”。在<a target="_blank" rel="noopener noreferrer" href="https://code.visualstudio.com/docs/configure/keybindings">快捷键规则</a>中，键与可选的上下文条件一起决定哪条绑定生效。也就是说，画面有编辑器、此时打开了一个文件、文本正在接收输入，技术上和体验上都不应当用一个布尔值代表。</p>
+<p>键盘区域也不是各自独立的一堆动作。某些组合键由终端中的程序使用，有些又被工作台拦截，服务于全局动作。VS Code 的<a target="_blank" rel="noopener noreferrer" href="https://code.visualstudio.com/docs/terminal/advanced">终端高级设置</a>说明了终端如何处理或绕过部分组合键。设计时最容易过度简化成“终端聚焦，所有按键都交给终端”。这样会把必要的退出和切换路径一起交出去。反过来，如果原来终端用户依赖的按键大量被外层截获，终端看着能用，实则不断违背他们的预期。分派规则要尽量符合区域自身的使用惯例，同时给少量跨区命令留下清楚、可获知的出口。</p>
+<p>相同的含糊出现在选中状态上。点击终端以后，文件仍然在标签页里，文件树中的对应位置也不会凭空失去意义。这个状态可用于确认上下文，但不能冒充活动输入。比较两种提示：把文件标签继续标为打开，另给终端插入点和活动标记；或者让标签和终端都用一样鲜亮的色块。前者保留“你在看哪个文件”与“输入发往哪里”，后者看起来醒目，却让键盘操作更难预判。验收时可以把鼠标挪开，用键盘在不同区域间来回切换，再请人指出此时输入会出现在哪，而不是在静止截图上数选中颜色。</p>
+<p>还要注意命令入口是否会临时获得焦点。用户打开命令面板，是为了找一条命令；搜索框必须接收文字，但许多命令寻找的是调用时的编辑对象，不能都拿搜索框作为目标。一个局部格式化命令执行前，应明确适用的文件或选区；纯工作区命令则可以依赖当前项目系统确定范围。这里有两份状态：<strong>查找命令时的焦点</strong>，以及<strong>命令要使用的上下文</strong>。临时界面覆盖前者，后者应该根据命令规则保留或重新验证。这个区分也适用于右键菜单、属性弹出层和对话框。</p>
+<p>进一步看文件树：如果一项命令可以从某一行的菜单直接执行，最自然的目标是被调用的那一行或明确标出的多选集合。若编辑器碰巧还显示另一份文件，后者不应仅因最近活跃而抢过目标。这个原则可以用来评估设计，无须在本文逐一模拟 VS Code 每个版本的右键行为。可做的原型实验是：编辑器开着 A，在树里点开 B 的行菜单；让用户不看结果就说出菜单里的改名会作用于谁。如果答案分成两派，应优先看菜单是否把触发行和集合表示清楚。</p>
+<h2 id="section-4">四、范围何时确定：编辑可以跟随，确认应保留原对象</h2>
+<p>选择变化时，让工具跟着当前对象是自然的。例如从按钮 A 点到按钮 B，属性区更新为 B。若还停在 A 身上，用户就会调错对象。可是一旦进入一个已经点名目标的动作，规则会反过来。打开“移除按钮 A”的确认后，即使画布的选择由于其他操作而改变，确认也不能悄悄变成移除 B。前一种动作还在准备，后者已经进入提交。<strong>准备阶段可以跟随选择，提交阶段应对已展示的范围负责。</strong></p>
+<p>什么时候算进入提交？对于点一下即时执行的行操作，通常是触发命令的那一刻；对于需要先选规则的批量操作，可能是在生成预览、确定目标清单时；对于搜索框发起的动态查询，用户可能有意让结果一直随条件更新。不能只根据弹窗的外观决定。真正的分界是：用户是否已经看到、并据以作出判断的目标。只要他已经按这份清单核对，系统就不能在后台换一批而维持原来的确认文案。</p>
+<p><a href="assets/article-media/workbench-operation-scope/target-time.webp" target="_blank" rel="noopener noreferrer" aria-label="查看大图"><img src="assets/article-media/workbench-operation-scope/target-time.webp" alt="命令从触发到执行：跟随当前选择与固定已确认范围" width="1520" height="852" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
+
+<p><em>图5｜准备阶段，工具可以随选择更新；确认阶段，命令保留已展示的目标。若目标在等待期间失效，应说明发生了什么，而不是换一个相似对象继续执行。</em></p>
+<p>设想一个列表筛选后只显示未归档的设计文件。用户选了三份，打开批量移除，随后筛选条件被更新，原来的三份里有一份变得不可见。此时至少有两类产品约定：只操作明确选中的三份；或者操作点击执行时符合筛选条件的全部文件。两者都有成立的场景，却不能共用一句“移除选中”。前者应保留已选集合，并说明其中有多少不在当前视图；后者应明确作用于某个条件，并在数量变化可能影响决策时重新确认。在分页界面里，“勾选本页 20 项”与“应用到全部 218 项”尤其需要拆开。光把复选框涂满，不足以说明这两者的差异。</p>
+<p>固定范围也不是把旧状态原样提交。假设确认期间 A 已被另一操作移除，或者权限变成只读。合理的处理是重新检查 A 是否还存在、命令是否还适用。如果一批对象只成功处理了一部分，反馈要指出是全批失败、部分完成，还是剩余项等待确认；不能一律说“已完成”。如果为了维持用户对数量的预期，系统在 A 消失后顺手找另一个同名对象补足，反而破坏了最重要的承诺：用户选的是这个对象，不是这串名字恰好对应的某个对象。</p>
+<p>因此，对长时间或有确认步骤的操作，用于描述目标的信息至少有两种。界面给人看的名称、路径和数量，帮助判断；系统还要保留能辨别同名或迁移对象的身份，并记录适用条件。对于“订单标题”这种普通标签，名字足以让人读懂，但不足以实现命令。对于来自不同文件、分组或工作区的同名对象，给人看的提示也应增加有辨识度的父级，例如“订单确认页／标题”，而不是塞进一串难以读懂的内部编号。</p>
+<h3 id="section-5">用操作的后果决定需要多少提示</h3>
+<p>在本地文字里改一个字符，通常容易理解，也容易恢复。每次都弹出对话框会打断编辑。图层或文件删除则可能带走下面的内容；如果由熟练用户在明确的选中态触发，产品可以直接执行并提供可发现的撤销。若操作跨多个文件、包含隐藏项、影响共享状态，或者恢复方式有限，使用者需要在提交前得到更多信息。确认的目的不是把所有危险动词包进相同外壳，而是补上这一次还不能从现场推断的事实。</p>
+<p>例如“确定取消？”几乎没有帮助。针对范围的文案应说明：“移除当前画框的 3 个选中图层”；如果有隐藏子层，再说明“包含 5 个子层”；若删除后不会影响其他画框，可以把有限的影响说清楚。不是每次都要展开整棵树，但要让用户能在重要操作前看见一两条足以纠正误判的信息。三项规则可以同时成立：简单动作少打扰，难以逆转的动作先披露，曾确认的范围在执行时不能漂移。</p>
+<p>设计也可以把提示提到动作之前。一个工具栏按钮只有“删除”，你必须从整个页面猜它指向谁；若它贴在图层列表上并标“删除所选图层”，范围已随入口表达了。鼠标用户也许从位置就读得出来，键盘用户通过焦点和可访问名称才能得到相同信息。位置、命名、禁用条件和可达的说明应彼此一致：没有有效选择时，命令应呈现不可用或清楚解释缺少什么，而不是在执行后默默失败。</p>
+<h2 id="section-6">五、操作后：数据、选择与视口可以各自恢复</h2>
+<p>撤销最容易被写成“回到之前”。在多区域工具里，这句话至少有三层意思：把数据还原；把选择还原；把人带回原来的视口或输入点。把这三项绑成一个动作，最初显得省事，用户一旦在两块区域间工作就会遇到问题。</p>
+<p>举例：刚删了一层文字，随后把画布移到另一处检查。现在发现删错了，按撤销。数据上必须恢复的是刚删除的文字层。选择上可能有两种合理处理：保持刚选的另一层，让人在当前位置继续；或者恢复那一层的选中状态，让人马上核对。视口也可以跟着跳回，或留在原地并提供一个“定位到恢复的图层”。核心不是统一选前一个还是后一个，而是想清楚用户这次最需要什么。撤销后必须立即重新编辑那一层时，直接选中并定位有益；如果人正在对照另一画框，只想消除先前误操作，强制跳走就是副作用。</p>
+<p><a href="assets/article-media/workbench-operation-scope/undo-layers.webp" target="_blank" rel="noopener noreferrer" aria-label="查看大图"><img src="assets/article-media/workbench-operation-scope/undo-layers.webp" alt="撤销时将数据、选择、视口分开处理" width="1520" height="912" style="display:block;max-width:100%;height:auto" decoding="async" loading="lazy"></a></p>
+
+<p><em>图6｜撤销应说明改回了什么。数据恢复后，可以按任务需要决定是否恢复选择、是否跳回原处；这些不能由同一个“已撤销”提示代替。</em></p>
+<p>同样要区分<strong>撤销改动</strong>和<strong>退出当前工具</strong>。在文字编辑里取消待提交的属性值，可能只是结束一笔还没写入对象的输入；关闭终端面板，只是改变屏幕上看到的内容，不能用它推断进程是否已经停止；回到前一个编辑位置是导航，也不应把保存后的文件一起撤回。把这些动作都叫“返回”，界面看起来词少，使用者却得试一次才知道哪些东西被改了。</p>
+<p>VS Code 的源码管理尤其适合说明“恢复到哪一份”。同一个文件可能同时有已暂存和未暂存的修改。官方<a target="_blank" rel="noopener noreferrer" href="https://code.visualstudio.com/docs/sourcecontrol/staging-commits#undo-or-discard-changes">暂存与提交指南</a>区分取消暂存、丢弃未提交修改、撤回本地提交以及反转已共享提交。取消暂存改变的是下一次提交的内容，保留工作文件；在 Changes 中丢弃一个已跟踪文件的未暂存修改，恢复的是暂存版本，若没有暂存内容才与当前提交一致。把这两个按钮都写成“撤销更改”，用户很容易把“这次不提交”做成“我不要这个修改了”。看见同一个文件名，也不能跳过检查：它此时出现在 Changes，还是 Staged Changes？</p>
+<p>编辑器内撤销与本地历史又是另一组区别。连续输入的几个字符可以按编辑历史恢复；<a target="_blank" rel="noopener noreferrer" href="https://code.visualstudio.com/docs/editing/getting-started/userinterface#local-file-history">Timeline 中的本地文件历史</a>按保存等条件形成记录，可以查看或恢复某一份内容。后者不能当成每个按键都有的存档，编辑器撤销也不应被宣传成覆盖所有外部操作的保险。对于会产生外部副作用的命令——例如一个终端程序已将结果写到其他地方——界面可以提供新的补救操作，但不能仅因保留上一屏内容就暗示外部结果自动恢复。</p>
+<h3 id="section-7">一次动作应成为多大的撤销单位</h3>
+<p>假设同时为六层文字替换同一段内容。若应用把它拆成六笔用户可见的撤销，第一次按撤销只回改一层，其他五层还处于新状态。逐层技术实现可以成立，但用户当时只做了一次替换。更符合预期的设计，是把这次批量动作当成一次对外可识别的操作：反馈“已替换 6 个图层”，撤销从同一批次恢复。若中途只有四层成功，记录实际完成的四层，并让用户知道剩余两层为什么不同。整批是否必须全成或全失败，则取决于业务是否允许混合状态。协调不当时，最糟的做法是让提示写“全部恢复”，却把中间态留给使用者自己发现。</p>
+<p>对连续文字输入、拖动位置或改数值，粒度也有差别：拖动从按下到松手可能经过数十个中间坐标，用户通常要撤销的是整次拖动；连续输入则可根据编辑边界适当合并。能带走的原则是，<strong>用用户能说出的那一次动作定义撤销单位</strong>。实现层可能分成多个事件，产品不必把每个事件都变成一次撤销，也不能为了减少记录把一连串明确独立的操作合成一笔。</p>
+<h2 id="section-8">六、从文章回到设计：用六个场景验收范围</h2>
+<p>交付时可以为几个高频或高风险命令写一张范围表，每项记录触发位置、必要条件、目标来源、执行后的反馈和能否恢复。不必对每个控件都制作长文档。先挑容易冲突的操作：删除、批量修改、从错误跳回、关闭局部编辑和撤销。把规则写成可观察行为，例如：“对 A 的宽度字段输入时，删除键只编辑数字；退出后 A 保持选中，焦点回到事先约定的位置。”这样开发和测试可以直接复现；只说“选中态清晰”，无法判断出错是在视觉提示还是命令分派。</p>
+<p>走查时，先写清期待，再执行，避免做完以后反过来替现有行为找理由。下面六个场景可以放在同一份样稿里：</p>
+<div class="article-table" role="region" aria-label="文章表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>出发状态</th>
+<th>试做的动作</th>
+<th>需要观察什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>画布上的文字层被选中，随后进入文字编辑</td>
+<td>先删除一段文字，退出后再检查删除命令</td>
+<td>对象选择与字符选区有没有区分，退出后焦点是否清楚</td>
+</tr>
+<tr>
+<td>右侧属性输入接收焦点</td>
+<td>用中文输入法选词、取消或提交</td>
+<td>确认候选字是否误触发外层确认</td>
+</tr>
+<tr>
+<td>编辑器显示代码，终端接收输入</td>
+<td>用纯键盘往返两个区域</td>
+<td>用户能否在按键前指出接收者，返回后是否回到原编辑位置</td>
+</tr>
+<tr>
+<td>多选对象有一部分被筛选隐藏</td>
+<td>打开批量操作</td>
+<td>是否说明隐藏项在不在范围里，数量与预览是否一致</td>
+</tr>
+<tr>
+<td>已打开针对 A 的确认，A 在等待期间失效</td>
+<td>尝试提交</td>
+<td>是否清楚说明变化，是否避免替换成别的对象</td>
+</tr>
+<tr>
+<td>恢复前用户已切换到 B</td>
+<td>撤销刚才对 A 的操作</td>
+<td>数据恢复是否正确；是否说明 A 的变化，是否需要定位</td>
+</tr>
+</tbody></table></div>
+<p>同一任务可以先做“预测”，再做“执行”。先问下一步会改变谁、能不能撤销，再看结果。若多数人预测一致、实际却做错，规则和提示可能矛盾；若每人预测都不同，先查有没有稳定的范围线索；若能预判和正确执行，却在失败后回不来，问题在恢复而非布局。还可以区分问题的代价：一次多按 Tab 只是操作成本，改到另一个图层则是对象错误，执行后没有可靠恢复可能造成工作丢失。三类问题不应被一个笼统的“点击数下降”掩盖。</p>
+<p>视觉评审最后要回到同样的工作。一张灰底白面板的截图，能够展示区域面积、边界、文字对比。要检查操作范围，需要看同一界面至少三个状态：命令前，眼睛看哪里；命令触发时，范围有没有变化；执行之后，哪处能证实发生了什么。把三张同尺度截图排在一起，往往比新增一张线框更有用。如果每张里都只有同一个蓝框，无法解释哪个是对象、哪个是输入焦点、哪个是已影响的范围，先换提示的职责，再谈阴影和色值。</p>
+<p>一块常驻面板的真正价值，是让用户在其他地方工作时仍能看见自己依赖的对象；一个清楚的操作范围，则让他能在按下按键前知道影响落在哪里。Figma 把这件事暴露在画布、图层与文字内部之间，VS Code 把它暴露在文本编辑、终端与版本状态之间。回到最初的例子，四个字仍然在画面上。用户只要能分清自己在改字、改文字层，还是在处理包含它的整个画框，同一张工作区就能承载三种不同的工作，不必为每一种工作另造一个页面。</p>
+</div></article>
+</main>
+<footer class="wrap"><div class="footer-inner"><div class="footer-meta site-age-meta"><span>© 2026 李鹏飞</span><span class="site-age" data-site-age data-established-date="2026-09-19" title="始于 2026.09.19">本站始于 2026.09.19</span></div><div class="footer-actions"><div class="language-switch" data-language-switch role="group" aria-label="语言 / Language" hidden><button type="button" data-language="zh" lang="zh-CN" aria-pressed="true">中文</button><span aria-hidden="true">/</span><button type="button" data-language="en" lang="en" aria-pressed="false">English</button></div><div class="footer-socials"><a href="https://www.linkedin.com/in/pengfei-li-7ab27b378/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/plwhd" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://x.com/li191qq" target="_blank" rel="noopener noreferrer">X (Twitter)</a></div></div></div></footer><aside class="site-greeting" data-site-greeting aria-label="网站&#x62db;呼">
+  <button class="site-greeting-button" type="button" aria-label="向网站打个&#x62db;呼">
+    <svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><circle cx="14" cy="14" r="10.25" stroke="currentColor" stroke-width="1.6"/><circle cx="10.25" cy="11.75" r="1.15" fill="currentColor"/><circle cx="17.75" cy="11.75" r="1.15" fill="currentColor"/><path d="M9.5 16.2C10.6 18.25 12.15 19.1 14 19.1S17.4 18.25 18.5 16.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+  </button>
+  <span class="site-greeting-sr" role="status" aria-live="polite" aria-atomic="true"></span>
+  <span class="site-greeting-note" data-greeting-note hidden></span>
+</aside>
+</body></html>
