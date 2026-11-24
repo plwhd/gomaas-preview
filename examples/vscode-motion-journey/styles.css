@@ -1,0 +1,26 @@
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #eeeee5;
+  color: #263b33;
+  font: 18px/1.6 system-ui, sans-serif;
+}
+.project {
+  max-width: 38rem;
+  margin: 8vh auto;
+  padding: 24px;
+  background: #fffdf6;
+  border-top: 8px solid #526e60;
+}
+.project h1 { font: 500 2.3rem/1.2 Georgia, serif; }
+.project-notes { border-block: 1px solid #a5b3a5; }
+.project-notes summary {
+  padding: 14px 0;
+  cursor: pointer;
+}
+.project-notes[open] p { animation: reveal 180ms ease-out; }
+@keyframes reveal { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .project-notes[open] p { animation: none; }
+}
+footer { margin-top: 16px; font-size: 14px; }
