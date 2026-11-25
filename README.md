@@ -1,6 +1,6 @@
 # 李鹏飞个人网站
 
-[访问网站](https://lipengfei.top/) · [文章](https://lipengfei.top/articles.html) · [简历](https://lipengfei.top/resume.html)
+[访问网站](https://lipengfei.top/) · [文章](https://lipengfei.top/articles.html)
 
 这里是个人网站 **lipengfei.top** 的静态发布仓库。
 
