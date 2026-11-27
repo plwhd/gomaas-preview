@@ -14,6 +14,16 @@ AI 辅助：Codex
 
 这篇文章沿时间线选取有代表性的绘画、雕塑、建筑、版画、摄影和器物。主线从欧洲早期近代艺术出发，进入十九世纪的法国与欧洲，再延伸到二十世纪欧美艺术和跨国交流。年代是辨认先后的坐标。很多风格曾同时存在，在不同地区和媒介中也有不同的发展速度。
 
+## 研究问题与分析思路
+
+**同样的曲线、强烈的明暗或重复的几何形，为什么会让人以不同的方式观看作品？** 围绕这个问题，本文比较三个方面。
+
+1. **视线怎样移动？** 找出最先吸引目光的位置，再看人物朝向、明暗边界和留白把视线引往哪里。比如将《以马忤斯的晚餐》与《秋千》并看，两幅画都有明显的斜线，前者的动作伸向桌外，后者的方向线则让视线在画中人物之间往返。
+2. **媒介与观看场所改变了什么？** 油画可以用一块亮色把目光留在画布上。到了礼拜堂和镜厅，还要考虑真实光线从哪里来、观众站在哪里、移动后能看到什么。作品的原始用途和陈设位置，有助于解释这些安排。
+3. **相似的形式到了另一个时期，还在做同一件事吗？** 将年代相近的作品并排细看，也把同一种手法放回更长的时间线。比如从《岩间圣母》到《印象·日出》，两幅画都用模糊的边缘表现空气，前者借它拉开人物与远景的距离，后者把港口在晨雾中如何显现本身变成了画面主题。
+
+正文以欧洲和后来的欧美代表作品为观察范围。馆藏资料用于核对年代、媒介和原始用途，作品与现场照片用于观察可见细节。关于观看感受的判断，则从这些细节之间的关系出发。涉及尺幅、反光和空间距离时，插图提供辨认的线索，原作与现场才能呈现完整的尺度。
+
 ## 一张时间表，先认清它们大致在什么位置
 
 | 大致时段 | 本文涉及的风格与倾向 | 观看时先留意什么 |
@@ -35,7 +45,11 @@ AI 辅助：Codex
 
 达·芬奇的《岩间圣母》是很好的起点。岩洞里的几个人物聚得很近，头部和伸出的手形成几处相互照应的停顿。远处则用偏冷、偏浅的颜色和模糊的边缘拉开距离。远山并没有因为画得精细才显得遥远，其轮廓恰好比近处软。伦敦国家美术馆将这种处理称为**空气透视**。在画里，人物所在的暗处和远处发亮的开口互相衬托，空间因此既有深度，又带着难以完全看清的神秘感。 [伦敦国家美术馆《岩间圣母》专题](https://www.nationalgallery.org.uk/exhibitions/past/leonardo-experience-a-masterpiece/leonardo-and-the-virgin-of-the-rocks)
 
+<figure style="margin:1.5rem auto;max-width:560px"><img src="assets/article-media/art-style-timeline/virgin-of-the-rocks.jpg" width="1280" height="1973" alt="暗色岩洞里聚着圣母、天使和两名儿童，洞口露出淡蓝色的远景" loading="lazy" decoding="async" style="display:block;width:100%;height:auto"><figcaption style="margin-top:.65rem;font-size:.875em;color:#625d64">达·芬奇，《岩间圣母》，约 1491/1492—1499 年及 1506—1508 年。伦敦国家美术馆藏（伦敦版）。 <a href="https://commons.wikimedia.org/wiki/File:Leonardo_da_Vinci_Virgin_of_the_Rocks_%28National_Gallery_London%29.jpg">图像来源（公有领域）</a></figcaption></figure>
+
 到了十六世纪，已有的造型技巧也可以用来让观看变得不安稳。布龙齐诺的《维纳斯与丘比特的寓言》里，肌肤光洁，轮廓讲究，人物却互相叠压，肢体转向各不相同。观众容易认出其中几个人物，整个场景的含义却仍有歧义。精致的画法使这些复杂关系更突出。样式主义常让人同时感受到两件事：画家掌握了严格的造型技艺，也有意把姿势、比例和叙事推到不那么自然的位置。 [伦敦国家美术馆《维纳斯与丘比特的寓言》](https://www.nationalgallery.org.uk/paintings/bronzino-an-allegory-with-venus-and-cupid)
+
+<figure style="margin:1.5rem auto;max-width:560px"><img src="assets/article-media/art-style-timeline/bronzino.jpg" width="1280" height="1615" alt="光洁的人体在近处交叠，画面上方露出蓝色背景" loading="lazy" decoding="async" style="display:block;width:100%;height:auto"><figcaption style="margin-top:.65rem;font-size:.875em;color:#625d64">布龙齐诺，《维纳斯与丘比特的寓言》，约 1545 年。伦敦国家美术馆藏。 <a href="https://commons.wikimedia.org/wiki/File:Angelo_Bronzino_-_Venus%2C_Cupid%2C_Folly_and_Time_-_National_Gallery%2C_London.jpg">图像来源（公有领域）</a></figcaption></figure>
 
 两幅画都重视精确的造型，给观众的任务却已经不同。《岩间圣母》让人留意形体怎样在空气和阴影中出现。布龙齐诺让人沿着过分精致的身体、手势和表情寻找关系。后来辨认艺术风格时，这个区别很有用。画得光洁、逼真或细致，只告诉了我们技法的一部分。更值得追问的是，画家借这套技法安排了怎样的观看过程。
 
@@ -45,9 +59,15 @@ AI 辅助：Codex
 
 仔细看光线，会发现它做了两件事。它把面孔、手和桌布从较暗的背景里提起来，同时让每个人的反应有了先后。眼睛可以先落在桌旁较亮的面孔上，再顺着伸开的手臂被带向两侧。卡拉瓦乔还画出了寻常的衣服、餐具和食物。神圣事件发生在一张有分量、有摩擦、有东西快要掉下来的桌子旁，观众几乎能估计自己离桌沿还有多远。这是巴洛克画面的一种力量：**让观看有位置，让事件有眼前发生的感觉。**
 
+<figure style="margin:1.5rem auto;max-width:720px"><img src="assets/article-media/art-style-timeline/supper-at-emmaus.jpg" width="1280" height="905" alt="晚餐桌旁，一名门徒张开双臂，果篮靠近桌边" loading="lazy" decoding="async" style="display:block;width:100%;height:auto"><figcaption style="margin-top:.65rem;font-size:.875em;color:#625d64">卡拉瓦乔，《以马忤斯的晚餐》，1601 年。伦敦国家美术馆藏。 <a href="https://commons.wikimedia.org/wiki/File:Supper_at_Emmaus_by_Caravaggio.jpg">图像来源（公有领域）</a></figcaption></figure>
+
 贝尼尼在罗马科尔纳罗礼拜堂做了类似的事，只是换了媒介。《圣特蕾莎的狂喜》中的人物用大理石雕成，身后的镀金光束强调向下照射的方向，隐藏的采光让中心雕塑显得格外明亮。两侧还安排了像剧院包厢一样的空间，科尔纳罗家族成员的雕像被放在那里。参观者站在现实的礼拜堂里，能看到中心事件，也能看到作品已经为他们安排了别的观看者。雕塑、建筑、光线和观众的位置共同组织了这一幕。 [罗马旅游局贝尼尼作品与地点专题](https://www.turismoroma.it/en/node/49891)
 
+<figure style="margin:1.5rem auto;max-width:720px"><img src="assets/article-media/art-style-timeline/ecstasy-of-saint-teresa.jpg" width="1280" height="1087" alt="天使和圣特蕾莎位于大理石壁龛中央，身后有放射状金色光束" loading="lazy" decoding="async" style="display:block;width:100%;height:auto"><figcaption style="margin-top:.65rem;font-size:.875em;color:#625d64">贝尼尼，《圣特蕾莎的狂喜》，罗马科尔纳罗礼拜堂。摄影 Vassil。 <a href="https://commons.wikimedia.org/wiki/File:Ecstasy_of_St_Theresa_by_Bernini_Santa_Maria_della_Vittoria_15042017_02.jpg">图像来源</a> · <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a></figcaption></figure>
+
 巴洛克也有不同的地方版本。伦勃朗的《夜巡》来自荷兰城市民兵连队的群像传统。它没有给每个人平均分配光线和位置。前方两名军官一暗一亮，女孩的亮色在拥挤人群中意外突出，枪杆、旗帜和人物姿态把群像变成一个正在集合、准备行动的场面。卡拉瓦乔的室内宗教场景和伦勃朗的民兵群像相距甚远，形式上却有相通的问题：一群人都在，画家怎样让我们先看到某些人，再感觉到整群人的动势？ [荷兰国立博物馆《夜巡》研究专题](https://www.rijksmuseum.nl/en/whats-on/exhibitions/operation-night-watch)
+
+<figure style="margin:1.5rem auto;max-width:720px"><img src="assets/article-media/art-style-timeline/night-watch.webp" width="1600" height="1328" alt="《夜巡》前方一暗一亮的两名军官与左侧身着浅色衣裙的女孩" loading="lazy" decoding="async" style="display:block;width:100%;height:auto"><figcaption style="margin-top:.65rem;font-size:.875em;color:#625d64">伦勃朗，《夜巡》，1642 年。荷兰国立博物馆藏。 <a href="https://www.rijksmuseum.nl/en/collection/SK-C-5">馆藏图像</a></figcaption></figure>
 
 因此，深色、金饰和强烈明暗都可以作为观察线索，单看任何一项都不够。区分一幅巴洛克作品时，可以看它怎样把多个形式手段拧到同一个动作或事件上。对卡拉瓦乔来说，伸出的手和贴着桌沿的果篮在做这件事。对贝尼尼来说，建筑、雕刻和现实的光也参与其中。
 
@@ -61,6 +81,8 @@ AI 辅助：Codex
 
 弗拉戈纳尔的《秋千》同样有强烈的斜线和戏剧性动作。穿粉裙的女子荡至半空，一只鞋飞了出去。左下方有人仰视她，右后方另一个人牵动秋千。几条方向线交汇到裙摆，再从飞出的鞋、石雕和树丛向外散开。粉红色和偏冷的绿蓝色之间有很鲜明的对比。它仍然让人感到轻盈，因为人物的动作短促，裙摆和树叶像被同一阵风搅动，整件事的观看趣味带着游戏、遮掩和窥见。**洛可可可以浓艳，可以暗，也可以有明确的视觉中心。** 浅粉色只是它可能采用的一种颜色。 [华莱士收藏馆《秋千》专题](https://www.wallacecollection.org/explore/explore-in-depth/fragonards-the-swing/origins-of-the-swing/the-painting/)
 
+<figure style="margin:1.5rem auto;max-width:560px"><img src="assets/article-media/art-style-timeline/fragonard-swing.jpg" width="1280" height="1636" alt="粉裙女子荡起秋千，一只鞋飞向画面左上方" loading="lazy" decoding="async" style="display:block;width:100%;height:auto"><figcaption style="margin-top:.65rem;font-size:.875em;color:#625d64">弗拉戈纳尔，《秋千》，约 1767 年。伦敦华莱士收藏馆藏。 <a href="https://commons.wikimedia.org/wiki/File:Joean_Honor%C3%A9_Fragonard_-_The_Swing.jpg">图像来源（公有领域）</a></figcaption></figure>
+
 走进慕尼黑宁芬堡宫园内的阿玛琳堡，再看一次洛可可。镜厅里，镜面成倍扩大了门窗和装饰的可见范围，银色纹饰铺在偏浅的墙色上，灰泥造型把镜框周围与墙面连在一起。人一移动，反射就会变，房间很难被一个固定视点看完。这里的“轻盈”来自反射、边缘和重复，单看墙面选了什么颜色，解释不了整个房间。 [巴伐利亚宫殿管理局阿玛琳堡介绍](https://www.schloesser.bayern.de/englisch/palace/objects/ny_parkb.htm)
 
 把贝尼尼礼拜堂、弗拉戈纳尔的画和阿玛琳堡放在一起，最实用的区分是看**视线最后停在哪里**。礼拜堂以向中心集中的光和建筑框架建立一个重要时刻。《秋千》也有中心，但视线会在几个人物之间往返。镜厅则把这种游移铺开到整个室内。三者都能精心控制目光，差别在于它们希望人怎样停留。
@@ -71,6 +93,8 @@ AI 辅助：Codex
 
 雅克-路易·大卫的《荷拉斯兄弟之誓》尤其清楚。背景的三个拱门划分出几个区域。左边的兄弟伸臂宣誓，中间的父亲举剑，右边的女子和孩子聚在一起，身体多向下弯曲。拱门把他们分开，伸出的手和举起的剑又在中间形成联系。视线可以先认出誓言，然后移到另一侧，看见同一件事给家庭带来的代价。 [卢浮宫《荷拉斯兄弟之誓》馆藏页](https://collections.louvre.fr/ark%3A/53355/cl010062239)
 
+<figure style="margin:1.5rem auto;max-width:720px"><img src="assets/article-media/art-style-timeline/oath-of-the-horatii.jpg" width="1280" height="986" alt="三个拱门下，兄弟伸臂、父亲举剑，家人聚在右侧" loading="lazy" decoding="async" style="display:block;width:100%;height:auto"><figcaption style="margin-top:.65rem;font-size:.875em;color:#625d64">雅克-路易·大卫，《荷拉斯兄弟之誓》，1784 年。卢浮宫藏。 <a href="https://commons.wikimedia.org/wiki/File:Jacques-Louis_David%2C_Le_Serment_des_Horaces.jpg">图像来源（公有领域）</a></figcaption></figure>
+
 这幅画的克制感，有一部分来自取舍。背景建筑退到后面，地板帮人确认站位，衣服轮廓让姿势清楚可辨。画家把可供观看的细节集中在手臂、剑和彼此区别鲜明的身体姿态上。观众容易读懂发生了什么，也能看见不同人物如何面对同一件事。大卫借古罗马故事讨论公共责任、牺牲和家庭情感，不能把画中的意思全部折叠进“古典的比例很工整”。 [卢浮宫大卫展研究资料](https://presse.louvre.fr/wp-content/uploads/2025/07/ebff15e4ad234e307dc50c4643355fa0.pdf)
 
 文艺复兴、新古典主义和后来的古典复兴建筑都有机会使用古代题材、对称和柱式。辨认时可以从形式背后的任务入手。达·芬奇借明暗和空气让身体坐落在一个可信的自然空间里。大卫在这幅画里用清楚的分区把人物的选择摆出来。共享的形式传统很长，而具体作品在问什么，仍要到画面中去找。
@@ -79,15 +103,21 @@ AI 辅助：Codex
 
 德拉克洛瓦的《自由引导人民》描绘法国 1830 年七月革命。举旗的自由化身位于高处，前景倒下的人物形成宽阔的底部，活着的人向上、向前推进。画面的总体轮廓近似三角形，内部却充满横斜的武器、不同的身体方向和飘动的旗帜。远处建筑被烟雾吞没一部分，观众能看到队伍向前，却很难一眼厘清事件的全貌。作品用清楚的整体构图容纳了局部的混乱。 [卢浮宫《自由引导人民》馆藏页](https://collections.louvre.fr/ark%3A/53355/cl010065872)
 
+<figure style="margin:1.5rem auto;max-width:720px"><img src="assets/article-media/art-style-timeline/liberty-leading-the-people.jpg" width="1280" height="1016" alt="举旗的人物站在队伍上方，横斜的武器从烟雾里伸出" loading="lazy" decoding="async" style="display:block;width:100%;height:auto"><figcaption style="margin-top:.65rem;font-size:.875em;color:#625d64">德拉克洛瓦，《自由引导人民》，1830 年。卢浮宫藏。 <a href="https://commons.wikimedia.org/wiki/File:Eug%C3%A8ne_Delacroix_-_Liberty_Leading_the_People.jpeg">图像来源（公有领域）</a></figcaption></figure>
+
 和《荷拉斯兄弟之誓》并看，两者都可以把历史事件安排得庄重，也都让手势承担关键作用。大卫画中几组人物之间留有可辨认的界限，举剑把行动定格在一个清楚的决定上。德拉克洛瓦画里，活人和死者、寓言人物和现实中的参与者挤在同一片空间，画面的力量来自他们同时向观众逼近。两件作品的差异落在组织方式上。一个让人看清决定是怎样被做出的，一个让人感到卷入历史事件是什么样。
 
 浪漫主义也可以非常安静。弗里德里希的《雾海上的漫游者》把一位背朝观众的人放在近处的岩石上。脚下的石头有明确的边缘，远方则被雾拆成若隐若现的山峰。你可以借他的站位进入画面，却看不到他的脸，也难以计算雾后究竟还有多远。人物站在中央，画面真正占去大部分空间的却是他所面对的东西。 [汉堡美术馆《雾海上的漫游者》](https://www.hamburger-kunsthalle.de/en/news/wanderer-above-sea-fog-caspar-david-friedrich)
+
+<figure style="margin:1.5rem auto;max-width:560px"><img src="assets/article-media/art-style-timeline/wanderer-above-the-sea-of-fog.jpg" width="1280" height="1639" alt="背对观众的男子站在岩石上，望向云雾中的山峰" loading="lazy" decoding="async" style="display:block;width:100%;height:auto"><figcaption style="margin-top:.65rem;font-size:.875em;color:#625d64">卡斯帕·大卫·弗里德里希，《雾海上的漫游者》，约 1817 年。汉堡美术馆藏。 <a href="https://commons.wikimedia.org/wiki/File:Caspar_David_Friedrich_-_Wanderer_above_the_sea_of_fog.jpg">图像来源（公有领域）</a></figcaption></figure>
 
 这幅画能帮助人理解浪漫主义里常见的“崇高”。高山、风暴和雾海可以令人着迷，因为人的观看和估量在那里遇到了限度。德拉克洛瓦用人群和烟雾取得这种不完全可掌握的感觉，弗里德里希用背影和远景得到另一种。浪漫主义的强度有时来自动作，有时来自观众看了很久，仍然无法把眼前的世界看尽。
 
 ## 六、现实主义：普通人的生活为什么值得占据一整面墙
 
 十九世纪中叶，库尔贝的《奥尔南的葬礼》把一个地方小镇的葬礼画在一块巨大的画布上。在当时的法国绘画制度中，这种尺度常与历史画或纪念性事件相连，而库尔贝把它交给了在场的居民。画中人物大致沿水平方向排开，衣服偏深，几处白色和红色在队列中亮起来。前景的墓穴切入画面，没有给中心腾出通常留给英雄的高位。 [奥赛博物馆《奥尔南的葬礼》馆藏页](https://www.musee-orsay.fr/en/artworks/un-enterrement-ornans-924)
+
+<figure style="margin:1.5rem auto;max-width:720px"><img src="assets/article-media/art-style-timeline/burial-at-ornans.jpg" width="1280" height="593" alt="人群沿着长幅画面排开，前景中央是一处墓穴" loading="lazy" decoding="async" style="display:block;width:100%;height:auto"><figcaption style="margin-top:.65rem;font-size:.875em;color:#625d64">库尔贝，《奥尔南的葬礼》，1849—1850 年。奥赛博物馆藏。 <a href="https://commons.wikimedia.org/wiki/File:Courbet_-_Burial_at_Ornans.jpg">图像来源（公有领域）</a></figcaption></figure>
 
 站在这幅画前，可以先找找谁最像传统历史画的主角。你会发现，画家让不少人都值得被看见，却没有给出一个可以迅速概括所有人的单一姿态。有人注视仪式，有人站着等候，人的反应并不整齐。墓穴又在很靠近画面下沿的位置，观众的注意力既落在参加葬礼的人身上，也落在他们共同面对的那块空地上。
 
@@ -98,6 +128,8 @@ AI 辅助：Codex
 ## 七、印象主义：画家开始反复问，光线怎样改变眼前的东西
 
 莫奈的《印象·日出》画的是勒阿弗尔港。远处的港口设施隐在灰蓝色雾气里，近处几条小船用更深的颜色点出，橙红的太阳和水面倒影落在大面积的冷色之间。船和码头能被认出来，画家的注意力尤其集中在这一刻它们如何显现。经过这层空气，远处的建筑看起来变轻了，轮廓也变得不可靠。同样一个港口，到了正午可能完全不是这幅样子。 [马摩丹莫奈博物馆《印象·日出》馆藏页](https://www.marmottan.fr/en/notice/4014/)
+
+<figure style="margin:1.5rem auto;max-width:720px"><img src="assets/article-media/art-style-timeline/impression-sunrise.jpg" width="1280" height="993" alt="灰蓝色港口上空升起一轮橙红色太阳，水面上有小船和倒影" loading="lazy" decoding="async" style="display:block;width:100%;height:auto"><figcaption style="margin-top:.65rem;font-size:.875em;color:#625d64">莫奈，《印象·日出》，1872 年。巴黎马摩丹莫奈博物馆藏。 <a href="https://commons.wikimedia.org/wiki/File:Monet_-_Impression%2C_Sunrise.jpg">图像来源（公有领域）</a></figcaption></figure>
 
 早期绘画也观察光色，达·芬奇的远山就是一例。两张画相比，差别在于这些观察在作品中占多大分量。《岩间圣母》的空气透视服务于人物与远景之间的空间深度。《印象·日出》里，雾和光直接决定哪些对象会被看清，也构成了作品最醒目的内容。观看一幅印象主义绘画时，可以先找最清楚与最模糊的地方，再问这种变化究竟来自距离、光线、空气，还是画家有意保留的笔触。
 
@@ -117,7 +149,11 @@ AI 辅助：Codex
 
 塞尚的《苹果静物》可以从桌面看起。桌布、果实和器物都很熟悉，桌面及物体边缘的方向却不容易归入一套完全一致的透视。画家通过一块块不同的颜色让苹果鼓起来，再让苹果和周围的布、桌面互相支撑。用眼睛沿桌缘走一遍，再沿一只苹果的轮廓走一遍，会发现这幅画在每个局部都让人看得很具体，而这些局部组成的空间保留着轻微的不稳定。 [纽约现代艺术博物馆塞尚《苹果静物》](https://www.moma.org/momaorg/shared/flattened_pages/moma_learning/paul-cezanne-still-life-with-apples-1895-98/)
 
+<figure style="margin:1.5rem auto;max-width:720px"><img src="assets/article-media/art-style-timeline/still-life-with-apples.jpg" width="1280" height="960" alt="桌缘从不同方向伸出，白布周围散放着苹果" loading="lazy" decoding="async" style="display:block;width:100%;height:auto"><figcaption style="margin-top:.65rem;font-size:.875em;color:#625d64">塞尚，《苹果静物》，1895—1898 年。纽约现代艺术博物馆藏。 <a href="https://commons.wikimedia.org/wiki/File:WLA_moma_Cezanne_Still_Life_with_Apples.jpg">图像来源（公有领域）</a></figcaption></figure>
+
 梵高的《星月夜》给笔触另一种任务。天空里的笔触会旋转和延长，星星周围的短线向外放射，前景柏树则以深暗、近乎竖直的形状伸上去。画下方的村庄相对安定，上方的天空持续活动。观众仍能认出树、村庄和天上的星体，但作品的强度还来自这些方向之间的碰撞。由此可以看到，十九世纪末的画家已经在一幅具象作品里，为笔触、色彩和画面结构争取到很大的主动权。 [纽约现代艺术博物馆梵高《星月夜》](https://www.moma.org/collection/works/79802)
+
+<figure style="margin:1.5rem auto;max-width:720px"><img src="assets/article-media/art-style-timeline/starry-night.jpg" width="1280" height="1013" alt="深色柏树伸向天空，星月周围的笔触呈旋涡状" loading="lazy" decoding="async" style="display:block;width:100%;height:auto"><figcaption style="margin-top:.65rem;font-size:.875em;color:#625d64">梵高，《星月夜》，1889 年。纽约现代艺术博物馆藏。 <a href="https://commons.wikimedia.org/wiki/File:Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg">图像来源（公有领域）</a></figcaption></figure>
 
 ## 九、新艺术运动：装饰怎样从物体表面长进物体结构
 
@@ -125,11 +161,15 @@ AI 辅助：Codex
 
 吉马尔设计的巴黎地铁入口很清楚地表达了这种关系。入口两侧的铸铁构件一路向上弯曲，灯具像从茎端长出来，标牌与支撑它的框架也共享一套弯曲的轮廓。行人可以从远处看见入口，又能在近处认出交通设施上的文字。造型富于装饰，构件却能以铸铁制作和组合。现代城市的公共设施，在这里成为这种视觉语言的一部分。 [纽约现代艺术博物馆吉马尔地铁入口](https://www.moma.org/collection/works/2393) · [美国国家美术馆馆藏说明](https://www.nga.gov/artworks/108510-entrance-paris-metropolitain)
 
+<figure style="margin:1.5rem auto;max-width:560px"><img src="assets/article-media/art-style-timeline/guimard-metro.jpg" width="1280" height="1707" alt="向内弯曲的铸铁立柱托起标牌，顶部灯具形似植物的茎端" loading="lazy" decoding="async" style="display:block;width:100%;height:auto"><figcaption style="margin-top:.65rem;font-size:.875em;color:#625d64">埃克托尔·吉马尔，巴黎地铁入口。图为美国国家美术馆雕塑园藏品。摄影 Sarah Stierch，图像经缩放。 <a href="https://commons.wikimedia.org/wiki/File:An_Entrance_to_the_Paris_M%C3%A9tropolitain_by_Hector_Guimard_1902_-_Sarah_Stierch.jpg">图像来源</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></figcaption></figure>
+
 洛可可也有花叶、曲线和不同材料互相呼应的空间，因而容易与新艺术混淆。看阿玛琳堡时，观察的是镜框、墙面和灰泥装饰怎样相互延伸。看巴黎地铁入口时，观察的是同一条曲线怎样从立柱变到灯具，再和标牌接成一个建筑构件。后一个例子属于新技术和新城市设施正在改变公共生活的时期。工艺和工业制作在同一件作品里相遇，使“自然形态”有了另一层意思。 [维多利亚与阿尔伯特博物馆「新艺术运动」专题](https://www.vam.ac.uk/articles/art-nouveau-an-international-style)
 
 ## 十、野兽派与表现主义：颜色偏离对象以后，可以做什么
 
 马蒂斯 1905 年的《戴帽子的女人》仍是一幅肖像。头部、帽饰与肩颈关系很明确，脸上却出现了并非日常肤色的绿、黄和红。可以试着沿着脸的中线看这些颜色。绿和红有时分别承担明暗或冷暖关系，有时又同帽子上的色块、后方的背景发生呼应。脱离自然肤色以后，颜色获得了组织整张画的能力。它能让原本属于脸的一块颜色，和远处属于背景的一块颜色变得相关。 [旧金山现代艺术博物馆《戴帽子的女人》](https://www.sfmoma.org/artwork/91.161/)
+
+<figure style="margin:1.5rem auto;max-width:560px"><img src="assets/article-media/art-style-timeline/woman-with-a-hat.jpg" width="1280" height="1742" alt="戴帽女子的脸部以绿、红和黄色块表现" loading="lazy" decoding="async" style="display:block;width:100%;height:auto"><figcaption style="margin-top:.65rem;font-size:.875em;color:#625d64">亨利·马蒂斯，《戴帽子的女人》，1905 年。旧金山现代艺术博物馆藏。 <a href="https://commons.wikimedia.org/wiki/File:Matisse-Woman-with-a-Hat.jpg">图像来源（公有领域）</a></figcaption></figure>
 
 野兽派常以强烈色彩著称。若只把色彩加强，一张画也可能变得平均，每个地方都在争抢注意。马蒂斯让相邻的颜色互相推挤，又用帽子、面孔和肩部的轮廓使它们仍能被读成一个人物。画里的大胆取决于布置。哪里可以突然跳到另一种颜色，哪里需要一条轮廓重新把色块收拢，都是具体的绘画决定。
 
@@ -153,13 +193,19 @@ AI 辅助：Codex
 
 马列维奇的《白上白》画的是两个有细微差别的白色区域。内部的方形略微倾斜，在画面中偏向一侧。因为颜色很接近，眼睛需要停留一会儿，才看得清内部形状和背景的界限。边缘变得重要，是因为画家把许多平时占据注意力的差别收掉了。小小的倾角在这幅画里会引发格外明显的动势。它既像要离开背景，又始终留在画布上。 [纽约现代艺术博物馆马列维奇《白上白》](https://www.moma.org/collection/works/80385)
 
+<figure style="margin:1.5rem auto;max-width:720px"><img src="assets/article-media/art-style-timeline/white-on-white.png" width="1280" height="1280" alt="略微倾斜的浅白色方形位于另一种白色的背景上" loading="lazy" decoding="async" style="display:block;width:100%;height:auto"><figcaption style="margin-top:.65rem;font-size:.875em;color:#625d64">卡济米尔·马列维奇，《白上白》，1918 年。纽约现代艺术博物馆藏。 <a href="https://commons.wikimedia.org/wiki/File:White_on_White_%28Malevich%2C_1918%29.png">图像来源（公有领域）</a></figcaption></figure>
+
 康定斯基的《构成第八号》同样大量使用几何形式，观看却活跃得多。大小不同的圆、斜线和角形相隔一段距离，几处线条交叉得很密，另外一些位置相当空。眼睛会在强烈的交叉点和孤立的大形之间切换。画面让人感到时而加速、时而停顿，部分原因就在于间距和大小的变化。康定斯基的几何形帮助画面建立复杂的节奏，马列维奇则借稀少而接近的形体放大细微差异。 [古根海姆博物馆康定斯基《构成第八号》](https://www.guggenheim.org/teaching-materials/selections-from-the-permanent-collection/vasily-kandinsky-1866-1944-composition-8-komposition-8)
+
+<figure style="margin:1.5rem auto;max-width:720px"><img src="assets/article-media/art-style-timeline/composition-viii.jpg" width="1280" height="891" alt="大小不一的圆和多组相交的细线散布在画面上" loading="lazy" decoding="async" style="display:block;width:100%;height:auto"><figcaption style="margin-top:.65rem;font-size:.875em;color:#625d64">瓦西里·康定斯基，《构成第八号》，1923 年。古根海姆博物馆藏。 <a href="https://commons.wikimedia.org/wiki/File:Kandinsky_-_Composition_8%2C_1923.jpg">图像来源（公有领域）</a></figcaption></figure>
 
 蒙德里安晚期的《百老汇爵士乐》还能补充一种观看经验。横竖方向依然明确，连续的线却被一块块小色段切分，交点和局部较大的色块会改变目光前进的速度。它属于较晚的作品，放在这里能看到一种视觉语法经过多年探索后还会继续变化。几何抽象里面既有宁静，也有密集的动作。笼统说它“理性”，容易漏掉它在色彩、间距和节奏上最可感的部分。 [纽约现代艺术博物馆蒙德里安《百老汇爵士乐》](https://www.moma.org/collection/works/78682)
 
 ## 十三、达达与超现实主义：熟悉的东西，到了陌生的地方
 
 达达在第一次世界大战前后形成，留下了拼贴、表演、出版物和现成品等多种实践。哪怕对它的历史背景还不熟悉，也可以从杜尚的《泉》读进去。1917 年，一件工业生产的小便器被改变观看方向，以署名作品的方式提交给展览。原件后来不存，费城艺术博物馆保存的是 1950 年的复制版本，并展出与当年争议有关的资料。 [费城艺术博物馆《泉》馆藏页](https://www.philamuseum.org/objects/92488) · [《杜尚与〈泉〉的争议》展览资料](https://www.philamuseum.org/exhibitions/marcel-duchamp-and-the-fountain-scandal)
+
+<figure style="margin:1.5rem auto;max-width:560px"><img src="assets/article-media/art-style-timeline/duchamp-fountain.jpg" width="1280" height="1671" alt="黑白照片中的小便器改变了原来的摆放方向，侧面署有 R. Mutt" loading="lazy" decoding="async" style="display:block;width:100%;height:auto"><figcaption style="margin-top:.65rem;font-size:.875em;color:#625d64">马塞尔·杜尚，《泉》，1917 年。阿尔弗雷德·斯蒂格利茨拍摄的原作照片。 <a href="https://commons.wikimedia.org/wiki/File:Marcel_Duchamp%2C_1917%2C_Fountain%2C_photograph_by_Alfred_Stieglitz.jpg">图像来源（公有领域）</a></figcaption></figure>
 
 《泉》最值得仔细想的是，看待物件的方式如何改变。放在原来的地方，人主要按照用途识别它，甚至不会留意轮廓。转动方向，签上名字，再送进艺术展览的审议程序，同一件东西便有了另一组关系。它的选择、命名、位置和展览制度都进入了作品。这样的实践很难只用颜色和形状辨认，因为发生变化的还有**什么东西能够成为艺术，人凭什么这样判断**。
 
@@ -174,6 +220,8 @@ AI 辅助：Codex
 把它与新艺术的地铁入口比较，“有装饰”是共享的特点。吉马尔的立柱弯曲并长出灯具，几部分顺着同一方向连接。典型的装饰艺术器物则常把表面分成边界清楚的段落。图案服从对称轴，平滑的漆面、金属配件或木材纹理让光在边缘留下醒目的反射。装饰艺术也有自然题材，动物、花卉和日光都能出现，只是它们常被提炼为更整齐、更容易重复的图形。它的几何可以表现精工和华丽，还可以让人联想到现代机器的速度与精度。
 
 包豪斯与装饰艺术在时间上有重叠。包豪斯是一所学校，1919 年创办，后来经历不同城市和不同校长的阶段，在纺织、出版、器物、建筑等方面都有探索。以格罗皮乌斯设计的德绍校舍为例，工场一侧的大面积玻璃立面首先让人看到建筑如何围合工作空间。不同用途的体量彼此连接，开窗与空间的实际需要有关，室内外的关系也成了建筑外观的一部分。它可以被读成建筑怎样组织教学与制作的一种回答。 [包豪斯档案馆常见问题](https://www.bauhaus.de/en/discover/article/bauhaus-knowledge-in-a-nutshell/) · [德绍校舍档案](https://www.bauhaus.de/entdecken/objekte/bauhaus-gebaeude-dessau-1925-1926-orientierungsplan/)
+
+<figure style="margin:1.5rem auto;max-width:560px"><img src="assets/article-media/art-style-timeline/bauhaus-dessau.jpg" width="1280" height="1707" alt="德绍包豪斯校舍的玻璃幕墙与相邻的建筑体量" loading="lazy" decoding="async" style="display:block;width:100%;height:auto"><figcaption style="margin-top:.65rem;font-size:.875em;color:#625d64">瓦尔特·格罗皮乌斯设计的德绍包豪斯校舍，1925—1926 年。摄影 Marczoutendijk，图像经缩放。 <a href="https://commons.wikimedia.org/wiki/File:Bauhaus_building_in_Dessau.jpg">图像来源</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></figcaption></figure>
 
 两者都能采用方形、圆形、金属和玻璃。装饰艺术可以借几何强化一件物品的外表和制作质感，包豪斯相关实践往往让几何去协调材料、构造、生产或使用。实际历史比这个对照复杂，包豪斯也做有很强图案感的纺织品，装饰艺术也进入工业生产。将它们放在一起，更有用的问题是：几何在这件作品里做了什么？它装点表面，划分体量，表达速度，还是让人看清构件之间怎么连接？
 
@@ -202,6 +250,8 @@ AI 辅助：Codex
 “后现代主义”涵盖建筑、器物、视觉艺术等许多领域，各自的用法并不完全相同。维多利亚与阿尔伯特博物馆曾以约 1970—1990 年作为梳理设计领域后现代主义的重要展览时段。在这一范围里，艺术家和设计师更经常让作品显露自己的引文：一个传统屋顶的形状、一种廉价的工业饰面、一套观众从电影里认得的角色姿态，都可以被移到新的地方，改变原有的意思。 [维多利亚与阿尔伯特博物馆「何谓后现代主义」](https://www.vam.ac.uk/articles/what-is-postmodernism/)
 
 建筑上可以从文丘里为母亲设计的范娜·文丘里住宅看起。正面保留了人们很容易认作“房子”的山墙形象和居中的入口区域，山墙中间却有断开的处理，两侧的开窗也并不按简单的对称排列。远看很快就能认出熟悉的住宅轮廓，近看会发现不少细节在打断对这个轮廓的预期。门、窗和屋面依然属于一座可以居住的建筑，正立面也在利用人们早已知道的一种“房子长相”来交流。 [纽约现代艺术博物馆范娜·文丘里住宅模型](https://www.moma.org/collection/works/987) · [维多利亚与阿尔伯特博物馆后现代建筑专题](https://www.vam.ac.uk/articles/postmodernist-architecture-total-chaos-or-pure-genius)
+
+<figure style="margin:1.5rem auto;max-width:720px"><img src="assets/article-media/art-style-timeline/vanna-venturi-house.jpg" width="1280" height="853" alt="住宅正面的山墙在顶部中间断开，两侧窗户的位置和大小有差别" loading="lazy" decoding="async" style="display:block;width:100%;height:auto"><figcaption style="margin-top:.65rem;font-size:.875em;color:#625d64">罗伯特·文丘里设计的范娜·文丘里住宅正面。摄影 Smallbones。 <a href="https://commons.wikimedia.org/wiki/File:V_Venturi_H_720am.JPG">图像来源（公有领域）</a></figcaption></figure>
 
 索特萨斯为孟菲斯设计的《卡尔顿》隔断则充分发挥了颜色、轮廓和材料的冲突。斜向伸展的板件组成鲜明的剪影，正面既能被看成置物架，也有点像一件向外张开手臂的雕塑。彩色塑料层压板带着量产材料的表面特征，作品本身却是高度设计过的家具。大都会艺术博物馆指出，斜置的隔板还能托住容易在平直书架上倾倒的书。它看起来有意违背书架的惯常形象，也确实重新安排了如何放书。 [大都会艺术博物馆索特萨斯《卡尔顿》隔断](https://www.metmuseum.org/art/collection/search/486989)
 
